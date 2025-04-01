@@ -13,7 +13,7 @@ CREATE TABLE Employee (
 
 -- Tạo bảng Customer
 CREATE TABLE Customer (
-    Phone VARCHAR(15) PRIMARY KEY,
+    CustomerPhone VARCHAR(15) PRIMARY KEY,
     FullName NVARCHAR(100) NOT NULL,
     LoyaltyPoint INT DEFAULT 0
 );
@@ -27,9 +27,9 @@ CREATE TABLE [Order] (
     -- class có getChangeAmount()
     UsedPoint INT DEFAULT 0,
     PaymentMethod NVARCHAR(50) NOT NULL,
-    Phone VARCHAR(15) NOT NULL,
+    CustomerPhone VARCHAR(15) NOT NULL,
     EmployeeId VARCHAR(15) NOT NULL,
-    FOREIGN KEY (Phone) REFERENCES Customer(Phone),
+    FOREIGN KEY (CustomerPhone) REFERENCES Customer(CustomerPhone),
     FOREIGN KEY (EmployeeId) REFERENCES Employee(EmployeeId)
 );
 
