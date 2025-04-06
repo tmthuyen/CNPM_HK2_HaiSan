@@ -1,0 +1,29 @@
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+ namespace DTO{
+    
+    public class ImportDetail
+    {
+        public string ImportId { get; set; }
+        public string ProductId { get; set; }
+        public int Quantity { get; set; }
+        public decimal PurchasePrice { get; set; }
+
+        // tien phai tra cua chi tiet nhap vao
+        public decimal TotalPrice => PurchasePrice * Quantity;
+
+        public ImportDetail(string importId, string productId, int quantity, decimal purchasePrice)
+        {
+            ImportId = importId;
+            ProductId = productId;
+            Quantity = quantity;
+            PurchasePrice = purchasePrice;
+        }
+    }
+
+ }

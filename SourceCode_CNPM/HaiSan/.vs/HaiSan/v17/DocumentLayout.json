@@ -1,0 +1,82 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\final_report_cnpm\\sourcecode_cnpm\\haisan\\frmorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\final_report_cnpm\\sourcecode_cnpm\\haisan\\frmorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\final_report_cnpm\\sourcecode_cnpm\\haisan\\frmorder.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmorder.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 186,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmOrder.Designer.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.Designer.cs",
+              "RelativeDocumentMoniker": "frmOrder.Designer.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.Designer.cs",
+              "RelativeToolTip": "frmOrder.Designer.cs",
+              "ViewState": "AgIAABsBAAAAAAAAAAAnwDABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-06T11:07:50.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmOrder.cs [Design]",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs",
+              "RelativeDocumentMoniker": "frmOrder.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs [Design]",
+              "RelativeToolTip": "frmOrder.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-06T11:02:04.059Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmOrder.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs",
+              "RelativeDocumentMoniker": "frmOrder.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs",
+              "RelativeToolTip": "frmOrder.cs",
+              "ViewState": "AgIAAM8AAAAAAAAAAAASwNkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-06T11:01:57.038Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
