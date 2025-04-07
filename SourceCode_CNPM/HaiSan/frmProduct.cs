@@ -88,5 +88,10 @@ namespace GUI
                 MessageBox.Show($"Mã sản phẩm: {productId}", "Thông tin sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void txtCusId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

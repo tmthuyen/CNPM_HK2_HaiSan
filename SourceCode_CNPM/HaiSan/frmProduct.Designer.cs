@@ -33,10 +33,10 @@
             cbbCategory = new ComboBox();
             label3 = new Label();
             label4 = new Label();
-            txtCusId = new TextBox();
+            txtProId = new TextBox();
             label1 = new Label();
             label2 = new Label();
-            txtCusPhone = new TextBox();
+            txtProName = new TextBox();
             dgvProduct = new DataGridView();
             label6 = new Label();
             panel1.SuspendLayout();
@@ -49,10 +49,10 @@
             panel1.Controls.Add(cbbCategory);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(txtCusId);
+            panel1.Controls.Add(txtProId);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(txtCusPhone);
+            panel1.Controls.Add(txtProName);
             panel1.Location = new Point(27, 20);
             panel1.Name = "panel1";
             panel1.Size = new Size(878, 166);
@@ -103,14 +103,15 @@
             label4.TabIndex = 9;
             label4.Text = "Sắp xếp";
             // 
-            // txtCusId
+            // txtProId
             // 
-            txtCusId.BackColor = Color.WhiteSmoke;
-            txtCusId.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCusId.Location = new Point(216, 23);
-            txtCusId.Name = "txtCusId";
-            txtCusId.Size = new Size(214, 34);
-            txtCusId.TabIndex = 4;
+            txtProId.BackColor = Color.WhiteSmoke;
+            txtProId.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtProId.Location = new Point(216, 23);
+            txtProId.Name = "txtProId";
+            txtProId.Size = new Size(214, 34);
+            txtProId.TabIndex = 4;
+            txtProId.TextChanged += txtCusId_TextChanged;
             // 
             // label1
             // 
@@ -134,14 +135,14 @@
             label2.TabIndex = 7;
             label2.Text = "Tên sản phẩm";
             // 
-            // txtCusPhone
+            // txtProName
             // 
-            txtCusPhone.BackColor = Color.WhiteSmoke;
-            txtCusPhone.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCusPhone.Location = new Point(630, 23);
-            txtCusPhone.Name = "txtCusPhone";
-            txtCusPhone.Size = new Size(214, 34);
-            txtCusPhone.TabIndex = 6;
+            txtProName.BackColor = Color.WhiteSmoke;
+            txtProName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtProName.Location = new Point(630, 23);
+            txtProName.Name = "txtProName";
+            txtProName.Size = new Size(214, 34);
+            txtProName.TabIndex = 6;
             // 
             // dgvProduct
             // 
@@ -192,10 +193,10 @@
         private ComboBox cbbCategory;
         private Label label3;
         private Label label4;
-        private TextBox txtCusId;
+        private TextBox txtProId;
         private Label label1;
         private Label label2;
-        private TextBox txtCusPhone;
+        private TextBox txtProName;
         private ComboBox cbbSortName;
         private DataGridView dgvProduct;
         private Label label6;

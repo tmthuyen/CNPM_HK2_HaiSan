@@ -97,7 +97,7 @@ namespace GUI
         {
 
             // kiem tra tai khoan tu BUS
-            Employee e = new Employee(null, null, taiKhoan, null, 1, matKhau, "admin", "", null);
+            Employee e = new Employee(null, null, taiKhoan, null,"", 1, matKhau, "admin", "nam", null);
             if(e != null)
             {
                 Form f = new Home(e);
