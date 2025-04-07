@@ -1,49 +1,97 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using Microsoft.Data.SqlClient;
 using DTO;
 
 namespace DAL
 {
-    public class SupplierDAL : DALBase<Supplier>
+    public class SupplierDAL
     {
-        public SupplierDAL() : base()
+        // Lấy danh sách tất cả nhà cung cấp
+        public List<Supplier> GetAll()
         {
-            
-        }
+            string query = "SELECT * FROM Supplier";
+            DataTable dt = Connection.ExecuteQuery(query);
+            List<Supplier> suppliers = new List<Supplier>();
 
-        public List<Supplier> GetAllSuppliers()
-        {
-            return getList();
-        }
-
-        public Supplier GetSupplierById(string id)
-        {
-            return ExecuteFindById("SupplierId", id);
-        }
-
-        public void DeleteById(string id)
-        {
-            ExecuteDeleteById("SupplierId", id);
-        }
-
-        public void AddSupplier(Supplier supplier)
-        {
-            string sql = "INSERT INTO Supplier (SupplierId, Name, Address, Email, Phone) " +
-                         "VALUES (@SupplierId, @Name, @Address, @Email, @Phone)";
-
-            Dictionary<string, object> queryParams = new Dictionary<string, object>()
+            foreach (DataRow row in dt.Rows)
             {
-                { "@SupplierId", supplier.SupplierId },
-                { "@Name", supplier.Name },
-                { "@Address", supplier.Address },
-                { "@Email", supplier.Email },
-                { "@Phone", supplier.Phone }
+                suppliers.Add(new Supplier(
+                    row["SupplierId"].ToString(),
+                    row["SupplierName"].ToString(),
+                    row["Phone"].ToString(),
+                    row["Email"].ToString(),
+                    row["Address"].ToString()
+                ));
+            }
+
+            return suppliers;
+        }
+
+        // Thêm nhà cung cấp mới
+        public bool Add(Supplier supplier)
+        {
+            string query = @"INSERT INTO Supplier (SupplierId, SupplierName, Phone, Email, Address)
+                             VALUES (@Id, @Name, @Phone, @Email, @Address)";
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@Id", supplier.SupplierId),
+                new SqlParameter("@Name", supplier.SupplierName),
+                new SqlParameter("@Phone", supplier.Phone),
+                new SqlParameter("@Email", supplier.Email),
+                new SqlParameter("@Address", supplier.Address)
             };
 
-            ConnectData.GetInstance().actionQuery(sql, queryParams);
+            return Connection.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        // Cập nhật thông tin nhà cung cấp
+        public bool Update(Supplier supplier)
+        {
+            string query = @"UPDATE Supplier 
+                             SET SupplierName = @Name, Phone = @Phone, Email = @Email, Address = @Address
+                             WHERE SupplierId = @Id";
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@Id", supplier.SupplierId),
+                new SqlParameter("@Name", supplier.SupplierName),
+                new SqlParameter("@Phone", supplier.Phone),
+                new SqlParameter("@Email", supplier.Email),
+                new SqlParameter("@Address", supplier.Address)
+            };
+
+            return Connection.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        // Xóa nhà cung cấp
+        public bool Delete(string supplierId)
+        {
+            string query = "DELETE FROM Supplier WHERE SupplierId = @Id";
+            SqlParameter param = new SqlParameter("@Id", supplierId);
+            return Connection.ExecuteNonQuery(query, param) > 0;
+        }
+
+        // Tìm nhà cung cấp theo mã nhà cung cấp
+        public Supplier GetById(string supplierId)
+        {
+            string query = "SELECT * FROM Supplier WHERE SupplierId = @SupplierId";
+            SqlParameter param = new SqlParameter("@SupplierId", supplierId);
+
+            DataTable dt = Connection.ExecuteQuery(query, param);
+
+            if (dt.Rows.Count == 0)
+                return null;
+
+            DataRow row = dt.Rows[0];
+
+            return new Supplier(
+                row["SupplierId"].ToString(),
+                row["SupplierName"].ToString(),
+                row["Phone"].ToString(),
+                row["Email"].ToString(),
+                row["Address"].ToString()
+            );
         }
 
     }

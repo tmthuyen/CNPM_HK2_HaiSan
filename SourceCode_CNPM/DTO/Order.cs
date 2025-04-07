@@ -56,7 +56,7 @@ namespace DTO
         {
             if (OrderDetailList.Count == 0) 
                 return 0;
-            return OrderDetailList.Sum(od => od.TotalAmount);
+            return OrderDetailList.Sum(od => od.Amount * od.RetailPrice);
         }
 
     }

@@ -6,24 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DTO{
-    
     public class Supplier
+{
+    public string SupplierId { get; set; }
+    public string SupplierName { get; set; }
+    public string Phone { get; set; }
+    public string Email { get; set; }
+    public string Address { get; set; }
+
+    public Supplier() { }
+
+    public Supplier(string supplierId, string supplierName, string phone, string email, string address)
     {
-        public string SupplierId { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-
-        public Supplier() { }
-
-        public Supplier(string supplierId, string name, string address, string email, string phone)
-        {
-            SupplierId = supplierId;
-            Name = name;
-            Address = address;
-            Email = email;
-            Phone = phone;
-        }
+        SupplierId = supplierId;
+        SupplierName = supplierName;
+        Phone = phone;
+        Email = email;
+        Address = address;
     }
+}
+    
+    
 }

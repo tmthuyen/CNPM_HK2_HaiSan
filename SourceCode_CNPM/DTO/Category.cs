@@ -12,6 +12,8 @@ namespace DTO{
 
         public string CategoryName { get; set; }
 
+        public Category(){}
+
         public Category(string categoryId, string categoryName)
         {
             CategoryId = categoryId;

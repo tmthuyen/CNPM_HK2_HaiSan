@@ -3,70 +3,150 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Reflection;
+using System.Data;
 using DTO;
+using DAL;
+using Microsoft.Data.SqlClient;
 
 
 namespace DAL
 {
-    public class EmployeeDAL : DALBase<Employee>
+    public class EmployeeDAL
     {
-        public EmployeeDAL() : base()
+        // Lấy danh sách tất cả nhân viên
+        public List<Employee> GetAll()
         {
-            // Constructor logic if needed
-        }
+            string query = "SELECT * FROM Employee";
+            DataTable dt = Connection.ExecuteQuery(query);
+            List<Employee> employees = new List<Employee>();
 
-        public List<Employee> GetAllEmployees(){
-            return getList();
-        }
-    
-        public Employee GetEmployeeById(string id)
-        {
-            return ExecuteFindById("EmployeeId", id);
-        }
-
-        public void DeleteById(string id)
-        {
-            ExecuteDeleteById("EmployeeId", id);
-        }
-
-        public void AddEmployee(Employee employee)
-        {
-            string sql = $"INSERT INTO Employee (EmployeeId, Fullname, Phone, Email, Password, Gender, DateOfBirth, Status, Rolename) VALUES (@EmployeeId, @Fullname, @phone, @email, @password, @gender, @dateOfBirth, @status, @rolename)";
-            Dictionary<string, object> queryParams = new Dictionary<string, object>(){
-                { "@EmployeeId", employee.EmployeeId },
-                { "@Fullname", employee.FullName },
-                { "@phone", employee.Phone },
-                { "@email", employee.Email },
-                { "@password", employee.Password },
-                { "@gender", employee.Gender },
-                { "@dateOfBirth", employee.DateOfBirth },
-                { "@status", employee.Status },
-                { "@rolename", employee.RoleName }
-            };
-            ConnectData.GetInstance().actionQuery(sql, queryParams);
-        }
-
-         public void UpdateEmployee(Employee employee)
-        {
-            string sql = $"UPDATE Employee SET Fullname = @Fullname, Phone = @Phone, Email = @Email, Password = @Password, " +
-                         "Gender = @Gender, DateOfBirth = @DateOfBirth, Status = @Status, Rolename = @RoleName " +
-                         "WHERE EmployeeId = @EmployeeId";
-
-            Dictionary<string, object> queryParams = new Dictionary<string, object>()
+            foreach (DataRow row in dt.Rows)
             {
-                { "@EmployeeId", employee.EmployeeId },
-                { "@Fullname", employee.FullName },
-                { "@Phone", employee.Phone },
-                { "@Email", employee.Email },
-                { "@Password", employee.Password },
-                { "@Gender", employee.Gender },
-                { "@DateOfBirth", employee.DateOfBirth },
-                { "@Status", employee.Status },
-                { "@RoleName", employee.RoleName }
+                employees.Add(new Employee(
+                    row["EmployeeId"].ToString(),
+                    row["EmployeeName"].ToString(),
+                    row["Password"].ToString(),
+                    row["Phone"].ToString(),
+                    row["Email"]?.ToString(),
+                    row["Gender"].ToString(),
+                    row["Status"].ToString(),
+                    row["RoleName"].ToString(),
+                    row["Avatar "]?.ToString(),
+                    DateTime.Parse(row["DateOfBirth"].ToString())
+                ));
+            }
+
+            return employees;
+        }
+
+        
+        // Thêm nhân viên mới
+        public bool Add(Employee emp)
+        {
+            string query = @"INSERT INTO Employee (EmployeeId, EmployeeName, Password, Phone, Email, Gender, 
+                              Status, RoleName, Avatar, DateOfBirth)
+                             VALUES (@Id, @Name, @Password, @Phone, @Email, @Gender, @Status, @Role, @Avatar, @DateOfBirth)";
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@Id", emp.EmployeeId),
+                new SqlParameter("@Name", emp.EmployeeName),
+                new SqlParameter("@Password", emp.Password),
+                new SqlParameter("@Phone", emp.Phone),
+                new SqlParameter("@Email", emp.Email),
+                new SqlParameter("@Gender", emp.Gender),
+                new SqlParameter("@Status", emp.Status),
+                new SqlParameter("@Role", emp.RoleName),
+                new SqlParameter("@Avatar", emp.Avatar),
+                new SqlParameter("@DateOfBirth", emp.DateOfBirth)
             };
 
-            ConnectData.GetInstance().actionQuery(sql, queryParams);
+            return Connection.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        // Cập nhật thông tin nhân viên
+        public bool Update(Employee emp)
+        {
+            string query = @"UPDATE Employee 
+                             SET EmployeeName = @Name, Phone = @Phone, Email = @Email, 
+                                 Gender = @Gender, Status = @Status, RoleName = @Role, 
+                                 Avatar = @Avatar, DateOfBirth = @DateOfBirth
+                             WHERE EmployeeId = @Id";
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@Id", emp.EmployeeId),
+                new SqlParameter("@Name", emp.EmployeeName),
+                new SqlParameter("@Phone", emp.Phone),
+                new SqlParameter("@Email", emp.Email),
+                new SqlParameter("@Gender", emp.Gender),
+                new SqlParameter("@Status", emp.Status),
+                new SqlParameter("@Role", emp.RoleName),
+                new SqlParameter("@Avatar", emp.Avatar),
+                new SqlParameter("@DateOfBirth", emp.DateOfBirth)
+            };
+
+            return Connection.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        public bool Delete(string id)
+        {
+            string query = "Delete from Employee Where EmployeeId = @id";
+            SqlParameter p = new SqlParameter("@id", id);
+            return Connection.ExecuteNonQuery(query, p) > 0;
+        }
+
+
+        // tim theo id
+        public Employee GetById(string employeeId)
+        {
+            string query = "SELECT * FROM Employee WHERE EmployeeId = @EmployeeId";
+            SqlParameter param = new SqlParameter("@EmployeeId", employeeId);
+
+            DataTable dt = Connection.ExecuteQuery(query, param);
+
+            if (dt.Rows.Count == 0)
+                return null;
+
+            DataRow row = dt.Rows[0];
+
+            return new Employee(
+                row["EmployeeId"].ToString(),
+                row["EmployeeName"].ToString(),
+                row["Password"].ToString(),
+                row["Phone"].ToString(),
+                row["Email"].ToString(),
+                row["Gender"].ToString(),
+                row["Status"].ToString(),
+                row["RoleName"].ToString(),
+                row["Avatar"].ToString(),
+                Convert.ToDateTime(row["DateOfBirth"])
+            );
+        }
+
+        // Tìm nhân viên theo số điện thoại
+        public Employee FindByPhone(string phone)
+        {
+            string query = "SELECT TOP 1 * FROM Employee WHERE Phone = @Phone";
+            SqlParameter param = new SqlParameter("@Phone", phone);
+
+            using (SqlDataReader reader = Connection.ExecuteReader(query, param))
+            {
+                if (reader.Read())
+                {
+                    return new Employee(
+                        reader["EmployeeId"].ToString(),
+                        reader["EmployeeName"].ToString(),
+                        reader["Password"].ToString(),
+                        reader["Phone"].ToString(),
+                        reader["Email"]?.ToString(),
+                        reader["Gender"].ToString(),
+                        reader["Status"].ToString(),
+                        reader["RoleName"].ToString(),
+                        reader["Avatar"]?.ToString(),
+                        DateTime.Parse(reader["DateOfBirth "].ToString())
+                    );
+                }
+            }
+            return null;
         }
     }
 }
