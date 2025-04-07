@@ -168,3 +168,15 @@ F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bi
 F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\DAL.pdb
 F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.frmPromotion.resources
 F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.Usercontrol.UCDiscount.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\BUS.deps.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\BUS.runtimeconfig.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\DAL.deps.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\DAL.runtimeconfig.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\DAL.exe
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\BUS.exe
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\BUS.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\DAL.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\BUS.pdb
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\DAL.pdb
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.frmPromotion.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.Usercontrol.UCDiscount.resources

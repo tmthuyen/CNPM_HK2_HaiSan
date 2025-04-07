@@ -1,17 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\",
+  "WorkspaceRootPath": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\final_report_cnpm\\sourcecode_cnpm\\haisan\\frmorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|c:\\52300070_tmthuyen\\nam-2_hk2_2425\\4-software engineering\\final_report_cnpm\\sourcecode_cnpm\\haisan\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC4DE98D-9119-4326-B86D-0F5624A2E58B}|..\\DAL\\DAL.csproj|c:\\52300070_tmthuyen\\nam-2_hk2_2425\\4-software engineering\\final_report_cnpm\\sourcecode_cnpm\\dal\\dalbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC4DE98D-9119-4326-B86D-0F5624A2E58B}|..\\DAL\\DAL.csproj|c:\\52300070_tmthuyen\\nam-2_hk2_2425\\4-software engineering\\final_report_cnpm\\sourcecode_cnpm\\dal\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC4DE98D-9119-4326-B86D-0F5624A2E58B}|..\\DAL\\DAL.csproj|c:\\52300070_tmthuyen\\nam-2_hk2_2425\\4-software engineering\\final_report_cnpm\\sourcecode_cnpm\\dal\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82CFE808-EE24-48C7-A03A-855C24664C05}|..\\BUS\\BUS.csproj|c:\\52300070_tmthuyen\\nam-2_hk2_2425\\4-software engineering\\final_report_cnpm\\sourcecode_cnpm\\bus\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|c:\\52300070_tmthuyen\\nam-2_hk2_2425\\4-software engineering\\final_report_cnpm\\sourcecode_cnpm\\haisan\\frmorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\final_report_cnpm\\sourcecode_cnpm\\haisan\\frmorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\final_report_cnpm\\sourcecode_cnpm\\haisan\\frmorder.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|c:\\52300070_tmthuyen\\nam-2_hk2_2425\\4-software engineering\\final_report_cnpm\\sourcecode_cnpm\\haisan\\frmorder.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmorder.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -22,40 +38,96 @@
       "DocumentGroups": [
         {
           "DockedWidth": 186,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T16:27:15.724Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "frmOrder.Designer.cs",
-              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.Designer.cs",
-              "RelativeDocumentMoniker": "frmOrder.Designer.cs",
-              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.Designer.cs",
-              "RelativeToolTip": "frmOrder.Designer.cs",
-              "ViewState": "AgIAABsBAAAAAAAAAAAnwDABAAAAAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\Program.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Program.cs",
+              "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\Program.cs",
+              "RelativeToolTip": "..\\DAL\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T11:07:50.258Z",
+              "WhenOpened": "2025-04-07T16:26:35.048Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\Employee.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Employee.cs",
+              "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\Employee.cs",
+              "RelativeToolTip": "..\\DAL\\Employee.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T16:26:32.372Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "DALBase.cs",
+              "DocumentMoniker": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\DALBase.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\DALBase.cs",
+              "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\DALBase.cs",
+              "RelativeToolTip": "..\\DAL\\DALBase.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAYwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T16:25:04.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\BUS\\Class1.cs",
+              "RelativeDocumentMoniker": "..\\BUS\\Class1.cs",
+              "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\BUS\\Class1.cs",
+              "RelativeToolTip": "..\\BUS\\Class1.cs",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAkwBEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T16:22:53.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "frmOrder.Designer.cs",
+              "DocumentMoniker": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.Designer.cs",
+              "RelativeDocumentMoniker": "frmOrder.Designer.cs",
+              "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.Designer.cs",
+              "RelativeToolTip": "frmOrder.Designer.cs",
+              "ViewState": "AgIAABsBAAAAAAAAAAAnwDABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-06T11:07:50.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "frmOrder.cs [Design]",
-              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs",
+              "DocumentMoniker": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs",
               "RelativeDocumentMoniker": "frmOrder.cs",
-              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs [Design]",
+              "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs [Design]",
               "RelativeToolTip": "frmOrder.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-06T11:02:04.059Z",
@@ -63,16 +135,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "frmOrder.cs",
-              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs",
+              "DocumentMoniker": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs",
               "RelativeDocumentMoniker": "frmOrder.cs",
-              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs",
+              "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmOrder.cs",
               "RelativeToolTip": "frmOrder.cs",
-              "ViewState": "AgIAAM8AAAAAAAAAAAASwNkAAAAAAAAAAAAAAA==",
+              "ViewState": "AQIAAK4AAAAAAAAAAAAiwAoAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-06T11:01:57.038Z",
               "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 343,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{25f7e850-ffa1-11d0-b63f-00a0c922e851}"
             }
           ]
         }

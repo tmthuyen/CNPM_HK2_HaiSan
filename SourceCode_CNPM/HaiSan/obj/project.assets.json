@@ -1725,24 +1725,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hjiis\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\THUYEN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\GUI.csproj",
+      "projectUniqueName": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\GUI.csproj",
       "projectName": "GUI",
-      "projectPath": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\GUI.csproj",
-      "packagesPath": "C:\\Users\\hjiis\\.nuget\\packages\\",
-      "outputPath": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\obj\\",
+      "projectPath": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\GUI.csproj",
+      "packagesPath": "C:\\Users\\THUYEN\\.nuget\\packages\\",
+      "outputPath": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\hjiis\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\THUYEN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1756,14 +1751,14 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\BUS\\BUS.csproj": {
-              "projectPath": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\BUS\\BUS.csproj"
+            "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\BUS\\BUS.csproj": {
+              "projectPath": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\BUS\\BUS.csproj"
             },
-            "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\DAL.csproj": {
-              "projectPath": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\DAL.csproj"
+            "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\DAL.csproj"
             },
-            "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\DTO\\DTO.csproj": {
-              "projectPath": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\Final_Report_CNPM\\SourceCode_CNPM\\DTO\\DTO.csproj"
+            "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DTO\\DTO.csproj": {
+              "projectPath": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DTO\\DTO.csproj"
             }
           }
         }
@@ -1777,8 +1772,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -1808,7 +1802,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
