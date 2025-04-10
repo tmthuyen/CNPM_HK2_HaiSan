@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
+using Infrastructure;
 
 namespace DAL
 {
     public class Connection
     {
-        static string server = @"loneve\SQLEXPRESS";
-        static string db = @"HaiSan";
+        static string server = Config.ServerName;
+        static string db = Config.DatabaseName;
         private static string connectionString = $"Data Source={server};Initial Catalog=${db};integrated security = true;TrustServerCertificate=True;";
 
 
