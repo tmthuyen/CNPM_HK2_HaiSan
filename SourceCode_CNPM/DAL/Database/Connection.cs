@@ -4,6 +4,7 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
 using Infrastructure;
+using System.Windows.Forms;
 
 namespace DAL
 {
@@ -11,7 +12,7 @@ namespace DAL
     {
         static string server = Config.ServerName;
         static string db = Config.DatabaseName;
-        private static string connectionString = $"Data Source={server};Initial Catalog=${db};integrated security = true;TrustServerCertificate=True;";
+        private static string connectionString = $"Data Source={server};Initial Catalog={db};integrated security = true;TrustServerCertificate=True;";
 
 
         public Connection()
@@ -29,18 +30,26 @@ namespace DAL
         public static DataTable ExecuteQuery(string query, params SqlParameter[] parameters)
         {
             DataTable dt = new DataTable();
-            using (SqlConnection conn = GetConnection())
+            try
             {
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection conn = GetConnection())
                 {
-                    if (parameters != null)
-                        cmd.Parameters.AddRange(parameters);
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        if (parameters != null)
+                            cmd.Parameters.AddRange(parameters);
 
-                    conn.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    adapter.Fill(dt);
+                        conn.Open();
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(dt);
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             return dt;
         }
 

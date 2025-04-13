@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.IdentityModel.Tokens;
-
+using Infrastructure;
 namespace GUI
 {
     public partial class frmConfig : Form
@@ -58,7 +58,6 @@ namespace GUI
         {
             try
             {
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.txt");
                 string[] lines = {
                         checkBox1.Checked?"windows":"server",                  // "server" hay "windows")
                         textBoxServer.Text,  // Server name
@@ -68,13 +67,13 @@ namespace GUI
                     };
 
                 // ... same as before
-                File.WriteAllText(path, string.Join(Environment.NewLine, lines));
+                Config.writeToFile(lines);
                 this.DialogResult = DialogResult.OK; // success
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error writing config: " + ex.Message);
+                (new frmError("Lỗi ghi file", ex.Message)).ShowDialog();
             }
         }
 
@@ -83,7 +82,7 @@ namespace GUI
         {
             if (!validate())
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Thiếu dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                (new frmError("Vui lòng nhập đầy đủ thông tin.", "Thiếu dữ liệu")).ShowDialog();
             }
             else
             {

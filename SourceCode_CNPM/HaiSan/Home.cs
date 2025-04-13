@@ -8,15 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NAudio.Wave;
+using NAudio.Gui;
 
 namespace GUI
 {
     public partial class Home : Form
     {
+        private float currentVolume = 0.5f;
+        private float previousVolume = 0.5f; // for unmute
+
         public Home(Employee e)
         {
             InitializeComponent();
             customControl();
+            PlayBackgroundMusic();
+
         }
 
         // thay doi button dieu huong form
@@ -142,6 +149,92 @@ namespace GUI
 
             };
             showForm(f, btnProduct);
+        }
+        private void btnPromotion_Click(object sender, EventArgs e)
+        {
+            frmVoucher f = new frmVoucher()
+            {
+                Dock = DockStyle.Fill,
+                TopLevel = false,
+                TopMost = true
+
+            };
+            showForm(f, btnPromotion);
+        }
+
+
+
+
+
+        //music lol
+        private void PlayBackgroundMusic()
+        {
+            string path = Path.Combine(Application.StartupPath, "Images", "bg.mp3");
+
+            outputDevice = new WaveOutEvent();
+            audioFile = new AudioFileReader(path);
+
+            // Optional: Set volume (0.0 to 1.0)
+            audioFile.Volume = 0.5f;
+
+            // Wrap in loop stream
+            var loop = new LoopStream(audioFile);
+            outputDevice.Init(loop);
+            outputDevice.Play();
+        }
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            outputDevice?.Stop();
+            audioFile?.Dispose();
+            outputDevice?.Dispose();
+        }
+        private void BtnIncreaseVol_Click(object sender, EventArgs e)
+        {
+            if (audioFile != null)
+            {
+                currentVolume = Math.Min(1.0f, currentVolume + 0.1f);
+                audioFile.Volume = currentVolume;
+                volumeBar.Value = (int)(currentVolume * 100);
+
+            }
+        }
+        private void BtnDecreaseVol_Click(object sender, EventArgs e)
+        {
+            if (audioFile != null)
+            {
+                currentVolume = Math.Max(0.0f, currentVolume - 0.1f);
+                audioFile.Volume = currentVolume;
+                volumeBar.Value = (int)(currentVolume * 100);
+
+            }
+        }
+
+        private void BtnMute_Click(object sender, EventArgs e)
+        {
+            if (audioFile != null && audioFile.Volume > 0f)
+            {
+                previousVolume = currentVolume;
+                currentVolume = 0f;
+                audioFile.Volume = 0f;
+                btnMute.Text = "Unmute";
+                volumeBar.Value = 0;
+            }
+            else if (audioFile != null && currentVolume == 0f)
+            {
+                currentVolume = previousVolume;
+                audioFile.Volume = currentVolume;
+                btnMute.Text = "Mute";
+                volumeBar.Value = (int)(currentVolume * 100);
+
+            }
+        }
+        private void VolumeSlider_Scroll(object sender, EventArgs e)
+        {
+            if (audioFile != null)
+            {
+                currentVolume = volumeBar.Value / 100f;
+                audioFile.Volume = currentVolume;
+            }
         }
     }
 }

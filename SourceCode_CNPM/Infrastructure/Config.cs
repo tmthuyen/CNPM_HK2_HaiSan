@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Infrastructure
 {
@@ -19,6 +20,19 @@ namespace Infrastructure
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.txt");
             return File.Exists(path);
+        }
+        public static void writeToFile(string[] lines)
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.txt");
+
+            try
+            {
+                File.WriteAllText(path, string.Join(Environment.NewLine, lines));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error writing config: " + ex.Message);
+            }
         }
         public static void LoadConfig()
         {
@@ -58,6 +72,7 @@ namespace Infrastructure
             {
                 throw new Exception("Invalid mode in config file. Use 'windows' or 'server' as the first line.");
             }
+            //thử connect database
         }
     }
 }

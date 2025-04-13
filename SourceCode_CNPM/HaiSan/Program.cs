@@ -16,45 +16,29 @@ namespace GUI
             ApplicationConfiguration.Initialize();
             if (!Config.ConfigFileExists())
             {
-                using (var configForm = new frmConfig())
+                using (frmConfig configForm = new frmConfig())
                 {   
                     if (configForm.ShowDialog() != DialogResult.OK)
                     {
-                        Application.Exit(); // or show again
+                        Application.Exit(); 
                         return;
                     }
                 }
-                using (var loginForm = new frmLogin())
-                {
-                    if (loginForm.ShowDialog() == DialogResult.OK)
-                    {
-                        // If login is successful, show main form
-                        Application.Run(new Home(new DTO.Employee()));
-                    }
-                    else
-                    {
-                        // User closed login or failed — exit
-                        Application.Exit();
-                    }
-                }
+                
             }
-            else
+            
+            try
             {
                 Config.LoadConfig();
-                using (var loginForm = new frmLogin())
-                {
-                    if (loginForm.ShowDialog() == DialogResult.OK)
-                    {
-                        // If login is successful, show main form
-                        Application.Run(new Home(new DTO.Employee()));
-                    }
-                    else
-                    {
-                        // User closed login or failed — exit
-                        Application.Exit();
-                    }
-                }
+                Application.Run(new frmLogin());
             }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                return; 
+            }
+            
+            
            
             //Application.Run(new Home(new DTO.Employee()));
             //Application.Run(new frmLogin());

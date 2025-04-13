@@ -3,32 +3,35 @@
   "WorkspaceRootPath": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\haisan\\frmvoucher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmvoucher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C31D909-3DDB-4B22-BAA3-B5A9EA56209B}|..\\BUS\\BUS.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\bus\\promotionbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC4DE98D-9119-4326-B86D-0F5624A2E58B}|..\\DAL\\DAL.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\dal\\promotiondal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\haisan\\frmvoucher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmvoucher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DC4DE98D-9119-4326-B86D-0F5624A2E58B}|..\\DAL\\DAL.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\dal\\database\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\haisan\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAC0D4B4-5B20-47F3-946B-35C99242D595}|..\\Infrastructure\\Infrastructure.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\infrastructure\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\haisan\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\haisan\\frmconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC4DE98D-9119-4326-B86D-0F5624A2E58B}|..\\DAL\\DAL.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\dal\\dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{DC4DE98D-9119-4326-B86D-0F5624A2E58B}|..\\DAL\\DAL.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\dal\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\haisan\\gui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:gui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{6C31D909-3DDB-4B22-BAA3-B5A9EA56209B}|..\\BUS\\BUS.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\bus\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DAC0D4B4-5B20-47F3-946B-35C99242D595}|..\\Infrastructure\\Infrastructure.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\infrastructure\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\cnpm_hk2_haisan\\sourcecode_cnpm\\haisan\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,8 +40,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 165,
-          "SelectedChildIndex": 6,
+          "DockedWidth": 290,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -51,102 +54,129 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
+            }
+          ]
+        },
+        {
+          "DockedWidth": 295,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Home.cs",
-              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\Home.cs",
-              "RelativeDocumentMoniker": "Home.cs",
-              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\Home.cs",
-              "RelativeToolTip": "Home.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "frmVoucher.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmVoucher.cs",
+              "RelativeDocumentMoniker": "frmVoucher.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmVoucher.cs",
+              "RelativeToolTip": "frmVoucher.cs",
+              "ViewState": "AgIAALsAAAAAAAAAAAAvwNgAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T08:23:55.123Z"
+              "WhenOpened": "2025-04-12T02:24:29.066Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "frmConfig.cs",
-              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmConfig.cs",
-              "RelativeDocumentMoniker": "frmConfig.cs",
-              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmConfig.cs",
-              "RelativeToolTip": "frmConfig.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowE0AAAANAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\BUS\\Program.cs",
+              "RelativeDocumentMoniker": "..\\BUS\\Program.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\BUS\\Program.cs",
+              "RelativeToolTip": "..\\BUS\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T08:22:16.579Z"
+              "WhenOpened": "2025-04-12T09:21:52.909Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\DAL\\Program.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Program.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\DAL\\Program.cs",
+              "RelativeToolTip": "..\\DAL\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-12T09:24:57.244Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAuwCYAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBkAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T08:18:39.949Z"
+              "WhenOpened": "2025-04-11T14:49:10.474Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "PromotionDAL.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\DAL\\PromotionDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\PromotionDAL.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\DAL\\PromotionDAL.cs",
+              "RelativeToolTip": "..\\DAL\\PromotionDAL.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAwwGwAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-12T07:53:05.678Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 263,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmVoucher.cs [Design]",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmVoucher.cs",
+              "RelativeDocumentMoniker": "frmVoucher.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmVoucher.cs [Design]",
+              "RelativeToolTip": "frmVoucher.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-12T05:17:46.529Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PromotionBUS.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\BUS\\PromotionBUS.cs",
+              "RelativeDocumentMoniker": "..\\BUS\\PromotionBUS.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\BUS\\PromotionBUS.cs",
+              "RelativeToolTip": "..\\BUS\\PromotionBUS.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAowGUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-12T06:27:05.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Connection.cs",
               "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\DAL\\Database\\Connection.cs",
               "RelativeDocumentMoniker": "..\\DAL\\Database\\Connection.cs",
               "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\DAL\\Database\\Connection.cs",
               "RelativeToolTip": "..\\DAL\\Database\\Connection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowC4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T08:14:03.576Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GUI.csproj",
-              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\GUI.csproj",
-              "RelativeDocumentMoniker": "GUI.csproj",
-              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\GUI.csproj",
-              "RelativeToolTip": "GUI.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-10T08:10:46.123Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\Infrastructure\\Program.cs",
-              "RelativeDocumentMoniker": "..\\Infrastructure\\Program.cs",
-              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\Infrastructure\\Program.cs",
-              "RelativeToolTip": "..\\Infrastructure\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T08:10:14.369Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\Infrastructure\\Form1.cs",
-              "RelativeDocumentMoniker": "..\\Infrastructure\\Form1.cs",
-              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\Infrastructure\\Form1.cs [Design]",
-              "RelativeToolTip": "..\\Infrastructure\\Form1.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T08:09:29.095Z"
+              "WhenOpened": "2025-04-12T09:00:24.209Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "DAL.csproj",
-              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\DAL\\DAL.csproj",
-              "RelativeDocumentMoniker": "..\\DAL\\DAL.csproj",
-              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\DAL\\DAL.csproj",
-              "RelativeToolTip": "..\\DAL\\DAL.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-10T08:07:39.502Z"
+              "Title": "frmConfig.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmConfig.cs",
+              "RelativeDocumentMoniker": "frmConfig.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmConfig.cs",
+              "RelativeToolTip": "frmConfig.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAwwB4AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-12T05:30:03.467Z"
             }
           ]
         }

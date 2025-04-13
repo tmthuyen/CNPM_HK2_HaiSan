@@ -19,6 +19,9 @@
     <Compile Update="frmProduct.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -27,6 +30,9 @@
     </Compile>
     <Compile Update="frmSuccces.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Usercontrol\PromotionControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
 </Project>
