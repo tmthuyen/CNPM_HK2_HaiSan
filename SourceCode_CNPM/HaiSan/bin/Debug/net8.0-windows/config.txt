@@ -1,3 +1,0 @@
-windows
-DESKTOP-BP38G95\SQLEXPRESS
-haisan2
