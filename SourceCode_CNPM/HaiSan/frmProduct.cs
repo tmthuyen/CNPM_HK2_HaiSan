@@ -17,7 +17,7 @@ namespace GUI
         {
             InitializeComponent();
             loadCategory();
-            showProductToView(new List<Product>() { new Product("sp1", "sp1", 1, 1, DateTime.Now, 1, 1, 1, "ca1") });
+            showProductToView(new List<Product>() { new Product("sp1", "supply1", "1","Cua1",100000, 120000, DateTime.Now, 1, 1, "ca1") });
         }
 
         private void showProductToView(List<Product> list)
@@ -27,15 +27,17 @@ namespace GUI
 
             // an cac cot khong can xem
             dgvProduct.Columns["PurchasePrice"].Visible = false;
+            
+            if (dgvProduct.Columns["ExpirationPeriod"]!= null)
             dgvProduct.Columns["ExpirationPeriod"].Visible = false;
 
             // sua headertext
             dgvProduct.Columns["ProductID"].HeaderText = "Mã";
             dgvProduct.Columns["ProductName"].HeaderText = "Tên";
             dgvProduct.Columns["RetailPrice"].HeaderText = "Giá bán";
-            dgvProduct.Columns["Quantity"].HeaderText = "Số lượng";
-            dgvProduct.Columns["CreatedAt"].HeaderText = "Ngày tạo";
-            dgvProduct.Columns["Status"].HeaderText = "Trạng thái";
+            //dgvProduct.Columns["Quantity"].HeaderText = "Số lượng";
+            //dgvProduct.Columns["CreatedAt"].HeaderText = "Ngày tạo";
+            //dgvProduct.Columns["Status"].HeaderText = "Trạng thái";
             dgvProduct.Columns["CategoryId"].HeaderText = "Mã loại";
 
             // them button

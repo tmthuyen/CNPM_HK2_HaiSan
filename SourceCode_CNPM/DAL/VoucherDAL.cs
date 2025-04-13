@@ -9,15 +9,15 @@ namespace DAL
     public class VoucherDAL
     {
         // Lấy tất cả voucher
-        public List<VoucherDTO> GetAll()
+        public List<Voucher> GetAll()
         {
             string query = "SELECT * FROM Voucher";
             DataTable dt = Connection.ExecuteQuery(query);
-            List<VoucherDTO> list = new List<VoucherDTO>();
+            List<Voucher> list = new List<Voucher>();
 
             foreach (DataRow row in dt.Rows)
             {
-                list.Add(new VoucherDTO(
+                list.Add(new Voucher(
                     row["VoucherId"].ToString(),
                     row["VoucherName"].ToString(),
                     Convert.ToDateTime(row["ReleaseDate"]),
@@ -33,7 +33,7 @@ namespace DAL
         }
 
         // Thêm voucher mới
-        public bool Add(VoucherDTO voucher)
+        public bool Add(Voucher voucher)
         {
             string query = @"INSERT INTO Voucher 
                              (VoucherId, VoucherName, ReleaseDate, Expire, ApplyAmount, MaxApply, DiscountValue, IsCash) 
@@ -43,7 +43,7 @@ namespace DAL
                 new SqlParameter("@Id", voucher.VoucherId),
                 new SqlParameter("@Name", voucher.VoucherName),
                 new SqlParameter("@ReleaseDate", voucher.ReleaseDate),
-                new SqlParameter("@Expire", voucher.Expire),
+                new SqlParameter("@Expire", voucher.ExpireDate),
                 new SqlParameter("@ApplyAmount", voucher.ApplyAmount),
                 new SqlParameter("@MaxApply", voucher.MaxApply),
                 new SqlParameter("@DiscountValue", voucher.DiscountValue),
@@ -54,7 +54,7 @@ namespace DAL
         }
 
         // Cập nhật voucher
-        public bool Update(VoucherDTO voucher)
+        public bool Update(Voucher voucher)
         {
             string query = @"UPDATE Voucher SET 
                                 VoucherName = @Name,
@@ -70,7 +70,7 @@ namespace DAL
                 new SqlParameter("@Id", voucher.VoucherId),
                 new SqlParameter("@Name", voucher.VoucherName),
                 new SqlParameter("@ReleaseDate", voucher.ReleaseDate),
-                new SqlParameter("@Expire", voucher.Expire),
+                new SqlParameter("@Expire", voucher.ExpireDate),
                 new SqlParameter("@ApplyAmount", voucher.ApplyAmount),
                 new SqlParameter("@MaxApply", voucher.MaxApply),
                 new SqlParameter("@DiscountValue", voucher.DiscountValue),

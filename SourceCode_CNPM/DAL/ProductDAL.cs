@@ -6,12 +6,13 @@ using DTO;
 
 namespace DAL
 {
-    public class ProductDAL
+    public static class ProductDAL
     {
+        
         // Lấy danh sách tất cả sản phẩm
-        public List<Product> GetAll()
+        public static List<Product> GetAll()
         {
-            string query = "SELECT * FROM Product";
+            string query = "SELECT * FROM Products";
             DataTable dt = Connection.ExecuteQuery(query);
             List<Product> products = new List<Product>();
 
@@ -36,7 +37,7 @@ namespace DAL
 
 
         // tim kiem sap xep theo gia(mac dinh) tang dan
-        public List<Product> Search(decimal? minPrice, decimal? maxPrice, string categoryId, string name, string sortBy = "RetailPrice", bool ascending = true)  
+        public static List<Product> Search(decimal? minPrice, decimal? maxPrice, string categoryId, string name, string sortBy = "RetailPrice", bool ascending = true)  
         {
             List<Product> products = new List<Product>();
             string query = "SELECT * FROM Product WHERE 1=1"; // Bắt đầu với điều kiện luôn đúng
@@ -99,7 +100,7 @@ namespace DAL
 
 
         // Thêm sản phẩm mới
-        public bool Add(Product product)
+        public static bool Add(Product product)
         {
             string query = @"INSERT INTO Product (ProductId, SupplierId, CategoryId, ProductName, 
                                                   PurchasePrice, RetailPrice, CreatedAt, 
@@ -125,7 +126,7 @@ namespace DAL
         }
 
         // Cập nhật thông tin sản phẩm
-        public bool Update(Product product)
+        public static bool Update(Product product)
         {
             string query = @"UPDATE Product 
                              SET SupplierId = @SupplierId, CategoryId = @CategoryId, 
@@ -150,7 +151,7 @@ namespace DAL
         }
 
         // Xóa sản phẩm
-        public bool Delete(string productId)
+        public static bool Delete(string productId)
         {
             string query = "DELETE FROM Product WHERE ProductId = @Id";
             SqlParameter param = new SqlParameter("@Id", productId);
@@ -158,7 +159,7 @@ namespace DAL
         }
 
         // Tìm sản phẩm theo mã sản phẩm
-        public Product GetById(string productId)
+        public static Product GetById(string productId)
         {
             string query = "SELECT * FROM Product WHERE ProductId = @ProductId";
             SqlParameter param = new SqlParameter("@ProductId", productId);
@@ -185,7 +186,7 @@ namespace DAL
         }
 
         // Tìm sản phẩm theo tên
-        public List<Product> FindByName(string name)
+        public static List<Product> FindByName(string name)
         {
             List<Product> products = new List<Product>();
             string query = "SELECT * FROM Product WHERE ProductName LIKE @Name";

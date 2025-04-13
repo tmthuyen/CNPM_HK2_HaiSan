@@ -1,0 +1,6 @@
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\DAL\obj\Debug\net8.0\DAL.sourcelink.json
