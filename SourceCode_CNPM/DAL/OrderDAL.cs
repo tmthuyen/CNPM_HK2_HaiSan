@@ -8,6 +8,7 @@ namespace DAL
 {
     public class OrderDAL
     {
+        private OrderDetailDAL orderDetailDAL = new OrderDetailDAL();
         // Lấy danh sách tất cả đơn hàng
         public List<Order> GetAll()
         {
@@ -17,6 +18,8 @@ namespace DAL
 
             foreach (DataRow row in dt.Rows)
             {
+                List<OrderDetail> orderDetails = orderDetailDAL.GetByOrderId(row["OrderId"].ToString());
+
                 orders.Add(new Order(
                     row["OrderId"].ToString(),
                     Convert.ToDateTime(row["CreatedAt"]),
@@ -25,7 +28,9 @@ namespace DAL
                     Convert.ToInt32(row["UsedPoint"]),
                     row["PaymentMethod"].ToString(),
                     row["CustomerId"].ToString(),
-                    row["EmployeeId"].ToString()
+                    row["EmployeeId"].ToString(),
+                    row["VoucherId"].ToString(),
+                    orderDetails
                 ));
             }
 
@@ -36,29 +41,42 @@ namespace DAL
         public bool Add(Order order)
         {
             string query = @"INSERT INTO Orders (OrderId, CreatedAt, TotalAmount, ReceivedAmount, UsedPoint, 
-                                                  PaymentMethod, CustomerId, EmployeeId)
-                             VALUES (@Id, @CreatedAt, @TotalAmount, @ReceivedAmount, @UsedPoint, 
-                                     @PaymentMethod, @CustomerId, @EmployeeId)";
+                                          PaymentMethod, CustomerId, EmployeeId, VoucherId)
+                     VALUES (@Id, @CreatedAt, @TotalAmount, @ReceivedAmount, @UsedPoint, 
+                             @PaymentMethod, @CustomerId, @EmployeeId, @VoucherId)";
 
-            SqlParameter[] parameters = {
-                new SqlParameter("@Id", order.OrderId),
-                new SqlParameter("@CreatedAt", order.CreatedAt),
-                new SqlParameter("@TotalAmount", order.TotalAmount),
-                new SqlParameter("@ReceivedAmount", order.ReceivedAmount),
-                new SqlParameter("@UsedPoint", order.UsedPoint),
-                new SqlParameter("@PaymentMethod", order.PaymentMethod),
-                new SqlParameter("@CustomerId", order.CustomerId),
-                new SqlParameter("@EmployeeId", order.EmployeeId)
-            };
+            SqlParameter[] parameters = 
+                        {
+                            new SqlParameter("@Id", order.OrderId),
+                            new SqlParameter("@CreatedAt", order.CreatedAt),
+                            new SqlParameter("@TotalAmount", order.TotalAmount),
+                            new SqlParameter("@ReceivedAmount", order.ReceivedAmount),
+                            new SqlParameter("@UsedPoint", order.UsedPoint),
+                            new SqlParameter("@PaymentMethod", order.PaymentMethod),
+                            new SqlParameter("@CustomerId", order.CustomerId),
+                            new SqlParameter("@EmployeeId", order.EmployeeId),
+                            new SqlParameter("@VoucherId", (object)order.VoucherId ?? DBNull.Value)
+                        };
 
-            return Connection.ExecuteNonQuery(query, parameters) > 0;
+            bool success = Connection.ExecuteNonQuery(query, parameters) > 0;
+
+            if (!success) return false;
+
+            // Thêm chi tiết đơn hàng
+            foreach (var detail in order.OrderDetailList)
+            {
+                orderDetailDAL.Add(detail);
+            }
+
+            return true;
         }
- 
+
+
 
         // Tìm đơn hàng theo mã đơn hàng
         public Order GetById(string orderId)
         {
-            string query = "SELECT * FROM Orders WHERE OrderId = @OrderId";
+            string query = "SELECT TOP 1 * FROM Orders WHERE OrderId = @OrderId";
             SqlParameter param = new SqlParameter("@OrderId", orderId);
 
             DataTable dt = Connection.ExecuteQuery(query, param);
@@ -68,6 +86,9 @@ namespace DAL
 
             DataRow row = dt.Rows[0];
 
+            // Lấy danh sách chi tiết đơn hàng
+            List<OrderDetail> orderDetails = orderDetailDAL.GetByOrderId(row["OrderId"].ToString());
+             
             return new Order(
                 row["OrderId"].ToString(),
                 Convert.ToDateTime(row["CreatedAt"]),
@@ -76,7 +97,9 @@ namespace DAL
                 Convert.ToInt32(row["UsedPoint"]),
                 row["PaymentMethod"].ToString(),
                 row["CustomerId"].ToString(),
-                row["EmployeeId"].ToString()
+                row["EmployeeId"].ToString(),
+                row["VoucherId"].ToString(),
+                orderDetails
             );
         }
 
@@ -119,9 +142,11 @@ namespace DAL
             // Thực hiện truy vấn
             DataTable dt = Connection.ExecuteQuery(query, parameters.ToArray());
 
+
             // Chuyển đổi DataTable thành danh sách đơn hàng
             foreach (DataRow row in dt.Rows)
             {
+                
                 orders.Add(new Order(
                     row["OrderId"].ToString(),
                     Convert.ToDateTime(row["CreatedAt"]),
@@ -130,13 +155,15 @@ namespace DAL
                     Convert.ToInt32(row["UsedPoint"]),
                     row["PaymentMethod"].ToString(),
                     row["CustomerId"].ToString(),
-                    row["EmployeeId"].ToString()
+                    row["EmployeeId"].ToString(),
+                    row["VoucherId"].ToString(),
+                    orderDetailDAL.GetByOrderId(row["OrderId"].ToString())
                 ));
             }
 
             return orders;
         }
-    
-    
+
+
     }
 }

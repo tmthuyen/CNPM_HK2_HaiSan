@@ -10,17 +10,17 @@ namespace DTO
     public class Customer
     {
         public string CustomerId { get; set; }
-        public string CustomerPhone { get; set; }
-        public string FullName { get; set; }
+        public string CustomerName { get; set; }
+        public string Phone { get; set; }
         public int LoyaltyPoint { get; set; }
 
         public Customer() { }   
 
-        public Customer(string customerId, string customerPhone, string fullName, int loyaltyPoint)
+        public Customer(string customerId, string fullName, string customerPhone, int loyaltyPoint)
         {
             CustomerId = customerId;
-            CustomerPhone = customerPhone;
-            FullName = fullName;
+            CustomerName = fullName;
+            Phone = customerPhone;
             LoyaltyPoint = loyaltyPoint;
         }
 

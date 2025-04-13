@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using DTO;
-using DAL;
+using DTO; 
 using Microsoft.Data.SqlClient;
 
 
@@ -24,13 +23,13 @@ namespace DAL
             {
                 employees.Add(new Employee(
                     row["EmployeeId"].ToString(),
-                    row["EmployeeName"].ToString(),
-                    row["Password"].ToString(),
+                    row["EmployeeName"].ToString(), 
                     row["Phone"].ToString(),
                     row["Email"]?.ToString(),
                     row["Gender"].ToString(),
                     row["Status"].ToString(),
                     row["RoleName"].ToString(),
+                    row["Address"].ToString(),
                     row["Avatar "]?.ToString(),
                     DateTime.Parse(row["DateOfBirth"].ToString())
                 ));
@@ -43,19 +42,19 @@ namespace DAL
         // Thêm nhân viên mới
         public bool Add(Employee emp)
         {
-            string query = @"INSERT INTO Employee (EmployeeId, EmployeeName, Password, Phone, Email, Gender, 
-                              Status, RoleName, Avatar, DateOfBirth)
-                             VALUES (@Id, @Name, @Password, @Phone, @Email, @Gender, @Status, @Role, @Avatar, @DateOfBirth)";
+            string query = @"INSERT INTO Employee (EmployeeId, EmployeeName, Phone, Email, Gender, 
+                              Status, RoleName, Address, Avatar, DateOfBirth)
+                             VALUES (@Id, @Name, @Phone, @Email, @Gender, @Status, @Role, @Address, @Avatar, @DateOfBirth)";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@Id", emp.EmployeeId),
-                new SqlParameter("@Name", emp.EmployeeName),
-                new SqlParameter("@Password", emp.Password),
+                new SqlParameter("@Name", emp.EmployeeName), 
                 new SqlParameter("@Phone", emp.Phone),
                 new SqlParameter("@Email", emp.Email),
                 new SqlParameter("@Gender", emp.Gender),
                 new SqlParameter("@Status", emp.Status),
                 new SqlParameter("@Role", emp.RoleName),
+                new SqlParameter("@Address", emp.Address),
                 new SqlParameter("@Avatar", emp.Avatar),
                 new SqlParameter("@DateOfBirth", emp.DateOfBirth)
             };
@@ -69,7 +68,7 @@ namespace DAL
             string query = @"UPDATE Employee 
                              SET EmployeeName = @Name, Phone = @Phone, Email = @Email, 
                                  Gender = @Gender, Status = @Status, RoleName = @Role, 
-                                 Avatar = @Avatar, DateOfBirth = @DateOfBirth
+                                 Address = @Address, Avatar = @Avatar, DateOfBirth = @DateOfBirth
                              WHERE EmployeeId = @Id";
 
             SqlParameter[] parameters = {
@@ -80,6 +79,7 @@ namespace DAL
                 new SqlParameter("@Gender", emp.Gender),
                 new SqlParameter("@Status", emp.Status),
                 new SqlParameter("@Role", emp.RoleName),
+                new SqlParameter("@Address", emp.Address),
                 new SqlParameter("@Avatar", emp.Avatar),
                 new SqlParameter("@DateOfBirth", emp.DateOfBirth)
             };
@@ -110,13 +110,13 @@ namespace DAL
 
             return new Employee(
                 row["EmployeeId"].ToString(),
-                row["EmployeeName"].ToString(),
-                row["Password"].ToString(),
+                row["EmployeeName"].ToString(), 
                 row["Phone"].ToString(),
                 row["Email"].ToString(),
                 row["Gender"].ToString(),
                 row["Status"].ToString(),
                 row["RoleName"].ToString(),
+                row["Address"].ToString(),
                 row["Avatar"].ToString(),
                 Convert.ToDateTime(row["DateOfBirth"])
             );
@@ -134,13 +134,13 @@ namespace DAL
                 {
                     return new Employee(
                         reader["EmployeeId"].ToString(),
-                        reader["EmployeeName"].ToString(),
-                        reader["Password"].ToString(),
+                        reader["EmployeeName"].ToString(), 
                         reader["Phone"].ToString(),
                         reader["Email"]?.ToString(),
                         reader["Gender"].ToString(),
                         reader["Status"].ToString(),
                         reader["RoleName"].ToString(),
+                        reader["Address"].ToString(),
                         reader["Avatar"]?.ToString(),
                         DateTime.Parse(reader["DateOfBirth "].ToString())
                     );

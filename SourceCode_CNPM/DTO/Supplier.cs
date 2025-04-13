@@ -11,18 +11,16 @@ namespace DTO{
     public string SupplierId { get; set; }
     public string SupplierName { get; set; }
     public string Phone { get; set; }
-    public string Email { get; set; }
-    public string Address { get; set; }
+    public string Email { get; set; } 
 
     public Supplier() { }
 
-    public Supplier(string supplierId, string supplierName, string phone, string email, string address)
+    public Supplier(string supplierId, string supplierName, string phone, string email)
     {
         SupplierId = supplierId;
         SupplierName = supplierName;
         Phone = phone;
-        Email = email;
-        Address = address;
+        Email = email; 
     }
 }
     

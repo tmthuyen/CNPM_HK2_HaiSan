@@ -17,6 +17,7 @@ namespace DTO
         public string PaymentMethod { get; set; }
         public string CustomerId { get; set; }
         public string EmployeeId { get; set; }
+        public string VoucherId {get; set;}
 
 
         //  tien phai phai tra
@@ -30,7 +31,8 @@ namespace DTO
 
         public Order() { }
 
-        public Order(string orderId, DateTime createdAt, decimal totalAmount, decimal receivedAmount, int usedPoint, string paymentMethod, string customerId, string employeeId)
+        public Order(string orderId, DateTime createdAt, decimal totalAmount, decimal receivedAmount, int usedPoint
+        , string paymentMethod , string customerId, string employeeId, string voucherId, List<OrderDetail> orderDetails)
         {
             OrderId = orderId;
             CreatedAt = createdAt;
@@ -40,6 +42,8 @@ namespace DTO
             PaymentMethod = paymentMethod;
             CustomerId = customerId;
             EmployeeId = employeeId;
+            VoucherId = voucherId;
+            OrderDetailList = orderDetails;
         }
 
         // them chi tiet hoa don vao danh sach

@@ -8,10 +8,12 @@ namespace DAL
 {
     public class CustomerDAL
     {
+        private string table = "Customer";
+        
         // Lấy danh sách tất cả khách hàng
         public List<Customer> GetAll()
         {
-            string query = "SELECT * FROM Customers";
+            string query = $"SELECT * FROM {table}";
             DataTable dt = Connection.ExecuteQuery(query);
             List<Customer> customers = new List<Customer>();
 
@@ -31,13 +33,12 @@ namespace DAL
         // Thêm khách hàng mới
         public bool Add(Customer customer)
         {
-            string query = @"INSERT INTO Customers (CustomerId, Phone, CustomerName, LoyaltyPoint)
-                             VALUES (@Id, @Phone, @Name, @LoyaltyPoint)";
+            string query = $"INSERT INTO {table} (CustomerId, Phone, CustomerName, LoyaltyPoint) VALUES (@Id, @Phone, @Name, @LoyaltyPoint)";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@Id", customer.CustomerId),
-                new SqlParameter("@Phone", customer.CustomerPhone),
-                new SqlParameter("@Name", customer.FullName),
+                new SqlParameter("@Phone", customer.Phone),
+                new SqlParameter("@Name", customer.CustomerName),
                 new SqlParameter("@LoyaltyPoint", customer.LoyaltyPoint)
             };
 
@@ -47,14 +48,12 @@ namespace DAL
         // Cập nhật thông tin khách hàng
         public bool Update(Customer customer)
         {
-            string query = @"UPDATE Customers 
-                             SET Phone = @Phone, CustomerName = @Name, LoyaltyPoint = @LoyaltyPoint
-                             WHERE CustomerId = @Id";
+            string query = $"UPDATE {table} SET Phone = @Phone, CustomerName = @Name, LoyaltyPoint = @LoyaltyPoint WHERE CustomerId = @Id";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@Id", customer.CustomerId),
-                new SqlParameter("@Phone", customer.CustomerPhone),
-                new SqlParameter("@Name", customer.FullName),
+                new SqlParameter("@Phone", customer.Phone),
+                new SqlParameter("@Name", customer.CustomerName),
                 new SqlParameter("@LoyaltyPoint", customer.LoyaltyPoint)
             };
 
@@ -69,10 +68,20 @@ namespace DAL
             return Connection.ExecuteNonQuery(query, param) > 0;
         }
 
-        // Tìm khách hàng theo mã khách hàng
-        public Customer GetById(string customerId)
+        // Tìm khách hàng theo mã hoac so dien thoai khách hàng
+        public Customer GetById(string customerId="", string phone="")
         {
-            string query = "SELECT * FROM Customers WHERE CustomerId = @CustomerId";
+            if(customerId == "" && phone == "")
+                return null;
+
+            string query = "SELECT * FROM Customers";
+            if(customerId != ""){
+                query += "CustomerId = @CustomerId";
+            }
+            if(phone != "")
+                query += "Phone = @phone";
+
+            
             SqlParameter param = new SqlParameter("@CustomerId", customerId);
 
             DataTable dt = Connection.ExecuteQuery(query, param);
@@ -84,32 +93,11 @@ namespace DAL
 
             return new Customer(
                 row["CustomerId"].ToString(),
-                row["Phone"].ToString(),
                 row["CustomerName"].ToString(),
+                row["Phone"].ToString(),
                 Convert.ToInt32(row["LoyaltyPoint"])
             );
-        }
-
-        // Tìm khách hàng theo số điện thoại
-        public Customer FindByPhone(string phone)
-        {
-            string query = "SELECT TOP 1 * FROM Customers WHERE Phone = @Phone";
-            SqlParameter param = new SqlParameter("@Phone", phone);
-
-            DataTable dt = Connection.ExecuteQuery(query, param);
-
-            if (dt.Rows.Count == 0)
-                return null;
-
-            DataRow row = dt.Rows[0];
-
-            return new Customer(
-                row["CustomerId"].ToString(),
-                row["Phone"].ToString(),
-                row["CustomerName"].ToString(),
-                Convert.ToInt32(row["LoyaltyPoint"])
-            );
-        }
+        } 
 
         // Tìm khách hàng theo tên
         public List<Customer> FindByName(string name)

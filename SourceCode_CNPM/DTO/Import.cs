@@ -9,15 +9,18 @@ namespace DTO{
 {
     public string ImportId { get; set; }
     public DateTime ImportDate { get; set; }
-    public int TotalCost { get; set; }
+    public int NumOfProducts { get; set; }
+    public List<ImportDetail> ImportDetails{get;set;} = new List<ImportDetail>();
 
     public Import() { }
 
-    public Import(string importId, DateTime importDate, int totalCost)
+    public Import(string importId, DateTime importDate, int numOfProducts,
+        List<ImportDetail> importDetails)
     {
         ImportId = importId;
         ImportDate = importDate;
-        TotalCost = totalCost;
+        NumOfProducts = numOfProducts;
+        ImportDetails = importDetails;
     }
 }
 

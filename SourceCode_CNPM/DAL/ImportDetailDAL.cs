@@ -8,7 +8,7 @@ namespace DAL
 {
     public class ImportDetailDAL
     {
-        // Lấy danh sách tất cả chi tiết nhập
+        // Lấy tất cả chi tiết nhập
         public List<ImportDetail> GetAll()
         {
             string query = "SELECT * FROM ImportDetail";
@@ -20,8 +20,10 @@ namespace DAL
                 importDetails.Add(new ImportDetail(
                     row["ImportId"].ToString(),
                     row["ProductId"].ToString(),
-                    Convert.ToInt32(row["Quantity"]),
-                    Convert.ToDecimal(row["PurchasePrice"])
+                    Convert.ToSingle(row["Quantity"]),
+                    Convert.ToSingle(row["Remaining"]),
+                    Convert.ToInt32(row["PurchasePrice"]),
+                    Convert.ToDateTime(row["Expire"])
                 ));
             }
 
@@ -31,14 +33,16 @@ namespace DAL
         // Thêm chi tiết nhập mới
         public bool Add(ImportDetail importDetail)
         {
-            string query = @"INSERT INTO ImportDetail (ImportId, ProductId, Quantity, PurchasePrice)
-                             VALUES (@ImportId, @ProductId, @Quantity, @PurchasePrice)";
+            string query = @"INSERT INTO ImportDetail (ImportId, ProductId, Quantity, Remaining, PurchasePrice, Expire)
+                             VALUES (@ImportId, @ProductId, @Quantity, @Remaining, @PurchasePrice, @Expire)";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@ImportId", importDetail.ImportId),
                 new SqlParameter("@ProductId", importDetail.ProductId),
                 new SqlParameter("@Quantity", importDetail.Quantity),
-                new SqlParameter("@PurchasePrice", importDetail.PurchasePrice)
+                new SqlParameter("@Remaining", importDetail.Remaining),
+                new SqlParameter("@PurchasePrice", importDetail.PurchasePrice),
+                new SqlParameter("@Expire", importDetail.Expire)
             };
 
             return Connection.ExecuteNonQuery(query, parameters) > 0;
@@ -47,23 +51,85 @@ namespace DAL
         // Tìm chi tiết nhập theo mã nhập
         public List<ImportDetail> GetByImportId(string importId)
         {
-            List<ImportDetail> importDetails = new List<ImportDetail>();
             string query = "SELECT * FROM ImportDetail WHERE ImportId = @ImportId";
             SqlParameter param = new SqlParameter("@ImportId", importId);
-
             DataTable dt = Connection.ExecuteQuery(query, param);
+
+            List<ImportDetail> importDetails = new List<ImportDetail>();
 
             foreach (DataRow row in dt.Rows)
             {
                 importDetails.Add(new ImportDetail(
                     row["ImportId"].ToString(),
                     row["ProductId"].ToString(),
-                    Convert.ToInt32(row["Quantity"]),
-                    Convert.ToDecimal(row["PurchasePrice"])
+                    Convert.ToSingle(row["Quantity"]),
+                    Convert.ToSingle(row["Remaining"]),
+                    Convert.ToInt32(row["PurchasePrice"]),
+                    Convert.ToDateTime(row["Expire"])
                 ));
             }
 
             return importDetails;
+        }
+
+        // Cập nhật số lượng và remaining
+        public bool UpdateQuantityAndRemaining(string importId, string productId, float quantity, float remaining)
+        {
+            string query = @"UPDATE ImportDetail 
+                             SET Quantity = @Quantity, Remaining = @Remaining 
+                             WHERE ImportId = @ImportId AND ProductId = @ProductId";
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@Quantity", quantity),
+                new SqlParameter("@Remaining", remaining),
+                new SqlParameter("@ImportId", importId),
+                new SqlParameter("@ProductId", productId)
+            };
+
+            return Connection.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        // Tìm kiếm theo mã nhập, mã sản phẩm hoặc hạn sử dụng
+        public List<ImportDetail> Search(string importId, string productId, DateTime? expireBefore)
+        {
+            string query = "SELECT * FROM ImportDetail WHERE 1=1";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            if (!string.IsNullOrWhiteSpace(importId))
+            {
+                query += " AND ImportId = @ImportId";
+                parameters.Add(new SqlParameter("@ImportId", importId));
+            }
+
+            if (!string.IsNullOrWhiteSpace(productId))
+            {
+                query += " AND ProductId = @ProductId";
+                parameters.Add(new SqlParameter("@ProductId", productId));
+            }
+
+            if (expireBefore.HasValue)
+            {
+                query += " AND Expire <= @ExpireBefore";
+                parameters.Add(new SqlParameter("@ExpireBefore", expireBefore.Value));
+            }
+
+            DataTable dt = Connection.ExecuteQuery(query, parameters.ToArray());
+
+            List<ImportDetail> results = new List<ImportDetail>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                results.Add(new ImportDetail(
+                    row["ImportId"].ToString(),
+                    row["ProductId"].ToString(),
+                    Convert.ToSingle(row["Quantity"]),
+                    Convert.ToSingle(row["Remaining"]),
+                    Convert.ToInt32(row["PurchasePrice"]),
+                    Convert.ToDateTime(row["Expire"])
+                ));
+            }
+
+            return results;
         }
     }
 }

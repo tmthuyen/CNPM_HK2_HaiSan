@@ -4,19 +4,19 @@ USE Haisan;
 CREATE TABLE Employee (
     EmployeeId CHAR(6) NOT NULL PRIMARY KEY,
     EmployeeName NVARCHAR(30) NOT NULL,
-    Password VARCHAR(15) NOT NULL,
-    Phone VARCHAR(12) NOT NULL,
-    Email VARCHAR(20) UNIQUE,
+    Password VARCHAR(30) NOT NULL,
+    Phone VARCHAR(12) NOT NULL UNIQUE,
+    Email VARCHAR(40) NOT NULL UNIQUE,
     Gender NVARCHAR(3) NOT NULL CHECK(Gender = N'Nam' OR Gender = N'Nữ') DEFAULT N'Nam', 
-    Status NVARCHAR(10) NOT NULL CHECK(Status = 'active' OR Status = 'inactive'),
+    Status VARCHAR(10) NOT NULL CHECK(Status = 'active' OR Status = 'inactive') DEFAULT 'active',
     RoleName VARCHAR(6) NOT NULL CHECK(RoleName = N'admin' OR RoleName = N'sale'),
     Avatar VARCHAR(30),
     DateOfBirth DATE NOT NULL
 );
 
-CREATE TABLE Customers (
+CREATE TABLE Customer (
     CustomerId CHAR(10) NOT NULL PRIMARY KEY,
-    CustomerName NVARCHAR(30) NOT NULL,
+    CustomerName NVARCHAR(50) NOT NULL,
     Phone VARCHAR(12) UNIQUE NOT NULL,
     LoyaltyPoint INT NOT NULL
 );
@@ -29,15 +29,13 @@ CREATE TABLE Category (
 CREATE TABLE Supplier (
     SupplierId CHAR(6) PRIMARY KEY,
     SupplierName NVARCHAR(30) NOT NULL,
-    Phone VARCHAR(12) NOT NULL,
+    Phone VARCHAR(12) NOT NULL UNIQUE,
     Email VARCHAR(30) NOT NULL UNIQUE,
     Address NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Product (
     ProductId CHAR(10) NOT NULL PRIMARY KEY,
-    SupplierId CHAR(6) NOT NULL,
-    CategoryId CHAR(6) NOT NULL,
     ProductName NVARCHAR(50) NOT NULL,
     PurchasePrice INT NOT NULL,
     RetailPrice INT NOT NULL,
@@ -45,6 +43,8 @@ CREATE TABLE Product (
     Remaining DECIMAL(10, 3) NOT NULL,
     ShelfLife INT NOT NULL,  -- hạn sử dụng (số ngày có thể dùng tính từ ngày nhập)
     Unit VARCHAR(10) NOT NULL, 
+    SupplierId CHAR(6) NOT NULL,
+    CategoryId CHAR(6) NOT NULL,
     FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId),
     FOREIGN KEY (SupplierId) REFERENCES Supplier(SupplierId)
 );
