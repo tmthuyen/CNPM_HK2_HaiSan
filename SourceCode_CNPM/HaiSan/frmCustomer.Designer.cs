@@ -38,6 +38,7 @@
             txtCusName = new TextBox();
             label4 = new Label();
             pnCusInfo = new Panel();
+            btnCancel = new Button();
             btnSearch = new Button();
             label6 = new Label();
             cbbOrderCusList = new ComboBox();
@@ -58,7 +59,7 @@
             dgvCusList.Name = "dgvCusList";
             dgvCusList.RowHeadersWidth = 51;
             dgvCusList.Size = new Size(950, 308);
-            dgvCusList.TabIndex = 0;
+            dgvCusList.TabIndex = 15;
             dgvCusList.CellClick += dgvCusList_CellClick;
             // 
             // label1
@@ -79,7 +80,7 @@
             txtCusId.Location = new Point(224, 12);
             txtCusId.Name = "txtCusId";
             txtCusId.Size = new Size(214, 34);
-            txtCusId.TabIndex = 1;
+            txtCusId.TabIndex = 0;
             txtCusId.TextChanged += txtCusId_TextChanged;
             // 
             // txtCusPhone
@@ -131,6 +132,7 @@
             txtCusName.Name = "txtCusName";
             txtCusName.Size = new Size(214, 34);
             txtCusName.TabIndex = 2;
+            txtCusName.TextChanged += txtCusName_TextChanged;
             // 
             // label4
             // 
@@ -145,6 +147,7 @@
             // 
             // pnCusInfo
             // 
+            pnCusInfo.Controls.Add(btnCancel);
             pnCusInfo.Controls.Add(btnSearch);
             pnCusInfo.Controls.Add(txtCusId);
             pnCusInfo.Controls.Add(txtCusPoint);
@@ -159,6 +162,22 @@
             pnCusInfo.Size = new Size(875, 153);
             pnCusInfo.TabIndex = 8;
             // 
+            // btnCancel
+            // 
+            btnCancel.BackColor = Color.DodgerBlue;
+            btnCancel.Cursor = Cursors.Hand;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Times New Roman", 16F);
+            btnCancel.ForeColor = Color.WhiteSmoke;
+            btnCancel.Location = new Point(451, 108);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(156, 39);
+            btnCancel.TabIndex = 4;
+            btnCancel.Text = "Hủy";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // btnSearch
             // 
             btnSearch.BackColor = Color.DodgerBlue;
@@ -167,10 +186,10 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Times New Roman", 16F);
             btnSearch.ForeColor = Color.WhiteSmoke;
-            btnSearch.Location = new Point(359, 108);
+            btnSearch.Location = new Point(267, 108);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(156, 39);
-            btnSearch.TabIndex = 9;
+            btnSearch.TabIndex = 3;
             btnSearch.Text = "Tìm";
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
@@ -196,7 +215,7 @@
             cbbOrderCusList.Location = new Point(326, 26);
             cbbOrderCusList.Name = "cbbOrderCusList";
             cbbOrderCusList.Size = new Size(214, 36);
-            cbbOrderCusList.TabIndex = 11;
+            cbbOrderCusList.TabIndex = 6;
             // 
             // grbCusHistory
             // 
@@ -238,7 +257,7 @@
             btnSeeOrder.Location = new Point(564, 25);
             btnSeeOrder.Name = "btnSeeOrder";
             btnSeeOrder.Size = new Size(214, 39);
-            btnSeeOrder.TabIndex = 10;
+            btnSeeOrder.TabIndex = 7;
             btnSeeOrder.Text = "Xem đơn";
             btnSeeOrder.UseVisualStyleBackColor = false;
             btnSeeOrder.Click += btnSeeOrder_Click;
@@ -282,5 +301,6 @@
         private GroupBox grbCusHistory;
         private Button btnSeeOrder;
         private Label label5;
+        private Button btnCancel;
     }
 }

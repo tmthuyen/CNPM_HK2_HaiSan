@@ -68,57 +68,57 @@ namespace DAL
             return Connection.ExecuteNonQuery(query, param) > 0;
         }
 
-        // Tìm khách hàng theo mã hoac so dien thoai khách hàng
-        public Customer GetById(string customerId="", string phone="")
-        {
-            if(customerId == "" && phone == "")
-                return null;
-
-            string query = "SELECT * FROM Customers";
-            if(customerId != ""){
-                query += "CustomerId = @CustomerId";
-            }
-            if(phone != "")
-                query += "Phone = @phone";
-
-            
-            SqlParameter param = new SqlParameter("@CustomerId", customerId);
-
-            DataTable dt = Connection.ExecuteQuery(query, param);
-
-            if (dt.Rows.Count == 0)
-                return null;
-
-            DataRow row = dt.Rows[0];
-
-            return new Customer(
-                row["CustomerId"].ToString(),
-                row["CustomerName"].ToString(),
-                row["Phone"].ToString(),
-                Convert.ToInt32(row["LoyaltyPoint"])
-            );
-        } 
-
-        // Tìm khách hàng theo tên
-        public List<Customer> FindByName(string name)
+        // Tim khach hang theo id, ten, so dien thoai
+        public List<Customer> Search(string customerId = "", string phone = "", string name = "")
         {
             List<Customer> customers = new List<Customer>();
-            string query = "SELECT * FROM Customers WHERE CustomerName LIKE @Name";
-            SqlParameter param = new SqlParameter("@Name", "%" + name + "%");
+            string query = "SELECT * FROM Customer WHERE 1=1"; // Điều kiện mặc định
 
-            DataTable dt = Connection.ExecuteQuery(query, param);
+            // Khởi tạo danh sách các tham số cho query
+            List<SqlParameter> parameters = new List<SqlParameter>();
 
+            // Thêm điều kiện và tham số vào query một cách linh hoạt
+            if (!string.IsNullOrEmpty(customerId))
+            {
+                query += " AND CustomerId = @CustomerId";
+                parameters.Add(new SqlParameter("@CustomerId", customerId));
+            }
+
+            if (!string.IsNullOrEmpty(phone))
+            {
+                query += " AND Phone = @Phone";
+                parameters.Add(new SqlParameter("@Phone", phone));
+            }
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                query += " AND CustomerName LIKE @Name";
+                parameters.Add(new SqlParameter("@Name", "%" + name + "%"));
+            }
+
+            query += " Order By CustomerId ASC";
+
+            // Thực thi truy vấn và lấy dữ liệu
+            DataTable dt = Connection.ExecuteQuery(query, parameters.ToArray());
+
+            // Duyệt qua các dòng dữ liệu và thêm vào danh sách customers
             foreach (DataRow row in dt.Rows)
             {
                 customers.Add(new Customer(
                     row["CustomerId"].ToString(),
-                    row["Phone"].ToString(),
                     row["CustomerName"].ToString(),
+                    row["Phone"].ToString(),
                     Convert.ToInt32(row["LoyaltyPoint"])
                 ));
             }
 
             return customers;
+        }
+
+
+        public bool CheckExist(string id, string phone, string name)
+        {
+            return Search("", phone, "")[0] != null;
         }
     }
 }

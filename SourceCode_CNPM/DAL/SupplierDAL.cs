@@ -21,26 +21,43 @@ namespace DAL
                     row["SupplierId"].ToString(),
                     row["SupplierName"].ToString(),
                     row["Phone"].ToString(),
-                    row["Email"].ToString(),
-                    row["Address"].ToString()
+                    row["Email"].ToString()
                 ));
             }
 
             return suppliers;
         }
 
+        // tao ma cung cap moi
+        public string CreateNewId()
+        {
+            string query = "SELECT TOP 1 SupplierId FROM Supplier ORDER BY SupplierId DESC";
+            DataTable dt = Connection.ExecuteQuery(query);
+
+            if (dt.Rows.Count > 0)
+            {
+                string lastId = dt.Rows[0]["SupplierId"].ToString();  // VD: "Sup007"
+                string numberPart = lastId.Substring(3);               // "007"
+                int number = int.Parse(numberPart) + 1;                // 8
+                return "Sup" + number.ToString("D3");                  // "Sup008"
+            }
+            else
+            {
+                return "Sup001"; // Trường hợp chưa có dữ liệu
+            }
+        }
+
         // Thêm nhà cung cấp mới
         public bool Add(Supplier supplier)
         {
-            string query = @"INSERT INTO Supplier (SupplierId, SupplierName, Phone, Email, Address)
-                             VALUES (@Id, @Name, @Phone, @Email, @Address)";
+            string query = @"INSERT INTO Supplier (SupplierId, SupplierName, Phone, Email)
+                             VALUES (@Id, @Name, @Phone, @Email)";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@Id", supplier.SupplierId),
                 new SqlParameter("@Name", supplier.SupplierName),
                 new SqlParameter("@Phone", supplier.Phone),
-                new SqlParameter("@Email", supplier.Email),
-                new SqlParameter("@Address", supplier.Address)
+                new SqlParameter("@Email", supplier.Email)
             };
 
             return Connection.ExecuteNonQuery(query, parameters) > 0;
@@ -50,15 +67,14 @@ namespace DAL
         public bool Update(Supplier supplier)
         {
             string query = @"UPDATE Supplier 
-                             SET SupplierName = @Name, Phone = @Phone, Email = @Email, Address = @Address
+                             SET SupplierName = @Name, Phone = @Phone, Email = @Email
                              WHERE SupplierId = @Id";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@Id", supplier.SupplierId),
                 new SqlParameter("@Name", supplier.SupplierName),
                 new SqlParameter("@Phone", supplier.Phone),
-                new SqlParameter("@Email", supplier.Email),
-                new SqlParameter("@Address", supplier.Address)
+                new SqlParameter("@Email", supplier.Email)
             };
 
             return Connection.ExecuteNonQuery(query, parameters) > 0;
@@ -89,8 +105,7 @@ namespace DAL
                 row["SupplierId"].ToString(),
                 row["SupplierName"].ToString(),
                 row["Phone"].ToString(),
-                row["Email"].ToString(),
-                row["Address"].ToString()
+                row["Email"].ToString()
             );
         }
 

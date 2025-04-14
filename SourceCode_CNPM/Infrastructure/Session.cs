@@ -4,11 +4,11 @@ namespace Infrastructure
 {
     public static class Session
     {
-        public static int? UserID { get; private set; }
+        public static string? UserID { get; private set; }
         public static string? Username { get; private set; }
         public static string? Role { get; private set; }
 
-        public static void StartSession(int userId, string username, string role)
+        public static void StartSession(string userId, string username, string role)
         {
             UserID = userId;
             Username = username;
@@ -24,7 +24,7 @@ namespace Infrastructure
 
         public static bool IsLoggedIn()
         {
-            return UserID.HasValue;
+            return !string.IsNullOrEmpty(UserID);
         }
     }
 

@@ -59,6 +59,7 @@ namespace GUI
             cmstAccount = new ContextMenuStrip(components);
             profileCmstrItem = new ToolStripMenuItem();
             logoutTooltipMItem = new ToolStripMenuItem();
+            btnEmp = new Button();
             pnSideBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)volumeBar).BeginInit();
             pnUser.SuspendLayout();
@@ -74,6 +75,7 @@ namespace GUI
             // pnSideBar
             // 
             pnSideBar.BackColor = Color.DodgerBlue;
+            pnSideBar.Controls.Add(btnEmp);
             pnSideBar.Controls.Add(volumeBar);
             pnSideBar.Controls.Add(label1);
             pnSideBar.Controls.Add(btnMute);
@@ -88,18 +90,18 @@ namespace GUI
             pnSideBar.Controls.Add(pnUser);
             pnSideBar.Dock = DockStyle.Left;
             pnSideBar.Location = new Point(0, 0);
-            pnSideBar.Margin = new Padding(3, 2, 3, 2);
             pnSideBar.Name = "pnSideBar";
-            pnSideBar.Size = new Size(219, 570);
+            pnSideBar.Size = new Size(250, 760);
             pnSideBar.TabIndex = 2;
             // 
             // volumeBar
             // 
             volumeBar.LargeChange = 10;
-            volumeBar.Location = new Point(102, 538);
+            volumeBar.Location = new Point(117, 717);
+            volumeBar.Margin = new Padding(3, 4, 3, 4);
             volumeBar.Maximum = 100;
             volumeBar.Name = "volumeBar";
-            volumeBar.Size = new Size(86, 45);
+            volumeBar.Size = new Size(98, 56);
             volumeBar.SmallChange = 5;
             volumeBar.TabIndex = 12;
             volumeBar.TickFrequency = 10;
@@ -109,18 +111,19 @@ namespace GUI
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(7, 543);
+            label1.Location = new Point(8, 724);
             label1.Name = "label1";
-            label1.Size = new Size(19, 15);
+            label1.Size = new Size(30, 20);
             label1.TabIndex = 11;
             label1.Text = "🔊";
             // 
             // btnMute
             // 
             btnMute.AutoSize = true;
-            btnMute.Location = new Point(29, 538);
+            btnMute.Location = new Point(33, 717);
+            btnMute.Margin = new Padding(3, 4, 3, 4);
             btnMute.Name = "btnMute";
-            btnMute.Size = new Size(45, 25);
+            btnMute.Size = new Size(61, 40);
             btnMute.TabIndex = 10;
             btnMute.Text = "Mute";
             btnMute.UseVisualStyleBackColor = true;
@@ -129,9 +132,10 @@ namespace GUI
             // btnVolUp
             // 
             btnVolUp.AutoSize = true;
-            btnVolUp.Location = new Point(194, 538);
+            btnVolUp.Location = new Point(222, 717);
+            btnVolUp.Margin = new Padding(3, 4, 3, 4);
             btnVolUp.Name = "btnVolUp";
-            btnVolUp.Size = new Size(25, 25);
+            btnVolUp.Size = new Size(33, 40);
             btnVolUp.TabIndex = 9;
             btnVolUp.Text = "+";
             btnVolUp.UseVisualStyleBackColor = true;
@@ -140,9 +144,10 @@ namespace GUI
             // btnVolDown
             // 
             btnVolDown.AutoSize = true;
-            btnVolDown.Location = new Point(80, 538);
+            btnVolDown.Location = new Point(91, 717);
+            btnVolDown.Margin = new Padding(3, 4, 3, 4);
             btnVolDown.Name = "btnVolDown";
-            btnVolDown.Size = new Size(27, 25);
+            btnVolDown.Size = new Size(31, 40);
             btnVolDown.TabIndex = 8;
             btnVolDown.Text = "-";
             btnVolDown.UseVisualStyleBackColor = true;
@@ -157,10 +162,9 @@ namespace GUI
             btnPromotion.FlatStyle = FlatStyle.Flat;
             btnPromotion.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPromotion.ForeColor = Color.White;
-            btnPromotion.Location = new Point(0, 287);
-            btnPromotion.Margin = new Padding(3, 2, 3, 2);
+            btnPromotion.Location = new Point(0, 429);
             btnPromotion.Name = "btnPromotion";
-            btnPromotion.Size = new Size(219, 35);
+            btnPromotion.Size = new Size(250, 56);
             btnPromotion.TabIndex = 6;
             btnPromotion.Text = "Khuyến Mãi";
             btnPromotion.UseVisualStyleBackColor = false;
@@ -175,10 +179,9 @@ namespace GUI
             btnReport.FlatStyle = FlatStyle.Flat;
             btnReport.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReport.ForeColor = Color.White;
-            btnReport.Location = new Point(0, 252);
-            btnReport.Margin = new Padding(3, 2, 3, 2);
+            btnReport.Location = new Point(0, 373);
             btnReport.Name = "btnReport";
-            btnReport.Size = new Size(219, 35);
+            btnReport.Size = new Size(250, 56);
             btnReport.TabIndex = 5;
             btnReport.Text = "Báo cáo";
             btnReport.UseVisualStyleBackColor = false;
@@ -192,10 +195,9 @@ namespace GUI
             btnCustomer.FlatStyle = FlatStyle.Flat;
             btnCustomer.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCustomer.ForeColor = Color.White;
-            btnCustomer.Location = new Point(0, 217);
-            btnCustomer.Margin = new Padding(3, 2, 3, 2);
+            btnCustomer.Location = new Point(0, 317);
             btnCustomer.Name = "btnCustomer";
-            btnCustomer.Size = new Size(219, 35);
+            btnCustomer.Size = new Size(250, 56);
             btnCustomer.TabIndex = 4;
             btnCustomer.Text = "Khách hàng";
             btnCustomer.UseVisualStyleBackColor = false;
@@ -210,10 +212,9 @@ namespace GUI
             btnProduct.FlatStyle = FlatStyle.Flat;
             btnProduct.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnProduct.ForeColor = Color.White;
-            btnProduct.Location = new Point(0, 182);
-            btnProduct.Margin = new Padding(3, 2, 3, 2);
+            btnProduct.Location = new Point(0, 261);
             btnProduct.Name = "btnProduct";
-            btnProduct.Size = new Size(219, 35);
+            btnProduct.Size = new Size(250, 56);
             btnProduct.TabIndex = 3;
             btnProduct.Text = "Sản phẩm";
             btnProduct.UseVisualStyleBackColor = false;
@@ -228,10 +229,9 @@ namespace GUI
             btnOrder.FlatStyle = FlatStyle.Flat;
             btnOrder.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnOrder.ForeColor = Color.White;
-            btnOrder.Location = new Point(0, 147);
-            btnOrder.Margin = new Padding(3, 2, 3, 2);
+            btnOrder.Location = new Point(0, 205);
             btnOrder.Name = "btnOrder";
-            btnOrder.Size = new Size(219, 35);
+            btnOrder.Size = new Size(250, 56);
             btnOrder.TabIndex = 2;
             btnOrder.Text = "Đơn hàng";
             btnOrder.UseVisualStyleBackColor = false;
@@ -246,10 +246,9 @@ namespace GUI
             btnHome.FlatStyle = FlatStyle.Flat;
             btnHome.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnHome.ForeColor = Color.White;
-            btnHome.Location = new Point(0, 112);
-            btnHome.Margin = new Padding(3, 2, 3, 2);
+            btnHome.Location = new Point(0, 149);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(219, 35);
+            btnHome.Size = new Size(250, 56);
             btnHome.TabIndex = 1;
             btnHome.Text = "Trang chủ";
             btnHome.UseVisualStyleBackColor = false;
@@ -261,18 +260,17 @@ namespace GUI
             pnUser.Controls.Add(ptbAvatar);
             pnUser.Dock = DockStyle.Top;
             pnUser.Location = new Point(0, 0);
-            pnUser.Margin = new Padding(3, 2, 3, 2);
             pnUser.Name = "pnUser";
-            pnUser.Size = new Size(219, 112);
+            pnUser.Size = new Size(250, 149);
             pnUser.TabIndex = 0;
             // 
             // lblUserName
             // 
             lblUserName.Font = new Font("Times New Roman", 13.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             lblUserName.ForeColor = Color.White;
-            lblUserName.Location = new Point(7, 79);
+            lblUserName.Location = new Point(8, 105);
             lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(205, 32);
+            lblUserName.Size = new Size(234, 43);
             lblUserName.TabIndex = 1;
             lblUserName.Text = "Tran Minh Thuyen";
             lblUserName.TextAlign = ContentAlignment.MiddleCenter;
@@ -280,10 +278,9 @@ namespace GUI
             // ptbAvatar
             // 
             ptbAvatar.Image = (Image)resources.GetObject("ptbAvatar.Image");
-            ptbAvatar.Location = new Point(42, 0);
-            ptbAvatar.Margin = new Padding(3, 2, 3, 2);
+            ptbAvatar.Location = new Point(48, 0);
             ptbAvatar.Name = "ptbAvatar";
-            ptbAvatar.Size = new Size(138, 76);
+            ptbAvatar.Size = new Size(158, 101);
             ptbAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbAvatar.TabIndex = 0;
             ptbAvatar.TabStop = false;
@@ -292,10 +289,9 @@ namespace GUI
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(654, 4);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(747, 5);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(175, 105);
+            pictureBox1.Size = new Size(200, 140);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -305,20 +301,18 @@ namespace GUI
             pnRight.Controls.Add(pnForm);
             pnRight.Controls.Add(pnHead);
             pnRight.Dock = DockStyle.Right;
-            pnRight.Location = new Point(219, 0);
-            pnRight.Margin = new Padding(3, 2, 3, 2);
+            pnRight.Location = new Point(250, 0);
             pnRight.Name = "pnRight";
-            pnRight.Size = new Size(831, 570);
+            pnRight.Size = new Size(950, 760);
             pnRight.TabIndex = 3;
             // 
             // pnForm
             // 
             pnForm.BackColor = Color.White;
             pnForm.Dock = DockStyle.Fill;
-            pnForm.Location = new Point(0, 112);
-            pnForm.Margin = new Padding(3, 2, 3, 2);
+            pnForm.Location = new Point(0, 149);
             pnForm.Name = "pnForm";
-            pnForm.Size = new Size(831, 458);
+            pnForm.Size = new Size(950, 611);
             pnForm.TabIndex = 2;
             // 
             // pnHead
@@ -328,18 +322,17 @@ namespace GUI
             pnHead.Controls.Add(lblTitle);
             pnHead.Dock = DockStyle.Top;
             pnHead.Location = new Point(0, 0);
-            pnHead.Margin = new Padding(3, 2, 3, 2);
             pnHead.Name = "pnHead";
-            pnHead.Size = new Size(831, 112);
+            pnHead.Size = new Size(950, 149);
             pnHead.TabIndex = 1;
             // 
             // lblTitle
             // 
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Times New Roman", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(27, 32);
+            lblTitle.Location = new Point(31, 43);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(339, 50);
+            lblTitle.Size = new Size(387, 67);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "ten form";
             lblTitle.TextAlign = ContentAlignment.MiddleLeft;
@@ -351,9 +344,8 @@ namespace GUI
             panel1.Controls.Add(btnExit);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1050, 30);
+            panel1.Size = new Size(1200, 40);
             panel1.TabIndex = 4;
             // 
             // lblAppName
@@ -362,7 +354,7 @@ namespace GUI
             lblAppName.ForeColor = Color.White;
             lblAppName.Location = new Point(0, 0);
             lblAppName.Name = "lblAppName";
-            lblAppName.Size = new Size(801, 30);
+            lblAppName.Size = new Size(915, 40);
             lblAppName.TabIndex = 2;
             lblAppName.Text = "Ứng dụng quản lý cửa hàng hải sản";
             lblAppName.TextAlign = ContentAlignment.MiddleLeft;
@@ -373,10 +365,9 @@ namespace GUI
             btnExit.BackColor = Color.Red;
             btnExit.FlatAppearance.BorderSize = 0;
             btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.Location = new Point(1015, -1);
-            btnExit.Margin = new Padding(3, 2, 3, 2);
+            btnExit.Location = new Point(1160, -1);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(35, 30);
+            btnExit.Size = new Size(40, 40);
             btnExit.TabIndex = 1;
             btnExit.Text = "X";
             btnExit.UseVisualStyleBackColor = false;
@@ -387,10 +378,9 @@ namespace GUI
             pnContain.Controls.Add(pnSideBar);
             pnContain.Controls.Add(pnRight);
             pnContain.Dock = DockStyle.Bottom;
-            pnContain.Location = new Point(0, 30);
-            pnContain.Margin = new Padding(3, 2, 3, 2);
+            pnContain.Location = new Point(0, 40);
             pnContain.Name = "pnContain";
-            pnContain.Size = new Size(1050, 570);
+            pnContain.Size = new Size(1200, 760);
             pnContain.TabIndex = 5;
             // 
             // cmstAccount
@@ -401,33 +391,49 @@ namespace GUI
             cmstAccount.Items.AddRange(new ToolStripItem[] { profileCmstrItem, logoutTooltipMItem });
             cmstAccount.Name = "cmstAccount";
             cmstAccount.RenderMode = ToolStripRenderMode.System;
-            cmstAccount.Size = new Size(199, 56);
+            cmstAccount.Size = new Size(231, 64);
             cmstAccount.MouseEnter += cmstAccount_MouseEnter;
             cmstAccount.MouseLeave += cmstAccount_MouseLeave;
             // 
             // profileCmstrItem
             // 
             profileCmstrItem.Name = "profileCmstrItem";
-            profileCmstrItem.Size = new Size(198, 26);
+            profileCmstrItem.Size = new Size(230, 30);
             profileCmstrItem.Text = "Hồ sơ tài khoản";
             profileCmstrItem.Click += profileCmstrItem_Click;
             // 
             // logoutTooltipMItem
             // 
             logoutTooltipMItem.Name = "logoutTooltipMItem";
-            logoutTooltipMItem.Size = new Size(198, 26);
+            logoutTooltipMItem.Size = new Size(230, 30);
             logoutTooltipMItem.Text = "Đăng xuất";
             logoutTooltipMItem.Click += logoutTooltipMItem_Click;
             // 
+            // btnEmp
+            // 
+            btnEmp.AutoSize = true;
+            btnEmp.BackColor = Color.DodgerBlue;
+            btnEmp.Dock = DockStyle.Top;
+            btnEmp.FlatAppearance.BorderSize = 0;
+            btnEmp.FlatStyle = FlatStyle.Flat;
+            btnEmp.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEmp.ForeColor = Color.White;
+            btnEmp.Location = new Point(0, 485);
+            btnEmp.Name = "btnEmp";
+            btnEmp.Size = new Size(250, 56);
+            btnEmp.TabIndex = 13;
+            btnEmp.Text = "Nhân viên";
+            btnEmp.UseVisualStyleBackColor = false;
+            btnEmp.Click += btnEmp_Click;
+            // 
             // Home
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1050, 600);
+            ClientSize = new Size(1200, 800);
             Controls.Add(panel1);
             Controls.Add(pnContain);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Home";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmHome";
@@ -477,5 +483,6 @@ namespace GUI
         private IWavePlayer outputDevice;
         private AudioFileReader audioFile;
         private TrackBar volumeBar;
+        private Button btnEmp;
     }
 }

@@ -20,7 +20,7 @@ namespace GUI
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (textBoxServer.Enabled)
+            if (chkWinOrSql.Checked)
             {
                 textBoxUsername.Enabled = false;
                 textBoxUsername.Clear();
@@ -37,7 +37,7 @@ namespace GUI
         }
         private Boolean validate()
         {
-            if (checkBox1.Checked)
+            if (chkWinOrSql.Checked)
             {
                 return !(textBoxDB.Text.IsNullOrEmpty() || textBoxServer.Text.IsNullOrEmpty());
             }
@@ -59,7 +59,7 @@ namespace GUI
             try
             {
                 string[] lines = {
-                        checkBox1.Checked?"windows":"server",                  // "server" hay "windows")
+                        chkWinOrSql.Checked?"windows":"server",                  // "server" hay "windows")
                         textBoxServer.Text,  // Server name
                         textBoxDB.Text,             // Database name
                         textBoxUsername.Text,               // Username

@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using BUS;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,12 @@ namespace GUI
 {
     public partial class frmCustomer : Form
     {
-        private List<Customer> _customerList;
+        private CustomerBUS cusBUS;
         public frmCustomer()
         {
+            cusBUS = new CustomerBUS();
             InitializeComponent();
-            customControl(); 
+            customControl();
         }
 
 
@@ -57,13 +59,24 @@ namespace GUI
         {
             enableControlBtn();
             // dua data vao view
-            dgvCusList.DataSource = new List<Customer>() { new Customer("cus1", "037", "thuyen", 1000) };
+            loadData(dgvCusList, cusBUS.GetAll());
+        }
 
+        private void loadData(DataGridView dgv, List<Customer> l)
+        {
+            dgv.DataSource = l;
+
+            // Đặt tiêu đề các cột
+            dgv.Columns["CustomerId"].HeaderText = "Mã";
+            dgv.Columns["CustomerName"].HeaderText = "Tên";
+            dgv.Columns["Phone"].HeaderText = "Số điện thoại";
+            dgv.Columns["LoyaltyPoint"].HeaderText = "Điểm tích lũy";
         }
 
         // display button
         private void enableControlBtn()
         {
+            txtCusPoint.Enabled = false;
             grbCusHistory.Enabled = txtCusId.Text != "";
             if (txtCusId.Text != "" || txtCusPhone.Text != "")
             {
@@ -84,7 +97,7 @@ namespace GUI
             Order order2 = new Order();
             order2.OrderId = "hd2";
 
-            List<Order> orders = new List<Order>() { order, order2};
+            List<Order> orders = new List<Order>() { order, order2 };
 
             return orders;
         }
@@ -113,10 +126,10 @@ namespace GUI
             enableControlBtn();
             if (grbCusHistory.Enabled)
             {
-                cbbOrderCusList.Items.Clear();
+                // cbbOrderCusList.Items.Clear();
                 cbbOrderCusList.DataSource = findOrderByCusId(txtCusId.Text);
                 cbbOrderCusList.ValueMember = "OrderId";
-                cbbOrderCusList.DisplayMember = "OrderId"; 
+                cbbOrderCusList.DisplayMember = "OrderId";
             }
             btnSearch_Click(sender, e);
         }
@@ -127,21 +140,10 @@ namespace GUI
             btnSearch_Click(sender, e);
         }
 
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            List<Customer> list = new List<Customer>();
-
-            _customerList = new List<Customer>() { new Customer("cus1", "037", "thuyen", 1000) };
-            //dgvCusList.Rows.Clear();    
-            foreach (Customer customer in _customerList)
-            {
-                if (customer.CustomerId.Contains(txtCusId.Text))
-                {
-                    list.Add(customer);
-                }
-            }
-
-            dgvCusList.DataSource = list;
+            dgvCusList.DataSource = cusBUS.Search(txtCusId.Text, txtCusPhone.Text, txtCusName.Text);
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -159,7 +161,7 @@ namespace GUI
                     frmOrderHistory f = new frmOrderHistory(orderSelect.OrderId, "", "");
 
                     f.ShowDialog();
-                } 
+                }
             }
             else
             {
@@ -190,6 +192,17 @@ namespace GUI
                 txtCusName.Text = name;
                 txtCusPoint.Text = points.ToString();
             }
+        }
+
+        private void txtCusName_TextChanged(object sender, EventArgs e)
+        {
+            enableControlBtn();
+            btnSearch_Click(sender, e);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            frmCustomer_Load(sender, e);
         }
     }
 }

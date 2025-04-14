@@ -8,20 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BUS;
 using System.Runtime.CompilerServices;
 using System.Globalization;
 using System.Diagnostics;
+using BUS;
 namespace GUI
 {
     public partial class frmOrder : Form
     {
         //List<Promotion> promotions; 
+        private ProductBUS proBUS;
         public frmOrder()
         {
+            proBUS = new ProductBUS();
             InitializeComponent();
             customControl();
-            showOrderList(new List<Order>() { new Order("d", DateTime.Now, 2, 2, 2, "", "", "") });
+            showOrderList(new List<Order>() { new Order("d", DateTime.Now, 2, 2, 2, "", "", "", "vou1", new List<OrderDetail>()) });
             loadDataOntoGridView();
         }
 
@@ -153,7 +155,7 @@ namespace GUI
             //dataGridView1.DataSource = PromotionBUS.getPromotionTable(promotions);
             //combo
 
-            List<Product> products = ProductBUS.getAll();
+            List<Product> products = proBUS.getAll();
             if (products != null)
             {
                 comboBoxProductID.Items.Clear(); // Clear any existing items
@@ -167,7 +169,7 @@ namespace GUI
             }
             else
             {
-                MessageBox.Show("DataTable is null.");
+                new frmError("Dữ liệu", "Dữ liệu bị null").ShowDialog();
             }
 
 
@@ -194,8 +196,7 @@ namespace GUI
             if (comboBoxProductName.SelectedItem != null)
             {
                 string? selectedProductName = comboBoxProductName.SelectedItem.ToString();
-                Product selectedProductItem = comboBoxProductID.Items
-                .OfType<Product>()
+                Product selectedProductItem = comboBoxProductID.Items.OfType<Product>()
                 .FirstOrDefault(p => p.ProductName == selectedProductName);
 
                 if (selectedProductItem != null)

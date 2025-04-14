@@ -1,0 +1,4 @@
+windows
+LONEVE\SQLEXPRESS
+haisan
+

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio.Wave;
 using NAudio.Gui;
+using Infrastructure;
 
 namespace GUI
 {
@@ -22,7 +23,7 @@ namespace GUI
         {
             InitializeComponent();
             customControl();
-            PlayBackgroundMusic();
+           // PlayBackgroundMusic();
 
         }
 
@@ -77,6 +78,7 @@ namespace GUI
 
         private void Home_Load(object sender, EventArgs e)
         {
+            lblUserName.Text = Session.Username;
             btnHome_Click(sender, e);
         }
 
@@ -235,6 +237,18 @@ namespace GUI
                 currentVolume = volumeBar.Value / 100f;
                 audioFile.Volume = currentVolume;
             }
+        }
+
+        private void btnEmp_Click(object sender, EventArgs e)
+        {
+            frmEmployee f = new frmEmployee()
+            {
+                Dock = DockStyle.Fill,
+                TopLevel = false,
+                TopMost = true
+
+            };
+            showForm(f, btnEmp);
         }
     }
 }

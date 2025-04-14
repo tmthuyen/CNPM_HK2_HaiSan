@@ -166,6 +166,7 @@
             txtMK.TabIndex = 1;
             txtMK.UseSystemPasswordChar = true;
             txtMK.TextChanged += txtMK_TextChanged;
+            txtMK.KeyUp += txtMK_KeyUp;
             // 
             // lblMK
             // 

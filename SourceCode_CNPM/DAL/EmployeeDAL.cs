@@ -29,8 +29,8 @@ namespace DAL
                     row["Gender"].ToString(),
                     row["Status"].ToString(),
                     row["RoleName"].ToString(),
+                    row["Avatar"]?.ToString(),
                     row["Address"].ToString(),
-                    row["Avatar "]?.ToString(),
                     DateTime.Parse(row["DateOfBirth"].ToString())
                 ));
             }
@@ -38,7 +38,25 @@ namespace DAL
             return employees;
         }
 
-        
+        public string CreateNewId()
+        {
+            string query = "SELECT TOP 1 EmployeeId FROM Employee ORDER BY EmployeeId DESC";
+            DataTable dt = Connection.ExecuteQuery(query);
+
+            if (dt.Rows.Count == 0)
+            {
+                return "EMP01";
+            }
+
+            string lastId = dt.Rows[0]["EmployeeId"].ToString(); // "EMP005"
+            int number = int.Parse(lastId.Substring(3));         // 5
+            number++;                                             // 6
+
+            return "EMP" + number.ToString("D2");                 // "EMP006"
+        }
+
+
+
         // Thêm nhân viên mới
         public bool Add(Employee emp)
         {
@@ -116,8 +134,8 @@ namespace DAL
                 row["Gender"].ToString(),
                 row["Status"].ToString(),
                 row["RoleName"].ToString(),
+                row["Avatar"]?.ToString(),
                 row["Address"].ToString(),
-                row["Avatar"].ToString(),
                 Convert.ToDateTime(row["DateOfBirth"])
             );
         }
@@ -140,13 +158,46 @@ namespace DAL
                         reader["Gender"].ToString(),
                         reader["Status"].ToString(),
                         reader["RoleName"].ToString(),
-                        reader["Address"].ToString(),
                         reader["Avatar"]?.ToString(),
+                        reader["Address"].ToString(),
                         DateTime.Parse(reader["DateOfBirth "].ToString())
                     );
                 }
             }
             return null;
+        }
+    
+        public Employee Login(string username, string password)
+        {
+            string query = @"SELECT e.* FROM Employee e 
+                        JOIN Account a ON e.EmployeeId = a.EmployeeId
+                        WHERE a.Username = @name AND a.Password = @pass AND e.Status = 'active'";
+
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@name", username),
+                new SqlParameter("@pass", password)
+            };
+
+            DataTable dt = Connection.ExecuteQuery(query, parameters);
+
+            if (dt.Rows.Count == 0)
+                return null;
+
+            DataRow row = dt.Rows[0];
+
+            return new Employee(
+                 row["EmployeeId"].ToString(),
+                 row["EmployeeName"].ToString(),
+                 row["Phone"].ToString(),
+                 row["Email"].ToString(),
+                 row["Gender"].ToString(),
+                 row["Status"].ToString(),
+                 row["RoleName"].ToString(),
+                 row["Address"].ToString(),
+                 row["Avatar"].ToString(),
+                 Convert.ToDateTime(row["DateOfBirth"])
+             );
         }
     }
 }

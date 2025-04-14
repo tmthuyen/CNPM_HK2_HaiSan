@@ -15,14 +15,13 @@ namespace DTO{
         public int PurchasePrice { get; set; }
         public int RetailPrice { get; set; }
         public DateTime CreatedAt { get; set; }
-        public decimal Remaining { get; set; }
-        public int ShelfLife { get; set; }
+        //public decimal Remaining { get; set; } 
         public string Unit { get; set; }
 
         public Product() { }
 
         public Product(string productId, string supplierId, string categoryId, string productName, int purchasePrice,
-                          int retailPrice, DateTime createdAt, decimal remaining, int shelfLife, string unit)
+                          int retailPrice, DateTime createdAt, string unit)
         {
             ProductId = productId;
             SupplierId = supplierId;
@@ -30,9 +29,7 @@ namespace DTO{
             ProductName = productName;
             PurchasePrice = purchasePrice;
             RetailPrice = retailPrice;
-            CreatedAt = createdAt;
-            Remaining = remaining;
-            ShelfLife = shelfLife;
+            CreatedAt = createdAt; 
             Unit = unit;
         }
         public override string ToString()

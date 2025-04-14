@@ -7,15 +7,16 @@ using DAL;
 using DTO;
 namespace BUS
 {
-    public static class OrderBUS
+    public  class OrderBUS
     {
-        public static List<Product> GetAll()
+
+        public  List<Product> GetAll()
         {
-            return ProductDAL.GetAll();
+            return new ProductDAL().GetAll();
         }
 
 
-        public static List<Product> Sort(List<Product> products, decimal? minPrice, decimal? maxPrice, string categoryId, string name, string sortBy = "RetailPrice", bool ascending = true)
+        public  List<Product> Sort(List<Product> products, decimal? minPrice, decimal? maxPrice, string categoryId, string name, string sortBy = "RetailPrice", bool ascending = true)
         {
             // Filtering
             var filtered = products.Where(p =>
@@ -31,8 +32,6 @@ namespace BUS
                 "ProductName" => ascending ? filtered.OrderBy(p => p.ProductName) : filtered.OrderByDescending(p => p.ProductName),
                 "PurchasePrice" => ascending ? filtered.OrderBy(p => p.PurchasePrice) : filtered.OrderByDescending(p => p.PurchasePrice),
                 "CreatedAt" => ascending ? filtered.OrderBy(p => p.CreatedAt) : filtered.OrderByDescending(p => p.CreatedAt),
-                "Remaining" => ascending ? filtered.OrderBy(p => p.Remaining) : filtered.OrderByDescending(p => p.Remaining),
-                "ShelfLife" => ascending ? filtered.OrderBy(p => p.ShelfLife) : filtered.OrderByDescending(p => p.ShelfLife),
                 "Unit" => ascending ? filtered.OrderBy(p => p.Unit) : filtered.OrderByDescending(p => p.Unit),
                 _ => ascending ? filtered.OrderBy(p => p.RetailPrice) : filtered.OrderByDescending(p => p.RetailPrice),
             };

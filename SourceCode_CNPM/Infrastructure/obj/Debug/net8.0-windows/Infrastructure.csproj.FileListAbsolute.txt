@@ -15,3 +15,20 @@ F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\Infrastruct
 F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.pdb
 F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.genruntimeconfig.cache
 F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\ref\Infrastructure.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\bin\Debug\net8.0-windows\Infrastructure.exe
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\bin\Debug\net8.0-windows\Infrastructure.deps.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\bin\Debug\net8.0-windows\Infrastructure.runtimeconfig.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\bin\Debug\net8.0-windows\Infrastructure.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\bin\Debug\net8.0-windows\Infrastructure.pdb
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.Form1.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.csproj.GenerateResource.cache
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.AssemblyInfoInputs.cache
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.AssemblyInfo.cs
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.csproj.CoreCompileInputs.cache
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.sourcelink.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\refint\Infrastructure.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.pdb
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\Infrastructure.genruntimeconfig.cache
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\Infrastructure\obj\Debug\net8.0-windows\ref\Infrastructure.dll

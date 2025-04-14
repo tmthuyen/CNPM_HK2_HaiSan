@@ -1,7 +1,7 @@
-create database haisan2
-use haisan2
+create database haisan
+go use haisan
 use master
-drop database haisan2
+drop database haisan
 
 CREATE TABLE Employee (
     EmployeeId CHAR(6) PRIMARY KEY,
@@ -15,22 +15,53 @@ CREATE TABLE Employee (
     Avatar VARCHAR(30),
     DateOfBirth DATE NOT NULL
 );
+
+Insert Into Employee values
+('Emp01', N'Trần Minh Thuyên', '0373436163', 'tranthuyen2222@gmail.com', 'Nam', 'active', 'admin', 'Q7', 'thuyen.png', '2005-02-20'),
+('Emp02', N'Hồ Gia Kiện', '0373436163', 'hogiakien@gmail.com', 'Nam', 'active', 'admin', 'Q7', 'kien.png', '2005-01-01')
+
+--('Emp03', N'Trần Minh Thuyên', '0373436163', 'tranthuyen2222@gmail.com', 'Nam', 'active', 'admin', 'Q7', 'thuyen.png', '2005-02-20'),
+
 Create table Account(
 	EmployeeId CHAR(6) Primary key,
-	Password Varchar(50) NOT NULL --hashed
-	
+	Username CHAR(20) NOT NULL UNIQUE,
+	Password Varchar(50) NOT NULL, --hashed
+    FOREIGN KEY (EmployeeId) REFERENCES Employee(EmployeeId)	
 )
+
+ALTER TABLE Account
+ALTER COLUMN Password VARCHAR(100);
+
+Select * from Employee
+select * from Account
+select * from Category
+select * from Customer
+select * from Products
+select * from Supplier
+Insert into Account Values
+('Emp01', 'tranthuyen', 'thuyen123'),
+('Emp02', 'giakien', 'kien123')
+
+
 CREATE TABLE Customer (
     CustomerId CHAR(10) PRIMARY KEY,
     CustomerName NVARCHAR(30) NOT NULL,
     Phone VARCHAR(12) UNIQUE NOT NULL,
     LoyaltyPoint INT NOT NULL --/100 cho hoa don's amount
-);
+); 
+
+insert into Customer values
+('cus00001', N'Thuyên', '0373436163', 0)
 
 CREATE TABLE Category (
     CategoryId CHAR(6) PRIMARY KEY,
     CategoryName NVARCHAR(20) NOT NULL
 );
+Insert into Category Values
+('Fish', 'Cá'),
+('Crab', 'Cua')
+
+
 
 CREATE TABLE Supplier (
     SupplierId CHAR(6) PRIMARY KEY,
@@ -38,12 +69,10 @@ CREATE TABLE Supplier (
     Phone VARCHAR(12) NOT NULL,
     Email VARCHAR(30) NOT NULL UNIQUE
 );
+Insert into Supplier Values
+('Sup001', 'ALAN', '0377777777', 'alan@gmail.com'),
+('Sup002', 'CHARLIE', '0373333333', 'charlie@gmail.com')
 
-CREATE TABLE Import (
-    ImportId CHAR(6) PRIMARY KEY,
-    ImportDate DATETIME DEFAULT GETDATE() NOT NULL,
-	NumOfProducts INT,--số loại nhập
-);
 
 CREATE TABLE Products (
     ProductId CHAR(10) NOT NULL PRIMARY KEY,
@@ -53,10 +82,25 @@ CREATE TABLE Products (
     PurchasePrice INT NOT NULL,
     RetailPrice INT NOT NULL,
     CreatedAt DATETIME DEFAULT GETDATE() NOT NULL,
-    Unit NVARCHAR(10) NOT NULL, --
+    Unit NVARCHAR(10) NOT NULL, 
     FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId),
     FOREIGN KEY (SupplierId) REFERENCES Supplier(SupplierId)
 );
+
+Insert Into Products Values
+('Prod0001', 'Sup001', 'Fish', N'Cá kình', 50000000, 100000000, GETDATE(), 'kg')
+
+ALTER TABLE Products
+ALTER COLUMN ProductId CHAR(20);
+ALTER TABLE Category
+ALTER COLUMN CategoryId Char(15)
+
+CREATE TABLE Import (
+    ImportId CHAR(6) PRIMARY KEY,
+    ImportDate DATETIME DEFAULT GETDATE() NOT NULL,
+	NumOfProducts INT,--số loại nhập
+);
+
 
 CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
     ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,

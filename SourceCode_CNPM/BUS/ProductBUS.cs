@@ -7,13 +7,26 @@ using DAL;
 using DTO;
 namespace BUS
 {
-    public static class ProductBUS
+    public  class ProductBUS
     {
-        public static List<Product> getAll()
+        private ProductDAL proDAL;
+
+        public ProductBUS()
         {
-            return ProductDAL.GetAll();
+            proDAL = new ProductDAL();
         }
-        public static List<Product> Sort(List<Product> products, decimal? minPrice, decimal? maxPrice, string categoryId, string name)
+
+        public  List<Product> getAll()
+        {
+            return proDAL.GetAll();
+        }
+
+        public string CreateNewId(string cateId)
+        {
+            return proDAL.CreateNewId(cateId.Trim());
+        }
+
+        public  List<Product> Sort(List<Product> products, decimal? minPrice, decimal? maxPrice, string categoryId, string name)
         {
             var filtered = products.Where(p =>
                 (!minPrice.HasValue || p.RetailPrice >= minPrice.Value) &&
@@ -25,6 +38,26 @@ namespace BUS
             return filtered.ToList();
         }
 
+        public List<Product> Search(string proId, string proName, string categoryId, string filter="RetailPrice ASC")
+        {
+            return proDAL.SearchProduct(proId, proName, categoryId, filter);
+        }
+
+
+        public bool Add(Product product)
+        {
+            return proDAL.Add(product);
+        }
+
+        public bool Delete(string proId)
+        {
+            return proDAL.Delete(proId);
+        }
+
+        public bool Update(Product product)
+        {
+            return proDAL.Update(product);
+        }
         
     }
 }

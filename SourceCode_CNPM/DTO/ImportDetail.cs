@@ -14,6 +14,7 @@ using System.Threading.Tasks;
         public float Quantity { get; set; }
         public float Remaining { get; set; }
         public int PurchasePrice { get; set; }
+        
         public DateTime Expire { get; set; }
 
         // tien phai tra cua chi tiet nhap vao

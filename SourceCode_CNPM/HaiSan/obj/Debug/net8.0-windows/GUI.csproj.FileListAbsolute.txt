@@ -185,3 +185,35 @@ F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\HaiSan\bin\
 F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\NAudio.Wasapi.dll
 F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\NAudio.WinForms.dll
 F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\CNPM_HK2_HaiSan\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\NAudio.WinMM.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.frmConfig.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.frmPromotion.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.frmVoucher.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.Usercontrol.PromotionControl.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.Usercontrol.UCDiscount.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.Usercontrol.UCVoucher.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\BUS.deps.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\BUS.runtimeconfig.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\DAL.deps.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\DAL.runtimeconfig.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\Infrastructure.deps.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\Infrastructure.runtimeconfig.json
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\Infrastructure.exe
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\DAL.exe
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\BUS.exe
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\Images\bg.mp3
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\NAudio.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\NAudio.Asio.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\NAudio.Core.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\NAudio.Midi.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\NAudio.Wasapi.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\NAudio.WinForms.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\NAudio.WinMM.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\BUS.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\DAL.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\Infrastructure.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\BUS.pdb
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\Infrastructure.pdb
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\bin\Debug\net8.0-windows\DAL.pdb
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.frmEmployee.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.frmAddNewProduct.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.frmEditProduct.resources

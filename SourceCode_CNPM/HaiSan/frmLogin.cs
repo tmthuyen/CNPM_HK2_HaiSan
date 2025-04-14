@@ -7,15 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using BUS;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using DTO;
+using Infrastructure;
 
 namespace GUI
 {
     public partial class frmLogin : Form
     {
+        private EmployeeBUS empBUS;
         public frmLogin()
         {
+            empBUS = new EmployeeBUS();
             InitializeComponent();
             customControl();
         }
@@ -39,7 +44,7 @@ namespace GUI
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            txtTK.Focus(); 
+            txtTK.Focus();
         }
 
         private void lblMK_Click(object sender, EventArgs e)
@@ -73,7 +78,7 @@ namespace GUI
                 txtTK.Focus();
                 return;
             }
-            
+
             if (string.IsNullOrEmpty(matKhau))
             {
                 frmError fe = new frmError("Đăng nhập thất bại", "Vui lòng nhập mật khẩu!");
@@ -83,33 +88,46 @@ namespace GUI
                 return;
             }
 
-            if(!checkLogin(taiKhoan, matKhau))
+            if (!checkLogin(taiKhoan, matKhau))
             {
-                frmError fe = new frmError("Đăng nhập thất bại", "Vui lòng nhập đúng thông tin!");
+                frmError fe = new frmError("Đăng nhập thất bại", "Vui lòng nhập đúng thông tin và tài khoản còn hoạt động");
                 fe.ShowDialog();
                 txtTK.Text = "";
                 txtMK.Text = "";
                 txtTK.Focus();
-            } 
+            }
         }
 
         private bool checkLogin(string taiKhoan, string matKhau)
         {
 
             // kiem tra tai khoan tu BUS
-            Employee e = new Employee(null, null, taiKhoan, null,"", "1", matKhau, "admin", "nam", new DateTime());
-            if(e != null)
+            //Employee e = empBUS.Login(taiKhoan, matKhau);
+            //
+            // nhap tam cho nhanh khi login
+            //
+            Employee e = empBUS.Login("tranthuyen", "thuyen123");
+
+            if (e != null)
             {
+
                 Form f = new Home(e);
-                if(e.RoleName.Equals("admin"))
+                frmSuccces succces;
+                string msg = "";
+
+                if (e.RoleName.Equals("admin"))
                 {
-                    // dang nhap admin
+                    msg = "Hi Admin";
                 }
-                else if(e.RoleName.Equals("sale"))
+                else if (e.RoleName.Equals("sale"))
                 {
-                    // dang nhap sale
-                    f = new Home(e);
+                    msg = "Hi Sale";
                 }
+
+                succces = new frmSuccces("Đăng nhập", msg);
+                succces.ShowDialog();
+
+                Session.StartSession(e.EmployeeId, taiKhoan, e.RoleName);
 
                 this.Hide();
                 f.ShowDialog();
@@ -117,6 +135,15 @@ namespace GUI
                 return true;
             }
             return false;
+        }
+
+        private void txtMK_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Gọi hàm đăng nhập ở đây
+                btnLogin_Click(sender, new EventArgs());
+            }
         }
     }
 }

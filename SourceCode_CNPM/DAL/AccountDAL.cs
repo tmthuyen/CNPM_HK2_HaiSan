@@ -21,6 +21,7 @@ namespace DAL
             {
                 list.Add(new Account(
                     row["EmployeeId"].ToString(),
+                    row["Username"].ToString(),
                     row["Password"].ToString()
                 ));
             }
@@ -30,10 +31,11 @@ namespace DAL
 
         public bool Add(Account acc)
         {
-            string query = $@"INSERT INTO {table} (EmployeeId, Password)
-                              VALUES (@Id, @Password)";
+            string query = $@"INSERT INTO {table} (EmployeeId, Username, Password)
+                              VALUES (@Id, @username, @Password)";
             SqlParameter[] parameters = {
                 new SqlParameter("@Id", acc.EmployeeId),
+                new SqlParameter("@username", acc.Username),
                 new SqlParameter("@Password", HashPassword(acc.Password))
             };
 
