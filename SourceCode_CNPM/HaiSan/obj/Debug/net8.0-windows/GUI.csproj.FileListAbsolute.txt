@@ -112,3 +112,5 @@ C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\Sou
 C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.pdb
 C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.genruntimeconfig.cache
 C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\ref\GUI.dll
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.frmImportDetail.resources
+C:\52300070_TMTHUYEN\Nam-2_HK2_2425\4-Software Engineering\Final_Report_CNPM\SourceCode_CNPM\HaiSan\obj\Debug\net8.0-windows\GUI.frmProfile.resources

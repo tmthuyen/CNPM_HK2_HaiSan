@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using NAudio.Wave;
 using NAudio.Gui;
 using Infrastructure;
+using BUS;
 
 namespace GUI
 {
@@ -18,9 +19,12 @@ namespace GUI
     {
         private float currentVolume = 0.5f;
         private float previousVolume = 0.5f; // for unmute
-
+        private ExpireProductBUS expBUS;
+        private Employee emp;
         public Home(Employee e)
         {
+            this.emp = e;
+            expBUS = new ExpireProductBUS();
             InitializeComponent();
             customControl();
            // PlayBackgroundMusic();
@@ -66,7 +70,8 @@ namespace GUI
 
         private void profileCmstrItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Profile");
+            frmProfile f = new frmProfile(emp);
+            f.ShowDialog();
         }
 
         private void logoutTooltipMItem_Click(object sender, EventArgs e)
@@ -80,6 +85,12 @@ namespace GUI
         {
             lblUserName.Text = Session.Username;
             btnHome_Click(sender, e);
+
+            int numExp = expBUS.UpdateInventory();
+            if (numExp > 0)
+            {
+                new frmError("Lô hàng", "Có " + numExp + " sản phẩm bị hết hạn").ShowDialog();
+            }
         }
 
         private void btnHome_Click(object sender, EventArgs e)

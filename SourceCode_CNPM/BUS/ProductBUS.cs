@@ -24,7 +24,7 @@ namespace BUS
         // get all de lay theeo  LÔ hàng
         public List<Product> GetProductByLoHang()
         {
-            return proDAL.GetProductByLoHang();
+            return proDAL.GetAll();/// sua tam thời
         }
 
         public string CreateNewId(string cateId)

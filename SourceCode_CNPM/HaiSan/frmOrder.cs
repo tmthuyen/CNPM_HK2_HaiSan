@@ -213,10 +213,10 @@ namespace GUI
         {
             if (comboBoxProductName.SelectedItem != null)
             {
-                Product selectedItem = (Product)comboBoxProductName.SelectedItem;
-                textBoxUnit.Text = selectedItem.Unit;
-                textBoxRemaining.Text = formatNumber(selectedItem.Remaining);
-                textBoxPrice.Text = formatNumber(selectedItem.RetailPrice);
+                //Product selectedItem = (Product)comboBoxProductName.SelectedItem;
+                //textBoxUnit.Text = selectedItem.Unit;
+                //textBoxRemaining.Text = formatNumber(selectedItem.Remaining);
+                //textBoxPrice.Text = formatNumber(selectedItem.RetailPrice);
             }
 
             comboBoxVoucher.SelectedIndex = -1;

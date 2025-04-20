@@ -19,7 +19,7 @@ namespace DAL
 
             foreach (DataRow row in dt.Rows)
             {
-                string importId = row["ImportId"].ToString();
+                string importId = row["ImportId"].ToString().Trim();
                 DateTime importDate = Convert.ToDateTime(row["ImportDate"]);
                 int numOfPro = Convert.ToInt32(row["NumOfProducts"]);
 

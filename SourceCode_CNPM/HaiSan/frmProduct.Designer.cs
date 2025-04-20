@@ -34,7 +34,7 @@
             btnDeletePro = new Button();
             btnEditPro = new Button();
             btnAddPro = new Button();
-            btnImportPro = new Button();
+            btnInventory = new Button();
             btnSearchPro = new Button();
             label6 = new Label();
             dgvProduct = new DataGridView();
@@ -125,7 +125,7 @@
             groupBox3.Controls.Add(btnDeletePro);
             groupBox3.Controls.Add(btnEditPro);
             groupBox3.Controls.Add(btnAddPro);
-            groupBox3.Controls.Add(btnImportPro);
+            groupBox3.Controls.Add(btnInventory);
             groupBox3.Controls.Add(btnSearchPro);
             groupBox3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox3.Location = new Point(27, 172);
@@ -183,21 +183,21 @@
             btnAddPro.UseVisualStyleBackColor = false;
             btnAddPro.Click += btnAddPro_Click;
             // 
-            // btnImportPro
+            // btnInventory
             // 
-            btnImportPro.BackColor = Color.DodgerBlue;
-            btnImportPro.Cursor = Cursors.Hand;
-            btnImportPro.FlatAppearance.BorderSize = 0;
-            btnImportPro.FlatStyle = FlatStyle.Flat;
-            btnImportPro.Font = new Font("Times New Roman", 16F);
-            btnImportPro.ForeColor = Color.WhiteSmoke;
-            btnImportPro.Location = new Point(715, 33);
-            btnImportPro.Name = "btnImportPro";
-            btnImportPro.Size = new Size(145, 39);
-            btnImportPro.TabIndex = 9;
-            btnImportPro.Text = "Nhập hàng";
-            btnImportPro.UseVisualStyleBackColor = false;
-            btnImportPro.Click += btnImportPro_Click;
+            btnInventory.BackColor = Color.DodgerBlue;
+            btnInventory.Cursor = Cursors.Hand;
+            btnInventory.FlatAppearance.BorderSize = 0;
+            btnInventory.FlatStyle = FlatStyle.Flat;
+            btnInventory.Font = new Font("Times New Roman", 16F);
+            btnInventory.ForeColor = Color.WhiteSmoke;
+            btnInventory.Location = new Point(715, 33);
+            btnInventory.Name = "btnInventory";
+            btnInventory.Size = new Size(145, 39);
+            btnInventory.TabIndex = 9;
+            btnInventory.Text = "Kho hàng";
+            btnInventory.UseVisualStyleBackColor = false;
+            btnInventory.Click += btnInventory_Click;
             // 
             // btnSearchPro
             // 
@@ -798,7 +798,7 @@
         private DataGridView dgvSupplier;
         private GroupBox groupBox3;
         private Button btnAddPro;
-        private Button btnImportPro;
+        private Button btnInventory;
         private Button btnSearchPro;
         private Button btnEditPro;
         private Button btnDeletePro;

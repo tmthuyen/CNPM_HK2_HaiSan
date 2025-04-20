@@ -11,8 +11,9 @@ namespace DTO{
     public DateTime ImportDate { get; set; }
     public int NumOfProducts { get; set; }
     public List<ImportDetail> ImportDetails{get;set;} = new List<ImportDetail>();
+    public float TotalAmount => ImportDetails.Sum(im => im.TotalPrice);
 
-    public Import() { }
+        public Import() { }
 
     public Import(string importId, DateTime importDate, int numOfProducts,
         List<ImportDetail> importDetails)

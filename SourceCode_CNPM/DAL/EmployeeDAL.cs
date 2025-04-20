@@ -55,8 +55,6 @@ namespace DAL
             return "EMP" + number.ToString("D2");                 // "EMP006"
         }
 
-
-
         // Thêm nhân viên mới
         public bool Add(Employee emp)
         {
@@ -167,6 +165,8 @@ namespace DAL
             return null;
         }
     
+
+        // kiem tra dang nhap
         public Employee Login(string username, string password)
         {
             string query = @"SELECT e.* FROM Employee e 
@@ -194,11 +194,20 @@ namespace DAL
                  row["Gender"].ToString(),
                  row["Status"].ToString(),
                  row["RoleName"].ToString(),
-                 row["Address"].ToString(),
                  row["Avatar"].ToString(),
+                 row["Address"].ToString(),
                  Convert.ToDateTime(row["DateOfBirth"])
              );
         }
+
+        // thay doi mat khau
+        public bool ChangePassword(string empId, string oldPass, string newPass)
+        {
+            AccountDAL accDAL = new AccountDAL();
+            return accDAL.Update(new Account(empId, "", newPass));
+        }
+
+
     }
 }
 

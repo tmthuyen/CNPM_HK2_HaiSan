@@ -59,7 +59,13 @@ namespace BUS
 
         public Employee Login(string username, string password)
         {
-            return empDal.Login(username, password);
+
+            return empDal.Login(username, accDAL.HashPassword(password));
+        }
+
+        public bool ChangePassword(string empId, string oldPass, string newPass)
+        {
+            return empDal.ChangePassword(empId, oldPass, newPass);
         }
 
     }

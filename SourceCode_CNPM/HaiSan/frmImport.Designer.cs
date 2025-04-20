@@ -198,11 +198,11 @@
             dtpkExprire.Format = DateTimePickerFormat.Custom;
             dtpkExprire.Location = new Point(450, 83);
             dtpkExprire.MaxDate = new DateTime(2030, 12, 31, 0, 0, 0, 0);
-            dtpkExprire.MinDate = new DateTime(2025, 4, 16, 0, 0, 0, 0);
+            dtpkExprire.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpkExprire.Name = "dtpkExprire";
             dtpkExprire.Size = new Size(129, 34);
             dtpkExprire.TabIndex = 47;
-            dtpkExprire.Value = new DateTime(2025, 4, 16, 0, 0, 0, 0);
+            dtpkExprire.Value = new DateTime(2025, 4, 20, 0, 0, 0, 0);
             // 
             // btnAddProImport
             // 
@@ -362,12 +362,12 @@
             dtpkImportDate.Font = new Font("Microsoft Sans Serif", 12F);
             dtpkImportDate.Format = DateTimePickerFormat.Custom;
             dtpkImportDate.Location = new Point(648, 52);
-            dtpkImportDate.MaxDate = new DateTime(2025, 4, 16, 0, 0, 0, 0);
+            dtpkImportDate.MaxDate = new DateTime(2025, 4, 20, 0, 0, 0, 0);
             dtpkImportDate.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpkImportDate.Name = "dtpkImportDate";
             dtpkImportDate.Size = new Size(161, 30);
             dtpkImportDate.TabIndex = 54;
-            dtpkImportDate.Value = new DateTime(2025, 4, 16, 0, 0, 0, 0);
+            dtpkImportDate.Value = new DateTime(2025, 4, 20, 0, 0, 0, 0);
             // 
             // label8
             // 
@@ -396,7 +396,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(902, 660);
             Controls.Add(label6);
             Controls.Add(dtpkImportDate);
