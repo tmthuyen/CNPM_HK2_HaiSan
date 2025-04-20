@@ -32,32 +32,50 @@ namespace GUI
         {
             tabControl1 = new TabControl();
             tabPageCreateOrder = new TabPage();
-            dataGridView2 = new DataGridView();
+            dataGridViewOrderDetail = new DataGridView();
             ProductName = new DataGridViewTextBoxColumn();
             Quantity = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
             Unit = new DataGridViewTextBoxColumn();
-            Discount = new DataGridViewTextBoxColumn();
             Total = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
+            textBoxChange = new TextBox();
+            label21 = new Label();
+            textBoxGiven = new TextBox();
+            label20 = new Label();
+            label8 = new Label();
+            button2 = new Button();
+            button1 = new Button();
+            textBoxCustomerName = new TextBox();
+            label19 = new Label();
+            textBoxPhone = new TextBox();
+            label18 = new Label();
+            voucherAmount = new TextBox();
+            label17 = new Label();
+            textBoxPoint = new TextBox();
+            btnSave = new Button();
+            label16 = new Label();
+            comboBoxVoucher = new ComboBox();
+            textBoxRawSum = new TextBox();
+            label15 = new Label();
+            textBoxRealSum = new TextBox();
+            label14 = new Label();
             panel1 = new Panel();
             textBoxPrice = new TextBox();
             label13 = new Label();
             textBoxRemaining = new TextBox();
             label12 = new Label();
-            label8 = new Label();
             cancelBtn = new Button();
             label10 = new Label();
             editBtn = new Button();
             label11 = new Label();
             delBtn = new Button();
-            comboBoxProductID = new ComboBox();
             addBtn = new Button();
             comboBoxProductName = new ComboBox();
             textBoxUnit = new TextBox();
             soLuongTextBox = new TextBox();
             label9 = new Label();
-            dataGridView1 = new DataGridView();
+            dataGridViewVouchers = new DataGridView();
             tabPageSeeOrder = new TabPage();
             pnFilter = new Panel();
             btnFilter = new Button();
@@ -76,11 +94,13 @@ namespace GUI
             label2 = new Label();
             txtPhone = new TextBox();
             label6 = new Label();
+            Discount = new DataGridViewTextBoxColumn();
             tabControl1.SuspendLayout();
             tabPageCreateOrder.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewOrderDetail).BeginInit();
+            panel2.SuspendLayout();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewVouchers).BeginInit();
             tabPageSeeOrder.SuspendLayout();
             pnFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvOrderList).BeginInit();
@@ -101,10 +121,10 @@ namespace GUI
             // 
             // tabPageCreateOrder
             // 
-            tabPageCreateOrder.Controls.Add(dataGridView2);
+            tabPageCreateOrder.Controls.Add(dataGridViewOrderDetail);
             tabPageCreateOrder.Controls.Add(panel2);
             tabPageCreateOrder.Controls.Add(panel1);
-            tabPageCreateOrder.Controls.Add(dataGridView1);
+            tabPageCreateOrder.Controls.Add(dataGridViewVouchers);
             tabPageCreateOrder.Location = new Point(4, 24);
             tabPageCreateOrder.Margin = new Padding(3, 2, 3, 2);
             tabPageCreateOrder.Name = "tabPageCreateOrder";
@@ -114,19 +134,20 @@ namespace GUI
             tabPageCreateOrder.Text = "Tạo đơn hàng";
             tabPageCreateOrder.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dataGridViewOrderDetail
             // 
-            dataGridView2.AllowUserToAddRows = false;
-            dataGridView2.AllowUserToDeleteRows = false;
-            dataGridView2.AllowUserToOrderColumns = true;
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { ProductName, Quantity, Price, Unit, Discount, Total });
-            dataGridView2.Location = new Point(2, 66);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.ReadOnly = true;
-            dataGridView2.Size = new Size(818, 150);
-            dataGridView2.TabIndex = 18;
+            dataGridViewOrderDetail.AllowUserToAddRows = false;
+            dataGridViewOrderDetail.AllowUserToDeleteRows = false;
+            dataGridViewOrderDetail.AllowUserToOrderColumns = true;
+            dataGridViewOrderDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewOrderDetail.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewOrderDetail.Columns.AddRange(new DataGridViewColumn[] { ProductName, Quantity, Price, Unit, Total });
+            dataGridViewOrderDetail.Location = new Point(0, 64);
+            dataGridViewOrderDetail.Name = "dataGridViewOrderDetail";
+            dataGridViewOrderDetail.ReadOnly = true;
+            dataGridViewOrderDetail.Size = new Size(823, 150);
+            dataGridViewOrderDetail.TabIndex = 18;
+            dataGridViewOrderDetail.RowEnter += dataGridViewOrderDetail_RowEnter;
             // 
             // ProductName
             // 
@@ -152,12 +173,6 @@ namespace GUI
             Unit.Name = "Unit";
             Unit.ReadOnly = true;
             // 
-            // Discount
-            // 
-            Discount.HeaderText = "Giảm";
-            Discount.Name = "Discount";
-            Discount.ReadOnly = true;
-            // 
             // Total
             // 
             Total.HeaderText = "Tổng";
@@ -166,11 +181,216 @@ namespace GUI
             // 
             // panel2
             // 
-            panel2.Location = new Point(3, 222);
+            panel2.Controls.Add(textBoxChange);
+            panel2.Controls.Add(label21);
+            panel2.Controls.Add(textBoxGiven);
+            panel2.Controls.Add(label20);
+            panel2.Controls.Add(label8);
+            panel2.Controls.Add(button2);
+            panel2.Controls.Add(button1);
+            panel2.Controls.Add(textBoxCustomerName);
+            panel2.Controls.Add(label19);
+            panel2.Controls.Add(textBoxPhone);
+            panel2.Controls.Add(label18);
+            panel2.Controls.Add(voucherAmount);
+            panel2.Controls.Add(label17);
+            panel2.Controls.Add(textBoxPoint);
+            panel2.Controls.Add(btnSave);
+            panel2.Controls.Add(label16);
+            panel2.Controls.Add(comboBoxVoucher);
+            panel2.Controls.Add(textBoxRawSum);
+            panel2.Controls.Add(label15);
+            panel2.Controls.Add(textBoxRealSum);
+            panel2.Controls.Add(label14);
+            panel2.Location = new Point(3, 235);
             panel2.Name = "panel2";
-            panel2.Size = new Size(820, 70);
+            panel2.Size = new Size(820, 96);
             panel2.TabIndex = 17;
             panel2.Paint += panel2_Paint;
+            // 
+            // textBoxChange
+            // 
+            textBoxChange.Location = new Point(700, 36);
+            textBoxChange.Name = "textBoxChange";
+            textBoxChange.Size = new Size(114, 23);
+            textBoxChange.TabIndex = 25;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(647, 39);
+            label21.Name = "label21";
+            label21.Size = new Size(45, 15);
+            label21.TabIndex = 24;
+            label21.Text = "Thối lại";
+            // 
+            // textBoxGiven
+            // 
+            textBoxGiven.Location = new Point(525, 36);
+            textBoxGiven.Name = "textBoxGiven";
+            textBoxGiven.Size = new Size(116, 23);
+            textBoxGiven.TabIndex = 23;
+            textBoxGiven.TextChanged += processCash;
+            textBoxGiven.KeyPress += textBoxPoint_KeyPress;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(456, 39);
+            label20.Name = "label20";
+            label20.Size = new Size(63, 15);
+            label20.TabIndex = 22;
+            label20.Text = "Khách đưa";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(7, 9);
+            label8.Name = "label8";
+            label8.Size = new Size(50, 15);
+            label8.TabIndex = 21;
+            label8.Text = "Voucher";
+            // 
+            // button2
+            // 
+            button2.Location = new Point(115, 65);
+            button2.Name = "button2";
+            button2.Size = new Size(92, 23);
+            button2.TabIndex = 20;
+            button2.Text = "Hủy";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += btnCancel2_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(253, 65);
+            button1.Name = "button1";
+            button1.Size = new Size(167, 23);
+            button1.TabIndex = 19;
+            button1.Text = "Xem trước hóa đơn";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += btnPreview_Click;
+            // 
+            // textBoxCustomerName
+            // 
+            textBoxCustomerName.Location = new Point(73, 36);
+            textBoxCustomerName.Name = "textBoxCustomerName";
+            textBoxCustomerName.Size = new Size(199, 23);
+            textBoxCustomerName.TabIndex = 18;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(7, 42);
+            label19.Name = "label19";
+            label19.Size = new Size(61, 15);
+            label19.TabIndex = 17;
+            label19.Text = "Tên Khách";
+            // 
+            // textBoxPhone
+            // 
+            textBoxPhone.Location = new Point(347, 36);
+            textBoxPhone.Name = "textBoxPhone";
+            textBoxPhone.Size = new Size(100, 23);
+            textBoxPhone.TabIndex = 16;
+            textBoxPhone.KeyPress += textBoxPoint_KeyPress;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(278, 39);
+            label18.Name = "label18";
+            label18.Size = new Size(63, 15);
+            label18.TabIndex = 15;
+            label18.Text = "SĐT Khách";
+            // 
+            // voucherAmount
+            // 
+            voucherAmount.Enabled = false;
+            voucherAmount.Location = new Point(549, 6);
+            voucherAmount.Name = "voucherAmount";
+            voucherAmount.Size = new Size(92, 23);
+            voucherAmount.TabIndex = 14;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(449, 9);
+            label17.Name = "label17";
+            label17.Size = new Size(80, 15);
+            label17.TabIndex = 13;
+            label17.Text = "Voucher giảm";
+            // 
+            // textBoxPoint
+            // 
+            textBoxPoint.Location = new Point(238, 6);
+            textBoxPoint.Name = "textBoxPoint";
+            textBoxPoint.Size = new Size(56, 23);
+            textBoxPoint.TabIndex = 12;
+            textBoxPoint.TextChanged += textBoxPoint_TextChanged;
+            textBoxPoint.KeyPress += textBoxPoint_KeyPress;
+            // 
+            // btnSave
+            // 
+            btnSave.Location = new Point(7, 65);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(75, 23);
+            btnSave.TabIndex = 6;
+            btnSave.Text = "Tạo đơn";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnCreate_Click;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(197, 9);
+            label16.Name = "label16";
+            label16.Size = new Size(35, 15);
+            label16.TabIndex = 11;
+            label16.Text = "Điểm";
+            // 
+            // comboBoxVoucher
+            // 
+            comboBoxVoucher.FormattingEnabled = true;
+            comboBoxVoucher.Location = new Point(73, 6);
+            comboBoxVoucher.Name = "comboBoxVoucher";
+            comboBoxVoucher.Size = new Size(121, 23);
+            comboBoxVoucher.TabIndex = 10;
+            comboBoxVoucher.SelectedIndexChanged += comboBoxVoucher_SelectedIndexChanged;
+            // 
+            // textBoxRawSum
+            // 
+            textBoxRawSum.Enabled = false;
+            textBoxRawSum.Location = new Point(340, 6);
+            textBoxRawSum.Name = "textBoxRawSum";
+            textBoxRawSum.Size = new Size(100, 23);
+            textBoxRawSum.TabIndex = 9;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(300, 9);
+            label15.Name = "label15";
+            label15.Size = new Size(34, 15);
+            label15.TabIndex = 8;
+            label15.Text = "Tổng";
+            // 
+            // textBoxRealSum
+            // 
+            textBoxRealSum.Enabled = false;
+            textBoxRealSum.Location = new Point(700, 6);
+            textBoxRealSum.Name = "textBoxRealSum";
+            textBoxRealSum.Size = new Size(114, 23);
+            textBoxRealSum.TabIndex = 7;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(647, 9);
+            label14.Name = "label14";
+            label14.Size = new Size(47, 15);
+            label14.TabIndex = 6;
+            label14.Text = "Phải trả";
             // 
             // panel1
             // 
@@ -178,13 +398,11 @@ namespace GUI
             panel1.Controls.Add(label13);
             panel1.Controls.Add(textBoxRemaining);
             panel1.Controls.Add(label12);
-            panel1.Controls.Add(label8);
             panel1.Controls.Add(cancelBtn);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(editBtn);
             panel1.Controls.Add(label11);
             panel1.Controls.Add(delBtn);
-            panel1.Controls.Add(comboBoxProductID);
             panel1.Controls.Add(addBtn);
             panel1.Controls.Add(comboBoxProductName);
             panel1.Controls.Add(textBoxUnit);
@@ -199,15 +417,15 @@ namespace GUI
             // textBoxPrice
             // 
             textBoxPrice.Enabled = false;
-            textBoxPrice.Location = new Point(540, 3);
+            textBoxPrice.Location = new Point(467, 3);
             textBoxPrice.Name = "textBoxPrice";
-            textBoxPrice.Size = new Size(62, 23);
+            textBoxPrice.Size = new Size(87, 23);
             textBoxPrice.TabIndex = 19;
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(515, 7);
+            label13.Location = new Point(437, 5);
             label13.Name = "label13";
             label13.Size = new Size(24, 15);
             label13.TabIndex = 18;
@@ -216,7 +434,7 @@ namespace GUI
             // textBoxRemaining
             // 
             textBoxRemaining.Enabled = false;
-            textBoxRemaining.Location = new Point(759, 3);
+            textBoxRemaining.Location = new Point(750, 3);
             textBoxRemaining.Name = "textBoxRemaining";
             textBoxRemaining.Size = new Size(55, 23);
             textBoxRemaining.TabIndex = 17;
@@ -224,53 +442,46 @@ namespace GUI
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(710, 8);
+            label12.Location = new Point(694, 6);
             label12.Name = "label12";
             label12.Size = new Size(50, 15);
             label12.TabIndex = 16;
             label12.Text = "Tồn kho";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(3, 8);
-            label8.Name = "label8";
-            label8.Size = new Size(18, 15);
-            label8.TabIndex = 0;
-            label8.Text = "ID";
             // 
             // cancelBtn
             // 
             cancelBtn.Location = new Point(449, 33);
             cancelBtn.Name = "cancelBtn";
             cancelBtn.Size = new Size(75, 23);
-            cancelBtn.TabIndex = 15;
+            cancelBtn.TabIndex = 5;
             cancelBtn.Text = "Hủy";
             cancelBtn.UseVisualStyleBackColor = true;
+            cancelBtn.Click += cancelBtn_Click;
             // 
             // label10
             // 
             label10.AutoEllipsis = true;
             label10.AutoSize = true;
-            label10.Location = new Point(131, 8);
+            label10.Location = new Point(7, 6);
             label10.Name = "label10";
-            label10.Size = new Size(80, 15);
+            label10.Size = new Size(60, 15);
             label10.TabIndex = 2;
-            label10.Text = "Tên sản phẩm";
+            label10.Text = "Sản phẩm";
             // 
             // editBtn
             // 
             editBtn.Location = new Point(320, 33);
             editBtn.Name = "editBtn";
             editBtn.Size = new Size(75, 23);
-            editBtn.TabIndex = 14;
+            editBtn.TabIndex = 20;
             editBtn.Text = "Sửa đổi";
             editBtn.UseVisualStyleBackColor = true;
+            editBtn.Click += editBtn_Click;
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(405, 7);
+            label11.Location = new Point(266, 7);
             label11.Name = "label11";
             label11.Size = new Size(54, 15);
             label11.TabIndex = 3;
@@ -281,70 +492,66 @@ namespace GUI
             delBtn.Location = new Point(161, 33);
             delBtn.Name = "delBtn";
             delBtn.Size = new Size(96, 23);
-            delBtn.TabIndex = 13;
-            delBtn.Text = "Xóa sản phẩm";
+            delBtn.TabIndex = 3;
+            delBtn.Text = "Xóa khỏi đơn";
             delBtn.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxProductID
-            // 
-            comboBoxProductID.FormattingEnabled = true;
-            comboBoxProductID.Location = new Point(27, 4);
-            comboBoxProductID.Name = "comboBoxProductID";
-            comboBoxProductID.Size = new Size(96, 23);
-            comboBoxProductID.TabIndex = 6;
-            comboBoxProductID.SelectedIndexChanged += comboBoxProductID_SelectedIndexChanged;
+            delBtn.Click += delBtn_Click;
             // 
             // addBtn
             // 
             addBtn.Location = new Point(7, 33);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(103, 23);
-            addBtn.TabIndex = 12;
+            addBtn.TabIndex = 2;
             addBtn.Text = "Thêm vào đơn";
             addBtn.UseVisualStyleBackColor = true;
             addBtn.Click += addBtn_Click;
             // 
             // comboBoxProductName
             // 
+            comboBoxProductName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBoxProductName.AutoCompleteSource = AutoCompleteSource.ListItems;
             comboBoxProductName.FormattingEnabled = true;
-            comboBoxProductName.Location = new Point(211, 3);
+            comboBoxProductName.Location = new Point(73, 3);
             comboBoxProductName.Name = "comboBoxProductName";
             comboBoxProductName.Size = new Size(184, 23);
-            comboBoxProductName.TabIndex = 7;
-            comboBoxProductName.SelectedIndexChanged += comboBoxProductName_SelectedIndexChanged;
+            comboBoxProductName.TabIndex = 0;
+            comboBoxProductName.SelectedIndexChanged += comboBox_SelectedIndexChanged;
             // 
             // textBoxUnit
             // 
             textBoxUnit.Enabled = false;
-            textBoxUnit.Location = new Point(655, 3);
+            textBoxUnit.Location = new Point(611, 3);
             textBoxUnit.Name = "textBoxUnit";
-            textBoxUnit.Size = new Size(55, 23);
+            textBoxUnit.Size = new Size(77, 23);
             textBoxUnit.TabIndex = 11;
             // 
             // soLuongTextBox
             // 
-            soLuongTextBox.Location = new Point(459, 3);
+            soLuongTextBox.Location = new Point(320, 3);
             soLuongTextBox.Name = "soLuongTextBox";
-            soLuongTextBox.Size = new Size(55, 23);
-            soLuongTextBox.TabIndex = 8;
+            soLuongTextBox.Size = new Size(100, 23);
+            soLuongTextBox.TabIndex = 1;
             soLuongTextBox.TextChanged += soLuongTextBox_TextChanged;
+            soLuongTextBox.KeyDown += soLuongTextBox_KeyDown;
+            soLuongTextBox.KeyPress += processNumber_KeyPress;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(608, 8);
+            label9.Location = new Point(564, 5);
             label9.Name = "label9";
             label9.Size = new Size(41, 15);
             label9.TabIndex = 10;
             label9.Text = "Đơn vị";
             // 
-            // dataGridView1
+            // dataGridViewVouchers
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 298);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(814, 124);
-            dataGridView1.TabIndex = 9;
+            dataGridViewVouchers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewVouchers.Location = new Point(0, 337);
+            dataGridViewVouchers.Name = "dataGridViewVouchers";
+            dataGridViewVouchers.Size = new Size(823, 90);
+            dataGridViewVouchers.TabIndex = 9;
             // 
             // tabPageSeeOrder
             // 
@@ -565,6 +772,12 @@ namespace GUI
             label6.Text = "DÁNH SÁCH ĐƠN HÀNG";
             label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // Discount
+            // 
+            Discount.HeaderText = "Giảm";
+            Discount.Name = "Discount";
+            Discount.ReadOnly = true;
+            // 
             // frmOrder
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -577,10 +790,12 @@ namespace GUI
             Text = "frmOrder";
             tabControl1.ResumeLayout(false);
             tabPageCreateOrder.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewOrderDetail).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewVouchers).EndInit();
             tabPageSeeOrder.ResumeLayout(false);
             pnFilter.ResumeLayout(false);
             pnFilter.PerformLayout();
@@ -613,11 +828,9 @@ namespace GUI
         private Button btnFilter;
         private Label label11;
         private Label label10;
-        private Label label8;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewVouchers;
         private TextBox soLuongTextBox;
         private ComboBox comboBoxProductName;
-        private ComboBox comboBoxProductID;
         private TextBox textBoxUnit;
         private Label label9;
         private Panel panel1;
@@ -630,12 +843,33 @@ namespace GUI
         private Label label12;
         private TextBox textBoxPrice;
         private Label label13;
-        private DataGridView dataGridView2;
+        private DataGridView dataGridViewOrderDetail;
         private DataGridViewTextBoxColumn ProductName;
         private DataGridViewTextBoxColumn Unit;
         private DataGridViewTextBoxColumn Quantity;
         private DataGridViewTextBoxColumn Discount;
         private DataGridViewTextBoxColumn Total;
         private DataGridViewTextBoxColumn Price;
+        private Button btnSave;
+        private ComboBox comboBoxVoucher;
+        private TextBox textBoxRawSum;
+        private Label label15;
+        private TextBox textBoxRealSum;
+        private Label label14;
+        private TextBox textBoxPoint;
+        private Label label16;
+        private TextBox voucherAmount;
+        private Label label17;
+        private Button button2;
+        private Button button1;
+        private TextBox textBoxCustomerName;
+        private Label label19;
+        private TextBox textBoxPhone;
+        private Label label18;
+        private Label label8;
+        private TextBox textBoxChange;
+        private Label label21;
+        private TextBox textBoxGiven;
+        private Label label20;
     }
 }

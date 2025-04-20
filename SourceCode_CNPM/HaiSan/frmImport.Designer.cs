@@ -32,7 +32,6 @@
             label1 = new Label();
             groupBox2 = new GroupBox();
             btnSaveImport = new Button();
-            btnCancelPro = new Button();
             btnCreateImport = new Button();
             grInputPro = new GroupBox();
             label7 = new Label();
@@ -72,6 +71,7 @@
             btnExit.TabIndex = 38;
             btnExit.Text = "X";
             btnExit.UseVisualStyleBackColor = false;
+            btnExit.Click += btnExit_Click;
             // 
             // label1
             // 
@@ -89,10 +89,9 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(btnSaveImport);
-            groupBox2.Controls.Add(btnCancelPro);
             groupBox2.Controls.Add(btnCreateImport);
             groupBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox2.Location = new Point(15, 86);
+            groupBox2.Location = new Point(9, 86);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(884, 81);
             groupBox2.TabIndex = 39;
@@ -107,27 +106,13 @@
             btnSaveImport.FlatStyle = FlatStyle.Flat;
             btnSaveImport.Font = new Font("Times New Roman", 13.8F);
             btnSaveImport.ForeColor = Color.WhiteSmoke;
-            btnSaveImport.Location = new Point(360, 33);
+            btnSaveImport.Location = new Point(508, 33);
             btnSaveImport.Name = "btnSaveImport";
             btnSaveImport.Size = new Size(150, 35);
             btnSaveImport.TabIndex = 9;
             btnSaveImport.Text = "Lưu";
             btnSaveImport.UseVisualStyleBackColor = false;
-            // 
-            // btnCancelPro
-            // 
-            btnCancelPro.BackColor = Color.DodgerBlue;
-            btnCancelPro.Cursor = Cursors.Hand;
-            btnCancelPro.FlatAppearance.BorderSize = 0;
-            btnCancelPro.FlatStyle = FlatStyle.Flat;
-            btnCancelPro.Font = new Font("Times New Roman", 13.8F);
-            btnCancelPro.ForeColor = Color.WhiteSmoke;
-            btnCancelPro.Location = new Point(642, 33);
-            btnCancelPro.Name = "btnCancelPro";
-            btnCancelPro.Size = new Size(150, 35);
-            btnCancelPro.TabIndex = 10;
-            btnCancelPro.Text = "Hủy";
-            btnCancelPro.UseVisualStyleBackColor = false;
+            btnSaveImport.Click += btnSaveImport_Click;
             // 
             // btnCreateImport
             // 
@@ -137,12 +122,13 @@
             btnCreateImport.FlatStyle = FlatStyle.Flat;
             btnCreateImport.Font = new Font("Times New Roman", 13.8F);
             btnCreateImport.ForeColor = Color.WhiteSmoke;
-            btnCreateImport.Location = new Point(78, 33);
+            btnCreateImport.Location = new Point(226, 33);
             btnCreateImport.Name = "btnCreateImport";
             btnCreateImport.Size = new Size(150, 35);
             btnCreateImport.TabIndex = 8;
             btnCreateImport.Text = "Tạo đơn";
             btnCreateImport.UseVisualStyleBackColor = false;
+            btnCreateImport.Click += btnCreateImport_Click;
             // 
             // grInputPro
             // 
@@ -161,7 +147,7 @@
             grInputPro.Controls.Add(cbbPro);
             grInputPro.Controls.Add(label10);
             grInputPro.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grInputPro.Location = new Point(9, 157);
+            grInputPro.Location = new Point(9, 173);
             grInputPro.Name = "grInputPro";
             grInputPro.Size = new Size(884, 180);
             grInputPro.TabIndex = 40;
@@ -182,6 +168,7 @@
             // txtTotalDetail
             // 
             txtTotalDetail.BackColor = Color.WhiteSmoke;
+            txtTotalDetail.Enabled = false;
             txtTotalDetail.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTotalDetail.Location = new Point(748, 83);
             txtTotalDetail.Name = "txtTotalDetail";
@@ -203,6 +190,7 @@
             btnDeleteDetail.TabIndex = 12;
             btnDeleteDetail.Text = "Xóa";
             btnDeleteDetail.UseVisualStyleBackColor = false;
+            btnDeleteDetail.Click += btnDeleteDetail_Click;
             // 
             // dtpkExprire
             // 
@@ -210,11 +198,11 @@
             dtpkExprire.Format = DateTimePickerFormat.Custom;
             dtpkExprire.Location = new Point(450, 83);
             dtpkExprire.MaxDate = new DateTime(2030, 12, 31, 0, 0, 0, 0);
-            dtpkExprire.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
+            dtpkExprire.MinDate = new DateTime(2025, 4, 16, 0, 0, 0, 0);
             dtpkExprire.Name = "dtpkExprire";
             dtpkExprire.Size = new Size(129, 34);
             dtpkExprire.TabIndex = 47;
-            dtpkExprire.Value = new DateTime(2025, 4, 14, 0, 0, 0, 0);
+            dtpkExprire.Value = new DateTime(2025, 4, 16, 0, 0, 0, 0);
             // 
             // btnAddProImport
             // 
@@ -230,6 +218,7 @@
             btnAddProImport.TabIndex = 11;
             btnAddProImport.Text = "Thêm";
             btnAddProImport.UseVisualStyleBackColor = false;
+            btnAddProImport.Click += btnAddProImport_Click;
             // 
             // label5
             // 
@@ -247,13 +236,17 @@
             txtQuantity.BackColor = Color.WhiteSmoke;
             txtQuantity.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtQuantity.Location = new Point(152, 80);
+            txtQuantity.MaxLength = 5;
             txtQuantity.Name = "txtQuantity";
             txtQuantity.Size = new Size(129, 34);
             txtQuantity.TabIndex = 45;
+            txtQuantity.TextChanged += txtQuantity_TextChanged;
+            txtQuantity.KeyPress += txtQuantity_KeyPress;
             // 
             // txtUnit
             // 
             txtUnit.BackColor = Color.WhiteSmoke;
+            txtUnit.Enabled = false;
             txtUnit.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUnit.Location = new Point(450, 31);
             txtUnit.Name = "txtUnit";
@@ -286,6 +279,7 @@
             // txtPurchasePrice
             // 
             txtPurchasePrice.BackColor = Color.WhiteSmoke;
+            txtPurchasePrice.Enabled = false;
             txtPurchasePrice.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPurchasePrice.Location = new Point(748, 31);
             txtPurchasePrice.Name = "txtPurchasePrice";
@@ -314,6 +308,7 @@
             cbbPro.Name = "cbbPro";
             cbbPro.Size = new Size(129, 36);
             cbbPro.TabIndex = 1;
+            cbbPro.SelectedIndexChanged += cbbPro_SelectedIndexChanged;
             // 
             // label10
             // 
@@ -328,6 +323,7 @@
             // 
             // dgvImportList
             // 
+            dgvImportList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvImportList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvImportList.Dock = DockStyle.Bottom;
             dgvImportList.Location = new Point(0, 389);
@@ -366,12 +362,12 @@
             dtpkImportDate.Font = new Font("Microsoft Sans Serif", 12F);
             dtpkImportDate.Format = DateTimePickerFormat.Custom;
             dtpkImportDate.Location = new Point(648, 52);
-            dtpkImportDate.MaxDate = new DateTime(2030, 12, 31, 0, 0, 0, 0);
+            dtpkImportDate.MaxDate = new DateTime(2025, 4, 16, 0, 0, 0, 0);
             dtpkImportDate.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpkImportDate.Name = "dtpkImportDate";
             dtpkImportDate.Size = new Size(161, 30);
             dtpkImportDate.TabIndex = 54;
-            dtpkImportDate.Value = new DateTime(2025, 4, 14, 0, 0, 0, 0);
+            dtpkImportDate.Value = new DateTime(2025, 4, 16, 0, 0, 0, 0);
             // 
             // label8
             // 
@@ -388,6 +384,7 @@
             // txtImportId
             // 
             txtImportId.BackColor = Color.WhiteSmoke;
+            txtImportId.Enabled = false;
             txtImportId.Font = new Font("Microsoft Sans Serif", 12F);
             txtImportId.Location = new Point(278, 52);
             txtImportId.Name = "txtImportId";
@@ -413,7 +410,9 @@
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmImport";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmImport";
+            Load += frmImport_Load;
             groupBox2.ResumeLayout(false);
             grInputPro.ResumeLayout(false);
             grInputPro.PerformLayout();
@@ -428,7 +427,6 @@
         private Label label1;
         private GroupBox groupBox2;
         private Button btnSaveImport;
-        private Button btnCancelPro;
         private Button btnCreateImport;
         private GroupBox grInputPro;
         private Label label4;

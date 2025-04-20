@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DTO
-{  
+{
     public class Order
     {
         public string OrderId { get; set; }
@@ -17,7 +17,7 @@ namespace DTO
         public string PaymentMethod { get; set; }
         public string CustomerId { get; set; }
         public string EmployeeId { get; set; }
-        public string VoucherId {get; set;}
+        public string VoucherId { get; set; }
 
 
         //  tien phai phai tra
@@ -32,7 +32,7 @@ namespace DTO
         public Order() { }
 
         public Order(string orderId, DateTime createdAt, decimal totalAmount, decimal receivedAmount, int usedPoint
-        , string paymentMethod , string customerId, string employeeId, string voucherId, List<OrderDetail> orderDetails)
+        , string paymentMethod, string customerId, string employeeId, string voucherId, List<OrderDetail> orderDetails)
         {
             OrderId = orderId;
             CreatedAt = createdAt;
@@ -58,7 +58,7 @@ namespace DTO
         // tinh tong tien cua hoa don
         public decimal getTotalAmount()
         {
-            if (OrderDetailList.Count == 0) 
+            if (OrderDetailList.Count == 0)
                 return 0;
             return OrderDetailList.Sum(od => od.Amount * od.RetailPrice);
         }

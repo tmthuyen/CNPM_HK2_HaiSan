@@ -33,6 +33,7 @@ namespace GUI
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             pnSideBar = new Panel();
+            btnEmp = new Button();
             volumeBar = new TrackBar();
             label1 = new Label();
             btnMute = new Button();
@@ -59,7 +60,6 @@ namespace GUI
             cmstAccount = new ContextMenuStrip(components);
             profileCmstrItem = new ToolStripMenuItem();
             logoutTooltipMItem = new ToolStripMenuItem();
-            btnEmp = new Button();
             pnSideBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)volumeBar).BeginInit();
             pnUser.SuspendLayout();
@@ -93,6 +93,23 @@ namespace GUI
             pnSideBar.Name = "pnSideBar";
             pnSideBar.Size = new Size(250, 760);
             pnSideBar.TabIndex = 2;
+            // 
+            // btnEmp
+            // 
+            btnEmp.AutoSize = true;
+            btnEmp.BackColor = Color.DodgerBlue;
+            btnEmp.Dock = DockStyle.Top;
+            btnEmp.FlatAppearance.BorderSize = 0;
+            btnEmp.FlatStyle = FlatStyle.Flat;
+            btnEmp.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEmp.ForeColor = Color.White;
+            btnEmp.Location = new Point(0, 401);
+            btnEmp.Name = "btnEmp";
+            btnEmp.Size = new Size(250, 42);
+            btnEmp.TabIndex = 13;
+            btnEmp.Text = "Nhân viên";
+            btnEmp.UseVisualStyleBackColor = false;
+            btnEmp.Click += btnEmp_Click;
             // 
             // volumeBar
             // 
@@ -162,9 +179,9 @@ namespace GUI
             btnPromotion.FlatStyle = FlatStyle.Flat;
             btnPromotion.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPromotion.ForeColor = Color.White;
-            btnPromotion.Location = new Point(0, 429);
+            btnPromotion.Location = new Point(0, 359);
             btnPromotion.Name = "btnPromotion";
-            btnPromotion.Size = new Size(250, 56);
+            btnPromotion.Size = new Size(250, 42);
             btnPromotion.TabIndex = 6;
             btnPromotion.Text = "Khuyến Mãi";
             btnPromotion.UseVisualStyleBackColor = false;
@@ -179,9 +196,9 @@ namespace GUI
             btnReport.FlatStyle = FlatStyle.Flat;
             btnReport.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReport.ForeColor = Color.White;
-            btnReport.Location = new Point(0, 373);
+            btnReport.Location = new Point(0, 317);
             btnReport.Name = "btnReport";
-            btnReport.Size = new Size(250, 56);
+            btnReport.Size = new Size(250, 42);
             btnReport.TabIndex = 5;
             btnReport.Text = "Báo cáo";
             btnReport.UseVisualStyleBackColor = false;
@@ -195,9 +212,9 @@ namespace GUI
             btnCustomer.FlatStyle = FlatStyle.Flat;
             btnCustomer.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCustomer.ForeColor = Color.White;
-            btnCustomer.Location = new Point(0, 317);
+            btnCustomer.Location = new Point(0, 275);
             btnCustomer.Name = "btnCustomer";
-            btnCustomer.Size = new Size(250, 56);
+            btnCustomer.Size = new Size(250, 42);
             btnCustomer.TabIndex = 4;
             btnCustomer.Text = "Khách hàng";
             btnCustomer.UseVisualStyleBackColor = false;
@@ -212,9 +229,9 @@ namespace GUI
             btnProduct.FlatStyle = FlatStyle.Flat;
             btnProduct.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnProduct.ForeColor = Color.White;
-            btnProduct.Location = new Point(0, 261);
+            btnProduct.Location = new Point(0, 233);
             btnProduct.Name = "btnProduct";
-            btnProduct.Size = new Size(250, 56);
+            btnProduct.Size = new Size(250, 42);
             btnProduct.TabIndex = 3;
             btnProduct.Text = "Sản phẩm";
             btnProduct.UseVisualStyleBackColor = false;
@@ -229,9 +246,9 @@ namespace GUI
             btnOrder.FlatStyle = FlatStyle.Flat;
             btnOrder.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnOrder.ForeColor = Color.White;
-            btnOrder.Location = new Point(0, 205);
+            btnOrder.Location = new Point(0, 191);
             btnOrder.Name = "btnOrder";
-            btnOrder.Size = new Size(250, 56);
+            btnOrder.Size = new Size(250, 42);
             btnOrder.TabIndex = 2;
             btnOrder.Text = "Đơn hàng";
             btnOrder.UseVisualStyleBackColor = false;
@@ -248,7 +265,7 @@ namespace GUI
             btnHome.ForeColor = Color.White;
             btnHome.Location = new Point(0, 149);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(250, 56);
+            btnHome.Size = new Size(250, 42);
             btnHome.TabIndex = 1;
             btnHome.Text = "Trang chủ";
             btnHome.UseVisualStyleBackColor = false;
@@ -408,23 +425,6 @@ namespace GUI
             logoutTooltipMItem.Size = new Size(230, 30);
             logoutTooltipMItem.Text = "Đăng xuất";
             logoutTooltipMItem.Click += logoutTooltipMItem_Click;
-            // 
-            // btnEmp
-            // 
-            btnEmp.AutoSize = true;
-            btnEmp.BackColor = Color.DodgerBlue;
-            btnEmp.Dock = DockStyle.Top;
-            btnEmp.FlatAppearance.BorderSize = 0;
-            btnEmp.FlatStyle = FlatStyle.Flat;
-            btnEmp.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEmp.ForeColor = Color.White;
-            btnEmp.Location = new Point(0, 485);
-            btnEmp.Name = "btnEmp";
-            btnEmp.Size = new Size(250, 56);
-            btnEmp.TabIndex = 13;
-            btnEmp.Text = "Nhân viên";
-            btnEmp.UseVisualStyleBackColor = false;
-            btnEmp.Click += btnEmp_Click;
             // 
             // Home
             // 

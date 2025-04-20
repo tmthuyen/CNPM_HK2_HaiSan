@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using DTO;
+using System.Collections;
+using System.Linq.Expressions;
+using System.Drawing;
 
 namespace DAL
 {
@@ -45,7 +48,7 @@ namespace DAL
                      VALUES (@Id, @CreatedAt, @TotalAmount, @ReceivedAmount, @UsedPoint, 
                              @PaymentMethod, @CustomerId, @EmployeeId, @VoucherId)";
 
-            SqlParameter[] parameters = 
+            SqlParameter[] parameters =
                         {
                             new SqlParameter("@Id", order.OrderId),
                             new SqlParameter("@CreatedAt", order.CreatedAt),
@@ -88,7 +91,7 @@ namespace DAL
 
             // Lấy danh sách chi tiết đơn hàng
             List<OrderDetail> orderDetails = orderDetailDAL.GetByOrderId(row["OrderId"].ToString());
-             
+
             return new Order(
                 row["OrderId"].ToString(),
                 Convert.ToDateTime(row["CreatedAt"]),
@@ -146,7 +149,7 @@ namespace DAL
             // Chuyển đổi DataTable thành danh sách đơn hàng
             foreach (DataRow row in dt.Rows)
             {
-                
+
                 orders.Add(new Order(
                     row["OrderId"].ToString(),
                     Convert.ToDateTime(row["CreatedAt"]),
@@ -164,6 +167,94 @@ namespace DAL
             return orders;
         }
 
+        // xem coi có phải khách cũ ko
+        public string isCustomer(string phone)
+        {
+            string sql = "SELECT CustomerId FROM Customer WHERE phone = @phone";
+            SqlParameter param = new SqlParameter("@phone", phone);
 
+            DataTable dt = Connection.ExecuteQuery(sql, param);
+            return dt.Rows.Count > 0 ? dt.Rows[0]["CustomerId"].ToString() : "";
+        }
+
+        //Tạo khách mới
+        public void insertCustomer(string customerId, string customerName, string phone, int point)
+        {
+            string sql = "INSERT INTO Customer (CustomerId, CustomerName, Phone, LoyaltyPoint) VALUES (@customerId, @customerName, @phone, @point)";
+
+            try
+            {
+                SqlParameter[] param =
+                        {
+                            new SqlParameter("@customerId", customerId),
+                            new SqlParameter("@customerName", customerName),
+                            new SqlParameter("@phone", phone),
+                            new SqlParameter("@point", point),
+                        };
+                Connection.ExecuteNonQuery(sql, param);
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
+
+        //Update điểm cho khách hàng cũ
+        public void insertPoint(string customerId, int point)
+        {
+            string sql = "UPDATE Customer SET LoyaltyPoint = @point WHERE CustomerId= @customerId";
+
+            try
+            {
+                SqlParameter[] param =
+                        {
+                            new SqlParameter("@customerId", customerId),
+                            new SqlParameter("@point", point),
+                        };
+                Connection.ExecuteNonQuery(sql, param);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating loyalty points: {ex.Message}");
+            }
+        }
+
+        public int GetPoint(string customerId)
+        {
+            string sql = "SELECT LoyaltyPoint FROM Customer WHERE CustomerId = @customerId";
+            SqlParameter[] param = { new SqlParameter("@customerId", customerId) };
+            var result = Connection.ExecuteScalar(sql, param);
+
+            return result != DBNull.Value ? Convert.ToInt32(result) : 0;
+        }
+
+        //lấy hết id (để tạo id mio1)
+        public string[] GetAllCustomerId()
+        {
+            string sql = "SELECT CustomerId FROM Customer";
+
+            DataTable dt = Connection.ExecuteQuery(sql);
+            string[] ids = new string[dt.Rows.Count];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                ids[i] = dt.Rows[i]["CustomerId"].ToString();
+            }
+
+            return ids;
+        }
+        //lấy hết id cũa oder để có id mới
+        public string[] GetAllOrderId()
+        {
+            string sql = "SELECT OrderId FROM Order";
+
+            DataTable dt = Connection.ExecuteQuery(sql);
+            string[] ids = new string[dt.Rows.Count];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                ids[i] = dt.Rows[i]["OrderId"].ToString();
+            }
+
+            return ids;
+        }
     }
 }

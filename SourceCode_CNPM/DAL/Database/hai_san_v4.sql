@@ -96,7 +96,7 @@ ALTER TABLE Category
 ALTER COLUMN CategoryId Char(15)
 
 CREATE TABLE Import (
-    ImportId CHAR(6) PRIMARY KEY,
+    ImportId CHAR(20) PRIMARY KEY,
     ImportDate DATETIME DEFAULT GETDATE() NOT NULL,
 	NumOfProducts INT,--số loại nhập
 );
@@ -113,7 +113,7 @@ CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
 
 CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     ProductId CHAR(10) NOT NULL,
-    ImportId CHAR(6) NOT NULL,
+    ImportId CHAR(20) NOT NULL,
     Quantity DECIMAL(10, 3) NOT NULL,--so luong nhap
     Remaining DECIMAL(10, 3) NOT NULL,--so luong con lai
     Expire DATE NOT NULL,
@@ -123,16 +123,26 @@ CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
+
 CREATE TABLE Voucher (
-    VoucherId CHAR(10) PRIMARY KEY,
+    VoucherId CHAR(10) PRIMARY KEY, 
     VoucherName NVARCHAR(50) NOT NULL,
-    ReleaseDate DATE NOT NULL, --bat dau ap dung tu
+    ReleaseDate DATE NOT NULL,        -- bắt đầu áp dụng từ
     Expire DATE NOT NULL,
-    ApplyAmount INT NOT NULL, --ap dung cho don tu 
-    MaxApply INT NOT NULL,   --giam gia toi da bao nhieu vnd
-    DiscountValue INT NOT NULL, -- giam bao nhieu
-    IsCash BIT NOT NULL -- giam tien hay %
+    ApplyAmount INT NOT NULL,         -- áp dụng cho đơn từ
+    MaxApply INT NOT NULL,            -- giảm giá tối đa bao nhiêu VND
+    DiscountValue INT NOT NULL,       -- giảm bao nhiêu
+    IsCash BIT NOT NULL,              -- giảm tiền hay %
+    IsDebuted BIT default 0,          -- voucher này ra mắt chưa
+	IsDeactivated BIT default 0,	  -- voucher này có bị bô hiệu hóa bởi ng dùng hay ko
+    IsActive AS (
+        CASE 
+            WHEN IsDebuted = 1 AND IsDeactivated = 0 AND GETDATE() >= ReleaseDate AND GETDATE() <= Expire THEN 1 
+            ELSE 0 
+        END
+    ) -- này check coi có trong ngày ko lun với ra mắt chưa để bik coi nó đang hoạt động ko
 );
+
 
 CREATE TABLE Orders (   
     OrderId CHAR(12) NOT NULL PRIMARY KEY,
@@ -157,3 +167,55 @@ CREATE TABLE OrderDetail (
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId),
     FOREIGN KEY (OrderId) REFERENCES Orders(OrderId)
 );
+
+INSERT INTO Voucher (VoucherId, VoucherName, ReleaseDate, Expire, ApplyAmount, MaxApply, DiscountValue, IsCash, IsDebuted, IsDeactivated)
+VALUES 
+-- Đã ra mắt, đang hoạt động
+('V250401C001', N'Giảm tiền mùa hè', '2025-04-01', '2025-05-01', 500000, 100000, 50000, 1, 1, 0),
+('V250401P001', N'Giảm 10% cho đơn lớn', '2025-04-01', '2025-06-01', 300000, 80000, 10, 0, 1, 0),
+
+-- Chưa ra mắt (trong tương lai)
+('V250501C001', N'Ưu đãi ngày Quốc tế Lao động', '2025-05-01', '2025-06-01', 400000, 90000, 40000, 1, 0, 0),
+('V250515P001', N'Giảm giá tháng 5', '2025-05-15', '2025-06-15', 200000, 70000, 15, 0, 0, 0),
+
+-- Đã ra mắt, đang hoạt động
+('V250410C001', N'Ưu đãi đầu tháng 4', '2025-04-10', '2025-05-10', 250000, 50000, 30000, 1, 1, 0),
+('V250410P002', N'Giảm 5% cho đơn ăn trưa', '2025-04-10', '2025-05-10', 150000, 40000, 5, 0, 1, 0);
+
+
+insert into import values ('1',getdate(),1)
+insert into ImportDetail values ('Prod0001','1',50,50,'2025-05-01',200000)
+
+
+
+
+Select * from Employee
+select * from Account
+select * from Category
+select * from Customer
+select * from Products
+select * from Supplier
+select * from Import
+select * from ImportDetail
+
+drop table Import
+drop table ImportDetail
+drop table OrderDetail 
+drop table Voucher
+drop table Orders
+  
+
+SELECT 
+    p.ProductId,
+    p.ProductName,
+    i.ImportId,
+    i.Remaining,
+    p.Unit,
+    p.RetailPrice,
+    c.CategoryName,
+    s.SupplierName
+FROM Products p
+JOIN ImportDetail i ON p.ProductId = i.ProductId
+JOIN Category c ON p.CategoryId = c.CategoryId
+JOIN Supplier s ON p.SupplierId = s.SupplierId
+WHERE i.Remaining > 0
