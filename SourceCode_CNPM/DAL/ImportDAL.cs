@@ -78,5 +78,25 @@ namespace DAL
 
             return new Import(importId, importDate, numOfPro, importDetails);
         }
+    
+        public string CreateNewId()
+        {
+            string sql = "Select Top 1 ImportId from Import order by ImportId DESC";
+
+            DataTable dt = Connection.ExecuteQuery(sql);
+
+            if (dt.Rows.Count > 0)
+            {
+                string lastId = dt.Rows[0]["ProductId"].ToString().Trim();  // VD: "Fish0007"
+                string numberPart = lastId.Substring("Imp".Length);               // "007"
+                int number = int.Parse(numberPart) + 1;                // 8
+                return "Imp" + number.ToString("D4");                  // "Fish0008"
+            }
+            else
+            {
+                return "Import" + "0001"; // Trường hợp chưa có dữ liệu
+            }
+
+        }
     }
 }

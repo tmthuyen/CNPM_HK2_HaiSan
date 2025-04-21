@@ -35,9 +35,9 @@ namespace GUI
         private void loadProduct(ComboBox c, List<Product> l)
         {
             c.DataSource = l;
-            c.SelectedIndex = 0;
             c.ValueMember = "ProductName";
             c.DisplayMember = "ProductId";
+            c.SelectedIndex = 0;
         }
 
         private void loadSupplier(ComboBox c, List<Supplier> l)

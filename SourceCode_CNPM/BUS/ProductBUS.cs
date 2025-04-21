@@ -21,6 +21,8 @@ namespace BUS
             return proDAL.GetAll();
         }
 
+        // get all de lay theeo  LÔ hàng
+       
         public string CreateNewId(string cateId)
         {
             return proDAL.CreateNewId(cateId.Trim());

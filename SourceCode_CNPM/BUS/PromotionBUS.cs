@@ -11,30 +11,34 @@ using System.Data;
 using System.Windows.Forms;
 namespace BUS
 {
-    public static class PromotionBUS
+    public class PromotionBUS
     {
-        public static List<Voucher> getVoucher()
+        private readonly PromotionDAL promotionDAL;
+        public PromotionBUS()
         {
-            return PromotionDAL.GetVoucherList();
+            promotionDAL = new PromotionDAL();
+        }
+        public List<Voucher> GetVoucher()
+        {
+            return promotionDAL.GetVoucherList();
         }
 
-        public static DataTable GetVoucherDataTable()
+        public DataTable GetVoucherDataTable()
         {
-            List<Voucher> vouchers = PromotionDAL.GetVoucherList();
-            return DataTableHelper.ToDataTable(vouchers);
+            return promotionDAL.GetVoucherDataTable();
         }
-        private static string GenerateVoucherId(DateTime releaseDate, bool isCash)
+        private string GenerateVoucherId(DateTime releaseDate, bool isCash)
         {
-            string datePart = releaseDate.ToString("ddMMyy"); // e.g., 241224
+            string datePart = releaseDate.ToString("yyMMdd"); // e.g., 241224
             string typeChar = isCash ? "C" : "P";
             string prefix = $"V{datePart}{typeChar}";
 
-            DataTable dataTable = PromotionDAL.getLatestId(prefix) ;
+            DataTable dataTable = promotionDAL.GetLatestId(prefix);
             int maxNumber = 0;
             foreach (DataRow row in dataTable.Rows)
             {
-                string vid = row["VoucherId"].ToString();
-                if (vid.Length == 10 && int.TryParse(vid.Substring(7, 3), out int num))
+                string vid = row["VoucherId"].ToString() ?? "0";
+                if (vid.Length == 10 && int.TryParse(vid.Substring(8, 2), out int num))
                 {
                     if (num > maxNumber) maxNumber = num;
                 }
@@ -42,126 +46,194 @@ namespace BUS
 
             // Increment and format with leading zeros
             int nextNumber = maxNumber + 1;
-            string numberPart = nextNumber.ToString("D3"); // Always 3 digits
-            string nextId = $"{datePart}{typeChar}{nextNumber:D3}"; // e.g., 240412C002
+            string numberPart = nextNumber.ToString("D2"); //2 ký tự
+            string nextId = $"{prefix}{nextNumber:D2}"; //  V240412C02
 
             return nextId;
         }
 
 
-        public static void addVoucher(string voucherName, string _applyAmount,string _discountValue,string _maxApply, bool isCash, DateTime from, DateTime to)
+        public bool AddVoucher(Voucher v)
         {
-            int applyAmount = int.TryParse(_applyAmount.Replace(",", ""), out var a)
-                ? a : throw new Exception("Nhập lại mức áp dụng");
-            int discountValue = int.TryParse(_discountValue.Replace(",", ""), out var d)
-                ? d : throw new Exception("Nhập lại số lượng giảm");
-            int maxApply = int.TryParse(_maxApply.Replace(",", ""), out var m)
-                ? m : throw new Exception("Nhập lại mức giảm tối đa");
-
 
             //tránh nhập sai, sử dụng sai
-            if (string.IsNullOrEmpty(voucherName)) {
+            if (string.IsNullOrEmpty(v.VoucherName))
+            {
                 throw new Exception("Vui lòng nhập tên Voucher");
             }
-            if (applyAmount < 0 || discountValue < 0||maxApply < 0)
+            if (v.ApplyAmount < 0 || v.DiscountValue < 0 || v.MaxApply < 0)
             {
                 throw new Exception("Tiền không thể âm");
             }
-            if ((!isCash && (discountValue >= 100))
-                ||(discountValue <= 0))
+            if ((!v.IsCash && (v.DiscountValue >= 100))
+                || (v.DiscountValue <= 0))
             {
                 throw new Exception("Số lượng giảm không được vượt hay bằng 100%");
             }
-            if (isCash)
+            if (v.IsCash)
             {
-                if (discountValue != maxApply)
+                if (v.DiscountValue != v.MaxApply)
                 {
                     throw new Exception("Khi giảm tiến, số lượng giảm phải bằng số lượng giảm tối đa");
                 }
-                 if (discountValue >= applyAmount || maxApply >= applyAmount)
+                if (v.DiscountValue >= v.ApplyAmount || v.MaxApply >= v.ApplyAmount)
                 {
                     throw new Exception("Số lượng giảm không được nhiều hơn mức áp dụng");
                 }
             }
             else
             {
-                if (maxApply >= applyAmount)
+                if (v.MaxApply >= v.ApplyAmount)
                 {
                     throw new Exception("Số lượng giảm không được nhiều hơn mức");
                 }
             }
-           
-            if (((from < DateTime.Today) || (to < DateTime.Today)))
+
+            if (((v.ReleaseDate < DateTime.Today) || (v.ExpireDate < DateTime.Today)))
                 throw new Exception("Thời gian áp dụng không thể ở quá khứ");
-            if ((from > to))
+            if ((v.ReleaseDate > v.ExpireDate))
                 throw new Exception("Vui lòng nhập đúng thời gian");
 
-            string id = GenerateVoucherId(from,isCash);
-            PromotionDAL.addVoucher(id,voucherName,applyAmount,discountValue,maxApply,isCash,to,from);
+            string id = GenerateVoucherId(v.ReleaseDate, v.IsCash);
+            v.VoucherId = id;
+            if (promotionDAL.AddVoucher(v))
+                return true;
+            return false;
         }
 
-        public static void editVoucher(string voucherId, string voucherName, string _applyAmount, string _discountValue, string _maxApply, bool isCash, DateTime from, DateTime to)
+        public string EditVoucher(Voucher oldV, Voucher newV)
         {
-            int applyAmount = int.TryParse(_applyAmount.Replace(",", ""), out var a)
-                ? a : throw new Exception("Nhập lại mức áp dụng");
-            int discountValue = int.TryParse(_discountValue.Replace(",", ""), out var d)
-                ? d : throw new Exception("Nhập lại số lượng giảm");
-            int maxApply = int.TryParse(_maxApply.Replace(",", ""), out var m)
-                ? m : throw new Exception("Nhập lại mức giảm tối đa");
-
             //tránh nhập sai, sử dụng sai
-            if (string.IsNullOrEmpty(voucherName))
+            if (string.IsNullOrEmpty(newV.VoucherName))
             {
                 throw new Exception("Vui lòng nhập tên Voucher");
             }
-            if (applyAmount < 0 || discountValue < 0 || maxApply < 0)
+            if (newV.ApplyAmount < 0 || newV.DiscountValue < 0 || newV.MaxApply < 0)
             {
                 throw new Exception("Tiền không thể âm");
             }
-            if ((!isCash && (discountValue >= 100))
-                || (discountValue <= 0))
+            if ((!newV.IsCash && (newV.DiscountValue >= 100))
+                || (newV.DiscountValue <= 0))
             {
                 throw new Exception("Số lượng giảm không được vượt hay bằng 100%");
             }
-            if (isCash)
+            if (newV.IsCash)
             {
-                if (discountValue != maxApply)
+                if (newV.DiscountValue != newV.MaxApply)
                 {
                     throw new Exception("Khi giảm tiến, số lượng giảm phải bằng số lượng giảm tối đa");
                 }
-                if (discountValue >= applyAmount || maxApply >= applyAmount)
+                if (newV.DiscountValue >= newV.ApplyAmount || newV.MaxApply >= newV.ApplyAmount)
                 {
                     throw new Exception("Số lượng giảm không được nhiều hơn mức áp dụng");
                 }
             }
             else
             {
-                if (maxApply >= applyAmount)
+                if (newV.MaxApply >= newV.ApplyAmount)
                 {
                     throw new Exception("Số lượng giảm không được nhiều hơn mức");
                 }
             }
-
-            //if (((from < DateTime.Today) || (to < DateTime.Today)))
-            //    throw new Exception("Thời gian áp dụng không thể ở quá khứ");
-            if ((from > to))
+            if (((newV.ReleaseDate < DateTime.Today) || (newV.ExpireDate < DateTime.Today)))
+                throw new Exception("Thời gian áp dụng không thể ở quá khứ");
+            if ((newV.ReleaseDate > newV.ExpireDate))
                 throw new Exception("Vui lòng nhập đúng thời gian");
 
 
 
-            PromotionDAL.editVoucher(voucherId,voucherName, applyAmount, discountValue, maxApply, isCash, to, from);
+            //nếu mà chưa ra mắt i.e isActive = 0 và chưa tới lúc xài thì được đổi
+            if (oldV.ReleaseDate > DateTime.Today && !oldV.IsDeactivated)
+            {
+                string newId = GenerateVoucherId(newV.ReleaseDate, newV.IsCash);
+                newV.VoucherId = newId;
+                if (!oldV.IsDebuted)//nếu mà chưa ra mắt thì cho sửa
+                    try
+                    {
+                        promotionDAL.EditVoucher(newV, oldV.VoucherId);
+                        return "Đã sửa voucher chưa ra mắt";
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                else //rồi thì phải thu hồi cái cũ r tạo cái mới
+                {
+                    if (oldV.IsDebuted)//nếu mà chưa ra mắt thì cho sửa
+
+                        promotionDAL.DeactivateVoucher(oldV.VoucherId);
+                    try
+                    {
+                        promotionDAL.AddVoucher(newV);
+                        return "Đã vô hiệu hóa voucher đã ra mắt và tạo mới";
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+            else //nếu mà hết hạn r thì tạo mới luôn
+            {
+                Voucher voucher = promotionDAL.GetVoucherList().FirstOrDefault(voucher => !voucher.IsActive && voucher.VoucherId == oldV.VoucherId);
+                string id = GenerateVoucherId(newV.ReleaseDate, newV.IsCash);
+                newV.VoucherId = id;
+                try
+                {
+                    promotionDAL.AddVoucher(newV);
+                    return "Đã tạo mới voucher dựa trên voucher cũ";
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+
         }
 
-        public static void deactivateVoucher(string voucherId)
+        public void deactivateVoucher(string voucherId)
         {
-            Voucher voucher = PromotionDAL.GetVoucherList().FirstOrDefault(v => v.IsActive && v.VoucherId==voucherId);
+            Voucher voucher = promotionDAL.GetVoucherList().FirstOrDefault(v => v.VoucherId == voucherId);
+            if (voucher.IsDeactivated)
+            {
+                throw new Exception("voucher vốn dĩ đã được thu hồi");
+            }
+            if (voucher.ReleaseDate < DateTime.Today && voucher.ExpireDate < DateTime.Today)
+            {
+                throw new Exception("voucher đã hết hạn");
+            }
             if (voucher == null)
             {
-                throw new Exception("Không thể tìm thấy voucher hoặc voucher vốn dĩ đã không hoạt động");
+                throw new Exception("voucher không được tìm thấy");
             }
             else
             {
-                PromotionDAL.deactivateVoucher(voucherId);
+                promotionDAL.DeactivateVoucher(voucherId);
+            }
+        }
+
+        public void activateVoucher(string voucherId)
+        {
+            Voucher voucher = promotionDAL.GetVoucherList().FirstOrDefault(v => v.VoucherId == voucherId);
+            if (voucher.IsDebuted)
+            {
+                throw new Exception("voucher vốn dĩ đã được ra mắt");
+            }
+            if (voucher.IsDeactivated)
+            {
+                throw new Exception("voucher đã bị thu hồi và không thể ra mắt nữa");
+            }
+            if (voucher.ReleaseDate < DateTime.Today && voucher.ExpireDate < DateTime.Today)
+            {
+                throw new Exception("voucher đã hết hạn");
+            }
+            if (voucher == null)
+            {
+                throw new Exception("voucher không được tìm thấy");
+            }
+            else
+            {
+                promotionDAL.ActivateVoucher(voucherId);
             }
         }
     }

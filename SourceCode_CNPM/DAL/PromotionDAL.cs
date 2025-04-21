@@ -4,15 +4,15 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 using DTO;
 using Microsoft.Data.SqlClient;
 
 namespace DAL
 {
-    public static class PromotionDAL
+    public class PromotionDAL
     {
-        public static List<Voucher> GetVoucherList()
+        public List<Voucher> GetVoucherList()
         {
             string query = "SELECT * FROM Voucher";
 
@@ -31,7 +31,9 @@ namespace DAL
                     MaxApply = Convert.ToInt32(row["MaxApply"]),
                     DiscountValue = Convert.ToInt32(row["DiscountValue"]),
                     IsCash = Convert.ToBoolean(row["IsCash"]),
-                    IsActive = Convert.ToInt32(row["IsCurrentlyActive"]) == 1
+                    IsDebuted = Convert.ToInt32(row["IsDebuted"]) == 1,
+                    IsDeactivated = Convert.ToInt32(row["IsDeactivated"]) == 1,
+                    IsActive = Convert.ToInt32(row["IsActive"]) == 1
                 };
 
                 vouchers.Add(v);
@@ -39,53 +41,66 @@ namespace DAL
 
             return vouchers;
         }
-
-        public static void addVoucher(string id, string name, int apply, int discount, int max, bool isCash, DateTime from, DateTime to)
+        public DataTable GetVoucherDataTable()
+        {
+            return DataTableHelper.ToDataTable(GetVoucherList());
+        }
+        public bool AddVoucher(Voucher v)
         {
             string query = @"INSERT INTO Voucher (VoucherId, VoucherName, ReleaseDate, Expire, ApplyAmount, MaxApply, DiscountValue, IsCash)
                      VALUES (@VoucherId, @VoucherName, @ReleaseDate, @Expire, @ApplyAmount, @MaxApply, @DiscountValue, @IsCash)";
 
             SqlParameter[] parameters = {
-                new SqlParameter("@VoucherId", id),
-                new SqlParameter("@VoucherName", name),
-                new SqlParameter("@ReleaseDate", from),
-                new SqlParameter("@Expire", to),
-                new SqlParameter("@ApplyAmount", apply),
-                new SqlParameter("@MaxApply", max),
-                new SqlParameter("@DiscountValue", discount),
-                new SqlParameter("@IsCash", isCash)
+                new SqlParameter("@VoucherId", v.VoucherId),
+                new SqlParameter("@VoucherName", v.VoucherName),
+                new SqlParameter("@ReleaseDate", v.ReleaseDate),
+                new SqlParameter("@Expire", v.ExpireDate),
+                new SqlParameter("@ApplyAmount", v.ApplyAmount),
+                new SqlParameter("@MaxApply", v.MaxApply),
+                new SqlParameter("@DiscountValue", v.DiscountValue),
+                new SqlParameter("@IsCash", v.IsCash),
             };
 
-            Connection.ExecuteNonQuery(query, parameters);
+            try
+            {
+                Connection.ExecuteNonQuery(query, parameters);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error inserting voucher: " + ex.Message);
+            }
         }
 
-        public static void editVoucher(string id, string name, int apply, int discount, int max, bool isCash, DateTime from, DateTime to)
+        public void EditVoucher(Voucher v, string oldId)
         {
-            string query = @"UPDATE Voucher
-                     SET VoucherName = @VoucherName,
-                         ReleaseDate = @ReleaseDate,
-                         Expire = @Expire,
-                         ApplyAmount = @ApplyAmount,
-                         MaxApply = @MaxApply,
-                         DiscountValue = @DiscountValue,
-                         IsCash = @IsCash
-                     WHERE VoucherId = @VoucherId";
+            string sql = @"UPDATE Voucher 
+                   SET VoucherId = @VoucherId,
+                       VoucherName = @VoucherName,
+                       ReleaseDate = @ReleaseDate,
+                       Expire = @Expire,
+                       ApplyAmount = @ApplyAmount,
+                       MaxApply = @MaxApply,
+                       DiscountValue = @DiscountValue,
+                       IsCash = @IsCash
+                   WHERE VoucherId = @OldVoucherId";
 
             SqlParameter[] parameters = {
-                new SqlParameter("@VoucherId", id),
-                new SqlParameter("@VoucherName", name),
-                new SqlParameter("@ReleaseDate", from),
-                new SqlParameter("@Expire", to),
-                new SqlParameter("@ApplyAmount", apply),
-                new SqlParameter("@MaxApply", max),
-                new SqlParameter("@DiscountValue", discount),
-                new SqlParameter("@IsCash", isCash)
+                new SqlParameter("@VoucherId", v.VoucherId),
+                new SqlParameter("@VoucherName", v.VoucherName),
+                new SqlParameter("@ReleaseDate", v.ReleaseDate),
+                new SqlParameter("@Expire", v.ExpireDate),
+                new SqlParameter("@ApplyAmount", v.ApplyAmount),
+                new SqlParameter("@MaxApply", v.MaxApply),
+                new SqlParameter("@DiscountValue", v.DiscountValue),
+                new SqlParameter("@IsCash", v.IsCash),
+                new SqlParameter("@OldVoucherId", oldId)
             };
 
-            Connection.ExecuteNonQuery(query, parameters);
+            Connection.ExecuteNonQuery(sql, parameters);
         }
 
-        public static DataTable getLatestId(string idPrefix)
+        public DataTable GetLatestId(string idPrefix)
         {
             string query = @"SELECT VoucherId FROM Voucher 
                             WHERE VoucherId LIKE @Prefix + '%'";
@@ -96,18 +111,29 @@ namespace DAL
 
             return results;
         }
-        public static void deactivateVoucher(string voucherId)
+        public void DeactivateVoucher(string voucherId)
         {
             string sql = @"UPDATE Voucher  
-               SET IsActive = 0 
+               SET IsDeactivated = 1 
                WHERE VoucherId = @VoucherId";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@VoucherId", voucherId)
             };
 
-            Connection.ExecuteNonQuery (sql, parameters);
+            Connection.ExecuteNonQuery(sql, parameters);
         }
+        public void ActivateVoucher(string voucherId)
+        {
+            string sql = @"UPDATE Voucher  
+               SET IsDebuted = 1
+               WHERE VoucherId = @VoucherId";
 
+            SqlParameter[] parameters = {
+                new SqlParameter("@VoucherId", voucherId)
+            };
+
+            Connection.ExecuteNonQuery(sql, parameters);
+        }
     }
 }

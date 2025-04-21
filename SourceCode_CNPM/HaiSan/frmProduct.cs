@@ -343,7 +343,8 @@ namespace GUI
         // nhap hang 
         private void btnImportPro_Click(object sender, EventArgs e)
         {
-
+            frmImport f = new frmImport(proBUS);
+            f.ShowDialog();
         }
 
         // click vao dòng cua grid view SẢN PHẨM

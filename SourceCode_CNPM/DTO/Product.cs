@@ -15,7 +15,6 @@ namespace DTO{
         public int PurchasePrice { get; set; }
         public int RetailPrice { get; set; }
         public DateTime CreatedAt { get; set; }
-        //public decimal Remaining { get; set; } 
         public string Unit { get; set; }
 
         public Product() { }
@@ -32,10 +31,7 @@ namespace DTO{
             CreatedAt = createdAt; 
             Unit = unit;
         }
-        public override string ToString()
-        {
-            return this.ProductId;
-        }
+
+       
     }
-    
 }

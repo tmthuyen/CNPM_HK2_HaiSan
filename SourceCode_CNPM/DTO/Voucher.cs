@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace DTO{ 
-    public class Voucher 
+namespace DTO
+{
+    public class Voucher
     {
         public string VoucherId { get; set; }
         public string VoucherName { get; set; }
@@ -15,6 +16,8 @@ namespace DTO{
         public int MaxApply { get; set; }
         public int DiscountValue { get; set; }
         public bool IsCash { get; set; }
+        public bool IsDebuted { get; set; }
+        public bool IsDeactivated { get; set; }
         public bool IsActive { get; set; }
         public Voucher() { }
         public Voucher(
@@ -37,7 +40,10 @@ namespace DTO{
             DiscountValue = discountValue;
             IsCash = isCash;
         }
-
+        public override string ToString()
+        {
+            return VoucherName;
+        }
     }
 
 

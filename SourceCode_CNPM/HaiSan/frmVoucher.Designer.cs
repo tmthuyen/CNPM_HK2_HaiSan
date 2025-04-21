@@ -53,6 +53,8 @@
             btnAdd = new Button();
             toolTip1 = new ToolTip(components);
             btnDeactivate = new Button();
+            toolTip2 = new ToolTip(components);
+            btnActivate = new Button();
             voucherDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewVoucher).BeginInit();
             SuspendLayout();
@@ -191,7 +193,7 @@
             textBoxDiscountValue.TabIndex = 2;
             textBoxDiscountValue.TextAlign = HorizontalAlignment.Right;
             toolTip1.SetToolTip(textBoxDiscountValue, "Chỉ nhập số, không nhập % hay chữ");
-            textBoxDiscountValue.TextChanged += processInputNumber;
+            textBoxDiscountValue.TextChanged += textBoxDiscountValue_TextChanged;
             textBoxDiscountValue.KeyPress += processNumber_KeyPress;
             // 
             // label3
@@ -234,18 +236,19 @@
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(381, 137);
+            btnEdit.Location = new Point(449, 137);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(75, 23);
             btnEdit.TabIndex = 10;
             btnEdit.Text = "Sửa";
+            toolTip1.SetToolTip(btnEdit, "Các voucher đã ra mắt sẽ bị vô hiệu hóa nếu còn hạn sử dụng và thêm 1 voucher mới.\r\nCác voucher chưa ra  mắt sẽ được thay đổi.");
             btnEdit.UseVisualStyleBackColor = true;
             btnEdit.Click += btnEdit_Click;
             // 
             // btnSave
             // 
             btnSave.Enabled = false;
-            btnSave.Location = new Point(643, 137);
+            btnSave.Location = new Point(680, 137);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(75, 23);
             btnSave.TabIndex = 12;
@@ -255,7 +258,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(512, 137);
+            button4.Location = new Point(567, 137);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 11;
@@ -267,7 +270,7 @@
             // 
             dataGridViewVoucher.AllowUserToAddRows = false;
             dataGridViewVoucher.AllowUserToDeleteRows = false;
-            dataGridViewVoucher.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewVoucher.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridViewVoucher.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewVoucher.Location = new Point(12, 182);
             dataGridViewVoucher.Name = "dataGridViewVoucher";
@@ -289,19 +292,31 @@
             // btnDeactivate
             // 
             btnDeactivate.Enabled = false;
-            btnDeactivate.Location = new Point(238, 137);
+            btnDeactivate.Location = new Point(227, 137);
             btnDeactivate.Name = "btnDeactivate";
-            btnDeactivate.Size = new Size(90, 23);
+            btnDeactivate.Size = new Size(71, 23);
             btnDeactivate.TabIndex = 9;
-            btnDeactivate.Text = "Vô hiệu hóa";
+            btnDeactivate.Text = "Thu hồi";
             btnDeactivate.UseVisualStyleBackColor = true;
             btnDeactivate.Click += btnDeactivate_Click;
+            // 
+            // btnActivate
+            // 
+            btnActivate.Enabled = false;
+            btnActivate.Location = new Point(342, 137);
+            btnActivate.Name = "btnActivate";
+            btnActivate.Size = new Size(66, 23);
+            btnActivate.TabIndex = 23;
+            btnActivate.Text = "Ra mắt";
+            btnActivate.UseVisualStyleBackColor = true;
+            btnActivate.Click += btnActivate_Click;
             // 
             // frmVoucher
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnActivate);
             Controls.Add(btnDeactivate);
             Controls.Add(btnAdd);
             Controls.Add(voucherDetails);
@@ -343,5 +358,8 @@
         private Button btnAdd;
         private ToolTip toolTip1;
         private Button btnDeactivate;
+        private ToolTip toolTip2;
+        private Button btnActivate;
+
     }
 }

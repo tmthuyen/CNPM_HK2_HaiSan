@@ -31,14 +31,16 @@ namespace DAL
         // Thêm chi tiết đơn hàng mới
         public bool Add(OrderDetail orderDetail)
         {
-            string query = @"INSERT INTO OrderDetail (OrderId, ProductId, RetailPrice, Amount)
-                             VALUES (@OrderId, @ProductId, @RetailPrice, @Amount)";
+            string query = @"INSERT INTO OrderDetail (OrderId, ProductId, RetailPrice, Amount, ImportId)
+                             VALUES (@OrderId, @ProductId, @RetailPrice, @Amount, @ImportId)";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@OrderId", orderDetail.OrderId),
                 new SqlParameter("@ProductId", orderDetail.ProductId),
                 new SqlParameter("@RetailPrice", orderDetail.RetailPrice),
-                new SqlParameter("@Amount", orderDetail.Amount)
+                new SqlParameter("@Amount", orderDetail.Amount),
+                new SqlParameter("@ImportId", orderDetail.ImportId)
+
             };
 
             return Connection.ExecuteNonQuery(query, parameters) > 0;
