@@ -54,7 +54,6 @@
             lblAppName = new Label();
             tabCtrlInventory.SuspendLayout();
             tabPageImport.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvImportList).BeginInit();
             tabPageExpire.SuspendLayout();
@@ -117,44 +116,6 @@
             btnImportPro.Text = "Nhập hàng";
             btnImportPro.UseVisualStyleBackColor = false;
             btnImportPro.Click += btnImportPro_Click;
-            // 
-            // label6
-            // 
-            label6.BackColor = Color.LightSkyBlue;
-            label6.FlatStyle = FlatStyle.Flat;
-            label6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label6.Location = new Point(255, 224);
-            label6.Name = "label6";
-            label6.Size = new Size(441, 38);
-            label6.TabIndex = 14;
-            label6.Text = "DANH SÁCH NHẬP HÀNG";
-            label6.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // dgvProduct
-            // 
-            dgvProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvProduct.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProduct.Dock = DockStyle.Bottom;
-            dgvProduct.Location = new Point(3, 265);
-            dgvProduct.Name = "dgvProduct";
-            dgvProduct.RowHeadersWidth = 51;
-            dgvProduct.Size = new Size(1018, 352);
-            dgvProduct.TabIndex = 15;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.DodgerBlue;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Times New Roman", 16F);
-            button1.ForeColor = Color.WhiteSmoke;
-            button1.Location = new Point(588, 94);
-            button1.Name = "button1";
-            button1.Size = new Size(145, 39);
-            button1.TabIndex = 10;
-            button1.Text = "Chi tiết";
-            button1.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -411,7 +372,6 @@
             Load += frmInventory_Load;
             tabCtrlInventory.ResumeLayout(false);
             tabPageImport.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvProduct).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvImportList).EndInit();
