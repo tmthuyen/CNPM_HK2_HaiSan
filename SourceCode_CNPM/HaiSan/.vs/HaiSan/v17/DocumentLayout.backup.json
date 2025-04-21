@@ -1,0 +1,116 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\haisan\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\haisan\\cnpm_hk2_haisan\\sourcecode_cnpm\\haisan\\frminventory.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frminventory.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\haisan\\cnpm_hk2_haisan\\sourcecode_cnpm\\haisan\\frmorder.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmorder.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC4DE98D-9119-4326-B86D-0F5624A2E58B}|..\\DAL\\DAL.csproj|f:\\nam2hocky2\\cong_nghe_phan_mem\\big\\haisan\\cnpm_hk2_haisan\\sourcecode_cnpm\\dal\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\3.0\\SourceCode_CNPM\\BUS\\OrderBUS.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\3.0\\SourceCode_CNPM\\DTO\\OrderDetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 161,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 161,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmOrder.Designer.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\haisan\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmOrder.Designer.cs",
+              "RelativeDocumentMoniker": "frmOrder.Designer.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\haisan\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmOrder.Designer.cs",
+              "RelativeToolTip": "frmOrder.Designer.cs",
+              "ViewState": "AgIAAI0DAAAAAAAAAAAEwLIDAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-21T05:17:06.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmInventory.Designer.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\haisan\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmInventory.Designer.cs",
+              "RelativeDocumentMoniker": "frmInventory.Designer.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\haisan\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\HaiSan\\frmInventory.Designer.cs",
+              "RelativeToolTip": "frmInventory.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJsBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-21T05:16:50.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "helper.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\haisan\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\DAL\\helper.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\helper.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\haisan\\CNPM_HK2_HaiSan\\SourceCode_CNPM\\DAL\\helper.cs",
+              "RelativeToolTip": "..\\DAL\\helper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwB0AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-21T04:51:44.042Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrderBUS.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\3.0\\SourceCode_CNPM\\BUS\\OrderBUS.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\3.0\\SourceCode_CNPM\\BUS\\OrderBUS.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\3.0\\SourceCode_CNPM\\BUS\\OrderBUS.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\3.0\\SourceCode_CNPM\\BUS\\OrderBUS.cs",
+              "ViewState": "AgIAANgAAAAAAAAAAAAAAOAAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T04:50:17.315Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderDetail.cs",
+              "DocumentMoniker": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\3.0\\SourceCode_CNPM\\DTO\\OrderDetail.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\3.0\\SourceCode_CNPM\\DTO\\OrderDetail.cs",
+              "ToolTip": "F:\\NAM2HOCKY2\\CONG_NGHE_PHAN_MEM\\big\\3.0\\SourceCode_CNPM\\DTO\\OrderDetail.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\3.0\\SourceCode_CNPM\\DTO\\OrderDetail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T06:26:19.256Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

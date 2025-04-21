@@ -1,0 +1,15 @@
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\bin\Debug\net8.0\DTO.exe
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\bin\Debug\net8.0\DTO.deps.json
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\bin\Debug\net8.0\DTO.runtimeconfig.json
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\bin\Debug\net8.0\DTO.dll
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\bin\Debug\net8.0\DTO.pdb
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\obj\Debug\net8.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\obj\Debug\net8.0\DTO.AssemblyInfoInputs.cache
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\obj\Debug\net8.0\DTO.AssemblyInfo.cs
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\obj\Debug\net8.0\DTO.csproj.CoreCompileInputs.cache
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\obj\Debug\net8.0\DTO.sourcelink.json
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\obj\Debug\net8.0\DTO.dll
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\obj\Debug\net8.0\refint\DTO.dll
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\obj\Debug\net8.0\DTO.pdb
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\obj\Debug\net8.0\DTO.genruntimeconfig.cache
+F:\NAM2HOCKY2\CONG_NGHE_PHAN_MEM\big\haisan\CNPM_HK2_HaiSan\SourceCode_CNPM\DTO\obj\Debug\net8.0\ref\DTO.dll
