@@ -341,9 +341,9 @@ namespace GUI
         }
 
         // nhap hang 
-        private void btnImportPro_Click(object sender, EventArgs e)
+        private void btnInventory_Click(object sender, EventArgs e)
         {
-            frmImport f = new frmImport(proBUS);
+            frmInventory f = new frmInventory(proBUS);
             f.ShowDialog();
         }
 

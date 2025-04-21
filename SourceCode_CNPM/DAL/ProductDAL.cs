@@ -204,5 +204,44 @@ namespace DAL
 
             return products;
         }
+
+        //public List<Product> GetProductByLoHang()
+        //{
+        //    string query = @"
+        //                SELECT 
+        //                    p.ProductId,
+        //                    p.ProductName,
+        //                    i.ImportId,
+        //                    i.Remaining,
+        //                    p.Unit,
+        //                    p.RetailPrice,
+        //                    c.CategoryName,
+        //                    s.SupplierName
+        //                FROM Products p
+        //                JOIN ImportDetail i ON p.ProductId = i.ProductId
+        //                JOIN Category c ON p.CategoryId = c.CategoryId
+        //                JOIN Supplier s ON p.SupplierId = s.SupplierId
+        //                WHERE i.Remaining > 0
+        //                ";
+        //    DataTable dt = Connection.ExecuteQuery(query);
+        //    List<Product> products = new List<Product>();
+
+        //    foreach (DataRow row in dt.Rows)
+        //    {
+        //        products.Add(new Product
+        //        {
+        //            ProductId = row["ProductId"].ToString(),
+        //            SupplierId = row["SupplierName"].ToString(),
+        //            ProductName = row["ProductName"].ToString(),
+        //            CategoryName = row["CategoryName"].ToString(),
+        //            RetailPrice = Convert.ToInt32(row["RetailPrice"]),
+        //            Remaining = Convert.ToDecimal(row["Remaining"]),
+        //            Unit = row["Unit"].ToString(),
+        //            ImportId = row.Table.Columns.Contains("ImportId") ? row["ImportId"].ToString() : null // optional if you add ImportId
+        //        });
+        //    }
+
+        //    return products;
+        //}
     }
 }

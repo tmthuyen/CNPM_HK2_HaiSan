@@ -19,7 +19,7 @@ namespace DAL
 
             foreach (DataRow row in dt.Rows)
             {
-                string importId = row["ImportId"].ToString();
+                string importId = row["ImportId"].ToString().Trim();
                 DateTime importDate = Convert.ToDateTime(row["ImportDate"]);
                 int numOfPro = Convert.ToInt32(row["NumOfProducts"]);
 
@@ -87,10 +87,10 @@ namespace DAL
 
             if (dt.Rows.Count > 0)
             {
-                string lastId = dt.Rows[0]["ProductId"].ToString().Trim();  // VD: "Fish0007"
-                string numberPart = lastId.Substring("Imp".Length);               // "007"
+                string lastId = dt.Rows[0]["ImportId"].ToString().Trim();  // VD: "Fish0007"
+                string numberPart = lastId.Substring("Import".Length);               // "007"
                 int number = int.Parse(numberPart) + 1;                // 8
-                return "Imp" + number.ToString("D4");                  // "Fish0008"
+                return "Import" + number.ToString("D4");                  // "Fish0008"
             }
             else
             {

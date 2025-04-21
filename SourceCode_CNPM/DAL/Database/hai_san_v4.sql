@@ -111,6 +111,14 @@ CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
+-- idd mới cua hết hạn
+SELECT 
+    'EXPIR' + RIGHT('00000' + CAST(
+        ISNULL(CAST(SUBSTRING(MAX(ExpireProductId), 6, 5) AS INT), 0) + 1 AS VARCHAR)
+    , 5) AS NewId
+FROM ExpireProduct;
+
+
 CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     ProductId CHAR(10) NOT NULL,
     ImportId CHAR(20) NOT NULL,

@@ -10,6 +10,8 @@ namespace DTO{
     {
         public string ProductId { get; set; }
         public string SupplierId { get; set; }
+        //public string ImportId { get; set; }
+        //public string CategoryName { get; set; }
         public string CategoryId { get; set; }
         public string ProductName { get; set; }
         public int PurchasePrice { get; set; }
