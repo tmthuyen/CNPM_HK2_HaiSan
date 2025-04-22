@@ -104,12 +104,18 @@ namespace DAL
         }
 
         public bool Delete(string id)
-        {
+        { 
             string query = "Delete from Employee Where EmployeeId = @id";
             SqlParameter p = new SqlParameter("@id", id);
             return Connection.ExecuteNonQuery(query, p) > 0;
         }
 
+        // kiem tra ràng buộc khóa ngoại
+        
+        public bool CheckConstraint(string empId){
+            string sql = "SELECT COUNT(*) FROM Orders WHERE EmployeeId = @empId";
+            return (int)Connection.ExecuteScalar(sql, new SqlParameter("@empId", empId)) > 0;
+        }
 
         // tim theo id
         public Employee GetById(string employeeId)

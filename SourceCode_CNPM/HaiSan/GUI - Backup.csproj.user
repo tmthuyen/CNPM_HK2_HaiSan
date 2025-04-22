@@ -22,12 +22,9 @@
     <Compile Update="frmImport.cs">
       <SubType>Form</SubType>
     </Compile>
-<<<<<<< HEAD
-=======
     <Compile Update="frmImportDetail.cs">
       <SubType>Form</SubType>
     </Compile>
->>>>>>> 7e9281624617f4a75190bd982efa1857c6e56f67
     <Compile Update="frmInventory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -40,12 +37,9 @@
     <Compile Update="frmProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-<<<<<<< HEAD
-=======
     <Compile Update="frmProfile.cs">
       <SubType>Form</SubType>
     </Compile>
->>>>>>> 7e9281624617f4a75190bd982efa1857c6e56f67
     <Compile Update="frmReceipt.cs">
       <SubType>Form</SubType>
     </Compile>

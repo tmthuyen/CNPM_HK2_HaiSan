@@ -52,10 +52,13 @@ namespace BUS
         }
 
         public bool Delete(string proId)
-        {
+        { 
+            // khong the xóa neu san phan co trong don hang hoạc trong kho
+            if(!proDAL.CanDelete(proId))
+                return false;
             return proDAL.Delete(proId);
         }
-
+ 
         public bool Update(Product product)
         {
             return proDAL.Update(product);

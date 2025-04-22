@@ -48,14 +48,20 @@ namespace BUS
 
         public bool Delete(string id)
         {
+            if(empDal.CheckConstraint(id)){
+                return false;
+            }
+
             accDAL.Delete(id);
             return empDal.Delete(id);
         }
+ 
 
         public Employee FindById(string id)
         {
             return empDal.GetById(id);
         }
+        
 
         public Employee Login(string username, string password)
         {

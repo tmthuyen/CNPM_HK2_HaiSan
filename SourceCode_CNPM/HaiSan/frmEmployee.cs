@@ -1,5 +1,6 @@
 ﻿using BUS;
 using DTO;
+using Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -226,14 +227,20 @@ namespace GUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (empBUS.Delete(txtEmpId.Text))
+            if(txtEmpId.Text.Trim().Equals(Session.UserID)){
+                new frmError("Nhân viên", "Xóa thất bại. Bạn là người dùng hiện tại.").ShowDialog();
+                return;
+            }
+ ;
+            if (empBUS.Delete(txtEmpId.Text.Trim()))
             {
                 new frmSuccces("Nhân viên", "Xóa thành công").ShowDialog();
                 frmEmployee_Load(sender, e);
             }
             else
             {
-                new frmError("Nhân viên", "Xóa thất bại").ShowDialog();
+                new frmError("Nhân viên", "Xóa thất bại!!! Nhân viên đã lưu trong đơn hàng.").ShowDialog();
+                return;
             }
         }
 

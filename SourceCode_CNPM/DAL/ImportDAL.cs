@@ -87,14 +87,14 @@ namespace DAL
 
             if (dt.Rows.Count > 0)
             {
-                string lastId = dt.Rows[0]["ImportId"].ToString().Trim();  // VD: "Fish0007"
-                string numberPart = lastId.Substring("Import".Length);               // "007"
+                string lastId = dt.Rows[0]["ImportId"].ToString().Trim();  //  
+                string numberPart = lastId.Substring("IMP".Length);               // "007"
                 int number = int.Parse(numberPart) + 1;                // 8
-                return "Import" + number.ToString("D4");                  // "Fish0008"
+                return "IMP" + number.ToString("D5");                  //  
             }
             else
             {
-                return "Import" + "0001"; // Trường hợp chưa có dữ liệu
+                return "IMP" + "00001"; // Trường hợp chưa có dữ liệu
             }
 
         }

@@ -32,6 +32,7 @@ namespace GUI
             txtTotalDetail.Text = "";
             //dgvImportList.Rows.Clear();
             importDetailList.Clear();
+            loadImportList(dgvImportList, importDetailList);
 
             btnSaveImport.Enabled = false; 
             grInputPro.Enabled = false;

@@ -154,6 +154,21 @@ namespace DAL
             return Connection.ExecuteNonQuery(query, param) > 0;
         }
 
+        // kierm tra sp co the xoa hay không: neu ton tai trong import hoac detail
+        public bool CanDelete(string proId){
+            string sql = "SELECT COUNT(*) FROM ImportDetail WHERE ProductId = @proId";
+
+            if((int)Connection.ExecuteScalar(sql, new SqlParameter("@proId", proId)) > 0)
+                return false;
+            
+            sql = "SELECT COUNT(*) FROM OrderDetail WHERE ProductId = @proId";
+
+            if((int)Connection.ExecuteScalar(sql, new SqlParameter("@proId", proId)) > 0)
+                return false;
+            
+            return true;
+        }
+
         // Tìm sản phẩm theo mã
         public Product GetById(string productId)
         {
@@ -205,43 +220,6 @@ namespace DAL
             return products;
         }
 
-        //public List<Product> GetProductByLoHang()
-        //{
-        //    string query = @"
-        //                SELECT 
-        //                    p.ProductId,
-        //                    p.ProductName,
-        //                    i.ImportId,
-        //                    i.Remaining,
-        //                    p.Unit,
-        //                    p.RetailPrice,
-        //                    c.CategoryName,
-        //                    s.SupplierName
-        //                FROM Products p
-        //                JOIN ImportDetail i ON p.ProductId = i.ProductId
-        //                JOIN Category c ON p.CategoryId = c.CategoryId
-        //                JOIN Supplier s ON p.SupplierId = s.SupplierId
-        //                WHERE i.Remaining > 0
-        //                ";
-        //    DataTable dt = Connection.ExecuteQuery(query);
-        //    List<Product> products = new List<Product>();
-
-        //    foreach (DataRow row in dt.Rows)
-        //    {
-        //        products.Add(new Product
-        //        {
-        //            ProductId = row["ProductId"].ToString(),
-        //            SupplierId = row["SupplierName"].ToString(),
-        //            ProductName = row["ProductName"].ToString(),
-        //            CategoryName = row["CategoryName"].ToString(),
-        //            RetailPrice = Convert.ToInt32(row["RetailPrice"]),
-        //            Remaining = Convert.ToDecimal(row["Remaining"]),
-        //            Unit = row["Unit"].ToString(),
-        //            ImportId = row.Table.Columns.Contains("ImportId") ? row["ImportId"].ToString() : null // optional if you add ImportId
-        //        });
-        //    }
-
-        //    return products;
-        //}
+        
     }
 }

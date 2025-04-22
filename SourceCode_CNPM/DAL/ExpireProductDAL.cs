@@ -119,7 +119,7 @@ namespace DAL
             string query = @"SELECT exp.* 
                         FROM ExpireProduct AS exp
                         JOIN Products as p ON p.ProductId = exp.ProductId
-                        WHERE exp.ProductId = @proId AND p.ProductName LIKE @proName 
+                        WHERE exp.ProductId = @proId OR p.ProductName LIKE @proName 
                 ";
 
             SqlParameter[] param = {

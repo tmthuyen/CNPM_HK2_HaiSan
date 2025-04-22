@@ -113,12 +113,7 @@ namespace GUI
             dgv.Columns["Phone"].HeaderText = "Số điện thoại";
             dgv.Columns["Email"].HeaderText = "Email";
         }
-
-
-
-        
-
-
+ 
 
         // sự kiện that đôi giá trị cua combox trong tab DANH MỤC
         private void cbbCateList_SelectedIndexChanged(object sender, EventArgs e)
@@ -319,6 +314,7 @@ namespace GUI
                 {
                     // Thực hiện xóa
 
+                    // kiem tra san phan co ton tai trong don hang nao khong
                     if (proBUS.Delete(txtProId.Text.Trim()))
                     {
                         btnDeletePro.Enabled = false;
@@ -327,7 +323,7 @@ namespace GUI
 
                     } else
                     {
-                        new frmError("Sản phẩm", "Không có sản phẩm nào được xóa").ShowDialog();
+                        new frmError("Sản phẩm", "Không không thể xóa sản phẩm").ShowDialog();
                         txtProId.Focus();
                     }
                 }
@@ -335,8 +331,7 @@ namespace GUI
             else
             {
                 new frmError("Sản phẩm", "Nhập mã sản phẩm cần xóa").ShowDialog();
-                txtProId.Focus();
-
+                txtProId.Focus(); 
             }
         }
 

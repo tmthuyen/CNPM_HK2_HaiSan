@@ -3,6 +3,7 @@ go use haisan
 use master
 drop database haisan
 
+-- ======
 CREATE TABLE Employee (
     EmployeeId CHAR(6) PRIMARY KEY,
     EmployeeName NVARCHAR(30) NOT NULL,
@@ -16,33 +17,43 @@ CREATE TABLE Employee (
     DateOfBirth DATE NOT NULL
 );
 
-Insert Into Employee values
-('Emp01', N'Trần Minh Thuyên', '0373436163', 'tranthuyen2222@gmail.com', 'Nam', 'active', 'admin', 'Q7', 'thuyen.png', '2005-02-20'),
-('Emp02', N'Hồ Gia Kiện', '0373436163', 'hogiakien@gmail.com', 'Nam', 'active', 'admin', 'Q7', 'kien.png', '2005-01-01')
+Insert Into Employee values ('Emp02', N'Hồ Gia Kiện', '0373436163', 'hogiakien@gmail.com', 'Nam', 'active', 'admin', 'Q7', 'kien.png', '2005-01-01')
+insert into Employee values ('Emp01', N'Trần Minh Thuyên', '0373436163', 'tranthuyen@gmail.com', 'Nam', 'active', 'admin', 'Quảng Nam', 'thuyen.png', '2005-02-20')
+insert into Employee values ('Emp04', N'Trần Minh Thuyên', '0373336666', 'tmthuyen@gmail.com', 'Nam', 'active', 'sale', 'Quảng Nam', 'thuyen.png', '2005-02-20')
+ 
 
---('Emp03', N'Trần Minh Thuyên', '0373436163', 'tranthuyen2222@gmail.com', 'Nam', 'active', 'admin', 'Q7', 'thuyen.png', '2005-02-20'),
-
+ ---=====
 Create table Account(
 	EmployeeId CHAR(6) Primary key,
 	Username CHAR(20) NOT NULL UNIQUE,
-	Password Varchar(50) NOT NULL, --hashed
+	Password Varchar(255) NOT NULL, --hashed
     FOREIGN KEY (EmployeeId) REFERENCES Employee(EmployeeId)	
-)
+) 
 
+insert into Account values('Emp01', 'tranthuyen', 'b13341051b70a0a4dc3e18d0d7ca1b65995e76c230d68464d5466b3b5e551c3d')
+insert into Account values('Emp04', 'tmthuyen', 'b13341051b70a0a4dc3e18d0d7ca1b65995e76c230d68464d5466b3b5e551c3d')
+
+
+-- ===== ALTER TABLE nè
+ALTER TABLE Products
+ALTER COLUMN ProductId CHAR(20);
+ALTER TABLE Products
+ALTER COLUMN CategoryId Char(15);
+ALTER TABLE Category
+ALTER COLUMN CategoryId Char(15) 
 ALTER TABLE Account
 ALTER COLUMN Password VARCHAR(100);
 
+-- =====  SELECT Table nè
 Select * from Employee
 select * from Account
 select * from Category
 select * from Customer
 select * from Products
-select * from Supplier
-Insert into Account Values
-('Emp01', 'tranthuyen', 'thuyen123'),
-('Emp02', 'giakien', 'kien123')
+select * from Supplier 
 
 
+-- =====
 CREATE TABLE Customer (
     CustomerId CHAR(10) PRIMARY KEY,
     CustomerName NVARCHAR(30) NOT NULL,
@@ -50,19 +61,32 @@ CREATE TABLE Customer (
     LoyaltyPoint INT NOT NULL --/100 cho hoa don's amount
 ); 
 
-insert into Customer values
-('cus00001', N'Thuyên', '0373436163', 0)
+  INSERT INTO Customer VALUES
+('CUS0000012', N'Ngọc', '0388888881', 0),
+('CUS0000013', N'Hùng', '0388888882', 0),
+('CUS0000014', N'Linh', '0388888883', 0),
+('CUS0000015', N'Thảo', '0388888884', 0),
+('CUS0000016', N'Tiến', '0388888885', 0);
 
+
+-- =======
 CREATE TABLE Category (
-    CategoryId CHAR(6) PRIMARY KEY,
+    CategoryId CHAR(10) PRIMARY KEY,
     CategoryName NVARCHAR(20) NOT NULL
 );
 Insert into Category Values
 ('Fish', 'Cá'),
 ('Crab', 'Cua')
 
+  INSERT INTO Category VALUES
+('Shrimp', N'Tôm'),
+('Snail', N'Ốc'),
+('Clam', N'Nghêu'),
+('Squid', N'Mực'),
+('Lobst', N'Tôm hùm');
 
 
+-- =======
 CREATE TABLE Supplier (
     SupplierId CHAR(6) PRIMARY KEY,
     SupplierName NVARCHAR(30) NOT NULL,
@@ -74,10 +98,11 @@ Insert into Supplier Values
 ('Sup002', 'CHARLIE', '0373333333', 'charlie@gmail.com')
 
 
+-- =====
 CREATE TABLE Products (
     ProductId CHAR(10) NOT NULL PRIMARY KEY,
     SupplierId CHAR(6) NOT NULL,
-    CategoryId CHAR(6) NOT NULL,
+    CategoryId CHAR(10) NOT NULL,
     ProductName NVARCHAR(50) NOT NULL,
     PurchasePrice INT NOT NULL,
     RetailPrice INT NOT NULL,
@@ -89,12 +114,17 @@ CREATE TABLE Products (
 
 Insert Into Products Values
 ('Prod0001', 'Sup001', 'Fish', N'Cá kình', 50000000, 100000000, GETDATE(), 'kg')
+INSERT INTO Products (ProductId, SupplierId, CategoryId, ProductName, PurchasePrice, RetailPrice, CreatedAt, Unit) VALUES
+('Prod0002', 'Sup001', 'Fish',     N'Cá bống mú',     70000, 95000, GETDATE(), N'kg'),
+('Prod0003', 'Sup001', 'Crab',     N'Cua biển',       120000, 160000, GETDATE(), N'kg'),
+('Prod0004', 'Sup002', 'Shrimp',   N'Tôm sú',         150000, 190000, GETDATE(), N'kg'),
+('Prod0005', 'Sup002', 'Snail',   N'Ốc hương',       80000, 100000, GETDATE(), N'kg'),
+('Prod0006', 'Sup001', 'Clam',   N'Nghêu trắng',    40000, 60000, GETDATE(), N'kg'),
+('Prod0007', 'Sup002', 'Squid',   N'Mực ống',        110000, 140000, GETDATE(), N'kg'),
+('Prod0008', 'Sup001', 'Lobst',   N'Tôm hùm Alaska', 500000, 650000, GETDATE(), N'kg');
 
-ALTER TABLE Products
-ALTER COLUMN ProductId CHAR(20);
-ALTER TABLE Category
-ALTER COLUMN CategoryId Char(15)
 
+-- ======
 CREATE TABLE Import (
     ImportId CHAR(20) PRIMARY KEY,
     ImportDate DATETIME DEFAULT GETDATE() NOT NULL,
@@ -102,23 +132,7 @@ CREATE TABLE Import (
 );
 
 
-CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
-    ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
-    ProductId CHAR(10) NOT NULL,
-    Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
-    TotalLoss INT NOT NULL,--tien mat
-    ExpiredDate DATE NOT NULL,
-    FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
-);
-
--- idd mới cua hết hạn
-SELECT 
-    'EXPIR' + RIGHT('00000' + CAST(
-        ISNULL(CAST(SUBSTRING(MAX(ExpireProductId), 6, 5) AS INT), 0) + 1 AS VARCHAR)
-    , 5) AS NewId
-FROM ExpireProduct;
-
-
+--- =======
 CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     ProductId CHAR(10) NOT NULL,
     ImportId CHAR(20) NOT NULL,
@@ -131,7 +145,38 @@ CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
+-- Bảng Import (phiếu nhập)
+INSERT INTO Import (ImportId, ImportDate, NumOfProducts) VALUES
+('IMP00001', GETDATE(), 2),
+('IMP00002', GETDATE(), 3),
+('IMP00003', GETDATE(), 1);
 
+-- Bảng ImportDetail (lô hàng nhập)
+INSERT INTO ImportDetail (ProductId, ImportId, Quantity, Remaining, Expire, PurchasePrice) VALUES
+('Prod0002', 'IMP00001', 30, 30, '2025-05-10', 70000),
+('Prod0003', 'IMP00001', 20, 20, '2025-05-12', 120000),
+
+('Prod0004', 'IMP00002', 25, 25, '2025-05-08', 150000),
+('Prod0005', 'IMP00002', 40, 40, '2025-06-01', 80000),
+('Prod0006', 'IMP00002', 50, 50, '2025-05-25', 40000),
+
+('Prod0007', 'IMP00003', 15, 15, '2025-04-30', 110000);
+
+
+
+-- =====
+CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
+    ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
+    ProductId CHAR(10) NOT NULL,
+    Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
+    TotalLoss INT NOT NULL,--tien mat
+    ExpiredDate DATE NOT NULL,
+    FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
+);
+
+
+
+-- =====
 CREATE TABLE Voucher (
     VoucherId CHAR(10) PRIMARY KEY, 
     VoucherName NVARCHAR(50) NOT NULL,
@@ -152,6 +197,7 @@ CREATE TABLE Voucher (
 );
 
 
+-- =======
 CREATE TABLE Orders (   
     OrderId CHAR(12) NOT NULL PRIMARY KEY,
     CustomerId CHAR(10) NOT NULL,
@@ -167,6 +213,8 @@ CREATE TABLE Orders (
 	FOREIGN KEY (VoucherId) REFERENCES Voucher(VoucherId)
 );
 
+
+-- =====
 CREATE TABLE OrderDetail (
     OrderId CHAR(12) NOT NULL,
     ProductId CHAR(10) NOT NULL,
@@ -175,6 +223,7 @@ CREATE TABLE OrderDetail (
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId),
     FOREIGN KEY (OrderId) REFERENCES Orders(OrderId)
 );
+
 
 INSERT INTO Voucher (VoucherId, VoucherName, ReleaseDate, Expire, ApplyAmount, MaxApply, DiscountValue, IsCash, IsDebuted, IsDeactivated)
 VALUES 

@@ -21,8 +21,8 @@ namespace DAL
             {
                 customers.Add(new Customer(
                     row["CustomerId"].ToString(),
-                    row["Phone"].ToString(),
                     row["CustomerName"].ToString(),
+                    row["Phone"].ToString(),
                     Convert.ToInt32(row["LoyaltyPoint"])
                 ));
             }

@@ -182,8 +182,8 @@ namespace GUI
 
                 // Lấy dữ liệu từ hàng và ép kiểu về Customer
                 string id = row.Cells[0].Value.ToString();
-                string phone = row.Cells[1].Value.ToString();
-                string name = row.Cells[2].Value.ToString();
+                string name = row.Cells["CustomerName"].Value?.ToString();
+                string phone = row.Cells["Phone"].Value.ToString();
                 int points = Convert.ToInt32(row.Cells[3].Value);
 
                 // Hiển thị dữ liệu lên các TextBox (nếu có)
