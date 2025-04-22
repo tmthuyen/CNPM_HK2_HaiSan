@@ -19,16 +19,14 @@ namespace GUI
     public partial class frmOrder : Form
     {
         List<Voucher> vouchers; // applicablVouchers
-        private ProductBUS productBUS;
         private OrderBUS orderBUS;
-        List<Product> products;
+        List<ProductImport> products;
         private int selectedRow = -1;
 
         public frmOrder()
         {
-            productBUS = new ProductBUS();
             orderBUS = new OrderBUS();
-            products = productBUS.getAll();
+            products = orderBUS.GetProductByLoHang();
             InitializeComponent();
             customControl();
             showOrderList(new List<Order>() { new Order("d", DateTime.Now, 2, 2, 2, "", "", "", "vou1", new List<OrderDetail>()) });
@@ -171,8 +169,9 @@ namespace GUI
         }
         private void clearControl()
         {
-            
+
             comboBoxProductName.SelectedItem = null;
+            comboBoxPayment.SelectedIndex = 0;
             textBoxUnit.Text = "";
             soLuongTextBox.Text = "";
             textBoxPrice.Text = "";
@@ -192,13 +191,12 @@ namespace GUI
         //
         private void loadDataIntoCombox()
         {
-
-            List<Product> products = productBUS.getAll();
+            products = orderBUS.GetProductByLoHang();
             if (products != null)
             {
                 comboBoxProductName.Items.Clear();
 
-                foreach (Product product in products)
+                foreach (ProductImport product in products)
                 {
                     comboBoxProductName.Items.Add(product);
                 }
@@ -213,10 +211,10 @@ namespace GUI
         {
             if (comboBoxProductName.SelectedItem != null)
             {
-                //Product selectedItem = (Product)comboBoxProductName.SelectedItem;
-                //textBoxUnit.Text = selectedItem.Unit;
-                //textBoxRemaining.Text = formatNumber(selectedItem.Remaining);
-                //textBoxPrice.Text = formatNumber(selectedItem.RetailPrice);
+                ProductImport selectedItem = (ProductImport)comboBoxProductName.SelectedItem;
+                textBoxUnit.Text = selectedItem.Unit;
+                textBoxRemaining.Text = formatNumber(selectedItem.Remaining);
+                textBoxPrice.Text = formatNumber(selectedItem.RetailPrice);
             }
 
             comboBoxVoucher.SelectedIndex = -1;
@@ -235,6 +233,7 @@ namespace GUI
                 else
                 {
                     addBtn_Click(sender, e);
+                    comboBoxProductName.Focus();
                 }
             }
 
@@ -246,11 +245,10 @@ namespace GUI
             {
                 editBtn.Enabled = true;
                 delBtn.Enabled = true;
-                btnSave.Enabled = false;
                 selectedRow = e.RowIndex;
 
                 DataGridViewRow row = dataGridViewOrderDetail.Rows[e.RowIndex];
-                foreach (Product product in comboBoxProductName.Items)
+                foreach (ProductImport product in comboBoxProductName.Items)
                 {
                     if (product.ToString() == row.Cells[0].Value.ToString())
                     {
@@ -261,10 +259,7 @@ namespace GUI
                 soLuongTextBox.Text = row.Cells[1].Value.ToString();
 
             }
-            else
-            {
-                clearControl();
-            }
+
         }
 
         //
@@ -299,8 +294,21 @@ namespace GUI
                     decimal addQuantity = changeAmountToDecimal(soLuongTextBox.Text);
                     decimal price = changeAmountToDecimal(row.Cells[2].Value.ToString());
                     decimal quantity = orderBUS.AddAmounts(ogQuantity, addQuantity);
+                    if (quantity == 0)
+                    {
+                        new frmError("Số lượng không hợp lệ", "Không thể thêm 0 sản phẩm").ShowDialog();
+                        return;
+                    }
+
+                    ProductImport product = row.Cells[0].Value as ProductImport;
+                    if (!orderBUS.CheckAvailable(product, quantity))
+                    {
+                        new frmError("Số lượng không hợp lệ", "Không thể thêm nhiều hơn số lượng có").ShowDialog();
+                        return;
+                    }
+
                     row.Cells[1].Value = quantity;
-                    row.Cells[4].Value =  formatNumber(orderBUS.CalPrice(quantity,price)); // Total
+                    row.Cells[4].Value = formatNumber(orderBUS.CalPrice(quantity, price)); // Total
 
 
                     updateOnDetailChange(sender, e);
@@ -315,14 +323,26 @@ namespace GUI
                 DataGridViewRow newRow = new DataGridViewRow();
                 newRow.CreateCells(dataGridViewOrderDetail);
 
-                Product p = (Product)comboBoxProductName.SelectedItem;
-                newRow.Cells[0].Value = comboBoxProductName.SelectedItem;                  // ProductName
+                ProductImport p = (ProductImport)comboBoxProductName.SelectedItem;
                 decimal quantity = changeAmountToDecimal(soLuongTextBox.Text);
-                newRow.Cells[1].Value = quantity;   // Quantity
+                if (quantity == 0)
+                {
+                    new frmError("Số lượng không hợp lệ", "Không thể thêm 0 sản phẩm").ShowDialog();
+                    return;
+                }
                 decimal price = changeAmountToDecimal(textBoxPrice.Text);
+
+                if (!orderBUS.CheckAvailable(p, quantity))
+                {
+                    new frmError("Số lượng không hợp lệ", "Không thể thêm nhiều hơn số lượng có").ShowDialog();
+                    return;
+                }
+
+                newRow.Cells[0].Value = comboBoxProductName.SelectedItem;                  // ProductName
+                newRow.Cells[1].Value = quantity;   // Quantity
                 newRow.Cells[2].Value = formatNumber(price);          // Price
                 newRow.Cells[3].Value = textBoxUnit.Text;                          // Unit
-                newRow.Cells[4].Value = orderBUS.CalPrice(quantity, price); // Total
+                newRow.Cells[4].Value = formatNumber(orderBUS.CalPrice(quantity, price)); // Total
 
                 dataGridViewOrderDetail.Rows.Add(newRow);
 
@@ -359,7 +379,7 @@ namespace GUI
                 DataGridViewRow row = dataGridViewOrderDetail.Rows[selectedRow];
                 if (Match(comboBoxProductName.Text, comboBoxProductName))
                 {
-                    row.Cells[0].Value = ((Product)comboBoxProductName.SelectedItem);
+                    row.Cells[0].Value = ((ProductImport)comboBoxProductName.SelectedItem);
                 }
                 else
                 {
@@ -369,8 +389,8 @@ namespace GUI
 
                 if (!soLuongTextBox.Text.IsNullOrEmpty())
                 {
-                    Product p = new Product();
-                    foreach (Product product in comboBoxProductName.Items)
+                    ProductImport p = new ProductImport();
+                    foreach (ProductImport product in comboBoxProductName.Items)
                     {
                         if (product.ToString() == row.Cells[0].Value.ToString())
                         {
@@ -382,7 +402,7 @@ namespace GUI
                     decimal quantity = changeAmountToDecimal(soLuongTextBox.Text);
                     row.Cells[1].Value = quantity;
                     row.Cells[4].Value = orderBUS.CalPrice(quantity, p.RetailPrice);
-                    updateOnDetailChange(sender,e);
+                    updateOnDetailChange(sender, e);
                 }
             }
         }
@@ -395,6 +415,7 @@ namespace GUI
         //the voucher part
         //
 
+        //này giống thay đổi của những cái ở dưới hơn (point + cái voucher đang xài)
         private void comboBoxVoucher_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxVoucher.SelectedItem == null || comboBoxVoucher.SelectedItem.ToString() == "None")
@@ -416,9 +437,10 @@ namespace GUI
                 int realAmount = orderBUS.CalOverAll(rawAmount, discount, point);
                 textBoxRealSum.Text = formatNumber(realAmount);
             }
+            processCash(sender, e);
 
         }
-        //mỗi lần có gì thay đổi thì phải cập nhật các text box với lấy mấy cái voucher hợp lệ
+        //mỗi lần có gì thay đổi ở chi tiết đơn hàng thì phải cập nhật các text box với lấy mấy cái voucher hợp lệ
         private void updateOnDetailChange(object sender, EventArgs e)
         {
             int rawTotal = GetRawSum();
@@ -433,7 +455,22 @@ namespace GUI
             }
             comboBoxVoucher.Items.Add("None");
             dataGridViewVouchers.DataSource = vouchers;
-            comboBoxVoucher_SelectedIndexChanged(sender, e);
+            dataGridViewVouchers.Columns["VoucherId"].HeaderText = "Id voucher";
+            dataGridViewVouchers.Columns["VoucherName"].HeaderText = "Tên voucher";
+            dataGridViewVouchers.Columns["ReleaseDate"].HeaderText = "Ngày phát hành";
+            dataGridViewVouchers.Columns["ExpireDate"].HeaderText = "Ngày hết hạn";
+            dataGridViewVouchers.Columns["ApplyAmount"].HeaderText = "Áp dụng từ";
+            dataGridViewVouchers.Columns["MaxApply"].HeaderText = "Áp dụng lên tới";
+            dataGridViewVouchers.Columns["DiscountValue"].HeaderText = "Giảm";
+            dataGridViewVouchers.Columns["IsCash"].HeaderText = "Giảm tiền mặt";
+            dataGridViewVouchers.Columns["IsDebuted"].Visible = false;
+            dataGridViewVouchers.Columns["IsDeactivated"].Visible = false;
+            dataGridViewVouchers.Columns["IsActive"].Visible = false;
+
+
+
+            comboBoxVoucher.SelectedItem = "None";
+            comboBoxVoucher.Text = string.Empty;
         }
 
         private void textBoxPoint_TextChanged(object sender, EventArgs e)
@@ -443,17 +480,25 @@ namespace GUI
 
             if (string.IsNullOrEmpty(strNum))
             {
-                updateOnDetailChange(sender, e);
+                comboBoxVoucher_SelectedIndexChanged(sender, e);
                 return; // Allow empty string
             }
 
-            double num;
-            if (double.TryParse(strNum, out num))
+            int num;
+            if (int.TryParse(strNum, out num))
             {
+                int pointHas = strToInt(textBoxCusPoint.Text);
+                if (!orderBUS.validPoint(pointHas,num))
+                {
+                    new frmError("Điểm không hợp lệ","Điểm sử dụng không thể nhiều hơn điểm có").ShowDialog();
+                    t.Text = t.Text.Remove(t.Text.Length - 1); // Remove the last character
+                    t.SelectionStart = t.Text.Length; // Put cursor at the end
+                    return;
+                }
                 textBoxPoint.TextChanged -= textBoxPoint_TextChanged;
                 textBoxPoint.Text = num.ToString();
                 textBoxPoint.TextChanged += textBoxPoint_TextChanged;
-                updateOnDetailChange(sender, e);
+                comboBoxVoucher_SelectedIndexChanged(sender, e);
                 return; // Allow valid number
             }
             else
@@ -469,7 +514,7 @@ namespace GUI
                 e.Handled = true;
             }
         }
-        private void processCash(object sender, EventArgs e)
+        private void textBoxGiven_TextChanged(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(TextBox))
             {
@@ -478,16 +523,20 @@ namespace GUI
 
                 if (decimal.TryParse(t.Text.Replace(",", ""), out decimal amount))
                 {
-                    t.TextChanged -= processCash;
+                    t.TextChanged -= textBoxGiven_TextChanged;
                     t.Text = formatNumber(amount);
                     t.SelectionStart = t.TextLength;
-                    t.TextChanged += processCash;
-
-                    int realAmount = strToInt(textBoxRealSum.Text);
-                    int given = strToInt(textBoxGiven.Text);
-                    textBoxChange.Text = formatNumber(orderBUS.CalChange(realAmount, given));
+                    t.TextChanged += textBoxGiven_TextChanged;
                 }
+                processCash(sender, e);
             }
+        }
+        private void processCash(object sender, EventArgs e)
+        {
+            int realAmount = strToInt(textBoxRealSum.Text);
+            int given = strToInt(textBoxGiven.Text);
+            textBoxChange.Text = formatNumber(orderBUS.CalChange(realAmount, given));
+
         }
         //
         //buttons below
@@ -495,47 +544,109 @@ namespace GUI
         private void btnCancel2_Click(object sender, EventArgs e)
         {
             comboBoxVoucher.SelectedItem = "None";
+            textBoxGiven.Clear();
             textBoxPoint.Clear();
             textBoxCustomerName.Clear();
             textBoxPhone.Clear();
-
+            textBoxCusPoint.Clear();
+            textBoxPoint.Enabled = false;
         }
         private void btnCreate_Click(object sender, EventArgs e)
         {
             //input validation
-            if (dataGridViewOrderDetail.Rows.Count<=0)
+            if (dataGridViewOrderDetail.Rows.Count <= 0)
             {
                 new frmError("Thiếu dữ liệu", "Vui lòng nhập chi tiết đơn hàng").ShowDialog();
                 return;
             }
-           
+
+            if (comboBoxPayment.SelectedItem.ToString().IsNullOrEmpty())
+            {
+                new frmError("Thiếu dữ liệu", "Vui lòng chọn phương thức thanh toán").ShowDialog();
+                return;
+            }
+            if (textBoxGiven.Text.IsNullOrEmpty())
+            {
+                new frmError("Thiếu dữ liệu", "Vui lòng nhập số tiền đưa").ShowDialog();
+                return;
+            }
+            if (string.IsNullOrEmpty(textBoxCustomerName.Text))
+            {
+                DialogResult result = MessageBox.Show(
+                    "Nếu trống, sẽ lưu tên là ẩn danh",
+                    "Bạn có chắc muốn bỏ trống tên?",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+            if (string.IsNullOrEmpty(textBoxPhone.Text))
+            {
+                DialogResult result = MessageBox.Show(
+                    "Bạn cần xác nhận với khách hàng rằng mình sẽ không được ưu đãi nếu bỏ trống",
+                    "Bạn có chắc muốn bỏ trống SĐT?",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+
 
             //me when i rửa input
-            Voucher v = (comboBoxVoucher.SelectedIndex <= -1)?null:(Voucher)comboBoxVoucher.SelectedItem;
-            string voucherId = v!=null?v.VoucherId:"";
+            int realTotal = strToInt(textBoxRealSum.Text);
+            int received = strToInt(textBoxGiven.Text);
+            if (!orderBUS.validGiven(received,realTotal))
+            {
+                new frmError("Sai dữ liệu", "Số tiền đưa không đủ").ShowDialog();
+                textBoxGiven.Focus();
+                return;
+            }
+
+            Voucher v = (comboBoxVoucher.SelectedIndex <= -1) ? null : (Voucher)comboBoxVoucher.SelectedItem;
+            string voucherId = v != null ? v.VoucherId : "";
             string customerName = textBoxCustomerName.Text.IsNullOrEmpty() ? "Anonymous" : textBoxCustomerName.Text.Trim();
             string phone = textBoxPhone.Text.IsNullOrEmpty() ? "000000000000" : textBoxPhone.Text.Trim();
             int points = textBoxPoint.Text.IsNullOrEmpty() ? 0 : strToInt(textBoxPoint.Text);
-            int realTotal = strToInt(textBoxRealSum.Text);
+            
 
-
+            string payMethod = comboBoxPayment.SelectedItem.ToString() ?? "Tiền mặt"; //we just be defaulting
             List<OrderDetail> orderDetails = new List<OrderDetail>();
 
-            // Assuming you have order details in a DataGridView
             foreach (DataGridViewRow row in dataGridViewOrderDetail.Rows)
             {
                 if (row.IsNewRow) continue;
-                Product product = row.Cells[0].Value as Product;
+                ProductImport product = row.Cells[0].Value as ProductImport;
                 OrderDetail orderDetail = new OrderDetail
                 {
+                    ImportId = product.ImportId,
                     ProductId = product.ProductId,
                     Amount = changeAmountToDecimal(row.Cells[1].Value.ToString()),
-                    RetailPrice = strToInt(row.Cells[2].Value.ToString())
+                    RetailPrice = product.RetailPrice
                 };
                 orderDetails.Add(orderDetail);
             }
-
-            //orderBUS.CreateOrder(customerName,phone,voucherId,Session.UserID,);
+            try
+            {
+                orderBUS.CreateOrder(customerName, phone, voucherId, Session.UserID, realTotal, received, points, payMethod, orderDetails);
+                new frmSuccces("Đơn được lập thành công", "").ShowDialog();
+                btnPreview_Click(sender, e);
+                clearControl();
+                btnCancel2_Click(sender, e);
+                dataGridViewOrderDetail.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                new frmError("Lỗi", ex.Message).ShowDialog();
+            }
         }
         private void btnPreview_Click(object sender, EventArgs e)
         {
@@ -547,7 +658,31 @@ namespace GUI
             frmReceipt receipt = new frmReceipt();
             receipt.PrintReceipt(dataGridViewOrderDetail, voucherId, voucherAmount.Text, textBoxRealSum.Text, textBoxPoint.Text);
         }
+        private void btnFindCustomer_Click(object sender, EventArgs e)
+        {
+            //input rửa
+            string phone = string.IsNullOrEmpty(textBoxPhone.Text) ? "" : textBoxPhone.Text;
 
+            try
+            {
+                Customer customer = orderBUS.GetCustomer(phone);
+                textBoxCusPoint.Text = customer.LoyaltyPoint.ToString();
+                textBoxCustomerName.Text = customer.CustomerName.ToString();
+                textBoxPoint.Enabled = true;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+        private void cancelCustomer_Click(object sender, EventArgs e)
+        {
+            textBoxCusPoint.Clear();
+            textBoxCustomerName.Clear();
+            textBoxPoint.Enabled = false;
+        }
 
         //
         // the end rồi, dưới đây toàn
@@ -580,7 +715,7 @@ namespace GUI
         {
             foreach (var item in comboBox.Items)
             {
-                if (item is Product obj && obj.ToString().Equals(text, StringComparison.OrdinalIgnoreCase))
+                if (item is ProductImport obj && obj.ToString().Equals(text, StringComparison.OrdinalIgnoreCase))
                 {
                     return true;
                 }
@@ -604,5 +739,7 @@ namespace GUI
             int rawTotal = orderBUS.GetRawTotal(cellValues.ToArray());
             return rawTotal;
         }
+
+        
     }
 }

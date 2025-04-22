@@ -17,7 +17,6 @@ namespace DTO{
         public int PurchasePrice { get; set; }
         public int RetailPrice { get; set; }
         public DateTime CreatedAt { get; set; }
-        //public decimal Remaining { get; set; }
         public string Unit { get; set; }
 
         public Product() { }
@@ -35,23 +34,6 @@ namespace DTO{
             Unit = unit;
         }
 
-        //public Product(string productId, string supplierId, string categoryName, string productName, int purchasePrice,
-        //                  int retailPrice, DateTime createdAt, decimal remaining, string unit)
-        //{
-        //    ProductId = productId;
-        //    SupplierId = supplierId;
-        //    CategoryName = categoryName;
-        //    ProductName = productName;
-        //    PurchasePrice = purchasePrice;
-        //    RetailPrice = retailPrice;
-        //    CreatedAt = createdAt;
-        //    Remaining = remaining;
-        //    Unit = unit;
-        //}
-        //public override string ToString()
-        //{
-        //    return this.ProductName + " | " + Remaining + " | " + ImportId;
-        //}
+       
     }
-    
 }

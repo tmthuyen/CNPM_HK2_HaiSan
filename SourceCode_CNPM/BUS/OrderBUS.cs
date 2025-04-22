@@ -13,11 +13,10 @@ namespace BUS
     {
         PromotionDAL promotionDAL = new PromotionDAL();
         OrderDAL orderDAL = new OrderDAL();
-        public List<Product> GetAll()
+        public List<ProductImport> GetProductByLoHang()
         {
-            return new ProductDAL().GetAll();
+            return orderDAL.GetProductByLoHang();
         }
-
 
         public List<Product> Sort(List<Product> products, decimal? minPrice, decimal? maxPrice, string categoryId, string name, string sortBy = "RetailPrice", bool ascending = true)
         {
@@ -49,39 +48,31 @@ namespace BUS
             return filtered;
         }
 
+        public bool CheckAvailable(ProductImport product, decimal quantity)
+        {
+            if (product == null)
+            {
+                return false;
+            }
+            return (product.Remaining >= quantity);
+        }
 
         //Mấy này dễ quá mà vẫn phải để trong đây ư ?!?
         public decimal AddAmounts(decimal a, decimal b) => a + b;
         public int GetRawTotal(int[] values) => values.Sum();
-        public int CalChange(int total, int given) => (total - given);
+        public int CalChange(int total, int given) => (given - total);
         public decimal CalPrice(decimal amount, decimal price) => amount * price;
         public int CalOverAll(int raw, int voucherDiscount, int point) => (raw - voucherDiscount - point);
-        public int GetPoint(string phone)
+        public bool validPoint(int pointHas, int pointUse) => (pointHas >= pointUse);
+        public bool validGiven(int given, int total) => (given>=total);
+
+        // liên quan đến customer
+        public Customer GetCustomer(string phone)
         {
-            string cusId = orderDAL.isCustomer(phone);
-            return cusId != "" ? orderDAL.GetPoint(cusId) : 0;
+            if (phone == "000000000000" || phone.Length == 0)
+                throw new Exception("Số điện thoại không hợp lệ");
+            return orderDAL.GetCustomer(phone)??throw new Exception("Chưa là khách hàng");
         }
-
-
-        //Tính discount dựa trên voucher và tổng thuần túy
-        //này là số lượng tiền giảm chứ ko phải số lượng sau giảm
-        //kan chigai suru na!
-        public int GetDiscount(int total, Voucher voucher)
-        {
-            //giảm vnd
-            if (voucher.IsCash)
-                return voucher.ApplyAmount;
-
-            //giảm %
-            decimal discount = Math.Min(total * (voucher.DiscountValue / 100.0m), voucher.MaxApply);
-            int finalDiscount = (int)discount;
-            return finalDiscount;
-        }
-
-
-
-
-
 
         public string GenerateCustomerId()
         {
@@ -107,6 +98,21 @@ namespace BUS
             return newId;
         }
 
+        //Tính discount dựa trên voucher và tổng thuần túy
+        //này là số lượng tiền giảm chứ ko phải số lượng sau giảm
+        //kan chigai suru na!
+        public int GetDiscount(int total, Voucher voucher)
+        {
+            //giảm vnd
+            if (voucher.IsCash)
+                return voucher.DiscountValue;
+
+            //giảm %
+            decimal discount = Math.Min(total * (voucher.DiscountValue / 100.0m), voucher.MaxApply);
+            int finalDiscount = (int)discount;
+            return finalDiscount;
+        }
+
         //tạo đơn
         public void CreateOrder(string customerName, string phone, string voucherId, string employeeId,
                     int total, int received, int points, string payMethod, List<OrderDetail> orderDetails)
@@ -115,8 +121,9 @@ namespace BUS
             //check if already customer, then fix the points
             //if not generate a new id
             //then add into custoemr table 
-            string customerId = orderDAL.isCustomer(phone) ?? string.Empty;
-            if (string.IsNullOrEmpty(customerId))
+            Customer customer= orderDAL.GetCustomer(phone);
+            string customerId;
+            if (customer==null)
             {
                 customerId = GenerateCustomerId();
                 try
@@ -131,14 +138,32 @@ namespace BUS
             }
             else
             {
+                customerId = customer.CustomerId;
+                //Update tên khách hàng nếu sai
+                if (customerName != customer.CustomerName)
+                {
+                    try
+                    {
+                        orderDAL.ChangeName(customer.CustomerId,customerName);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
                 try
                 {
-                    int pointHas = orderDAL.GetPoint(customerId);
-                    orderDAL.insertPoint(customerId, pointHas + pointGained - points);
+                    // dòng check điều kiện này ở đây chỉ vì 00000000000 là thằng ẩn danh
+                    // nên khỏi update nó
+                    if (phone != "000000000000")
+                    {
+                        int pointHas = orderDAL.GetPoint(customer.CustomerId);
+                        orderDAL.InsertPoint(customer.CustomerId, pointHas + pointGained - points);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    throw new Exception(ex.Message);
                 }
             }
             // we gotta find and gen the latest id first
@@ -168,6 +193,22 @@ namespace BUS
             {
                 throw new Exception("Add không thành công vì lý do nào đó.");
             }
+            // update import detail
+            foreach (OrderDetail orderDetail in orderDetails)
+            {
+                string productId = orderDetail.ProductId ;
+                string importId = orderDetail.ImportId ;
+                decimal remaining = orderDetail.Amount;
+                try
+                {
+                    orderDAL.UpdateImportDetail(productId, importId, remaining);
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+
         }
 
 

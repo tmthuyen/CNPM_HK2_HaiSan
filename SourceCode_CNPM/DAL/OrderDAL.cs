@@ -167,14 +167,65 @@ namespace DAL
             return orders;
         }
 
-        // xem coi có phải khách cũ ko
-        public string isCustomer(string phone)
+
+        //Kiếm product theo lô 
+        public List<ProductImport> GetProductByLoHang()
         {
-            string sql = "SELECT CustomerId FROM Customer WHERE phone = @phone";
+            string query = @"
+                        SELECT 
+                            p.ProductId,
+                            p.ProductName,
+                            i.ImportId,
+                            i.Remaining,
+                            p.Unit,
+                            p.RetailPrice,
+                            c.CategoryName,
+                            s.SupplierName
+                        FROM Products p
+                        JOIN ImportDetail i ON p.ProductId = i.ProductId
+                        JOIN Category c ON p.CategoryId = c.CategoryId
+                        JOIN Supplier s ON p.SupplierId = s.SupplierId
+                        WHERE i.Remaining > 0
+                        ";
+            DataTable dt = Connection.ExecuteQuery(query);
+            List<ProductImport> products = new List<ProductImport>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                products.Add(new ProductImport
+                {
+                    ProductId = row["ProductId"].ToString(),
+                    SupplierId = row["SupplierName"].ToString(),
+                    ProductName = row["ProductName"].ToString(),
+                    CategoryName = row["CategoryName"].ToString(),
+                    RetailPrice = Convert.ToInt32(row["RetailPrice"]),
+                    Remaining = Convert.ToDecimal(row["Remaining"]),
+                    Unit = row["Unit"].ToString(),
+                    ImportId = row.Table.Columns.Contains("ImportId") ? row["ImportId"].ToString() : null // optional if you add ImportId
+                });
+            }
+
+            return products;
+        }
+
+        // tìm khách theo phone 
+        public Customer GetCustomer(string phone)
+        {
+            string sql = "SELECT * FROM Customer WHERE phone = @phone";
             SqlParameter param = new SqlParameter("@phone", phone);
 
             DataTable dt = Connection.ExecuteQuery(sql, param);
-            return dt.Rows.Count > 0 ? dt.Rows[0]["CustomerId"].ToString() : "";
+            if (dt.Rows.Count == 0)
+            {
+                return null;
+            }
+            DataRow row = dt.Rows[0];
+            return new Customer
+            {
+                CustomerId = row["CustomerId"]?.ToString(),
+                CustomerName = row["CustomerName"]?.ToString(),
+                LoyaltyPoint = row["LoyaltyPoint"] != DBNull.Value ? Convert.ToInt32(row["LoyaltyPoint"]) : 0
+            };
         }
 
         //Tạo khách mới
@@ -200,7 +251,7 @@ namespace DAL
         }
 
         //Update điểm cho khách hàng cũ
-        public void insertPoint(string customerId, int point)
+        public void InsertPoint(string customerId, int point)
         {
             string sql = "UPDATE Customer SET LoyaltyPoint = @point WHERE CustomerId= @customerId";
 
@@ -219,6 +270,46 @@ namespace DAL
             }
         }
 
+        //cập nhật số lượng sản phẩm cho lô hàng
+        public void UpdateImportDetail(string productId, string importId, decimal remaining)
+        {
+            string sql = "UPDATE ImportDetail SET Remaining = @Remaining WHERE ProductId= @ProductId AND ImportId = @ImportId";
+
+            try
+            {
+                SqlParameter[] param =
+                        {
+                            new SqlParameter("@Remaining", remaining),
+                            new SqlParameter("@ProductId", productId),
+                            new SqlParameter("@ImportId", importId),
+                        };
+                Connection.ExecuteNonQuery(sql, param);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating import detail for ProductId={productId}, ImportId={importId}: {ex.Message}");
+            }
+        }
+
+        //Update tên khách hàng nếu sai
+        public void ChangeName(string cusId,string name)
+        {
+            string sql = "UPDATE Customer SET CustomerName = @Name WHERE CustomerId= @customerId";
+
+            try
+            {
+                SqlParameter[] param =
+                        {
+                            new SqlParameter("@customerId", cusId),
+                            new SqlParameter("@point", name),
+                        };
+                Connection.ExecuteNonQuery(sql, param);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating customer name: {ex.Message}");
+            }
+        }
         public int GetPoint(string customerId)
         {
             string sql = "SELECT LoyaltyPoint FROM Customer WHERE CustomerId = @customerId";
@@ -245,7 +336,7 @@ namespace DAL
         //lấy hết id cũa oder để có id mới
         public string[] GetAllOrderId()
         {
-            string sql = "SELECT OrderId FROM Order";
+            string sql = "SELECT OrderId FROM Orders";
 
             DataTable dt = Connection.ExecuteQuery(sql);
             string[] ids = new string[dt.Rows.Count];

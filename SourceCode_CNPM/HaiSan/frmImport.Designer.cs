@@ -198,7 +198,7 @@
             dtpkExprire.Format = DateTimePickerFormat.Custom;
             dtpkExprire.Location = new Point(450, 83);
             dtpkExprire.MaxDate = new DateTime(2030, 12, 31, 0, 0, 0, 0);
-            dtpkExprire.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
+            dtpkExprire.MinDate = new DateTime(2025, 4, 16, 0, 0, 0, 0);
             dtpkExprire.Name = "dtpkExprire";
             dtpkExprire.Size = new Size(129, 34);
             dtpkExprire.TabIndex = 47;

@@ -30,6 +30,7 @@ namespace GUI
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tabControl1 = new TabControl();
             tabPageCreateOrder = new TabPage();
             dataGridViewOrderDetail = new DataGridView();
@@ -39,9 +40,21 @@ namespace GUI
             Unit = new DataGridViewTextBoxColumn();
             Total = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
-            textBoxChange = new TextBox();
-            label21 = new Label();
+            cancelCustomer = new Button();
+            label23 = new Label();
+            comboBoxPayment = new ComboBox();
+            btnFindCustomer = new Button();
+            textBoxCusPoint = new TextBox();
+            label16 = new Label();
+            textBoxPoint = new TextBox();
+            voucherAmount = new TextBox();
+            label17 = new Label();
+            label22 = new Label();
             textBoxGiven = new TextBox();
+            label15 = new Label();
+            label21 = new Label();
+            textBoxRawSum = new TextBox();
+            textBoxChange = new TextBox();
             label20 = new Label();
             label8 = new Label();
             button2 = new Button();
@@ -50,14 +63,8 @@ namespace GUI
             label19 = new Label();
             textBoxPhone = new TextBox();
             label18 = new Label();
-            voucherAmount = new TextBox();
-            label17 = new Label();
-            textBoxPoint = new TextBox();
-            btnSave = new Button();
-            label16 = new Label();
+            btnCreate = new Button();
             comboBoxVoucher = new ComboBox();
-            textBoxRawSum = new TextBox();
-            label15 = new Label();
             textBoxRealSum = new TextBox();
             label14 = new Label();
             panel1 = new Panel();
@@ -95,6 +102,7 @@ namespace GUI
             txtPhone = new TextBox();
             label6 = new Label();
             Discount = new DataGridViewTextBoxColumn();
+            toolTip1 = new ToolTip(components);
             tabControl1.SuspendLayout();
             tabPageCreateOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrderDetail).BeginInit();
@@ -145,7 +153,7 @@ namespace GUI
             dataGridViewOrderDetail.Location = new Point(0, 64);
             dataGridViewOrderDetail.Name = "dataGridViewOrderDetail";
             dataGridViewOrderDetail.ReadOnly = true;
-            dataGridViewOrderDetail.Size = new Size(823, 150);
+            dataGridViewOrderDetail.Size = new Size(823, 171);
             dataGridViewOrderDetail.TabIndex = 18;
             dataGridViewOrderDetail.RowEnter += dataGridViewOrderDetail_RowEnter;
             // 
@@ -181,9 +189,21 @@ namespace GUI
             // 
             // panel2
             // 
-            panel2.Controls.Add(textBoxChange);
-            panel2.Controls.Add(label21);
+            panel2.Controls.Add(cancelCustomer);
+            panel2.Controls.Add(label23);
+            panel2.Controls.Add(comboBoxPayment);
+            panel2.Controls.Add(btnFindCustomer);
+            panel2.Controls.Add(textBoxCusPoint);
+            panel2.Controls.Add(label16);
+            panel2.Controls.Add(textBoxPoint);
+            panel2.Controls.Add(voucherAmount);
+            panel2.Controls.Add(label17);
+            panel2.Controls.Add(label22);
             panel2.Controls.Add(textBoxGiven);
+            panel2.Controls.Add(label15);
+            panel2.Controls.Add(label21);
+            panel2.Controls.Add(textBoxRawSum);
+            panel2.Controls.Add(textBoxChange);
             panel2.Controls.Add(label20);
             panel2.Controls.Add(label8);
             panel2.Controls.Add(button2);
@@ -192,51 +212,156 @@ namespace GUI
             panel2.Controls.Add(label19);
             panel2.Controls.Add(textBoxPhone);
             panel2.Controls.Add(label18);
-            panel2.Controls.Add(voucherAmount);
-            panel2.Controls.Add(label17);
-            panel2.Controls.Add(textBoxPoint);
-            panel2.Controls.Add(btnSave);
-            panel2.Controls.Add(label16);
+            panel2.Controls.Add(btnCreate);
             panel2.Controls.Add(comboBoxVoucher);
-            panel2.Controls.Add(textBoxRawSum);
-            panel2.Controls.Add(label15);
             panel2.Controls.Add(textBoxRealSum);
             panel2.Controls.Add(label14);
             panel2.Location = new Point(3, 235);
             panel2.Name = "panel2";
-            panel2.Size = new Size(820, 96);
+            panel2.Size = new Size(820, 92);
             panel2.TabIndex = 17;
             panel2.Paint += panel2_Paint;
             // 
-            // textBoxChange
+            // cancelCustomer
             // 
-            textBoxChange.Location = new Point(700, 36);
-            textBoxChange.Name = "textBoxChange";
-            textBoxChange.Size = new Size(114, 23);
-            textBoxChange.TabIndex = 25;
+            cancelCustomer.Location = new Point(363, 64);
+            cancelCustomer.Name = "cancelCustomer";
+            cancelCustomer.Size = new Size(98, 24);
+            cancelCustomer.TabIndex = 30;
+            cancelCustomer.Text = "Bỏ chọn khách";
+            cancelCustomer.UseVisualStyleBackColor = true;
+            cancelCustomer.Click += cancelCustomer_Click;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(7, 69);
+            label23.Name = "label23";
+            label23.Size = new Size(51, 15);
+            label23.TabIndex = 29;
+            label23.Text = "Cách trả";
+            // 
+            // comboBoxPayment
+            // 
+            comboBoxPayment.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxPayment.FormattingEnabled = true;
+            comboBoxPayment.Items.AddRange(new object[] { "Tiền mặt", "Chuyển khoản" });
+            comboBoxPayment.Location = new Point(73, 65);
+            comboBoxPayment.Name = "comboBoxPayment";
+            comboBoxPayment.Size = new Size(121, 23);
+            comboBoxPayment.TabIndex = 11;
+            // 
+            // btnFindCustomer
+            // 
+            btnFindCustomer.Location = new Point(292, 65);
+            btnFindCustomer.Name = "btnFindCustomer";
+            btnFindCustomer.Size = new Size(55, 23);
+            btnFindCustomer.TabIndex = 13;
+            btnFindCustomer.Text = "Tra SĐT";
+            btnFindCustomer.UseVisualStyleBackColor = true;
+            btnFindCustomer.Click += btnFindCustomer_Click;
+            // 
+            // textBoxCusPoint
+            // 
+            textBoxCusPoint.Enabled = false;
+            textBoxCusPoint.Location = new Point(573, 35);
+            textBoxCusPoint.Name = "textBoxCusPoint";
+            textBoxCusPoint.Size = new Size(54, 23);
+            textBoxCusPoint.TabIndex = 27;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(532, 9);
+            label16.Name = "label16";
+            label16.Size = new Size(35, 15);
+            label16.TabIndex = 11;
+            label16.Text = "Điểm";
+            // 
+            // textBoxPoint
+            // 
+            textBoxPoint.Enabled = false;
+            textBoxPoint.Location = new Point(573, 6);
+            textBoxPoint.Name = "textBoxPoint";
+            textBoxPoint.Size = new Size(54, 23);
+            textBoxPoint.TabIndex = 7;
+            textBoxPoint.TextChanged += textBoxPoint_TextChanged;
+            textBoxPoint.KeyPress += textBoxPoint_KeyPress;
+            // 
+            // voucherAmount
+            // 
+            voucherAmount.Enabled = false;
+            voucherAmount.Location = new Point(426, 6);
+            voucherAmount.Name = "voucherAmount";
+            voucherAmount.Size = new Size(92, 23);
+            voucherAmount.TabIndex = 14;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(340, 9);
+            label17.Name = "label17";
+            label17.Size = new Size(80, 15);
+            label17.TabIndex = 13;
+            label17.Text = "Voucher giảm";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(480, 39);
+            label22.Name = "label22";
+            label22.Size = new Size(87, 15);
+            label22.TabIndex = 26;
+            label22.Text = "Điểm Khách có";
+            // 
+            // textBoxGiven
+            // 
+            textBoxGiven.Location = new Point(700, 36);
+            textBoxGiven.Name = "textBoxGiven";
+            textBoxGiven.Size = new Size(114, 23);
+            textBoxGiven.TabIndex = 10;
+            textBoxGiven.TextChanged += textBoxGiven_TextChanged;
+            textBoxGiven.KeyPress += processNumber_KeyPress;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(196, 9);
+            label15.Name = "label15";
+            label15.Size = new Size(34, 15);
+            label15.TabIndex = 8;
+            label15.Text = "Tổng";
             // 
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(647, 39);
+            label21.Location = new Point(647, 69);
             label21.Name = "label21";
             label21.Size = new Size(45, 15);
             label21.TabIndex = 24;
             label21.Text = "Thối lại";
             // 
-            // textBoxGiven
+            // textBoxRawSum
             // 
-            textBoxGiven.Location = new Point(525, 36);
-            textBoxGiven.Name = "textBoxGiven";
-            textBoxGiven.Size = new Size(116, 23);
-            textBoxGiven.TabIndex = 23;
-            textBoxGiven.TextChanged += processCash;
-            textBoxGiven.KeyPress += textBoxPoint_KeyPress;
+            textBoxRawSum.Enabled = false;
+            textBoxRawSum.Location = new Point(236, 7);
+            textBoxRawSum.Name = "textBoxRawSum";
+            textBoxRawSum.Size = new Size(100, 23);
+            textBoxRawSum.TabIndex = 9;
+            // 
+            // textBoxChange
+            // 
+            textBoxChange.Enabled = false;
+            textBoxChange.Location = new Point(700, 65);
+            textBoxChange.Name = "textBoxChange";
+            textBoxChange.Size = new Size(114, 23);
+            textBoxChange.TabIndex = 23;
+            textBoxChange.KeyPress += textBoxPoint_KeyPress;
             // 
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(456, 39);
+            label20.Location = new Point(631, 39);
             label20.Name = "label20";
             label20.Size = new Size(63, 15);
             label20.TabIndex = 22;
@@ -245,7 +370,7 @@ namespace GUI
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(7, 9);
+            label8.Location = new Point(8, 9);
             label8.Name = "label8";
             label8.Size = new Size(50, 15);
             label8.TabIndex = 21;
@@ -253,20 +378,20 @@ namespace GUI
             // 
             // button2
             // 
-            button2.Location = new Point(115, 65);
+            button2.Location = new Point(472, 65);
             button2.Name = "button2";
-            button2.Size = new Size(92, 23);
-            button2.TabIndex = 20;
+            button2.Size = new Size(48, 23);
+            button2.TabIndex = 14;
             button2.Text = "Hủy";
             button2.UseVisualStyleBackColor = true;
             button2.Click += btnCancel2_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(253, 65);
+            button1.Location = new Point(521, 65);
             button1.Name = "button1";
-            button1.Size = new Size(167, 23);
-            button1.TabIndex = 19;
+            button1.Size = new Size(120, 23);
+            button1.TabIndex = 15;
             button1.Text = "Xem trước hóa đơn";
             button1.UseVisualStyleBackColor = true;
             button1.Click += btnPreview_Click;
@@ -275,8 +400,8 @@ namespace GUI
             // 
             textBoxCustomerName.Location = new Point(73, 36);
             textBoxCustomerName.Name = "textBoxCustomerName";
-            textBoxCustomerName.Size = new Size(199, 23);
-            textBoxCustomerName.TabIndex = 18;
+            textBoxCustomerName.Size = new Size(231, 23);
+            textBoxCustomerName.TabIndex = 8;
             // 
             // label19
             // 
@@ -289,91 +414,39 @@ namespace GUI
             // 
             // textBoxPhone
             // 
-            textBoxPhone.Location = new Point(347, 36);
+            textBoxPhone.Location = new Point(389, 36);
             textBoxPhone.Name = "textBoxPhone";
-            textBoxPhone.Size = new Size(100, 23);
-            textBoxPhone.TabIndex = 16;
+            textBoxPhone.Size = new Size(81, 23);
+            textBoxPhone.TabIndex = 9;
             textBoxPhone.KeyPress += textBoxPoint_KeyPress;
             // 
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(278, 39);
+            label18.Location = new Point(320, 39);
             label18.Name = "label18";
             label18.Size = new Size(63, 15);
             label18.TabIndex = 15;
             label18.Text = "SĐT Khách";
             // 
-            // voucherAmount
+            // btnCreate
             // 
-            voucherAmount.Enabled = false;
-            voucherAmount.Location = new Point(549, 6);
-            voucherAmount.Name = "voucherAmount";
-            voucherAmount.Size = new Size(92, 23);
-            voucherAmount.TabIndex = 14;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Location = new Point(449, 9);
-            label17.Name = "label17";
-            label17.Size = new Size(80, 15);
-            label17.TabIndex = 13;
-            label17.Text = "Voucher giảm";
-            // 
-            // textBoxPoint
-            // 
-            textBoxPoint.Location = new Point(238, 6);
-            textBoxPoint.Name = "textBoxPoint";
-            textBoxPoint.Size = new Size(56, 23);
-            textBoxPoint.TabIndex = 12;
-            textBoxPoint.TextChanged += textBoxPoint_TextChanged;
-            textBoxPoint.KeyPress += textBoxPoint_KeyPress;
-            // 
-            // btnSave
-            // 
-            btnSave.Location = new Point(7, 65);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(75, 23);
-            btnSave.TabIndex = 6;
-            btnSave.Text = "Tạo đơn";
-            btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += btnCreate_Click;
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Location = new Point(197, 9);
-            label16.Name = "label16";
-            label16.Size = new Size(35, 15);
-            label16.TabIndex = 11;
-            label16.Text = "Điểm";
+            btnCreate.Location = new Point(200, 65);
+            btnCreate.Name = "btnCreate";
+            btnCreate.Size = new Size(75, 23);
+            btnCreate.TabIndex = 12;
+            btnCreate.Text = "Tạo đơn";
+            btnCreate.UseVisualStyleBackColor = true;
+            btnCreate.Click += btnCreate_Click;
             // 
             // comboBoxVoucher
             // 
             comboBoxVoucher.FormattingEnabled = true;
-            comboBoxVoucher.Location = new Point(73, 6);
+            comboBoxVoucher.Location = new Point(74, 6);
             comboBoxVoucher.Name = "comboBoxVoucher";
             comboBoxVoucher.Size = new Size(121, 23);
-            comboBoxVoucher.TabIndex = 10;
+            comboBoxVoucher.TabIndex = 6;
             comboBoxVoucher.SelectedIndexChanged += comboBoxVoucher_SelectedIndexChanged;
-            // 
-            // textBoxRawSum
-            // 
-            textBoxRawSum.Enabled = false;
-            textBoxRawSum.Location = new Point(340, 6);
-            textBoxRawSum.Name = "textBoxRawSum";
-            textBoxRawSum.Size = new Size(100, 23);
-            textBoxRawSum.TabIndex = 9;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(300, 9);
-            label15.Name = "label15";
-            label15.Size = new Size(34, 15);
-            label15.TabIndex = 8;
-            label15.Text = "Tổng";
             // 
             // textBoxRealSum
             // 
@@ -420,7 +493,7 @@ namespace GUI
             textBoxPrice.Location = new Point(467, 3);
             textBoxPrice.Name = "textBoxPrice";
             textBoxPrice.Size = new Size(87, 23);
-            textBoxPrice.TabIndex = 19;
+            textBoxPrice.TabIndex = 2;
             // 
             // label13
             // 
@@ -437,7 +510,7 @@ namespace GUI
             textBoxRemaining.Location = new Point(750, 3);
             textBoxRemaining.Name = "textBoxRemaining";
             textBoxRemaining.Size = new Size(55, 23);
-            textBoxRemaining.TabIndex = 17;
+            textBoxRemaining.TabIndex = 4;
             // 
             // label12
             // 
@@ -473,7 +546,7 @@ namespace GUI
             editBtn.Location = new Point(320, 33);
             editBtn.Name = "editBtn";
             editBtn.Size = new Size(75, 23);
-            editBtn.TabIndex = 20;
+            editBtn.TabIndex = 4;
             editBtn.Text = "Sửa đổi";
             editBtn.UseVisualStyleBackColor = true;
             editBtn.Click += editBtn_Click;
@@ -524,7 +597,7 @@ namespace GUI
             textBoxUnit.Location = new Point(611, 3);
             textBoxUnit.Name = "textBoxUnit";
             textBoxUnit.Size = new Size(77, 23);
-            textBoxUnit.TabIndex = 11;
+            textBoxUnit.TabIndex = 3;
             // 
             // soLuongTextBox
             // 
@@ -548,9 +621,9 @@ namespace GUI
             // dataGridViewVouchers
             // 
             dataGridViewVouchers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewVouchers.Location = new Point(0, 337);
+            dataGridViewVouchers.Location = new Point(0, 329);
             dataGridViewVouchers.Name = "dataGridViewVouchers";
-            dataGridViewVouchers.Size = new Size(823, 90);
+            dataGridViewVouchers.Size = new Size(823, 101);
             dataGridViewVouchers.TabIndex = 9;
             // 
             // tabPageSeeOrder
@@ -850,7 +923,7 @@ namespace GUI
         private DataGridViewTextBoxColumn Discount;
         private DataGridViewTextBoxColumn Total;
         private DataGridViewTextBoxColumn Price;
-        private Button btnSave;
+        private Button btnCreate;
         private ComboBox comboBoxVoucher;
         private TextBox textBoxRawSum;
         private Label label15;
@@ -867,9 +940,17 @@ namespace GUI
         private TextBox textBoxPhone;
         private Label label18;
         private Label label8;
-        private TextBox textBoxChange;
-        private Label label21;
         private TextBox textBoxGiven;
+        private Label label21;
+        private TextBox textBoxChange;
         private Label label20;
+        private TextBox textBox1;
+        private Label label22;
+        private Button btnFindCustomer;
+        private TextBox textBoxCusPoint;
+        private Label label23;
+        private ComboBox comboBoxPayment;
+        private Button cancelCustomer;
+        private ToolTip toolTip1;
     }
 }

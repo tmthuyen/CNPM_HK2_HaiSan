@@ -1,4 +1,4 @@
 windows
-LONEVE\SQLEXPRESS
+loneve\SQLEXPRESS
 haisan
 

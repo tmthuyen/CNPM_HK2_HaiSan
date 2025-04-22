@@ -38,7 +38,7 @@ namespace BUS
             foreach (DataRow row in dataTable.Rows)
             {
                 string vid = row["VoucherId"].ToString() ?? "0";
-                if (vid.Length == 10 && int.TryParse(vid.Substring(7, 3), out int num))
+                if (vid.Length == 10 && int.TryParse(vid.Substring(8, 2), out int num))
                 {
                     if (num > maxNumber) maxNumber = num;
                 }
@@ -46,8 +46,8 @@ namespace BUS
 
             // Increment and format with leading zeros
             int nextNumber = maxNumber + 1;
-            string numberPart = nextNumber.ToString("D3"); // Always 3 digits
-            string nextId = $"{datePart}{typeChar}{nextNumber:D3}"; // e.g., 240412C002
+            string numberPart = nextNumber.ToString("D2"); //2 ký tự
+            string nextId = $"{prefix}{nextNumber:D2}"; //  V240412C02
 
             return nextId;
         }

@@ -270,7 +270,7 @@
             // 
             dataGridViewVoucher.AllowUserToAddRows = false;
             dataGridViewVoucher.AllowUserToDeleteRows = false;
-            dataGridViewVoucher.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
+            dataGridViewVoucher.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridViewVoucher.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewVoucher.Location = new Point(12, 182);
             dataGridViewVoucher.Name = "dataGridViewVoucher";
