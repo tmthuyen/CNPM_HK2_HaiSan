@@ -202,6 +202,7 @@ namespace GUI
             btnReport.TabIndex = 5;
             btnReport.Text = "Báo cáo";
             btnReport.UseVisualStyleBackColor = false;
+            btnReport.Click += btnReport_Click;
             // 
             // btnCustomer
             // 

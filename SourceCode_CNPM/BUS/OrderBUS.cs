@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -243,6 +244,13 @@ namespace BUS
             string newId = begin + newNumber.ToString("D4");
 
             return newId;
+        }
+    
+            
+        // báo cáo thông kê
+        public DataTable GetNumOrder_Revenue_NumCus(DateTime fromDate, DateTime toDate)
+        {
+            return orderDAL.GetNumOrder_Revenue_NumCus(fromDate, toDate);
         }
     }
 

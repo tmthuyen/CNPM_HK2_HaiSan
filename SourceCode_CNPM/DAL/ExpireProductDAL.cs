@@ -164,5 +164,33 @@ namespace DAL
 
             return Connection.ExecuteNonQuery(query, parameters) > 0;
         }
+
+
+
+        // báo cáo thong kê
+        public int GetTotalLoss(DateTime fromDate, DateTime toDate)
+        {
+            //DataTable dt = new DataTable();
+            //dt.Columns.Add("TotalLoss", typeof(decimal)); // Đặt đúng kiểu
+            toDate  = toDate.AddDays(1);
+
+            string sql = @"SELECT ISNULL(SUM(TotalLoss), 0) 
+                FROM ExpireProduct
+                WHERE ExpiredDate >= @fromDate AND ExpiredDate < @toDate";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@fromDate", fromDate.Date),
+                new SqlParameter("@toDate", toDate.Date)
+            };
+
+            int totalLoss = (int)Connection.ExecuteScalar(sql, parameters); // Dùng decimal luôn
+
+            return totalLoss;
+            //dt.Rows.Add(totalLoss);
+
+            //return dt;
+        }
+
     }
 }

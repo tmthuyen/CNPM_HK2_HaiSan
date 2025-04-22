@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,5 +31,11 @@ namespace BUS
         {
             return ExpireProductDAL.UpdateInventory();
         }
+
+        public int GetTotalLoss(DateTime fromDate, DateTime toDate)
+        {
+            return ExpireProductDAL.GetTotalLoss(fromDate, toDate);
+        }
+
     }
 }

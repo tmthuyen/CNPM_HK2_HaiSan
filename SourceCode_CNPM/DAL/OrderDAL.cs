@@ -347,5 +347,49 @@ namespace DAL
 
             return ids;
         }
+    
+            
+        // báo caso thông kê
+        public DataTable GetNumOrder_Revenue_NumCus(DateTime fromDate, DateTime toDate)
+        {
+            toDate = toDate.AddDays(1);
+            DataTable dt = new DataTable();
+            dt.Columns.Add("NumOrders", typeof(int));
+            dt.Columns.Add("RevenueBefore", typeof(int));
+            dt.Columns.Add("NumCustomers", typeof(int));
+
+            string sql = "SELECT COUNT(*) FROM Orders WHERE CreatedAt >= @fromDate AND CreatedAt < @toDate";
+
+
+            int numOrder = (int)Connection.ExecuteScalar(sql, new SqlParameter[]
+                            {
+                                new SqlParameter("@fromDate", fromDate),
+                                new SqlParameter("@toDate", toDate)
+                            });
+            sql = "SELECT COUNT(DISTINCT CustomerId) FROM Orders WHERE CreatedAt >= @fromDate AND CreatedAt < @toDate";
+
+
+            int numCus = (int)Connection.ExecuteScalar(sql, new SqlParameter[]
+                            {
+                                new SqlParameter("@fromDate", fromDate),
+                                new SqlParameter("@toDate", toDate)
+                            });
+
+
+            sql = "SELECT ISNULL(SUM(TotalAmount), 0) FROM Orders WHERE CreatedAt >= @fromDate AND CreatedAt < @toDate";
+
+
+            int revenueBefore = (int)Connection.ExecuteScalar(sql, new SqlParameter[]
+                            {
+                                new SqlParameter("@fromDate", fromDate),
+                                new SqlParameter("@toDate", toDate)
+                            });
+
+            dt.Rows.Add(numOrder, revenueBefore, numCus);
+
+            return dt;
+
+
+        }
     }
 }

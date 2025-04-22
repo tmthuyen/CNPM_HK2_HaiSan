@@ -43,6 +43,9 @@
     <Compile Update="frmReceipt.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmVoucher.cs">
       <SubType>Form</SubType>
     </Compile>

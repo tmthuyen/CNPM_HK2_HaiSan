@@ -27,7 +27,7 @@ namespace GUI
             expBUS = new ExpireProductBUS();
             InitializeComponent();
             customControl();
-           // PlayBackgroundMusic();
+            // PlayBackgroundMusic();
 
         }
 
@@ -260,6 +260,18 @@ namespace GUI
 
             };
             showForm(f, btnEmp);
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            frmReport f = new frmReport()
+            {
+                Dock = DockStyle.Fill,
+                TopLevel = false,
+                TopMost = true
+
+            };
+            showForm(f, btnReport);
         }
     }
 }
