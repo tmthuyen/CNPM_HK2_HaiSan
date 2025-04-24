@@ -18,6 +18,10 @@ namespace GUI
         private ProductBUS proBUS;
         private CategoryBUS cateBUS;
         private SupplierBUS supBUS;
+
+
+        // kiem tra la admin hay khong
+        private bool IsAdmin = Session.Role.Equals("admin");
         public frmProduct()
         {
             proBUS = new ProductBUS();
@@ -51,6 +55,22 @@ namespace GUI
             // enable control
             //btnEditPro.Enabled = false;
             btnDeletePro.Enabled = false;
+
+            if (!IsAdmin)
+            {
+                btnAdd.Enabled = false;
+                btnAddPro.Enabled = false;
+                btnAddSup.Enabled = false;
+                btnEditPro.Enabled = false;
+                btnInventory.Enabled = false;
+                btnDeletePro.Enabled = false;
+                btnSaveCate.Enabled = false;
+                btnSaveSup.Enabled = false;
+                btnCancelCate.Enabled = false;
+                btnCancelSup.Enabled = false; 
+                btnAdd.Enabled = false;
+                btnAdd.Enabled = false;
+            }
         }
 
 
@@ -61,7 +81,7 @@ namespace GUI
             dgvProduct.DataSource = list;
 
             // an cac cot khong can xem
-            if (Session.Role.Equals("sale"))
+            if (!IsAdmin)
             {
                 dgvProduct.Columns["PurchasePrice"].Visible = false;
             }

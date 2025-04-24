@@ -16,9 +16,11 @@ namespace GUI
     public partial class frmCustomer : Form
     {
         private CustomerBUS cusBUS;
+        private OrderBUS orderBUS;
         public frmCustomer()
         {
             cusBUS = new CustomerBUS();
+            orderBUS = new OrderBUS();
             InitializeComponent();
             customControl();
         }
@@ -104,8 +106,7 @@ namespace GUI
 
         // them button xem chi tiet
         private void addDataButton()
-        {
-
+        { 
             // tao cot button vao cuoi cac dong
             DataGridViewButtonColumn viewDetailsButtonColumn = new DataGridViewButtonColumn();
             viewDetailsButtonColumn.Name = "btnViewDetails";
@@ -114,9 +115,7 @@ namespace GUI
             viewDetailsButtonColumn.UseColumnTextForButtonValue = true;
 
             // them cot vao View
-            dgvCusList.Columns.Add(viewDetailsButtonColumn);
-
-
+            dgvCusList.Columns.Add(viewDetailsButtonColumn); 
         }
 
 
@@ -124,13 +123,7 @@ namespace GUI
         private void txtCusId_TextChanged(object sender, EventArgs e)
         {
             enableControlBtn();
-            if (grbCusHistory.Enabled)
-            {
-                // cbbOrderCusList.Items.Clear();
-                cbbOrderCusList.DataSource = findOrderByCusId(txtCusId.Text);
-                cbbOrderCusList.ValueMember = "OrderId";
-                cbbOrderCusList.DisplayMember = "OrderId";
-            }
+            
             btnSearch_Click(sender, e);
         }
 
@@ -144,6 +137,16 @@ namespace GUI
         private void btnSearch_Click(object sender, EventArgs e)
         {
             dgvCusList.DataSource = cusBUS.Search(txtCusId.Text, txtCusPhone.Text, txtCusName.Text);
+
+            if (grbCusHistory.Enabled)
+            {
+                // cbbOrderCusList.Items.Clear();
+                cbbOrderCusList.DataSource = orderBUS.GetOrderByCus(txtCusId.Text.Trim(),
+                    txtCusPhone.Text.Trim());
+
+                cbbOrderCusList.ValueMember = "OrderId";
+                cbbOrderCusList.DisplayMember = "OrderId";
+            }
         }
 
         private void label5_Click(object sender, EventArgs e)

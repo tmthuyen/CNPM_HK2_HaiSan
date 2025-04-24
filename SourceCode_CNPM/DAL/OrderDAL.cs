@@ -6,6 +6,7 @@ using DTO;
 using System.Collections;
 using System.Linq.Expressions;
 using System.Drawing;
+using Microsoft.Identity.Client;
 
 namespace DAL
 {
@@ -347,49 +348,101 @@ namespace DAL
 
             return ids;
         }
-    
+
+
+        // lay doanh sash đơn hang cua customer
+        public List<Order> GetOrderByCus(string cusId, string cusPhone)
+        {
+            List<Order> orders = new List<Order>();
+            string query = @"SELECT o.* FROM Orders o
+                JOIN Customer c ON c.CustomerId = o.CustomerId
+                WHERE o.CustomerId = @cusId AND c.Phone = @cusPhone";
             
+            DataTable dt = Connection.ExecuteQuery(query, new SqlParameter[]
+            {
+                new SqlParameter("@cusId", cusId),
+                new SqlParameter("@cusPhone", cusPhone)
+            });
+
+            foreach (DataRow row in dt.Rows)
+            {
+                List<OrderDetail> orderDetails = orderDetailDAL.GetByOrderId(row["OrderId"].ToString());
+
+                orders.Add(new Order(
+                    row["OrderId"].ToString(),
+                    Convert.ToDateTime(row["CreatedAt"]),
+                    Convert.ToDecimal(row["TotalAmount"]),
+                    Convert.ToDecimal(row["ReceivedAmount"]),
+                    Convert.ToInt32(row["UsedPoint"]),
+                    row["PaymentMethod"].ToString(),
+                    row["CustomerId"].ToString(),
+                    row["EmployeeId"].ToString(),
+                    row["VoucherId"].ToString(),
+                    orderDetails
+                ));
+            }
+
+            return orders;
+        }
+
+
         // báo caso thông kê
         public DataTable GetNumOrder_Revenue_NumCus(DateTime fromDate, DateTime toDate)
         {
-            toDate = toDate.AddDays(1);
-            DataTable dt = new DataTable();
-            dt.Columns.Add("NumOrders", typeof(int));
-            dt.Columns.Add("RevenueBefore", typeof(int));
-            dt.Columns.Add("NumCustomers", typeof(int));
-
-            string sql = "SELECT COUNT(*) FROM Orders WHERE CreatedAt >= @fromDate AND CreatedAt < @toDate";
-
-
-            int numOrder = (int)Connection.ExecuteScalar(sql, new SqlParameter[]
-                            {
-                                new SqlParameter("@fromDate", fromDate),
-                                new SqlParameter("@toDate", toDate)
-                            });
-            sql = "SELECT COUNT(DISTINCT CustomerId) FROM Orders WHERE CreatedAt >= @fromDate AND CreatedAt < @toDate";
-
-
-            int numCus = (int)Connection.ExecuteScalar(sql, new SqlParameter[]
+            string sql = @"SELECT 
+                    COUNT(o.OrderId) AS NumOrders,
+                    COUNT(DISTINCT o.CustomerId) AS NumCustomers,
+                    ISNULL(SUM(od.RetailPrice * od.Amount), 0) AS RevenueBefore,
+                    ISNULL(SUM(o.TotalAmount), 0)  AS RevenueAfter
+                    FROM Orders AS o
+                    JOIN OrderDetail AS od ON od.OrderId = o.OrderId
+                    WHERE CreatedAt >= @fromDate AND CreatedAt < @toDate";
+             
+            DataTable dt =  Connection.ExecuteQuery(sql, new SqlParameter[]
                             {
                                 new SqlParameter("@fromDate", fromDate),
                                 new SqlParameter("@toDate", toDate)
                             });
 
+            dt.Columns.Add("Profit", typeof(decimal));
 
-            sql = "SELECT ISNULL(SUM(TotalAmount), 0) FROM Orders WHERE CreatedAt >= @fromDate AND CreatedAt < @toDate";
+            decimal doanhThuSau = (int) dt.Rows[0]["RevenueAfter"];
 
+            sql = @"SELECT ISNULL(SUM(od.Amount * p.PurchasePrice), 0)
+                    FROM Orders o
+                    JOIN Orderdetail od ON od.OrderId = o.OrderId
+                    JOIN Products p ON p.ProductId = od.ProductId 
+                    WHERE o.CreatedAt >= @fromDate AND o.CreatedAt < @toDate";
 
-            int revenueBefore = (int)Connection.ExecuteScalar(sql, new SqlParameter[]
+            decimal giaVon = (decimal) Connection.ExecuteScalar(sql, new SqlParameter[]
                             {
                                 new SqlParameter("@fromDate", fromDate),
                                 new SqlParameter("@toDate", toDate)
                             });
 
-            dt.Rows.Add(numOrder, revenueBefore, numCus);
-
+            dt.Rows[0]["Profit"] = doanhThuSau - giaVon;
             return dt;
+        }
 
 
+        // Tong doanh thu theo ngay
+        public DataTable GetRevenueByDay(DateTime fromDate, DateTime toDate)
+        {
+            string sql = @"
+                    SELECT 
+                        CAST(o.CreatedAt AS DATE) AS N'Ngày tạo',
+                        COUNT(o.OrderId) AS N'Số đơn',
+                        ISNULL(SUM(o.TotalAmount), 0) AS N'Doanh thu'
+                    FROM Orders o
+                    WHERE o.CreatedAt >= @fromDate AND o.CreatedAt < @toDate
+                    GROUP BY CAST(o.CreatedAt AS DATE)
+                    ORDER BY CAST(o.CreatedAt AS DATE)";
+
+            return Connection.ExecuteQuery(sql, new SqlParameter[]
+                    {
+                        new SqlParameter("@fromDate", fromDate),
+                        new SqlParameter("@toDate", toDate)
+                    });
         }
     }
 }
