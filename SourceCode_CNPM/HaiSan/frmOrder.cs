@@ -734,12 +734,14 @@ namespace GUI
                         decimal amount = changeAmountToDecimal(row.Cells[1].Value.ToString());
                         int price = strToInt(row.Cells[2].Value.ToString());
                         string unit = row.Cells[3].Value.ToString();
+                        int total = strToInt(row.Cells[4].Value.ToString());
                         OrderItem oi = new OrderItem
                         {
                             Name = name,
                             Price = price,
                             Unit = unit,
-                            Quantity = amount
+                            Quantity = amount,
+                            Total = total
                         };
                         orderItems.Add(oi);
                         Console.WriteLine(oi);

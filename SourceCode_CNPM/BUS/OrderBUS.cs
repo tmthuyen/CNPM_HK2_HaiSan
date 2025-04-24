@@ -263,14 +263,13 @@ namespace BUS
 
             return newId;
         }
-<<<<<<< HEAD
-    
-            
+
+
         // báo cáo thông kê
         public DataTable GetNumOrder_Revenue_NumCus(DateTime fromDate, DateTime toDate)
         {
             return orderDAL.GetNumOrder_Revenue_NumCus(fromDate, toDate);
-=======
+        }
         // trả về 1 list mà ko có duplicate
         public List<OrderItem> ConsolidateOrderItems(List<OrderItem> items)
         {
@@ -286,7 +285,6 @@ namespace BUS
                 .ToList();
 
             return consolidated;
->>>>>>> 3f56fa5 (Mostly finished order)
         }
     }
 
