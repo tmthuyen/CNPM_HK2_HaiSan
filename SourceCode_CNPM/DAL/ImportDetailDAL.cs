@@ -131,5 +131,25 @@ namespace DAL
 
             return results;
         }
+        //cập nhật số lượng sản phẩm cho lô hàng
+        public void UpdateImportDetail(string productId, string importId, decimal remaining)
+        {
+            string sql = "UPDATE ImportDetail SET Remaining = @Remaining WHERE ProductId= @ProductId AND ImportId = @ImportId";
+
+            try
+            {
+                SqlParameter[] param =
+                        {
+                            new SqlParameter("@Remaining", remaining),
+                            new SqlParameter("@ProductId", productId),
+                            new SqlParameter("@ImportId", importId),
+                        };
+                Connection.ExecuteNonQuery(sql, param);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating import detail for ProductId={productId}, ImportId={importId}: {ex.Message}");
+            }
+        }
     }
 }

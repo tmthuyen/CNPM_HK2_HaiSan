@@ -1,4 +1,8 @@
 windows
+<<<<<<< HEAD
 loneve\SQLEXPRESS
+=======
+DESKTOP-BP38G95\SQLEXPRESS
+>>>>>>> 3f56fa5 (Mostly finished order)
 haisan
 

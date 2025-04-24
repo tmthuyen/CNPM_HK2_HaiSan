@@ -58,12 +58,15 @@ namespace DAL
 
             foreach (DataRow row in dt.Rows)
             {
-                orderDetails.Add(new OrderDetail(
-                    row["OrderId"].ToString(),
-                    row["ProductId"].ToString(),
-                    Convert.ToInt32(row["RetailPrice"]),
-                    Convert.ToDecimal(row["Amount"])
-                ));
+                OrderDetail od = new OrderDetail
+                {
+                    OrderId = row["OrderId"].ToString(),
+                    ImportId = row["ImportId"].ToString(),
+                    ProductId = row["ProductId"].ToString(),
+                    RetailPrice = Convert.ToInt32(row["RetailPrice"]),
+                    Amount = Convert.ToDecimal(row["Amount"])
+                };
+                orderDetails.Add(od);
             }
 
             return orderDetails;

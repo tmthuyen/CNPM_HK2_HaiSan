@@ -15,7 +15,7 @@ namespace DAL
         // Lấy danh sách tất cả đơn hàng
         public List<Order> GetAll()
         {
-            string query = "SELECT * FROM Orders";
+            string query = "SELECT o.*,c.Phone FROM Orders o JOIN Customer c ON o.CustomerId = c.CustomerId";
             DataTable dt = Connection.ExecuteQuery(query);
             List<Order> orders = new List<Order>();
 
@@ -23,18 +23,20 @@ namespace DAL
             {
                 List<OrderDetail> orderDetails = orderDetailDAL.GetByOrderId(row["OrderId"].ToString());
 
-                orders.Add(new Order(
-                    row["OrderId"].ToString(),
-                    Convert.ToDateTime(row["CreatedAt"]),
-                    Convert.ToDecimal(row["TotalAmount"]),
-                    Convert.ToDecimal(row["ReceivedAmount"]),
-                    Convert.ToInt32(row["UsedPoint"]),
-                    row["PaymentMethod"].ToString(),
-                    row["CustomerId"].ToString(),
-                    row["EmployeeId"].ToString(),
-                    row["VoucherId"].ToString(),
-                    orderDetails
-                ));
+                orders.Add(new Order
+                {
+                    
+                    OrderId = row["OrderId"].ToString(),
+                    CreatedAt = Convert.ToDateTime(row["CreatedAt"]),
+                    TotalAmount = Convert.ToDecimal(row["TotalAmount"]),
+                    ReceivedAmount = Convert.ToDecimal(row["ReceivedAmount"]),
+                    UsedPoint = Convert.ToInt32(row["UsedPoint"]),
+                    PaymentMethod = row["PaymentMethod"].ToString(),
+                    Phone = row["Phone"].ToString(),
+                    EmployeeId = row["EmployeeId"].ToString(),
+                    OrderDetailList = orderDetails
+                
+                });
             }
 
             return orders;
@@ -270,26 +272,7 @@ namespace DAL
             }
         }
 
-        //cập nhật số lượng sản phẩm cho lô hàng
-        public void UpdateImportDetail(string productId, string importId, decimal remaining)
-        {
-            string sql = "UPDATE ImportDetail SET Remaining = @Remaining WHERE ProductId= @ProductId AND ImportId = @ImportId";
-
-            try
-            {
-                SqlParameter[] param =
-                        {
-                            new SqlParameter("@Remaining", remaining),
-                            new SqlParameter("@ProductId", productId),
-                            new SqlParameter("@ImportId", importId),
-                        };
-                Connection.ExecuteNonQuery(sql, param);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error updating import detail for ProductId={productId}, ImportId={importId}: {ex.Message}");
-            }
-        }
+        
 
         //Update tên khách hàng nếu sai
         public void ChangeName(string cusId,string name)
