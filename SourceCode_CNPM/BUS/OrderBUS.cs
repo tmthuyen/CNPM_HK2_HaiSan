@@ -13,33 +13,48 @@ namespace BUS
     public class OrderBUS
     {
         PromotionDAL promotionDAL = new PromotionDAL();
+        ImportDetailDAL importDetailDAL = new ImportDetailDAL();
         OrderDAL orderDAL = new OrderDAL();
         public List<ProductImport> GetProductByLoHang()
         {
             return orderDAL.GetProductByLoHang();
         }
 
-        public List<Product> Sort(List<Product> products, decimal? minPrice, decimal? maxPrice, string categoryId, string name, string sortBy = "RetailPrice", bool ascending = true)
+        public List<Order> GetOrders()
         {
-            // Filtering
-            var filtered = products.Where(p =>
-                (!minPrice.HasValue || p.RetailPrice >= minPrice.Value) &&
-                (!maxPrice.HasValue || p.RetailPrice <= maxPrice.Value) &&
-                (string.IsNullOrWhiteSpace(categoryId) || p.CategoryId == categoryId) &&
-                (string.IsNullOrWhiteSpace(name) || p.ProductName.Contains(name, StringComparison.OrdinalIgnoreCase))
-            );
+            return orderDAL.GetAll();
+        }
 
-            // Sorting
-            filtered = sortBy switch
+        public List<Order> Sort(string orderId, string phone, string employeeId, int priceStart, int priceEnd, string sortBy ="CreatedAt", bool ASC = false)
+        {
+            List<Order> orders = GetOrders();
+
+            if (!string.IsNullOrEmpty(orderId))
+                orders = orders.Where(o => o.OrderId.Contains(orderId)).ToList();
+
+            if (!string.IsNullOrEmpty(phone))
+                orders = orders.Where(o => o.Phone.Contains(phone)).ToList();
+
+            if (!string.IsNullOrEmpty(employeeId))
+                orders = orders.Where(o => o.EmployeeId == employeeId).ToList();
+
+            if (priceStart > 0 || priceEnd > 0)
             {
-                "ProductName" => ascending ? filtered.OrderBy(p => p.ProductName) : filtered.OrderByDescending(p => p.ProductName),
-                "PurchasePrice" => ascending ? filtered.OrderBy(p => p.PurchasePrice) : filtered.OrderByDescending(p => p.PurchasePrice),
-                "CreatedAt" => ascending ? filtered.OrderBy(p => p.CreatedAt) : filtered.OrderByDescending(p => p.CreatedAt),
-                "Unit" => ascending ? filtered.OrderBy(p => p.Unit) : filtered.OrderByDescending(p => p.Unit),
-                _ => ascending ? filtered.OrderBy(p => p.RetailPrice) : filtered.OrderByDescending(p => p.RetailPrice),
-            };
+                orders = orders.Where(o =>
+                    o.TotalAmount >= (priceStart > 0 ? priceStart : 0) &&
+                    o.TotalAmount <= (priceEnd > 0 ? priceEnd : decimal.MaxValue)).ToList();
+            }
+            orders = sortBy switch
+            {
+                "CreatedAt" => ASC ? orders.OrderBy(o => o.CreatedAt).ToList()
+                                   : orders.OrderByDescending(o => o.CreatedAt).ToList(),
 
-            return filtered.ToList();
+                "TotalAmount" => ASC ? orders.OrderBy(o => o.TotalAmount).ToList()
+                                     : orders.OrderByDescending(o => o.TotalAmount).ToList(),
+
+                _ => orders.OrderByDescending(o => o.CreatedAt).ToList() // fallback
+            };
+            return orders;
         }
 
         public List<Voucher> GetVouchers(int total)
@@ -65,7 +80,8 @@ namespace BUS
         public decimal CalPrice(decimal amount, decimal price) => amount * price;
         public int CalOverAll(int raw, int voucherDiscount, int point) => (raw - voucherDiscount - point);
         public bool validPoint(int pointHas, int pointUse) => (pointHas >= pointUse);
-        public bool validGiven(int given, int total) => (given >= total);
+        public bool validGiven(int given, int total) => (given>=total);
+        public bool validPriceSort(int priceFrom, int PriceTo) => (priceFrom<=PriceTo);
 
         // liên quan đến customer
         public Customer GetCustomer(string phone)
@@ -116,7 +132,7 @@ namespace BUS
 
         //tạo đơn
         public void CreateOrder(string customerName, string phone, string voucherId, string employeeId,
-                    int total, int received, int points, string payMethod, List<OrderDetail> orderDetails)
+                    int total, int received, int points, string payMethod, List<OrderDetail> orderDetails, List<ProductImport> products)
         {
             int pointGained = CalculatePoints(total);
             //check if already customer, then fix the points
@@ -129,6 +145,7 @@ namespace BUS
                 customerId = GenerateCustomerId();
                 try
                 {
+                    //even for anonymous people, it would only generate an id for the fisrt anonynous guy
                     orderDAL.insertCustomer(customerId, customerName, phone, pointGained);
                 }
                 catch (Exception ex)
@@ -197,12 +214,13 @@ namespace BUS
             // update import detail
             foreach (OrderDetail orderDetail in orderDetails)
             {
-                string productId = orderDetail.ProductId;
-                string importId = orderDetail.ImportId;
-                decimal remaining = orderDetail.Amount;
+                string productId = orderDetail.ProductId ;
+                ProductImport p = products.Where(v => v.ProductId == productId).FirstOrDefault();
+                string importId = orderDetail.ImportId ;
+                decimal remaining = p.Remaining - orderDetail.Amount;
                 try
                 {
-                    orderDAL.UpdateImportDetail(productId, importId, remaining);
+                    importDetailDAL.UpdateImportDetail(productId, importId, remaining);
                 }
                 catch (Exception ex)
                 {
@@ -258,6 +276,23 @@ namespace BUS
         {
             return orderDAL.GetNumOrder_Revenue_NumCus(fromDate, toDate);
         }
+        // trả về 1 list mà ko có duplicate
+        public List<OrderItem> ConsolidateOrderItems(List<OrderItem> items)
+        {
+            var consolidated = items
+                .GroupBy(item => item.Name)
+                .Select(group => new OrderItem
+                {
+                    Name = group.Key,
+                    Quantity = group.Sum(i => i.Quantity),
+                    Unit = group.First().Unit,
+                    Price = group.First().Price // khác lô nhưng cũng cùng giá (pretty sure)
+                })
+                .ToList();
+
+            return consolidated;
+        }
+        
 
         // loafd doanh thu theeo ngày
         public DataTable GetRevenueByDay(DateTime fromDate, DateTime toDate)

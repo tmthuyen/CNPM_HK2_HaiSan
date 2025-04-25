@@ -24,7 +24,7 @@ namespace DTO
 
         public override string ToString()
         {
-            return this.ProductName + " | " + Remaining + " | " + ImportId;
+            return ProductName.Trim() + " | " + Remaining + " | " + ImportId.Trim();
         }
     }
 }

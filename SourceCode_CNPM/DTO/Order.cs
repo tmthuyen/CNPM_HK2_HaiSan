@@ -1,4 +1,4 @@
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +11,20 @@ namespace DTO
     {
         public string OrderId { get; set; }
         public DateTime CreatedAt { get; set; }
-        public decimal TotalAmount { get; set; }
+        //  này là trc giảm
+        public decimal RawAmount => (getRawAmount());
+        public decimal TotalAmount { get; set; } // này là phải trả luôn r
         public decimal ReceivedAmount { get; set; }
+        // tien thua
+        public decimal ChangeAmount => ReceivedAmount - TotalAmount;
         public int UsedPoint { get; set; }
+        public string VoucherId { get; set; }
         public string PaymentMethod { get; set; }
         public string CustomerId { get; set; }
+        public string Phone { get; set; }
         public string EmployeeId { get; set; }
-        public string VoucherId { get; set; }
 
 
-        //  tien phai phai tra
-        public decimal FinalAmount => TotalAmount - UsedPoint;
-
-        // tien thua
-        public decimal ChangeAmount => ReceivedAmount - FinalAmount;
 
         // danh sach chi tiet hoa don
         public List<OrderDetail> OrderDetailList { get; set; } = new List<OrderDetail>();
@@ -56,7 +56,7 @@ namespace DTO
         }
 
         // tinh tong tien cua hoa don
-        public decimal getTotalAmount()
+        public decimal getRawAmount()
         {
             if (OrderDetailList.Count == 0)
                 return 0;

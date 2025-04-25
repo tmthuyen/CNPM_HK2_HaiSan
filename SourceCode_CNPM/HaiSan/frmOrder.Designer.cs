@@ -220,7 +220,6 @@ namespace GUI
             panel2.Name = "panel2";
             panel2.Size = new Size(820, 92);
             panel2.TabIndex = 17;
-            panel2.Paint += panel2_Paint;
             // 
             // cancelCustomer
             // 
@@ -378,7 +377,7 @@ namespace GUI
             // 
             // button2
             // 
-            button2.Location = new Point(472, 65);
+            button2.Location = new Point(467, 64);
             button2.Name = "button2";
             button2.Size = new Size(48, 23);
             button2.TabIndex = 14;
@@ -441,6 +440,7 @@ namespace GUI
             // 
             // comboBoxVoucher
             // 
+            comboBoxVoucher.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxVoucher.FormattingEnabled = true;
             comboBoxVoucher.Location = new Point(74, 6);
             comboBoxVoucher.Name = "comboBoxVoucher";
@@ -671,6 +671,7 @@ namespace GUI
             btnFilter.TabIndex = 18;
             btnFilter.Text = "Lọc";
             btnFilter.UseVisualStyleBackColor = false;
+            btnFilter.Click += btnFilter_Click;
             // 
             // txtFromPrice
             // 
@@ -681,7 +682,8 @@ namespace GUI
             txtFromPrice.Name = "txtFromPrice";
             txtFromPrice.Size = new Size(188, 26);
             txtFromPrice.TabIndex = 10;
-            txtFromPrice.TextChanged += txtFromPrice_TextChanged;
+            txtFromPrice.TextChanged += NumberOnly_TextChanged;
+            txtFromPrice.KeyPress += NumberOnly_KeyPress;
             // 
             // label7
             // 
@@ -703,7 +705,8 @@ namespace GUI
             txtToPrice.Name = "txtToPrice";
             txtToPrice.Size = new Size(188, 26);
             txtToPrice.TabIndex = 11;
-            txtToPrice.TextChanged += txtToPrice_TextChanged;
+            txtToPrice.TextChanged += NumberOnly_TextChanged;
+            txtToPrice.KeyPress += NumberOnly_KeyPress;
             // 
             // label3
             // 
@@ -722,7 +725,7 @@ namespace GUI
             cbbSortName.FlatStyle = FlatStyle.Flat;
             cbbSortName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbbSortName.FormattingEnabled = true;
-            cbbSortName.Items.AddRange(new object[] { "Giá tăng dần", "Giá giảm dần", "Ngày tạo mới nhất", "Ngày tạo cũ nhất", "Số lượng tăng dần", "Số lượng giảm dần" });
+            cbbSortName.Items.AddRange(new object[] { "Giá tăng dần", "Giá giảm dần", "Ngày tạo mới nhất", "Ngày tạo cũ nhất" });
             cbbSortName.Location = new Point(606, 35);
             cbbSortName.Margin = new Padding(3, 2, 3, 2);
             cbbSortName.Name = "cbbSortName";
@@ -751,6 +754,7 @@ namespace GUI
             dgvOrderList.RowHeadersWidth = 51;
             dgvOrderList.Size = new Size(817, 182);
             dgvOrderList.TabIndex = 12;
+            dgvOrderList.CellClick += dgvOrderList_CellClick;
             // 
             // pnCusInfo
             // 

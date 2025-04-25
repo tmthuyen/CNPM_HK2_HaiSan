@@ -2,5 +2,40 @@
 **/bin/
 **/obj/
 
-#ignore vs
+# Ignore Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Ignore project-specific files
+*.csproj.user
+*.dbmdl
+*.db
+*.log
+*.pdb
+*.cache
+
+# Ignore compiled binaries
+*.dll
+*.exe
+
+# Ignore configuration
+*.config
+*.json
+
+# Ignore NuGet packages
+*.nupkg
+*.snupkg
+packages/
+
+# Ignore user-specific files
+*.vspscc
+*.vssscc
+
+# Ignore database and debug info
+*.sqlite
+*.mdf
+*.ldf
+
+# If you still want to specifically ignore that path:
 SourceCode_CNPM/HaiSan/.vs/
