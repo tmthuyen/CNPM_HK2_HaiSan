@@ -52,6 +52,7 @@
             label8 = new Label();
             txtProName = new TextBox();
             lblAppName = new Label();
+            btnExportImport = new Button();
             tabCtrlInventory.SuspendLayout();
             tabPageImport.SuspendLayout();
             panel1.SuspendLayout();
@@ -89,6 +90,7 @@
             // 
             // tabPageImport
             // 
+            tabPageImport.Controls.Add(btnExportImport);
             tabPageImport.Controls.Add(btnImportPro);
             tabPageImport.Controls.Add(panel1);
             tabPageImport.Controls.Add(label6);
@@ -109,9 +111,9 @@
             btnImportPro.FlatStyle = FlatStyle.Flat;
             btnImportPro.Font = new Font("Times New Roman", 16F);
             btnImportPro.ForeColor = Color.WhiteSmoke;
-            btnImportPro.Location = new Point(43, 6);
+            btnImportPro.Location = new Point(260, 6);
             btnImportPro.Name = "btnImportPro";
-            btnImportPro.Size = new Size(145, 39);
+            btnImportPro.Size = new Size(194, 39);
             btnImportPro.TabIndex = 17;
             btnImportPro.Text = "Nhập hàng";
             btnImportPro.UseVisualStyleBackColor = false;
@@ -356,6 +358,22 @@
             lblAppName.Text = "Ứng dụng quản lý cửa hàng hải sản";
             lblAppName.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // btnExportImport
+            // 
+            btnExportImport.BackColor = Color.DodgerBlue;
+            btnExportImport.Cursor = Cursors.Hand;
+            btnExportImport.FlatAppearance.BorderSize = 0;
+            btnExportImport.FlatStyle = FlatStyle.Flat;
+            btnExportImport.Font = new Font("Times New Roman", 16F);
+            btnExportImport.ForeColor = Color.WhiteSmoke;
+            btnExportImport.Location = new Point(35, 6);
+            btnExportImport.Name = "btnExportImport";
+            btnExportImport.Size = new Size(180, 39);
+            btnExportImport.TabIndex = 18;
+            btnExportImport.Text = "In danh sách";
+            btnExportImport.UseVisualStyleBackColor = false;
+            btnExportImport.Click += btnExportImport_Click;
+            // 
             // frmInventory
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -408,5 +426,6 @@
         private Label label4;
         private DataGridView dgvExpire;
         private Label label5;
+        private Button btnExportImport;
     }
 }

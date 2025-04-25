@@ -31,6 +31,8 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             groupBox3 = new GroupBox();
             dtpkToDate = new DateTimePicker();
             label13 = new Label();
@@ -38,7 +40,6 @@
             btnStatistic = new Button();
             label12 = new Label();
             btnExportFile = new Button();
-            label6 = new Label();
             panel1 = new Panel();
             txtNumCus = new TextBox();
             label10 = new Label();
@@ -58,10 +59,12 @@
             label5 = new Label();
             txtNumImp = new TextBox();
             label7 = new Label();
+            chartTopSell = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chartDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Chart();
             groupBox3.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chartTopSell).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartDoanhThu).BeginInit();
             SuspendLayout();
             // 
@@ -157,18 +160,7 @@
             btnExportFile.TabIndex = 9;
             btnExportFile.Text = "Xuất file";
             btnExportFile.UseVisualStyleBackColor = false;
-            // 
-            // label6
-            // 
-            label6.BackColor = Color.LightSkyBlue;
-            label6.FlatStyle = FlatStyle.Flat;
-            label6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label6.Location = new Point(246, 315);
-            label6.Name = "label6";
-            label6.Size = new Size(441, 38);
-            label6.TabIndex = 15;
-            label6.Text = "Biểu đổ doanh thu theo ngày";
-            label6.TextAlign = ContentAlignment.MiddleCenter;
+            btnExportFile.Click += btnExportFile_Click;
             // 
             // panel1
             // 
@@ -389,22 +381,36 @@
             label7.Text = "Số đơn nhập";
             label7.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // chartDoanhThu
+            // chartTopSell
             // 
+            chartTopSell.BackColor = Color.WhiteSmoke;
             chartArea1.Name = "ChartArea1";
-            chartDoanhThu.ChartAreas.Add(chartArea1);
+            chartTopSell.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            chartDoanhThu.Legends.Add(legend1);
-            chartDoanhThu.Location = new Point(14, 373);
-            chartDoanhThu.Name = "chartDoanhThu";
-            chartDoanhThu.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            chartTopSell.Legends.Add(legend1);
+            chartTopSell.Location = new Point(481, 332);
+            chartTopSell.Name = "chartTopSell";
+            chartTopSell.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            chartDoanhThu.Series.Add(series1);
-            chartDoanhThu.Size = new Size(923, 225);
-            chartDoanhThu.TabIndex = 18;
-            chartDoanhThu.Text = "bieuDoDoanhThu";
+            chartTopSell.Series.Add(series1);
+            chartTopSell.Size = new Size(461, 279);
+            chartTopSell.TabIndex = 19;
+            chartTopSell.Text = "bieuDoDoanhThu";
+            // 
+            // chartDoanhThu
+            // 
+            chartArea2.Name = "ChartArea1";
+            chartDoanhThu.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            chartDoanhThu.Legends.Add(legend2);
+            chartDoanhThu.Location = new Point(16, 332);
+            chartDoanhThu.Name = "chartDoanhThu";
+            chartDoanhThu.Size = new Size(463, 279);
+            chartDoanhThu.TabIndex = 20;
+            chartDoanhThu.Text = "chart1";
             // 
             // frmReport
             // 
@@ -413,9 +419,9 @@
             BackColor = Color.White;
             ClientSize = new Size(950, 610);
             Controls.Add(chartDoanhThu);
+            Controls.Add(chartTopSell);
             Controls.Add(panel2);
             Controls.Add(groupBox3);
-            Controls.Add(label6);
             Controls.Add(panel1);
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.None;
@@ -428,6 +434,7 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chartTopSell).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartDoanhThu).EndInit();
             ResumeLayout(false);
         }
@@ -437,7 +444,6 @@
         private GroupBox groupBox3;
         private Button btnDeletePro;
         private Button btnInventory;
-        private Label label6;
         private Panel panel1;
         private TextBox txtRevenueAfter;
         private Label label3;
@@ -465,6 +471,8 @@
         private Label label12;
         Button btnStatistic;
         Button btnExportFile;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTopSell;
+        private DataGridView dgvProduct;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartDoanhThu;
     }
 }

@@ -90,19 +90,7 @@ namespace GUI
                 btnSearch.Enabled = false;
                 //btnOrdHistory.Enabled = false;
             }
-        }
-
-        private List<Order> findOrderByCusId(string cusId)
-        {
-            Order order = new Order();
-            order.OrderId = "hd1";
-            Order order2 = new Order();
-            order2.OrderId = "hd2";
-
-            List<Order> orders = new List<Order>() { order, order2 };
-
-            return orders;
-        }
+        } 
 
         // them button xem chi tiet
         private void addDataButton()
@@ -161,7 +149,7 @@ namespace GUI
                 if (cbbOrderCusList.SelectedIndex >= 0)
                 {
                     Order orderSelect = (Order)cbbOrderCusList.SelectedItem;
-                    frmOrderHistory f = new frmOrderHistory(orderSelect.OrderId, "", "");
+                    frmOrderDetail f = new frmOrderDetail(orderSelect);
 
                     f.ShowDialog();
                 }
