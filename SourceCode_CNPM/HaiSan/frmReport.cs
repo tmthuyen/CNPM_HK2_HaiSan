@@ -171,12 +171,23 @@ namespace GUI
         }
 
         // xuat file thong ke 
-        public void ExportToCSV(DataTable dt)
+        public void ExportToCSV(DateTime fromDate, DateTime toDate)
         {
+            // du lieu doanh thu
+            DataTable dt = ordBUS.GetRevenueByDay(fromDate, toDate.AddDays(1));
+
+
+            // Mo hop thoai luu file
             SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.Filter = "CSV Files|*.csv";
             saveFile.Title = "Lưu file CSV";
 
+            
+            // dat ten format cho file
+            string fileName = $"doanhthu-{fromDate:yyyy-MM-dd}-{toDate:yyyy-MM-dd}.csv";
+            saveFile.FileName = fileName;
+
+            // ghi file
             if (saveFile.ShowDialog() == DialogResult.OK)
             {
                 using (StreamWriter writer = new StreamWriter(saveFile.FileName, false, Encoding.UTF8))
@@ -220,8 +231,7 @@ namespace GUI
 
         private void btnExportFile_Click(object sender, EventArgs e)
         { 
-            DataTable dt = ordBUS.GetRevenueByDay(dtpkFromDate.Value.Date, dtpkToDate.Value.Date.AddDays(1));
-            ExportToCSV(dt); 
+            ExportToCSV(dtpkFromDate.Value.Date, dtpkToDate.Value.Date); 
         }
     }
 }

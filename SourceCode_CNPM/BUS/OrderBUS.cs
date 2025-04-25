@@ -25,7 +25,7 @@ namespace BUS
             return orderDAL.GetAll();
         }
 
-        public List<Order> Sort(string orderId, string phone, string employeeId, int priceStart, int priceEnd, string sortBy ="CreatedAt", bool ASC = false)
+        public List<Order> Sort(string orderId, string phone, string employeeId, int priceStart, int priceEnd, string sortBy = "CreatedAt", bool ASC = false)
         {
             List<Order> orders = GetOrders();
 
@@ -80,8 +80,8 @@ namespace BUS
         public decimal CalPrice(decimal amount, decimal price) => amount * price;
         public int CalOverAll(int raw, int voucherDiscount, int point) => (raw - voucherDiscount - point);
         public bool validPoint(int pointHas, int pointUse) => (pointHas >= pointUse);
-        public bool validGiven(int given, int total) => (given>=total);
-        public bool validPriceSort(int priceFrom, int PriceTo) => (priceFrom<=PriceTo);
+        public bool validGiven(int given, int total) => (given >= total);
+        public bool validPriceSort(int priceFrom, int PriceTo) => (priceFrom <= PriceTo);
 
         // liên quan đến customer
         public Customer GetCustomer(string phone)
@@ -214,9 +214,9 @@ namespace BUS
             // update import detail
             foreach (OrderDetail orderDetail in orderDetails)
             {
-                string productId = orderDetail.ProductId ;
+                string productId = orderDetail.ProductId;
                 ProductImport p = products.Where(v => v.ProductId == productId).FirstOrDefault();
-                string importId = orderDetail.ImportId ;
+                string importId = orderDetail.ImportId;
                 decimal remaining = p.Remaining - orderDetail.Amount;
                 try
                 {
@@ -268,7 +268,7 @@ namespace BUS
         // lay doanh sash đơn hang cua customer
         public List<Order> GetOrderByCus(string cusId, string cusPhone)
         {
-              return orderDAL.GetOrderByCus(cusId, cusPhone);
+            return orderDAL.GetOrderByCus(cusId, cusPhone);
         }
 
         // báo cáo thông kê
@@ -292,12 +292,17 @@ namespace BUS
 
             return consolidated;
         }
-        
+
 
         // loafd doanh thu theeo ngày
         public DataTable GetRevenueByDay(DateTime fromDate, DateTime toDate)
         {
             return orderDAL.GetRevenueByDay(fromDate, toDate);
+        }
+
+        public DataTable GetTopProduct(DateTime fromDate, DateTime toDate)
+        {
+            return orderDAL.GetTopProduct(fromDate, toDate);
         }
     }
 }

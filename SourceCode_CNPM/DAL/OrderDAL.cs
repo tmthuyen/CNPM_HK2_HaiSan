@@ -7,6 +7,7 @@ using System.Collections;
 using System.Linq.Expressions;
 using System.Drawing;
 using Microsoft.Identity.Client;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DAL
 {
@@ -426,6 +427,29 @@ namespace DAL
                         new SqlParameter("@fromDate", fromDate),
                         new SqlParameter("@toDate", toDate)
                     });
+        }
+    
+        
+        // top san pham ban chay
+        public DataTable GetTopProduct(DateTime fromDate, DateTime toDate)
+        {
+            string sql = @"SELECT TOP 5
+                        p.ProductName,
+                        SUM(od.Amount) AS TotalSold
+                    FROM OrderDetail od
+                    JOIN Products p ON p.ProductId = od.ProductId
+                    JOIN Orders o ON o.OrderId = od.OrderId
+                     WHERE o.CreatedAt >= @fromDate AND o.CreatedAt < @toDate
+                    GROUP BY p.ProductName
+                    ORDER BY TotalSold DESC";
+ 
+
+            return Connection.ExecuteQuery(sql, new SqlParameter[]
+                    {
+                        new SqlParameter("@fromDate", fromDate),
+                        new SqlParameter("@toDate", toDate)
+                    });
+
         }
     }
 }
