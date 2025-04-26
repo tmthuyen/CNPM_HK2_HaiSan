@@ -184,11 +184,9 @@ namespace DAL
                             p.Unit,
                             p.RetailPrice,
                             c.CategoryName,
-                            s.SupplierName
                         FROM Products p
                         JOIN ImportDetail i ON p.ProductId = i.ProductId
                         JOIN Category c ON p.CategoryId = c.CategoryId
-                        JOIN Supplier s ON p.SupplierId = s.SupplierId
                         WHERE i.Remaining > 0
                         ";
             DataTable dt = Connection.ExecuteQuery(query);
@@ -199,7 +197,6 @@ namespace DAL
                 products.Add(new ProductImport
                 {
                     ProductId = row["ProductId"].ToString(),
-                    SupplierId = row["SupplierName"].ToString(),
                     ProductName = row["ProductName"].ToString(),
                     CategoryName = row["CategoryName"].ToString(),
                     RetailPrice = Convert.ToInt32(row["RetailPrice"]),
