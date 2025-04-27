@@ -167,7 +167,8 @@ CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
     Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
     TotalLoss INT NOT NULL,--tien mat
     ExpiredDate DATE NOT NULL,
-    FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
+    FOREIGN KEY (ProductId) REFERENCES ImportDetail(ProductId),
+    FOREIGN KEY (ImportId) REFERENCES ImportDetail(ImportId),
 );
 
 
@@ -206,7 +207,7 @@ CREATE TABLE Orders (
     PaymentMethod NVARCHAR(11) NOT NULL,
     FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId),
     FOREIGN KEY (EmployeeId) REFERENCES Employee(EmployeeId),
-	FOREIGN KEY (VoucherId) REFERENCES Voucher(VoucherId)
+    FOREIGN KEY (VoucherId) REFERENCES Voucher(VoucherId)
 );
 
 
@@ -217,8 +218,8 @@ CREATE TABLE OrderDetail (
     RetailPrice INT NOT NULL,
 	ImportId CHAR(20) NOT NULL,
     Amount DECIMAL(10, 3) NOT NULL,
-    FOREIGN KEY (ProductId) REFERENCES Products(ProductId),
-	FOREIGN KEY (ImportId) REFERENCES Import(ImportId),
+    FOREIGN KEY (ProductId) REFERENCES ImportDetail(ProductId),
+    FOREIGN KEY (ImportId) REFERENCES ImportDetail(ImportId),
     FOREIGN KEY (OrderId) REFERENCES Orders(OrderId)
 );
 
