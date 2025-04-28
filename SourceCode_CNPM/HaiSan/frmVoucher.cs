@@ -10,24 +10,93 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS;
 using DTO;
+using Infrastructure;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GUI
 {
     public partial class frmVoucher : Form
     {
+        
         private bool isEditing;
         private bool isAdding;
         private string selectedVoucherId;
         private List<Voucher> vouchers;
         private PromotionBUS promotionBUS;
+        private readonly bool isAdmin;
         public frmVoucher()
         {
             InitializeComponent();
             promotionBUS = new PromotionBUS();
             Voucher_Load();
             clearTextBox();
+            if (Session.Role != "admin")
+            {
+                isAdmin = false;
+                dataGridViewVoucher.RowEnter -= dataGridViewVoucher_RowEnter;
+                dataGridViewVoucher.RowEnter += Dgv_Block;
+            }
+            BlockAccess();
+
+
         }
+
+        private void BlockAccess()
+        {
+            if (!isAdmin)
+            {
+                textBoxName.Enabled = false;
+                textBoxApply.Enabled = false;
+                textBoxDiscountValue.Enabled = false;   
+                radioButtonPercent.Enabled = false;
+                radioButtonVND.Enabled = false; 
+                textBoxMaxApply.Enabled = false;
+                dateTimePickerFrom.Enabled = false;
+                dateTimePickerTo.Enabled = false;
+
+                btnAdd.Enabled = false;
+                btnDeactivate.Enabled = false;
+                btnActivate.Enabled = false;
+                btnEdit.Enabled = false;
+                btnCancel.Enabled = false;
+                btnSave.Enabled = false;
+            }
+        }
+        private void Dgv_Block(object sender, DataGridViewCellEventArgs e)
+        {
+            voucherDetails.Enabled = false;
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridViewVoucher.Rows[e.RowIndex];
+
+                // Optional: Check for DBNulls to avoid crashes
+                selectedVoucherId = row.Cells["VoucherId"].Value?.ToString() ?? "";
+                textBoxName.Text = row.Cells["VoucherName"].Value?.ToString() ?? "";
+                textBoxApply.Text = row.Cells["ApplyAmount"].Value?.ToString() ?? "0";
+                textBoxDiscountValue.Text = row.Cells["DiscountValue"].Value?.ToString() ?? "0";
+                textBoxMaxApply.Text = row.Cells["MaxApply"].Value?.ToString() ?? "0";
+
+                if (Convert.ToBoolean(row.Cells["IsCash"].Value))
+                    radioButtonVND.Checked = true;
+                else
+                    radioButtonPercent.Checked = true;
+
+                if (DateTime.TryParse(row.Cells["ReleaseDate"].Value?.ToString(), out DateTime fromDate))
+                {
+                    dateTimePickerFrom.Value = fromDate;
+                }
+
+                if (DateTime.TryParse(row.Cells["ExpireDate"].Value?.ToString(), out DateTime toDate))
+                {
+                    dateTimePickerTo.Value = toDate;
+                }
+            }
+            else
+            {
+                clearTextBox();
+            }
+        }
+
         private void processNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             //block ngoài số

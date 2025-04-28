@@ -18,10 +18,12 @@ namespace GUI
 {
     public partial class frmOrder : Form
     {
+
         List<Voucher> vouchers; // applicablVouchers
         List<ProductImport> products; //all products to throw into combobox
         private OrderBUS orderBUS;
         private int selectedRow = -1; //variable to keep track of ui flow
+        
 
         public frmOrder()
         {
@@ -774,6 +776,7 @@ namespace GUI
         {
             textBoxCusPoint.Clear();
             textBoxCustomerName.Clear();
+            textBoxPhone.Clear();
             textBoxPoint.Enabled = false;
         }
 

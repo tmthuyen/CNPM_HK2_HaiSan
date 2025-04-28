@@ -48,7 +48,7 @@
             textBoxApply = new TextBox();
             btnEdit = new Button();
             btnSave = new Button();
-            button4 = new Button();
+            btnCancel = new Button();
             dataGridViewVoucher = new DataGridView();
             btnAdd = new Button();
             toolTip1 = new ToolTip(components);
@@ -256,15 +256,15 @@
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSaveClick;
             // 
-            // button4
+            // btnCancel
             // 
-            button4.Location = new Point(567, 137);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 11;
-            button4.Text = "Hủy";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += btnCancelClick;
+            btnCancel.Location = new Point(567, 137);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 23);
+            btnCancel.TabIndex = 11;
+            btnCancel.Text = "Hủy";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancelClick;
             // 
             // dataGridViewVoucher
             // 
@@ -322,7 +322,7 @@
             Controls.Add(voucherDetails);
             Controls.Add(btnEdit);
             Controls.Add(btnSave);
-            Controls.Add(button4);
+            Controls.Add(btnCancel);
             Controls.Add(dataGridViewVoucher);
             Name = "frmVoucher";
             Text = "frmVoucher";
@@ -347,7 +347,7 @@
         private TextBox textBoxApply;
         private Button btnEdit;
         private Button btnSave;
-        private Button button4;
+        private Button btnCancel;
         private Label label7;
         private Label label6;
         private DateTimePicker dateTimePickerFrom;

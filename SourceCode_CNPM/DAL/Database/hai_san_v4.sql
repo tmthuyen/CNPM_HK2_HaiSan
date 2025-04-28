@@ -26,15 +26,10 @@ insert into Employee values ('Emp04', N'Trần Minh Thuyên', '0373336666', 'tmt
 Create table Account(
 	EmployeeId CHAR(6) Primary key,
 	Username CHAR(20) NOT NULL UNIQUE,
-<<<<<<< HEAD
 	Password Varchar(255) NOT NULL, --hashed
-=======
-	Password Varchar(100) NOT NULL, --hashed
->>>>>>> 3f56fa5 (Mostly finished order)
     FOREIGN KEY (EmployeeId) REFERENCES Employee(EmployeeId)	
 ) 
 
-<<<<<<< HEAD
 insert into Account values('Emp01', 'tranthuyen', 'b13341051b70a0a4dc3e18d0d7ca1b65995e76c230d68464d5466b3b5e551c3d')
 insert into Account values('Emp04', 'tmthuyen', 'b13341051b70a0a4dc3e18d0d7ca1b65995e76c230d68464d5466b3b5e551c3d')
 
@@ -56,11 +51,8 @@ select * from Category
 select * from Customer
 select * from Products
 select * from Supplier 
-=======
 
-INSERT INTO Account (EmployeeId, Username, Password)
-VALUES ('Emp01', 'tranthuyen', 'b13341051b70a0a4dc3e18d0d7ca1b65995e76c230d68464d5466b3b5e551c3d');
->>>>>>> 3f56fa5 (Mostly finished order)
+
 
 select * from account
 
@@ -82,11 +74,7 @@ CREATE TABLE Customer (
 
 -- =======
 CREATE TABLE Category (
-<<<<<<< HEAD
-    CategoryId CHAR(10) PRIMARY KEY,
-=======
     CategoryId CHAR(15) PRIMARY KEY,
->>>>>>> 3f56fa5 (Mostly finished order)
     CategoryName NVARCHAR(20) NOT NULL
 );
 Insert into Category Values
@@ -117,11 +105,7 @@ Insert into Supplier Values
 CREATE TABLE Products (
     ProductId CHAR(20) NOT NULL PRIMARY KEY,
     SupplierId CHAR(6) NOT NULL,
-<<<<<<< HEAD
-    CategoryId CHAR(10) NOT NULL,
-=======
     CategoryId CHAR(15) NOT NULL,
->>>>>>> 3f56fa5 (Mostly finished order)
     ProductName NVARCHAR(50) NOT NULL,
     PurchasePrice INT NOT NULL,
     RetailPrice INT NOT NULL,
@@ -131,7 +115,6 @@ CREATE TABLE Products (
     FOREIGN KEY (SupplierId) REFERENCES Supplier(SupplierId)
 );
 
-<<<<<<< HEAD
 Insert Into Products Values
 ('Prod0001', 'Sup001', 'Fish', N'Cá kình', 50000000, 100000000, GETDATE(), 'kg')
 INSERT INTO Products (ProductId, SupplierId, CategoryId, ProductName, PurchasePrice, RetailPrice, CreatedAt, Unit) VALUES
@@ -143,8 +126,6 @@ INSERT INTO Products (ProductId, SupplierId, CategoryId, ProductName, PurchasePr
 ('Prod0007', 'Sup002', 'Squid',   N'Mực ống',        110000, 140000, GETDATE(), N'kg'),
 ('Prod0008', 'Sup001', 'Lobst',   N'Tôm hùm Alaska', 500000, 650000, GETDATE(), N'kg');
 
-=======
->>>>>>> 3f56fa5 (Mostly finished order)
 
 -- ======
 CREATE TABLE Import (
@@ -154,9 +135,7 @@ CREATE TABLE Import (
 );
 
 
-<<<<<<< HEAD
 --- =======
-=======
 CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
     ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
     ProductId CHAR(20) NOT NULL,
@@ -174,7 +153,7 @@ SELECT
 FROM ExpireProduct;
 
 
->>>>>>> 3f56fa5 (Mostly finished order)
+
 CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     ProductId CHAR(20) NOT NULL,
     ImportId CHAR(20) NOT NULL,
