@@ -72,7 +72,12 @@ namespace GUI
             lines.Add(FormatLine("Điểm", "", "", "", pointsUsed.ToString("N0")));
             lines.Add(FormatLine("TỔNG", "", "", "", totalAmount.ToString("N0")));
             lines.Add("------------------------------------------------------------");
-            lines.Add("Hóa đơn được lập vào lúc " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            string dateline = "Hóa đơn được lập vào lúc " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            foreach (string line in SplitByLength(dateline,35))
+            {
+                lines.Add(line);
+
+            }
             lines.Add("Nhân viên lập:" + Session.Username??"");
             lines.Add("------------------------------------------------------------");
 

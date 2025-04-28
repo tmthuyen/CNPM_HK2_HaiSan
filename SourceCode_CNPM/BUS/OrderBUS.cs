@@ -131,7 +131,7 @@ namespace BUS
         }
 
         //tạo đơn
-        public bool CreateOrder(string customerName, string phone, string voucherId, string employeeId,
+        public void CreateOrder(string customerName, string phone, string voucherId, string employeeId,
                     int total, int received, int points, string payMethod, List<OrderDetail> orderDetails, List<ProductImport> products)
         {
             int pointGained = CalculatePoints(total);
@@ -175,7 +175,7 @@ namespace BUS
                     // nên khỏi update nó
                     if (phone != "000000000000")
                     {
-                        int pointHas = customer.LoyaltyPoint;
+                        int pointHas = orderDAL.GetPoint(customer.CustomerId);
                         orderDAL.InsertPoint(customer.CustomerId, pointHas + pointGained - points);
                     }
                 }
@@ -227,7 +227,7 @@ namespace BUS
                     throw new Exception(ex.Message);
                 }
             }
-            return true;
+
         }
 
 
@@ -280,8 +280,7 @@ namespace BUS
                     Name = group.Key,
                     Quantity = group.Sum(i => i.Quantity),
                     Unit = group.First().Unit,
-                    Price = group.First().Price, // khác lô nhưng cũng cùng giá (pretty sure)
-                    Total = group.Sum(i => i.Total)
+                    Price = group.First().Price // khác lô nhưng cũng cùng giá (pretty sure)
                 })
                 .ToList();
 

@@ -12,6 +12,6 @@ namespace DTO
         public int Price { get; set; }
         public string Unit {  get; set; }
         public decimal Quantity { get; set; }
-        public int Total { get; set; }
+        public decimal Total {  get; set; }
     }
 }
