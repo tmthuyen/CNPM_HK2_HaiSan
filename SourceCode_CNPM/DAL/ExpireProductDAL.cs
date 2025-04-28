@@ -171,8 +171,7 @@ namespace DAL
         public int GetTotalLoss(DateTime fromDate, DateTime toDate)
         {
             //DataTable dt = new DataTable();
-            //dt.Columns.Add("TotalLoss", typeof(decimal)); // Đặt đúng kiểu
-            toDate  = toDate.AddDays(1);
+            //dt.Columns.Add("TotalLoss", typeof(decimal)); // Đặt đúng kiểu 
 
             string sql = @"SELECT ISNULL(SUM(TotalLoss), 0) 
                 FROM ExpireProduct

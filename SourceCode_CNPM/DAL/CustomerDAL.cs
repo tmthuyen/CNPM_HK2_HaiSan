@@ -9,7 +9,7 @@ namespace DAL
     public class CustomerDAL
     {
         private string table = "Customer";
-        
+
         // Lấy danh sách tất cả khách hàng
         public List<Customer> GetAll()
         {
@@ -120,5 +120,7 @@ namespace DAL
         {
             return Search("", phone, "")[0] != null;
         }
+
+
     }
 }

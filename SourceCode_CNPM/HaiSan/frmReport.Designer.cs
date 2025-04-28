@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             groupBox3 = new GroupBox();
             dtpkToDate = new DateTimePicker();
             label13 = new Label();
@@ -35,8 +40,6 @@
             btnStatistic = new Button();
             label12 = new Label();
             btnExportFile = new Button();
-            label6 = new Label();
-            dgvProduct = new DataGridView();
             panel1 = new Panel();
             txtNumCus = new TextBox();
             label10 = new Label();
@@ -56,10 +59,13 @@
             label5 = new Label();
             txtNumImp = new TextBox();
             label7 = new Label();
+            chartTopSell = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            chartDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Chart();
             groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chartTopSell).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chartDoanhThu).BeginInit();
             SuspendLayout();
             // 
             // groupBox3
@@ -71,7 +77,7 @@
             groupBox3.Controls.Add(label12);
             groupBox3.Controls.Add(btnExportFile);
             groupBox3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox3.Location = new Point(12, 253);
+            groupBox3.Location = new Point(14, 221);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(924, 81);
             groupBox3.TabIndex = 14;
@@ -83,12 +89,12 @@
             dtpkToDate.CustomFormat = "dd-MM-yyyy";
             dtpkToDate.Format = DateTimePickerFormat.Custom;
             dtpkToDate.Location = new Point(494, 36);
-            dtpkToDate.MaxDate = new DateTime(2025, 4, 22, 0, 0, 0, 0);
+            dtpkToDate.MaxDate = new DateTime(2028, 12, 31, 0, 0, 0, 0);
             dtpkToDate.MinDate = new DateTime(2025, 1, 2, 0, 0, 0, 0);
             dtpkToDate.Name = "dtpkToDate";
             dtpkToDate.Size = new Size(129, 34);
             dtpkToDate.TabIndex = 51;
-            dtpkToDate.Value = new DateTime(2025, 4, 22, 0, 0, 0, 0);
+            dtpkToDate.Value = new DateTime(2025, 4, 23, 0, 0, 0, 0);
             // 
             // label13
             // 
@@ -106,12 +112,12 @@
             dtpkFromDate.CustomFormat = "dd-MM-yyyy";
             dtpkFromDate.Format = DateTimePickerFormat.Custom;
             dtpkFromDate.Location = new Point(178, 36);
-            dtpkFromDate.MaxDate = new DateTime(2025, 4, 22, 0, 0, 0, 0);
+            dtpkFromDate.MaxDate = new DateTime(2028, 12, 30, 0, 0, 0, 0);
             dtpkFromDate.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpkFromDate.Name = "dtpkFromDate";
             dtpkFromDate.Size = new Size(129, 34);
             dtpkFromDate.TabIndex = 49;
-            dtpkFromDate.Value = new DateTime(2025, 4, 22, 0, 0, 0, 0);
+            dtpkFromDate.Value = new DateTime(2025, 4, 23, 0, 0, 0, 0);
             // 
             // btnStatistic
             // 
@@ -154,29 +160,7 @@
             btnExportFile.TabIndex = 9;
             btnExportFile.Text = "Xuất file";
             btnExportFile.UseVisualStyleBackColor = false;
-            // 
-            // label6
-            // 
-            label6.BackColor = Color.LightSkyBlue;
-            label6.FlatStyle = FlatStyle.Flat;
-            label6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label6.Location = new Point(238, 337);
-            label6.Name = "label6";
-            label6.Size = new Size(441, 38);
-            label6.TabIndex = 15;
-            label6.Text = "DANH SÁCH SẢN PHẨM";
-            label6.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // dgvProduct
-            // 
-            dgvProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvProduct.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProduct.Dock = DockStyle.Bottom;
-            dgvProduct.Location = new Point(0, 378);
-            dgvProduct.Name = "dgvProduct";
-            dgvProduct.RowHeadersWidth = 51;
-            dgvProduct.Size = new Size(950, 232);
-            dgvProduct.TabIndex = 16;
+            btnExportFile.Click += btnExportFile_Click;
             // 
             // panel1
             // 
@@ -190,7 +174,7 @@
             panel1.Controls.Add(label1);
             panel1.Location = new Point(14, 6);
             panel1.Name = "panel1";
-            panel1.Size = new Size(924, 103);
+            panel1.Size = new Size(924, 90);
             panel1.TabIndex = 13;
             // 
             // txtNumCus
@@ -199,6 +183,7 @@
             txtNumCus.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNumCus.Location = new Point(682, 47);
             txtNumCus.Name = "txtNumCus";
+            txtNumCus.ReadOnly = true;
             txtNumCus.Size = new Size(207, 34);
             txtNumCus.TabIndex = 16;
             // 
@@ -220,6 +205,7 @@
             txtRevenueAfter.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtRevenueAfter.Location = new Point(466, 47);
             txtRevenueAfter.Name = "txtRevenueAfter";
+            txtRevenueAfter.ReadOnly = true;
             txtRevenueAfter.Size = new Size(207, 34);
             txtRevenueAfter.TabIndex = 14;
             // 
@@ -241,6 +227,7 @@
             txtRevenueBefore.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtRevenueBefore.Location = new Point(250, 47);
             txtRevenueBefore.Name = "txtRevenueBefore";
+            txtRevenueBefore.ReadOnly = true;
             txtRevenueBefore.Size = new Size(207, 34);
             txtRevenueBefore.TabIndex = 11;
             // 
@@ -262,6 +249,7 @@
             txtNumOrder.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNumOrder.Location = new Point(34, 47);
             txtNumOrder.Name = "txtNumOrder";
+            txtNumOrder.ReadOnly = true;
             txtNumOrder.Size = new Size(207, 34);
             txtNumOrder.TabIndex = 1;
             // 
@@ -288,7 +276,7 @@
             panel2.Controls.Add(label5);
             panel2.Controls.Add(txtNumImp);
             panel2.Controls.Add(label7);
-            panel2.Location = new Point(14, 134);
+            panel2.Location = new Point(14, 102);
             panel2.Name = "panel2";
             panel2.Size = new Size(923, 113);
             panel2.TabIndex = 17;
@@ -311,6 +299,7 @@
             txtProfit.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtProfit.Location = new Point(672, 74);
             txtProfit.Name = "txtProfit";
+            txtProfit.ReadOnly = true;
             txtProfit.Size = new Size(155, 34);
             txtProfit.TabIndex = 28;
             // 
@@ -332,6 +321,7 @@
             txtTotalLoss.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTotalLoss.Location = new Point(480, 74);
             txtTotalLoss.Name = "txtTotalLoss";
+            txtTotalLoss.ReadOnly = true;
             txtTotalLoss.Size = new Size(155, 34);
             txtTotalLoss.TabIndex = 26;
             // 
@@ -353,6 +343,7 @@
             txtTotalImp.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTotalImp.Location = new Point(288, 74);
             txtTotalImp.Name = "txtTotalImp";
+            txtTotalImp.ReadOnly = true;
             txtTotalImp.Size = new Size(155, 34);
             txtTotalImp.TabIndex = 23;
             // 
@@ -374,6 +365,7 @@
             txtNumImp.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNumImp.Location = new Point(96, 74);
             txtNumImp.Name = "txtNumImp";
+            txtNumImp.ReadOnly = true;
             txtNumImp.Size = new Size(155, 34);
             txtNumImp.TabIndex = 21;
             // 
@@ -389,16 +381,47 @@
             label7.Text = "Số đơn nhập";
             label7.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // chartTopSell
+            // 
+            chartTopSell.BackColor = Color.WhiteSmoke;
+            chartArea1.Name = "ChartArea1";
+            chartTopSell.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chartTopSell.Legends.Add(legend1);
+            chartTopSell.Location = new Point(481, 332);
+            chartTopSell.Name = "chartTopSell";
+            chartTopSell.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chartTopSell.Series.Add(series1);
+            chartTopSell.Size = new Size(461, 279);
+            chartTopSell.TabIndex = 19;
+            chartTopSell.Text = "bieuDoDoanhThu";
+            // 
+            // chartDoanhThu
+            // 
+            chartArea2.Name = "ChartArea1";
+            chartDoanhThu.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            chartDoanhThu.Legends.Add(legend2);
+            chartDoanhThu.Location = new Point(16, 332);
+            chartDoanhThu.Name = "chartDoanhThu";
+            chartDoanhThu.Size = new Size(463, 279);
+            chartDoanhThu.TabIndex = 20;
+            chartDoanhThu.Text = "chart1";
+            // 
             // frmReport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(950, 610);
+            Controls.Add(chartDoanhThu);
+            Controls.Add(chartTopSell);
             Controls.Add(panel2);
             Controls.Add(groupBox3);
-            Controls.Add(label6);
-            Controls.Add(dgvProduct);
             Controls.Add(panel1);
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.None;
@@ -407,11 +430,12 @@
             Text = "frmReport";
             Load += frmReport_Load;
             groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvProduct).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chartTopSell).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartDoanhThu).EndInit();
             ResumeLayout(false);
         }
 
@@ -420,8 +444,6 @@
         private GroupBox groupBox3;
         private Button btnDeletePro;
         private Button btnInventory;
-        private Label label6;
-        private DataGridView dgvProduct;
         private Panel panel1;
         private TextBox txtRevenueAfter;
         private Label label3;
@@ -449,5 +471,8 @@
         private Label label12;
         Button btnStatistic;
         Button btnExportFile;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTopSell;
+        private DataGridView dgvProduct;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartDoanhThu;
     }
 }

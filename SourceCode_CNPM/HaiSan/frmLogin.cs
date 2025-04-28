@@ -111,6 +111,7 @@ namespace GUI
             if (e != null)
             {
 
+                Session.StartSession(e.EmployeeId, taiKhoan, e.RoleName);
                 Form f = new Home(e);
                 frmSuccces succces;
                 string msg = "";
@@ -127,7 +128,6 @@ namespace GUI
                 succces = new frmSuccces("Đăng nhập", msg);
                 succces.ShowDialog();
 
-                Session.StartSession(e.EmployeeId, taiKhoan, e.RoleName);
 
                 this.Hide();
                 f.ShowDialog();

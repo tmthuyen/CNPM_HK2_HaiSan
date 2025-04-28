@@ -21,6 +21,9 @@ namespace GUI
         private float previousVolume = 0.5f; // for unmute
         private ExpireProductBUS expBUS;
         private Employee emp;
+
+        // kiem tra la admin hay khong
+        private bool IsAdmin = Session.Role.Equals("admin");
         public Home(Employee e)
         {
             this.emp = e;
@@ -30,6 +33,8 @@ namespace GUI
             PlayBackgroundMusic();
 
         }
+
+        
 
         // thay doi button dieu huong form
         private void customControl()
@@ -165,14 +170,17 @@ namespace GUI
         }
         private void btnPromotion_Click(object sender, EventArgs e)
         {
-            frmVoucher f = new frmVoucher()
+            if (IsAdmin)
             {
-                Dock = DockStyle.Fill,
-                TopLevel = false,
-                TopMost = true
+                frmVoucher f = new frmVoucher()
+                {
+                    Dock = DockStyle.Fill,
+                    TopLevel = false,
+                    TopMost = true
 
-            };
-            showForm(f, btnPromotion);
+                };
+                showForm(f, btnPromotion);
+            }
         }
 
 
@@ -252,14 +260,17 @@ namespace GUI
 
         private void btnEmp_Click(object sender, EventArgs e)
         {
-            frmEmployee f = new frmEmployee()
+            if (IsAdmin)
             {
-                Dock = DockStyle.Fill,
-                TopLevel = false,
-                TopMost = true
+                frmEmployee f = new frmEmployee()
+                {
+                    Dock = DockStyle.Fill,
+                    TopLevel = false,
+                    TopMost = true
 
-            };
-            showForm(f, btnEmp);
+                };
+                showForm(f, btnEmp);
+            }
         }
 
         private void btnReport_Click(object sender, EventArgs e)

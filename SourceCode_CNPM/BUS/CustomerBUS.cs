@@ -45,5 +45,6 @@ namespace BUS
         {
             return cusDAL.CheckExist("", phone, "");
         }
+ 
     }
 }

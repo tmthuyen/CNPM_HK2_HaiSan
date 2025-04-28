@@ -6,6 +6,8 @@ using DTO;
 using System.Collections;
 using System.Linq.Expressions;
 using System.Drawing;
+using Microsoft.Identity.Client;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DAL
 {
@@ -182,11 +184,9 @@ namespace DAL
                             p.Unit,
                             p.RetailPrice,
                             c.CategoryName,
-                            s.SupplierName
                         FROM Products p
                         JOIN ImportDetail i ON p.ProductId = i.ProductId
                         JOIN Category c ON p.CategoryId = c.CategoryId
-                        JOIN Supplier s ON p.SupplierId = s.SupplierId
                         WHERE i.Remaining > 0
                         ";
             DataTable dt = Connection.ExecuteQuery(query);
@@ -197,7 +197,6 @@ namespace DAL
                 products.Add(new ProductImport
                 {
                     ProductId = row["ProductId"].ToString(),
-                    SupplierId = row["SupplierName"].ToString(),
                     ProductName = row["ProductName"].ToString(),
                     CategoryName = row["CategoryName"].ToString(),
                     RetailPrice = Convert.ToInt32(row["RetailPrice"]),
@@ -330,48 +329,123 @@ namespace DAL
 
             return ids;
         }
-    
+
+
+        // lay doanh sash đơn hang cua customer
+        public List<Order> GetOrderByCus(string cusId, string cusPhone)
+        {
+            List<Order> orders = new List<Order>();
+            string query = @"SELECT o.* FROM Orders o
+                JOIN Customer c ON c.CustomerId = o.CustomerId
+                WHERE o.CustomerId = @cusId AND c.Phone = @cusPhone";
             
+            DataTable dt = Connection.ExecuteQuery(query, new SqlParameter[]
+            {
+                new SqlParameter("@cusId", cusId),
+                new SqlParameter("@cusPhone", cusPhone)
+            });
+
+            foreach (DataRow row in dt.Rows)
+            {
+                List<OrderDetail> orderDetails = orderDetailDAL.GetByOrderId(row["OrderId"].ToString());
+
+                orders.Add(new Order(
+                    row["OrderId"].ToString(),
+                    Convert.ToDateTime(row["CreatedAt"]),
+                    Convert.ToDecimal(row["TotalAmount"]),
+                    Convert.ToDecimal(row["ReceivedAmount"]),
+                    Convert.ToInt32(row["UsedPoint"]),
+                    row["PaymentMethod"].ToString(),
+                    row["CustomerId"].ToString(),
+                    row["EmployeeId"].ToString(),
+                    row["VoucherId"].ToString(),
+                    orderDetails
+                ));
+            }
+
+            return orders;
+        }
+
+
         // báo caso thông kê
         public DataTable GetNumOrder_Revenue_NumCus(DateTime fromDate, DateTime toDate)
         {
-            toDate = toDate.AddDays(1);
-            DataTable dt = new DataTable();
-            dt.Columns.Add("NumOrders", typeof(int));
-            dt.Columns.Add("RevenueBefore", typeof(int));
-            dt.Columns.Add("NumCustomers", typeof(int));
-
-            string sql = "SELECT COUNT(*) FROM Orders WHERE CreatedAt >= @fromDate AND CreatedAt < @toDate";
-
-
-            int numOrder = (int)Connection.ExecuteScalar(sql, new SqlParameter[]
-                            {
-                                new SqlParameter("@fromDate", fromDate),
-                                new SqlParameter("@toDate", toDate)
-                            });
-            sql = "SELECT COUNT(DISTINCT CustomerId) FROM Orders WHERE CreatedAt >= @fromDate AND CreatedAt < @toDate";
-
-
-            int numCus = (int)Connection.ExecuteScalar(sql, new SqlParameter[]
+            string sql = @"SELECT 
+                    COUNT(o.OrderId) AS NumOrders,
+                    COUNT(DISTINCT o.CustomerId) AS NumCustomers,
+                    ISNULL(SUM(od.RetailPrice * od.Amount), 0) AS RevenueBefore,
+                    ISNULL(SUM(o.TotalAmount), 0)  AS RevenueAfter
+                    FROM Orders AS o
+                    JOIN OrderDetail AS od ON od.OrderId = o.OrderId
+                    WHERE CreatedAt >= @fromDate AND CreatedAt < @toDate";
+             
+            DataTable dt =  Connection.ExecuteQuery(sql, new SqlParameter[]
                             {
                                 new SqlParameter("@fromDate", fromDate),
                                 new SqlParameter("@toDate", toDate)
                             });
 
+            dt.Columns.Add("Profit", typeof(decimal));
 
-            sql = "SELECT ISNULL(SUM(TotalAmount), 0) FROM Orders WHERE CreatedAt >= @fromDate AND CreatedAt < @toDate";
+            decimal doanhThuSau = (int) dt.Rows[0]["RevenueAfter"];
 
+            sql = @"SELECT ISNULL(SUM(od.Amount * p.PurchasePrice), 0)
+                    FROM Orders o
+                    JOIN Orderdetail od ON od.OrderId = o.OrderId
+                    JOIN Products p ON p.ProductId = od.ProductId 
+                    WHERE o.CreatedAt >= @fromDate AND o.CreatedAt < @toDate";
 
-            int revenueBefore = (int)Connection.ExecuteScalar(sql, new SqlParameter[]
+            decimal giaVon = (decimal) Connection.ExecuteScalar(sql, new SqlParameter[]
                             {
                                 new SqlParameter("@fromDate", fromDate),
                                 new SqlParameter("@toDate", toDate)
                             });
 
-            dt.Rows.Add(numOrder, revenueBefore, numCus);
-
+            dt.Rows[0]["Profit"] = doanhThuSau - giaVon;
             return dt;
+        }
 
+
+        // Tong doanh thu theo ngay
+        public DataTable GetRevenueByDay(DateTime fromDate, DateTime toDate)
+        {
+            string sql = @"
+                    SELECT 
+                        CAST(o.CreatedAt AS DATE) AS N'OrderDate',
+                        COUNT(o.OrderId) AS N'NumOrder',
+                        ISNULL(SUM(o.TotalAmount), 0) AS N'Revenue'
+                    FROM Orders o
+                    WHERE o.CreatedAt >= @fromDate AND o.CreatedAt < @toDate
+                    GROUP BY CAST(o.CreatedAt AS DATE)
+                    ORDER BY CAST(o.CreatedAt AS DATE)";
+
+            return Connection.ExecuteQuery(sql, new SqlParameter[]
+                    {
+                        new SqlParameter("@fromDate", fromDate),
+                        new SqlParameter("@toDate", toDate)
+                    });
+        }
+    
+        
+        // top san pham ban chay
+        public DataTable GetTopProduct(DateTime fromDate, DateTime toDate)
+        {
+            string sql = @"SELECT TOP 5
+                        p.ProductName,
+                        SUM(od.Amount) AS TotalSold
+                    FROM OrderDetail od
+                    JOIN Products p ON p.ProductId = od.ProductId
+                    JOIN Orders o ON o.OrderId = od.OrderId
+                     WHERE o.CreatedAt >= @fromDate AND o.CreatedAt < @toDate
+                    GROUP BY p.ProductName
+                    ORDER BY TotalSold DESC";
+ 
+
+            return Connection.ExecuteQuery(sql, new SqlParameter[]
+                    {
+                        new SqlParameter("@fromDate", fromDate),
+                        new SqlParameter("@toDate", toDate)
+                    });
 
         }
     }

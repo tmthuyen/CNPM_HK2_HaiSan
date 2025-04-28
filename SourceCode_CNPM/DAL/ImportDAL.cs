@@ -102,37 +102,19 @@ namespace DAL
 
         /// báo cáo thông kê
         public DataTable GetNumImp_TotalImp(DateTime fromDate, DateTime toDate)
-        {
-            toDate = toDate.AddDays(1);
+        {  
+            string sql = @"SELECT 
+                    COUNT(DISTINCT id.ImportId) AS NumImports,
+                    ISNULL(SUM(id.Quantity * id.PurchasePrice), 0) AS TotalImport
+                        FROM Import AS i
+                        JOIN ImportDetail AS id ON id.ImportId = i.ImportId
+                        WHERE i.ImportDate >= @fromDate AND i.ImportDate < @toDate"; 
 
-            DataTable dt = new DataTable();
-            dt.Columns.Add("NumImports", typeof(int));
-            dt.Columns.Add("TotalImport", typeof(decimal)); 
-
-            string sql = "SELECT COUNT(*) FROM Import WHERE ImportDate >= @fromDate AND ImportDate < @toDate";
-
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@fromDate", fromDate),
-                new SqlParameter("@toDate", toDate)
-            };
-
-
-            int numImp = (int)Connection.ExecuteScalar(sql, parameters);
-
-            sql = @"SELECT ISNULL(SUM(id.Quantity * id.PurchasePrice), 0) FROM Import AS i
-                    JOIN ImportDetail AS id ON id.ImportId = i.ImportId
-                    WHERE i.ImportDate >= @fromDate AND i.ImportDate < @toDate";
-
-            decimal totalImp = (decimal)Connection.ExecuteScalar(sql, new SqlParameter[]
+            return Connection.ExecuteQuery(sql, new SqlParameter[]
                             {
                                 new SqlParameter("@fromDate", fromDate),
                                 new SqlParameter("@toDate", toDate)
                             });
-
-            dt.Rows.Add(numImp, totalImp);
-
-            return dt;
         }
     }
 }
