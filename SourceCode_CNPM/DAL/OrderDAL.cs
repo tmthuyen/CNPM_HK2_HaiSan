@@ -183,7 +183,7 @@ namespace DAL
                             i.Remaining,
                             p.Unit,
                             p.RetailPrice,
-                            c.CategoryName,
+                            c.CategoryName
                         FROM Products p
                         JOIN ImportDetail i ON p.ProductId = i.ProductId
                         JOIN Category c ON p.CategoryId = c.CategoryId
