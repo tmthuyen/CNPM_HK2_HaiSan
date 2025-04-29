@@ -39,3 +39,9 @@ packages/
 
 # If you still want to specifically ignore that path:
 SourceCode_CNPM/HaiSan/.vs/
+/SourceCode_CNPM/HaiSan/Usercontrol/UCVoucher.resx
+/SourceCode_CNPM/HaiSan/Usercontrol/UCVoucher.resx
+/SourceCode_CNPM/HaiSan/Usercontrol/PromotionControl.cs
+/SourceCode_CNPM/HaiSan/Usercontrol/PromotionControl.cs
+/SourceCode_CNPM/HaiSan/Usercontrol/PromotionControl.Designer.cs
+/SourceCode_CNPM/HaiSan/Usercontrol/UCVoucher.Designer.cs

@@ -27,36 +27,11 @@ Create table Account(
 	EmployeeId CHAR(6) Primary key,
 	Username CHAR(20) NOT NULL UNIQUE,
 	Password Varchar(255) NOT NULL, --hashed
-	--Password Varchar(100) NOT NULL, --hashed
     FOREIGN KEY (EmployeeId) REFERENCES Employee(EmployeeId)	
 ) 
 
 insert into Account values('Emp01', 'tranthuyen', 'b13341051b70a0a4dc3e18d0d7ca1b65995e76c230d68464d5466b3b5e551c3d')
 insert into Account values('Emp04', 'tmthuyen', 'b13341051b70a0a4dc3e18d0d7ca1b65995e76c230d68464d5466b3b5e551c3d')
-
-
--- ===== ALTER TABLE nè
-ALTER TABLE Products
-ALTER COLUMN ProductId CHAR(20);
-ALTER TABLE Products
-ALTER COLUMN CategoryId Char(15);
-ALTER TABLE Category
-ALTER COLUMN CategoryId Char(15) 
-ALTER TABLE Account
-ALTER COLUMN Password VARCHAR(100);
-
--- =====  SELECT Table nè
-Select * from Employee
-select * from Account
-select * from Category
-select * from Customer
-select * from Products
-select * from Supplier 
-
-INSERT INTO Account (EmployeeId, Username, Password)
-VALUES ('Emp01', 'tranthuyen', 'b13341051b70a0a4dc3e18d0d7ca1b65995e76c230d68464d5466b3b5e551c3d');
-
-select * from account
 
 -- =====
 CREATE TABLE Customer (
@@ -81,8 +56,8 @@ CREATE TABLE Category (
     CategoryName NVARCHAR(20) NOT NULL
 );
 Insert into Category Values
-('Fish', 'Cá'),
-('Crab', 'Cua')
+('Fish', N'Cá'),
+('Crab', N'Cua')
 
   INSERT INTO Category VALUES
 ('Shrimp', N'Tôm'),
@@ -107,11 +82,8 @@ Insert into Supplier Values
 -- =====
 CREATE TABLE Products (
     ProductId CHAR(20) NOT NULL PRIMARY KEY,
-    SupplierId CHAR(6) NOT NULL,
-    CategoryId CHAR(10) NOT NULL,
     CategoryId CHAR(15) NOT NULL,
     ProductName NVARCHAR(50) NOT NULL,
-    PurchasePrice INT NOT NULL,
     RetailPrice INT NOT NULL,
     CreatedAt DATETIME DEFAULT GETDATE() NOT NULL,
     Unit NVARCHAR(10) NOT NULL, 
@@ -119,23 +91,22 @@ CREATE TABLE Products (
     FOREIGN KEY (SupplierId) REFERENCES Supplier(SupplierId)
 );
 
-Insert Into Products Values
-('Prod0001', 'Sup001', 'Fish', N'Cá kình', 50000000, 100000000, GETDATE(), 'kg')
-INSERT INTO Products (ProductId, SupplierId, CategoryId, ProductName, PurchasePrice, RetailPrice, CreatedAt, Unit) VALUES
-('Prod0002', 'Sup001', 'Fish',     N'Cá bống mú',     70000, 95000, GETDATE(), N'kg'),
-('Prod0003', 'Sup001', 'Crab',     N'Cua biển',       120000, 160000, GETDATE(), N'kg'),
-('Prod0004', 'Sup002', 'Shrimp',   N'Tôm sú',         150000, 190000, GETDATE(), N'kg'),
-('Prod0005', 'Sup002', 'Snail',   N'Ốc hương',       80000, 100000, GETDATE(), N'kg'),
-('Prod0006', 'Sup001', 'Clam',   N'Nghêu trắng',    40000, 60000, GETDATE(), N'kg'),
-('Prod0007', 'Sup002', 'Squid',   N'Mực ống',        110000, 140000, GETDATE(), N'kg'),
-('Prod0008', 'Sup001', 'Lobst',   N'Tôm hùm Alaska', 500000, 650000, GETDATE(), N'kg');
+INSERT INTO Products (ProductId, SupplierId, CategoryId, ProductName, RetailPrice, CreatedAt, Unit) VALUES
+('Prod0001', 'Sup001', 'Fish', N'Cá kình', 120000, GETDATE(), 'kg')
+('Prod0002', 'Sup001', 'Fish',     N'Cá bống mú', 95000, GETDATE(), N'kg'),
+('Prod0003', 'Sup001', 'Crab',     N'Cua biển', 160000, GETDATE(), N'kg'),
+('Prod0004', 'Sup002', 'Shrimp',   N'Tôm sú', 190000, GETDATE(), N'kg'),
+('Prod0005', 'Sup002', 'Snail',   N'Ốc hương', 100000, GETDATE(), N'kg'),
+('Prod0006', 'Sup001', 'Clam',   N'Nghêu trắng', 60000, GETDATE(), N'kg'),
+('Prod0007', 'Sup002', 'Squid',   N'Mực ống', 140000, GETDATE(), N'kg'),
+('Prod0008', 'Sup001', 'Lobst',   N'Tôm hùm Alaska', 650000, GETDATE(), N'kg');
 
 
 -- ======
 CREATE TABLE Import (
     ImportId CHAR(20) PRIMARY KEY,
     ImportDate DATETIME DEFAULT GETDATE() NOT NULL,
-	NumOfProducts INT,--số loại nhập
+    NumOfProducts INT,--số loại nhập
 );
 
 
@@ -171,12 +142,13 @@ CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
 
 -- Bảng Import (phiếu nhập)
 INSERT INTO Import (ImportId, ImportDate, NumOfProducts) VALUES
-('IMP00001', GETDATE(), 2),
+('IMP00001', GETDATE(), 3),
 ('IMP00002', GETDATE(), 3),
 ('IMP00003', GETDATE(), 1);
 
 -- Bảng ImportDetail (lô hàng nhập)
 INSERT INTO ImportDetail (ProductId, ImportId, Quantity, Remaining, Expire, PurchasePrice) VALUES
+('Prod0001', 'IMP00001', 30, 30, '2025-05-10', 100000),
 ('Prod0002', 'IMP00001', 30, 30, '2025-05-10', 70000),
 ('Prod0003', 'IMP00001', 20, 20, '2025-05-12', 120000),
 
@@ -194,7 +166,8 @@ CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
     Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
     TotalLoss INT NOT NULL,--tien mat
     ExpiredDate DATE NOT NULL,
-    FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
+    FOREIGN KEY (ProductId) REFERENCES ImportDetail(ProductId),
+    FOREIGN KEY (ImportId) REFERENCES ImportDetail(ImportId),
 );
 
 
@@ -232,7 +205,7 @@ CREATE TABLE Orders (
     PaymentMethod NVARCHAR(11) NOT NULL,
     FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId),
     FOREIGN KEY (EmployeeId) REFERENCES Employee(EmployeeId),
-	FOREIGN KEY (VoucherId) REFERENCES Voucher(VoucherId)
+    FOREIGN KEY (VoucherId) REFERENCES Voucher(VoucherId)
 );
 
 
@@ -243,8 +216,8 @@ CREATE TABLE OrderDetail (
     RetailPrice INT NOT NULL,
 	ImportId CHAR(20) NOT NULL,
     Amount DECIMAL(10, 3) NOT NULL,
-    FOREIGN KEY (ProductId) REFERENCES Products(ProductId),
-	FOREIGN KEY (ImportId) REFERENCES Import(ImportId),
+    FOREIGN KEY (ProductId) REFERENCES ImportDetail(ProductId),
+    FOREIGN KEY (ImportId) REFERENCES ImportDetail(ImportId),
     FOREIGN KEY (OrderId) REFERENCES Orders(OrderId)
 );
 
@@ -264,47 +237,7 @@ VALUES
 ('V250410P02', N'Giảm 5% cho đơn ăn trưa', '2025-04-10', '2025-05-10', 150000, 40000, 5, 0, 1, 0);
 
 
-Insert Into Products Values
-('Prod0001', 'Sup001', 'Fish', N'Cá kình', 50000, 100000, GETDATE(), 'kg'),
-('Prod0002', 'Sup002', 'Fish', N'Cá Alabasta', 30000, 50000, GETDATE(), 'kg'),
-('Prod0003', 'Sup001', 'Crab', N'Cua hoàng đề', 75000, 100000, GETDATE(), 'kg')
-
 insert into import values ('1',getdate(),1)
 insert into ImportDetail values ('Prod0001','1',50,50,'2025-05-01',50000)
 insert into ImportDetail values ('Prod0002','1',50,50,'2025-05-01',30000)
 insert into ImportDetail values ('Prod0003','1',50,50,'2025-05-01',75000)
-
-
-
-
-
-Select * from Employee
-select * from Account
-select * from Category
-select * from Customer
-select * from Products
-select * from Supplier
-select * from Import
-select * from ImportDetail
-
-drop table Import
-drop table ImportDetail
-drop table OrderDetail 
-drop table Voucher
-drop table Orders
-  
-
-SELECT 
-    p.ProductId,
-    p.ProductName,
-    i.ImportId,
-    i.Remaining,
-    p.Unit,
-    p.RetailPrice,
-    c.CategoryName,
-    s.SupplierName
-FROM Products p
-JOIN ImportDetail i ON p.ProductId = i.ProductId
-JOIN Category c ON p.CategoryId = c.CategoryId
-JOIN Supplier s ON p.SupplierId = s.SupplierId
-WHERE i.Remaining > 0

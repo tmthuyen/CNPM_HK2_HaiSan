@@ -286,7 +286,8 @@ namespace BUS
                     Name = group.Key,
                     Quantity = group.Sum(i => i.Quantity),
                     Unit = group.First().Unit,
-                    Price = group.First().Price // khác lô nhưng cũng cùng giá (pretty sure)
+                    Price = group.First().Price, // khác lô nhưng cũng cùng giá (pretty sure)
+                    Total = group.Sum(i => i.Total)
                 })
                 .ToList();
 

@@ -605,7 +605,7 @@ namespace GUI
         //
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (!inputValidation()) throw new Exception("");
+            if (!inputValidation()) return;
             if (string.IsNullOrEmpty(textBoxCustomerName.Text))
             {
                 DialogResult result = MessageBox.Show(

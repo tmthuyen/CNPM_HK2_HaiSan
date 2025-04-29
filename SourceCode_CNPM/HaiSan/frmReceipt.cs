@@ -34,9 +34,9 @@ namespace GUI
             // Set up a list of lines first
             List<string> lines = new List<string>
             {
-                "------------------------------------------------------------",
+                "------------------------------------",
                 FormatLine("SP", "SL", "ĐV", "Giá", "Tổng"),
-                "------------------------------------------------------------"
+                "------------------------------------"
             };
 
             foreach (OrderItem oi in orderItems)
@@ -65,13 +65,13 @@ namespace GUI
                 }
             }
 
-            lines.Add("------------------------------------------------------------");
+            lines.Add("------------------------------------");
             lines.Add(FormatLine("Voucher", "", "", "", voucherCode == "None" ? "Không" : voucherCode));
             lines.Add(FormatLine("giảm", "", "", "", "-" + voucherDiscount.ToString("N0")));
-            lines.Add("------------------------------------------------------------");
+            lines.Add("------------------------------------");
             lines.Add(FormatLine("Điểm", "", "", "", pointsUsed.ToString("N0")));
             lines.Add(FormatLine("TỔNG", "", "", "", totalAmount.ToString("N0")));
-            lines.Add("------------------------------------------------------------");
+            lines.Add("------------------------------------");
             string dateline = "Hóa đơn được lập vào lúc " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             foreach (string line in SplitByLength(dateline,35))
             {
@@ -79,7 +79,7 @@ namespace GUI
 
             }
             lines.Add("Nhân viên lập:" + Session.Username??"");
-            lines.Add("------------------------------------------------------------");
+            lines.Add("------------------------------------");
 
             string[] thankYouMessage = ["Cảm ơn quý khách đã chọn Nhà Hàng Hải Sản A!", "Chúng tôi trân trọng sự ủng hộ của quý khách và hy vọng quý khách đã có một bữa ăn ngon miệng.",
             "Mọi thắc mắc hoặc góp ý, xin vui lòng liên hệ với chúng tôi:",
@@ -94,7 +94,7 @@ namespace GUI
                     lines.Add(splitline);
                 }              
             }
-            lines.Add("------------------------------------------------------------");
+            lines.Add("------------------------------------");
 
 
             // Measure content height before setting PaperSize
