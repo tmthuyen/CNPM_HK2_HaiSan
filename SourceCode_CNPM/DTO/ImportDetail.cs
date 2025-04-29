@@ -18,7 +18,7 @@ using System.Threading.Tasks;
         public DateTime Expire { get; set; }
 
         // tien phai tra cua chi tiet nhap vao
-        public float TotalPrice => PurchasePrice * Quantity;
+        public decimal TotalPrice => (decimal) (PurchasePrice * Quantity);
 
         public ImportDetail(string importId, string productId, float quantity, float remaining, int purchasePrice, DateTime expire)
         {
