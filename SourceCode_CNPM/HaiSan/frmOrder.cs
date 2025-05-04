@@ -297,7 +297,7 @@ namespace GUI
                 !Match(comboBoxProductName.Text, comboBoxProductName)
                 )
             {
-                MessageBox.Show("Chưa điền hoặc điền chưa đúng các dòng dữ liệu .");
+                new frmError("Lỗi nhập chi tiết đơn","Chưa điền hoặc điền chưa đúng các dòng dữ liệu.").ShowDialog();
                 return;
             }
 
@@ -427,6 +427,18 @@ namespace GUI
                     }
                     comboBoxProductName.SelectedItem = p;
                     decimal quantity = changeAmountToDecimal(soLuongTextBox.Text);
+                    if (quantity == 0)
+                    {
+                        new frmError("Số lượng không hợp lệ", "Không thể thêm 0 sản phẩm").ShowDialog();
+                        soLuongTextBox.Focus();
+                        return;
+                    }
+                    if (!orderBUS.CheckAvailable(p, quantity))
+                    {
+                        new frmError("Số lượng không hợp lệ", "Không thể thêm nhiều hơn số lượng có").ShowDialog();
+                        soLuongTextBox.Focus();
+                        return;
+                    }
                     row.Cells[1].Value = quantity;
                     row.Cells[4].Value = formatNumber(orderBUS.CalPrice(quantity, p.RetailPrice));
                     updateOnDetailChange(sender, e);

@@ -20,12 +20,13 @@ namespace DAL
             foreach (DataRow row in dt.Rows)
             {
                 string importId = row["ImportId"].ToString().Trim();
+                string supId = row["SupplierId"].ToString().Trim();
                 DateTime importDate = Convert.ToDateTime(row["ImportDate"]);
                 int numOfPro = Convert.ToInt32(row["NumOfProducts"]);
 
                 List<ImportDetail> importDetails = importDetailDAL.Search(row["ImportId"].ToString(), null, null);
 
-                imports.Add(new Import(importId, importDate, numOfPro, importDetails));
+                imports.Add(new Import(importId, supId, importDate, numOfPro, importDetails));
             }
 
             return imports;
@@ -34,11 +35,12 @@ namespace DAL
         // Thêm nhập hàng mới (và chi tiết)
         public bool Add(Import import)
         {
-            string query = @"INSERT INTO Import (ImportId, ImportDate, NumOfProducts)
-                             VALUES (@Id, @ImportDate, @NumOfProducts)";
+            string query = @"INSERT INTO Import (ImportId, SupplierId, ImportDate, NumOfProducts)
+                             VALUES (@Id, @SupId, @ImportDate, @NumOfProducts)";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@Id", import.ImportId),
+                new SqlParameter("@SupId", import.SupplierId),
                 new SqlParameter("@ImportDate", import.ImportDate),
                 new SqlParameter("@NumOfProducts", import.NumOfProducts)
             };
@@ -68,6 +70,7 @@ namespace DAL
                 return null;
 
             DataRow row = dt.Rows[0];
+            string supId = row["SupplierId"].ToString().Trim();
             DateTime importDate = Convert.ToDateTime(row["ImportDate"]);
             int numOfPro = Convert.ToInt32(row["NumOfProducts"]);
 
@@ -76,7 +79,7 @@ namespace DAL
             List<ImportDetail> importDetails = importDetailDAL.Search(row["ImportId"].ToString(), null, null);
 
 
-            return new Import(importId, importDate, numOfPro, importDetails);
+            return new Import(importId,supId, importDate, numOfPro, importDetails);
         }
     
         public string CreateNewId()

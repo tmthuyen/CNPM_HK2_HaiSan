@@ -81,18 +81,18 @@ namespace GUI
             dgvProduct.DataSource = list;
 
             // an cac cot khong can xem
-            if (!IsAdmin)
-            {
-                dgvProduct.Columns["PurchasePrice"].Visible = false;
-            }
-            else
-            {
-                dgvProduct.Columns["PurchasePrice"].HeaderText = "Giá nhập";
-            }
+            //if (!IsAdmin)
+            //{
+            //    dgvProduct.Columns["PurchasePrice"].Visible = false;
+            //}
+            //else
+            //{
+            //    dgvProduct.Columns["PurchasePrice"].HeaderText = "Giá nhập";
+            //}
 
             // sua headertext
             dgvProduct.Columns["ProductID"].HeaderText = "Mã";
-            dgvProduct.Columns["SupplierId"].HeaderText = "Mã NCC";
+            //dgvProduct.Columns["SupplierId"].HeaderText = "Mã NCC";
             dgvProduct.Columns["CategoryId"].HeaderText = "Mã loại";
             dgvProduct.Columns["ProductName"].HeaderText = "Tên";
             dgvProduct.Columns["RetailPrice"].HeaderText = "Giá bán";
@@ -303,7 +303,7 @@ namespace GUI
         // clicc them san pham
         private void btnAddPro_Click(object sender, EventArgs e)
         {
-            frmAddNewProduct frmAdd = new frmAddNewProduct(proBUS, cateBUS, supBUS);
+            frmAddNewProduct frmAdd = new frmAddNewProduct(proBUS, cateBUS);
 
             frmAdd.ShowDialog();
         }

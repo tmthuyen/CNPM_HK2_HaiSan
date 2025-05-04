@@ -36,12 +36,8 @@
             label4 = new Label();
             txtRetailPrice = new TextBox();
             cbbUnit = new ComboBox();
-            label2 = new Label();
-            txtPurchasePrice = new TextBox();
             label3 = new Label();
-            cbbSupplier = new ComboBox();
             cbbCategory = new ComboBox();
-            label12 = new Label();
             label13 = new Label();
             txtProName = new TextBox();
             label10 = new Label();
@@ -119,12 +115,8 @@
             grInputPro.Controls.Add(label4);
             grInputPro.Controls.Add(txtRetailPrice);
             grInputPro.Controls.Add(cbbUnit);
-            grInputPro.Controls.Add(label2);
-            grInputPro.Controls.Add(txtPurchasePrice);
             grInputPro.Controls.Add(label3);
-            grInputPro.Controls.Add(cbbSupplier);
             grInputPro.Controls.Add(cbbCategory);
-            grInputPro.Controls.Add(label12);
             grInputPro.Controls.Add(label13);
             grInputPro.Controls.Add(txtProName);
             grInputPro.Controls.Add(label10);
@@ -143,9 +135,9 @@
             label4.BackColor = Color.LightSkyBlue;
             label4.FlatStyle = FlatStyle.Flat;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(527, 148);
+            label4.Location = new Point(210, 150);
             label4.Name = "label4";
-            label4.Size = new Size(91, 31);
+            label4.Size = new Size(134, 31);
             label4.TabIndex = 43;
             label4.Text = "Giá bán";
             // 
@@ -153,9 +145,9 @@
             // 
             txtRetailPrice.BackColor = Color.WhiteSmoke;
             txtRetailPrice.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtRetailPrice.Location = new Point(637, 146);
+            txtRetailPrice.Location = new Point(365, 147);
             txtRetailPrice.Name = "txtRetailPrice";
-            txtRetailPrice.Size = new Size(129, 34);
+            txtRetailPrice.Size = new Size(202, 34);
             txtRetailPrice.TabIndex = 7;
             txtRetailPrice.KeyPress += txtRetailPrice_KeyPress;
             // 
@@ -166,54 +158,21 @@
             cbbUnit.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbbUnit.FormattingEnabled = true;
             cbbUnit.Items.AddRange(new object[] { "Kg", "Con" });
-            cbbUnit.Location = new Point(121, 145);
+            cbbUnit.Location = new Point(168, 85);
             cbbUnit.Name = "cbbUnit";
-            cbbUnit.Size = new Size(129, 36);
+            cbbUnit.Size = new Size(214, 36);
             cbbUnit.TabIndex = 5;
-            // 
-            // label2
-            // 
-            label2.BackColor = Color.LightSkyBlue;
-            label2.FlatStyle = FlatStyle.Flat;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(269, 148);
-            label2.Name = "label2";
-            label2.Size = new Size(91, 31);
-            label2.TabIndex = 40;
-            label2.Text = "Giá nhập";
-            // 
-            // txtPurchasePrice
-            // 
-            txtPurchasePrice.BackColor = Color.WhiteSmoke;
-            txtPurchasePrice.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPurchasePrice.Location = new Point(379, 146);
-            txtPurchasePrice.Name = "txtPurchasePrice";
-            txtPurchasePrice.Size = new Size(129, 34);
-            txtPurchasePrice.TabIndex = 6;
-            txtPurchasePrice.KeyPress += txtPurchasePrice_KeyPress;
             // 
             // label3
             // 
             label3.BackColor = Color.LightSkyBlue;
             label3.FlatStyle = FlatStyle.Flat;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(11, 148);
+            label3.Location = new Point(19, 90);
             label3.Name = "label3";
-            label3.Size = new Size(91, 31);
+            label3.Size = new Size(128, 31);
             label3.TabIndex = 39;
             label3.Text = "Đơn vị";
-            // 
-            // cbbSupplier
-            // 
-            cbbSupplier.BackColor = Color.WhiteSmoke;
-            cbbSupplier.FlatStyle = FlatStyle.Flat;
-            cbbSupplier.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbbSupplier.FormattingEnabled = true;
-            cbbSupplier.ItemHeight = 28;
-            cbbSupplier.Location = new Point(168, 84);
-            cbbSupplier.Name = "cbbSupplier";
-            cbbSupplier.Size = new Size(214, 36);
-            cbbSupplier.TabIndex = 3;
             // 
             // cbbCategory
             // 
@@ -226,17 +185,6 @@
             cbbCategory.Size = new Size(214, 36);
             cbbCategory.TabIndex = 1;
             cbbCategory.SelectedIndexChanged += cbbCategory_SelectedIndexChanged;
-            // 
-            // label12
-            // 
-            label12.BackColor = Color.LightSkyBlue;
-            label12.FlatStyle = FlatStyle.Flat;
-            label12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(13, 87);
-            label12.Name = "label12";
-            label12.Size = new Size(134, 31);
-            label12.TabIndex = 33;
-            label12.Text = "Nhà cung cấp";
             // 
             // label13
             // 
@@ -345,7 +293,6 @@
         private Button btnCancelPro;
         private Button btnAddPro;
         private GroupBox grInputPro;
-        private Label label12;
         private Label label13;
         private TextBox txtProName;
         private Label label10;
@@ -354,12 +301,9 @@
         private Label label1;
         private Button btnExit;
         private ComboBox cbbCategory;
-        private ComboBox cbbSupplier;
         private Label label4;
         private TextBox txtRetailPrice;
         private ComboBox cbbUnit;
-        private Label label2;
-        private TextBox txtPurchasePrice;
         private Label label3;
     }
 }

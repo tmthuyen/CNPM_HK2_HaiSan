@@ -21,6 +21,7 @@ namespace DAL
                 list.Add(new ExpireProduct(
                     row["ExpireProductId"].ToString(),
                     row["ProductId"].ToString(),
+                    row["ImportId"].ToString(),
                     Convert.ToSingle(row["Quantity"]),
                     Convert.ToInt32(row["TotalLoss"]),
                     Convert.ToDateTime(row["ExpiredDate"])
@@ -61,12 +62,13 @@ namespace DAL
         public bool Add(ExpireProduct expired)
         {
             string query = @"INSERT INTO ExpireProduct 
-                             (ExpireProductId, ProductId, Quantity, TotalLoss, ExpiredDate)
-                             VALUES (@Id, @ProductId, @Quantity, @TotalLoss, @ExpiredDate)";
+                             (ExpireProductId, ProductId, ImportId, Quantity, TotalLoss, ExpiredDate)
+                             VALUES (@Id, @ProductId, @ImpId, @Quantity, @TotalLoss, @ExpiredDate)";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@Id", expired.ExpireProductId),
                 new SqlParameter("@ProductId", expired.ProductId),
+                new SqlParameter("@ImpId", expired.ImportId),
                 new SqlParameter("@Quantity", expired.Quantity),
                 new SqlParameter("@TotalLoss", expired.TotalLoss),
                 new SqlParameter("@ExpiredDate", expired.ExpiredDate)
@@ -95,6 +97,7 @@ namespace DAL
                     ExpireProduct exp = new ExpireProduct(
                         newIdCur,
                         row["ProductId"].ToString(),
+                        row["ImportId"].ToString(),
                         remaining,
                         (int)(remaining * Convert.ToInt32(row["PurchasePrice"])),
                         DateTime.Now
@@ -135,6 +138,7 @@ namespace DAL
                 list.Add(new ExpireProduct(
                     row["ExpireProductId"].ToString(),
                     row["ProductId"].ToString(),
+                    row["ImportId"].ToString(),
                     Convert.ToSingle(row["Quantity"]),
                     Convert.ToInt32(row["TotalLoss"]),
                     Convert.ToDateTime(row["ExpiredDate"])

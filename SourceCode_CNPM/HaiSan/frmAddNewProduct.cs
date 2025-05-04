@@ -16,12 +16,12 @@ namespace GUI
     {
         private ProductBUS proBUS;
         private CategoryBUS cateBUS;
-        private SupplierBUS supBUS;
-        public frmAddNewProduct(ProductBUS proBUS, CategoryBUS cateBUS, SupplierBUS supBUS)
+        //private SupplierBUS supBUS;
+        public frmAddNewProduct(ProductBUS proBUS, CategoryBUS cateBUS)
         {
             this.proBUS = proBUS;
             this.cateBUS = cateBUS;
-            this.supBUS = supBUS;
+            //this.supBUS = supBUS;
             InitializeComponent();
         }
 
@@ -33,7 +33,7 @@ namespace GUI
         private void frmAddNewProduct_Load(object sender, EventArgs e)
         {
             loadCategory(cbbCategory, cateBUS.GetAll());
-            loadSupplier(cbbSupplier, supBUS.GetAll());
+            //loadSupplier(cbbSupplier, supBUS.GetAll());
             clearInput(); 
             cbbCategory.Focus();
         }
@@ -43,11 +43,10 @@ namespace GUI
         private void clearInput()
         {
             txtProId.Text = "";
-            cbbCategory.SelectedIndex = -1;
-            cbbSupplier.SelectedIndex = -1;
+            cbbCategory.SelectedIndex = -1; 
             txtProName.Text = "";
             cbbUnit.SelectedIndex = -1;
-            txtPurchasePrice.Text = "";
+            //txtPurchasePrice.Text = "";
             txtRetailPrice.Text = "";
         }
 
@@ -62,14 +61,14 @@ namespace GUI
 
 
         // load nhà cung cấp
-        private void loadSupplier(ComboBox c, List<Supplier> list)
-        {
-            c.DataSource = list;
+        //private void loadSupplier(ComboBox c, List<Supplier> list)
+        //{
+        //    c.DataSource = list;
 
-            c.ValueMember = "SupplierId";
-            c.DisplayMember = "SupplierName";
-            c.SelectedIndex = -1;
-        }
+        //    c.ValueMember = "SupplierId";
+        //    c.DisplayMember = "SupplierName";
+        //    c.SelectedIndex = -1;
+        //}
 
         private void btnAddPro_Click(object sender, EventArgs e)
         {
@@ -84,15 +83,14 @@ namespace GUI
             if (checkInput())
             {
                 string proId = txtProId.Text;
-                string cateId = cbbCategory.SelectedValue.ToString().Trim();
-                string supId = cbbSupplier.SelectedValue.ToString().Trim();
+                string cateId = cbbCategory.SelectedValue.ToString().Trim(); 
                 string name = txtProName.Text.Trim();
-                int purchase = Convert.ToInt32(txtPurchasePrice.Text);
+                //int purchase = Convert.ToInt32(txtPurchasePrice.Text);
                 int retail = Convert.ToInt32(txtRetailPrice.Text);
                 string unit = cbbUnit.Text;
 
-                if (proBUS.Add(new Product(proId, supId, cateId,  name
-                        , purchase, retail, DateTime.Now, unit)))
+                if (proBUS.Add(new Product(proId, cateId,  name
+                        , retail, DateTime.Now, unit)))
                 {
                     frmAddNewProduct_Load(sender, e);
                     new frmSuccces("Sản phẩm", "Thêm mới thành công").ShowDialog();
@@ -113,15 +111,15 @@ namespace GUI
         private bool checkInput()
         {
 
-            if(txtPurchasePrice.Text.Trim() == "" || txtRetailPrice.Text.Trim() == "" 
-                || cbbCategory.SelectedIndex < 0 || cbbSupplier.SelectedIndex < 0)
+            if(txtRetailPrice.Text.Trim() == "" 
+                || cbbCategory.SelectedIndex < 0)
                 return false;
 
-            int purchase = Convert.ToInt32(txtPurchasePrice.Text.Trim());
+            //int purchase = Convert.ToInt32(txtPurchasePrice.Text.Trim());
             int retail = Convert.ToInt32(txtRetailPrice.Text.Trim());
 
-            if (isEmpty(txtProName.Text) || isEmpty(cbbCategory.Text) || isEmpty(cbbSupplier.Text)
-                || isEmpty(cbbUnit.Text) || purchase < 0 || retail < 0 || retail < purchase
+            if (isEmpty(txtProName.Text) || isEmpty(cbbCategory.Text)
+                || isEmpty(cbbUnit.Text) || retail < 0
                 )
             {
                 return false;

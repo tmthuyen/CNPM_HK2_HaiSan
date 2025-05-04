@@ -9,6 +9,7 @@ namespace DTO
     public class Import
     {
         public string ImportId { get; set; }
+        public string SupplierId { get; set; }
         public DateTime ImportDate { get; set; }
         public int NumOfProducts { get; set; }
         public List<ImportDetail> ImportDetails { get; set; } = new List<ImportDetail>();
@@ -16,10 +17,11 @@ namespace DTO
 
         public Import() { }
 
-        public Import(string importId, DateTime importDate, int numOfProducts,
+        public Import(string importId, string supId, DateTime importDate, int numOfProducts,
             List<ImportDetail> importDetails)
         {
             ImportId = importId;
+            SupplierId = supId;
             ImportDate = importDate;
             NumOfProducts = numOfProducts;
             ImportDetails = importDetails;

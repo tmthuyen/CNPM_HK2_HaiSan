@@ -18,11 +18,9 @@ namespace DAL
             foreach (DataRow row in dt.Rows)
             {
                 products.Add(new Product(
-                    row["ProductId"].ToString(),
-                    row["SupplierId"].ToString(),
+                    row["ProductId"].ToString(), 
                     row["CategoryId"].ToString(),
-                    row["ProductName"].ToString(),
-                    Convert.ToInt32(row["PurchasePrice"]),
+                    row["ProductName"].ToString(), 
                     Convert.ToInt32(row["RetailPrice"]),
                     Convert.ToDateTime(row["CreatedAt"]),
                     row["Unit"].ToString()
@@ -87,11 +85,9 @@ namespace DAL
             foreach (DataRow row in dt.Rows)
             {
                 products.Add(new Product(
-                    row["ProductId"].ToString(),
-                    row["SupplierId"].ToString(),
+                    row["ProductId"].ToString(), 
                     row["CategoryId"].ToString(),
-                    row["ProductName"].ToString(),
-                    Convert.ToInt32(row["PurchasePrice"]),
+                    row["ProductName"].ToString(), 
                     Convert.ToInt32(row["RetailPrice"]),
                     Convert.ToDateTime(row["CreatedAt"]),
                     row["Unit"].ToString()
@@ -105,17 +101,15 @@ namespace DAL
         // Thêm sản phẩm mới
         public bool Add(Product product)
         {
-            string query = @"INSERT INTO Products (ProductId, SupplierId, CategoryId, ProductName, 
-                                                  PurchasePrice, RetailPrice, CreatedAt, Unit)
-                             VALUES (@Id, @SupplierId, @CategoryId, @Name, 
-                                     @PurchasePrice, @RetailPrice, @CreatedAt, @Unit)";
+            string query = @"INSERT INTO Products (ProductId, CategoryId, ProductName, 
+                                                  RetailPrice, CreatedAt, Unit)
+                             VALUES (@Id, @CategoryId, @Name, 
+                                     @RetailPrice, @CreatedAt, @Unit)";
 
             SqlParameter[] parameters = {
-                new SqlParameter("@Id", product.ProductId),
-                new SqlParameter("@SupplierId", product.SupplierId),
+                new SqlParameter("@Id", product.ProductId), 
                 new SqlParameter("@CategoryId", product.CategoryId),
-                new SqlParameter("@Name", product.ProductName),
-                new SqlParameter("@PurchasePrice", product.PurchasePrice),
+                new SqlParameter("@Name", product.ProductName), 
                 new SqlParameter("@RetailPrice", product.RetailPrice),
                 new SqlParameter("@CreatedAt", product.CreatedAt),
                 new SqlParameter("@Unit", product.Unit)
@@ -128,17 +122,15 @@ namespace DAL
         public bool Update(Product product)
         {
             string query = @"UPDATE Products 
-                             SET SupplierId = @SupplierId, CategoryId = @CategoryId, 
-                                 ProductName = @Name, PurchasePrice = @PurchasePrice, 
+                             SET CategoryId = @CategoryId, 
+                                 ProductName = @Name, 
                                  RetailPrice = @RetailPrice, Unit = @Unit
                              WHERE ProductId = @Id";
 
             SqlParameter[] parameters = {
-                new SqlParameter("@Id", product.ProductId),
-                new SqlParameter("@SupplierId", product.SupplierId),
+                new SqlParameter("@Id", product.ProductId), 
                 new SqlParameter("@CategoryId", product.CategoryId),
-                new SqlParameter("@Name", product.ProductName),
-                new SqlParameter("@PurchasePrice", product.PurchasePrice),
+                new SqlParameter("@Name", product.ProductName), 
                 new SqlParameter("@RetailPrice", product.RetailPrice),
                 new SqlParameter("@Unit", product.Unit)
             };
@@ -183,11 +175,9 @@ namespace DAL
             DataRow row = dt.Rows[0];
 
             return new Product(
-                row["ProductId"].ToString(),
-                row["SupplierId"].ToString(),
+                row["ProductId"].ToString(), 
                 row["CategoryId"].ToString(),
-                row["ProductName"].ToString(),
-                Convert.ToInt32(row["PurchasePrice"]),
+                row["ProductName"].ToString(), 
                 Convert.ToInt32(row["RetailPrice"]),
                 Convert.ToDateTime(row["CreatedAt"]),
                 row["Unit"].ToString()
@@ -206,11 +196,9 @@ namespace DAL
             foreach (DataRow row in dt.Rows)
             {
                 products.Add(new Product(
-                    row["ProductId"].ToString(),
-                    row["SupplierId"].ToString(),
+                    row["ProductId"].ToString(), 
                     row["CategoryId"].ToString(),
-                    row["ProductName"].ToString(),
-                    Convert.ToInt32(row["PurchasePrice"]),
+                    row["ProductName"].ToString(), 
                     Convert.ToInt32(row["RetailPrice"]),
                     Convert.ToDateTime(row["CreatedAt"]),
                     row["Unit"].ToString()

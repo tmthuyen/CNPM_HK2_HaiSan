@@ -398,17 +398,19 @@ namespace DAL
 
             decimal doanhThuSau = (int) dt.Rows[0]["RevenueAfter"];
 
-            sql = @"SELECT ISNULL(SUM(od.Amount * p.PurchasePrice), 0)
-                    FROM Orders o
-                    JOIN Orderdetail od ON od.OrderId = o.OrderId
-                    JOIN Products p ON p.ProductId = od.ProductId 
+            sql = @"SELECT 
+                        SUM(OD.Amount * ID.PurchasePrice) AS TotalCost
+                    FROM 
+                        Orders O
+                        JOIN OrderDetail OD ON O.OrderId = OD.OrderId
+                        JOIN ImportDetail ID ON OD.ImportId = ID.ImportId AND OD.ProductId = ID.ProductId
                     WHERE o.CreatedAt >= @fromDate AND o.CreatedAt < @toDate";
 
-            decimal giaVon = (decimal) Connection.ExecuteScalar(sql, new SqlParameter[]
+            decimal giaVon = Connection.ExecuteScalar(sql, new SqlParameter[]
                             {
                                 new SqlParameter("@fromDate", fromDate),
                                 new SqlParameter("@toDate", toDate)
-                            });
+                            }) as decimal? ?? 0;  
 
             dt.Rows[0]["Profit"] = doanhThuSau - giaVon;
             return dt;

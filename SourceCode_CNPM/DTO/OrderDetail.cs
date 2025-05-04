@@ -17,10 +17,11 @@ namespace DTO
 
         public OrderDetail() { }
 
-        public OrderDetail(string orderId, string productId, int retailPrice, decimal amount)
+        public OrderDetail(string orderId, string productId, string impId, int retailPrice, decimal amount)
         {
             OrderId = orderId;
             ProductId = productId;
+            ImportId = impId;
             RetailPrice = retailPrice;
             Amount = amount;
         }

@@ -54,6 +54,8 @@
             dtpkImportDate = new DateTimePicker();
             label8 = new Label();
             txtImportId = new TextBox();
+            cbbSup = new ComboBox();
+            label11 = new Label();
             groupBox2.SuspendLayout();
             grInputPro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvImportList).BeginInit();
@@ -125,7 +127,7 @@
             btnCreateImport.Location = new Point(226, 33);
             btnCreateImport.Name = "btnCreateImport";
             btnCreateImport.Size = new Size(150, 35);
-            btnCreateImport.TabIndex = 8;
+            btnCreateImport.TabIndex = 0;
             btnCreateImport.Text = "Tạo đơn";
             btnCreateImport.UseVisualStyleBackColor = false;
             btnCreateImport.Click += btnCreateImport_Click;
@@ -174,7 +176,7 @@
             txtTotalDetail.Name = "txtTotalDetail";
             txtTotalDetail.ReadOnly = true;
             txtTotalDetail.Size = new Size(129, 34);
-            txtTotalDetail.TabIndex = 48;
+            txtTotalDetail.TabIndex = 6;
             // 
             // btnDeleteDetail
             // 
@@ -187,7 +189,7 @@
             btnDeleteDetail.Location = new Point(503, 131);
             btnDeleteDetail.Name = "btnDeleteDetail";
             btnDeleteDetail.Size = new Size(150, 35);
-            btnDeleteDetail.TabIndex = 12;
+            btnDeleteDetail.TabIndex = 7;
             btnDeleteDetail.Text = "Xóa";
             btnDeleteDetail.UseVisualStyleBackColor = false;
             btnDeleteDetail.Click += btnDeleteDetail_Click;
@@ -201,8 +203,8 @@
             dtpkExprire.MinDate = new DateTime(2025, 4, 22, 0, 0, 0, 0);
             dtpkExprire.Name = "dtpkExprire";
             dtpkExprire.Size = new Size(129, 34);
-            dtpkExprire.TabIndex = 47;
-            dtpkExprire.Value = new DateTime(2025, 4, 22, 0, 0, 0, 0);
+            dtpkExprire.TabIndex = 5;
+            dtpkExprire.Value = new DateTime(2025, 4, 30, 0, 0, 0, 0);
             // 
             // btnAddProImport
             // 
@@ -215,7 +217,7 @@
             btnAddProImport.Location = new Point(221, 131);
             btnAddProImport.Name = "btnAddProImport";
             btnAddProImport.Size = new Size(150, 35);
-            btnAddProImport.TabIndex = 11;
+            btnAddProImport.TabIndex = 6;
             btnAddProImport.Text = "Thêm";
             btnAddProImport.UseVisualStyleBackColor = false;
             btnAddProImport.Click += btnAddProImport_Click;
@@ -239,7 +241,7 @@
             txtQuantity.MaxLength = 5;
             txtQuantity.Name = "txtQuantity";
             txtQuantity.Size = new Size(129, 34);
-            txtQuantity.TabIndex = 45;
+            txtQuantity.TabIndex = 4;
             txtQuantity.TextChanged += txtQuantity_TextChanged;
             txtQuantity.KeyPress += txtQuantity_KeyPress;
             // 
@@ -279,13 +281,12 @@
             // txtPurchasePrice
             // 
             txtPurchasePrice.BackColor = Color.WhiteSmoke;
-            txtPurchasePrice.Enabled = false;
             txtPurchasePrice.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPurchasePrice.Location = new Point(748, 31);
             txtPurchasePrice.Name = "txtPurchasePrice";
-            txtPurchasePrice.ReadOnly = true;
             txtPurchasePrice.Size = new Size(129, 34);
-            txtPurchasePrice.TabIndex = 6;
+            txtPurchasePrice.TabIndex = 3;
+            txtPurchasePrice.KeyPress += txtPurchasePrice_KeyPress;
             // 
             // label3
             // 
@@ -349,9 +350,9 @@
             label6.BackColor = Color.LightSkyBlue;
             label6.FlatStyle = FlatStyle.Flat;
             label6.Font = new Font("Microsoft Sans Serif", 12F);
-            label6.Location = new Point(463, 52);
+            label6.Location = new Point(608, 54);
             label6.Name = "label6";
-            label6.Size = new Size(161, 31);
+            label6.Size = new Size(129, 31);
             label6.TabIndex = 56;
             label6.Text = "Ngày nhập";
             label6.TextAlign = ContentAlignment.MiddleLeft;
@@ -361,22 +362,22 @@
             dtpkImportDate.CustomFormat = "dd-MM-yyyy";
             dtpkImportDate.Font = new Font("Microsoft Sans Serif", 12F);
             dtpkImportDate.Format = DateTimePickerFormat.Custom;
-            dtpkImportDate.Location = new Point(648, 52);
-            dtpkImportDate.MaxDate = new DateTime(2025, 4, 22, 0, 0, 0, 0);
+            dtpkImportDate.Location = new Point(757, 53);
+            dtpkImportDate.MaxDate = new DateTime(2025, 12, 31, 0, 0, 0, 0);
             dtpkImportDate.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtpkImportDate.Name = "dtpkImportDate";
-            dtpkImportDate.Size = new Size(161, 30);
-            dtpkImportDate.TabIndex = 54;
-            dtpkImportDate.Value = new DateTime(2025, 4, 22, 0, 0, 0, 0);
+            dtpkImportDate.Size = new Size(129, 30);
+            dtpkImportDate.TabIndex = 2;
+            dtpkImportDate.Value = new DateTime(2025, 4, 29, 0, 0, 0, 0);
             // 
             // label8
             // 
             label8.BackColor = Color.LightSkyBlue;
             label8.FlatStyle = FlatStyle.Flat;
             label8.Font = new Font("Microsoft Sans Serif", 12F);
-            label8.Location = new Point(93, 52);
+            label8.Location = new Point(9, 51);
             label8.Name = "label8";
-            label8.Size = new Size(161, 31);
+            label8.Size = new Size(132, 31);
             label8.TabIndex = 55;
             label8.Text = "Mã nhập";
             label8.TextAlign = ContentAlignment.MiddleLeft;
@@ -386,11 +387,33 @@
             txtImportId.BackColor = Color.WhiteSmoke;
             txtImportId.Enabled = false;
             txtImportId.Font = new Font("Microsoft Sans Serif", 12F);
-            txtImportId.Location = new Point(278, 52);
+            txtImportId.Location = new Point(161, 54);
             txtImportId.Name = "txtImportId";
             txtImportId.ReadOnly = true;
-            txtImportId.Size = new Size(161, 30);
+            txtImportId.Size = new Size(129, 30);
             txtImportId.TabIndex = 53;
+            // 
+            // cbbSup
+            // 
+            cbbSup.BackColor = Color.WhiteSmoke;
+            cbbSup.FlatStyle = FlatStyle.Flat;
+            cbbSup.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbbSup.FormattingEnabled = true;
+            cbbSup.Location = new Point(459, 52);
+            cbbSup.Name = "cbbSup";
+            cbbSup.Size = new Size(129, 36);
+            cbbSup.TabIndex = 1;
+            // 
+            // label11
+            // 
+            label11.BackColor = Color.LightSkyBlue;
+            label11.FlatStyle = FlatStyle.Flat;
+            label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Location = new Point(310, 55);
+            label11.Name = "label11";
+            label11.Size = new Size(129, 31);
+            label11.TabIndex = 51;
+            label11.Text = "Nhà cung cấp";
             // 
             // frmImport
             // 
@@ -398,7 +421,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(902, 660);
+            Controls.Add(cbbSup);
             Controls.Add(label6);
+            Controls.Add(label11);
             Controls.Add(dtpkImportDate);
             Controls.Add(label8);
             Controls.Add(txtImportId);
@@ -449,5 +474,7 @@
         private DateTimePicker dtpkImportDate;
         private Label label8;
         private TextBox txtImportId;
+        private ComboBox cbbSup;
+        private Label label11;
     }
 }

@@ -26,12 +26,13 @@ namespace GUI
         private void frmEditProduct_Load(object sender, EventArgs e)
         {
             loadProduct(cbbProId, proBUS.getAll());
-            loadSupplier(cbbSupplier, supBUS.GetAll());
+            //loadSupplier(cbbSupplier, supBUS.GetAll());
             btnSavePro.Enabled = false;
             btnCancelPro.Enabled = false;
             cbbProId.Focus();
         }
 
+        // load danh sasch san pham vao cbb
         private void loadProduct(ComboBox c, List<Product> l)
         {
             c.DataSource = l;
@@ -40,14 +41,14 @@ namespace GUI
             c.SelectedIndex = 0;
         }
 
-        private void loadSupplier(ComboBox c, List<Supplier> l)
-        {
-            c.DataSource = l;
+        //private void loadSupplier(ComboBox c, List<Supplier> l)
+        //{
+        //    c.DataSource = l;
 
-            c.SelectedIndex = -1;
-            c.ValueMember = "SupplierId";
-            c.DisplayMember = "SupplierName";
-        }
+        //    c.SelectedIndex = -1;
+        //    c.ValueMember = "SupplierId";
+        //    c.DisplayMember = "SupplierName";
+        //}
 
         private void cbbProId_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -56,7 +57,7 @@ namespace GUI
             if (proSelected != null)
             {
                 txtProName.Text = proSelected.ProductName;
-                cbbSupplier.SelectedValue = proSelected.SupplierId;
+                //txtPurchase.Text = proSelected.PurchasePrice +"";
                 txtRetailPrice.Text = proSelected.RetailPrice + "";
             }
         }
@@ -73,8 +74,11 @@ namespace GUI
             {
                 Product pUpdate = cbbProId.SelectedItem as Product;
                 pUpdate.ProductName = txtProName.Text;
-                pUpdate.SupplierId = cbbSupplier.SelectedValue.ToString();
+                //pUpdate.SupplierId = cbbSupplier.SelectedValue.ToString();
                 pUpdate.RetailPrice = int.Parse(txtRetailPrice.Text);
+
+                //if (pUpdate.RetailPrice < pUpdate.PurchasePrice)
+                //    new frmError("Sản phẩm", "Giá bán không ít hơn giá nhập.").ShowDialog();
 
                 if (proBUS.Update(pUpdate))
                 {
@@ -116,6 +120,14 @@ namespace GUI
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtRetailPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Chặn không cho nhập
+            }
         }
     }
 }

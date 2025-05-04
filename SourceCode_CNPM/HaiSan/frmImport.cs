@@ -16,11 +16,13 @@ namespace GUI
     {
         private ProductBUS pBUS;
         private ImportBUS impBUS;
+        private SupplierBUS supBUS;
         private List<ImportDetail> importDetailList;
         public frmImport(ProductBUS pBUS)
         {
             importDetailList = new List<ImportDetail>();
             this.pBUS = pBUS;
+            supBUS = new SupplierBUS();
             impBUS = new ImportBUS();
             InitializeComponent();
         }
@@ -34,19 +36,31 @@ namespace GUI
             importDetailList.Clear();
             loadImportList(dgvImportList, importDetailList);
 
-            btnSaveImport.Enabled = false; 
+            btnSaveImport.Enabled = false;
             grInputPro.Enabled = false;
 
-            loadProduct(cbbPro, pBUS.getAll());
+            LoadSupplier(cbbSup, supBUS.GetAll());
+            LoadProduct(cbbPro, pBUS.getAll());
+
+            cbbSup.Focus();
+        }
+
+        // load sup
+        private void LoadSupplier(ComboBox c, List<Supplier> l)
+        {
+            c.DataSource = l;
+            c.ValueMember = "SupplierId";
+            c.DisplayMember = "SupplierName";
+            c.SelectedIndex = -1;
         }
 
         // load product
-        private void loadProduct(ComboBox c, List<Product> l)
+        private void LoadProduct(ComboBox c, List<Product> l)
         {
             c.DataSource = l;
             c.ValueMember = "ProductId";
             c.DisplayMember = "ProductName";
-            c.SelectedIndex = 0;
+            c.SelectedIndex = -1;
         }
 
         private void btnCreateImport_Click(object sender, EventArgs e)
@@ -54,7 +68,8 @@ namespace GUI
             txtImportId.Text = impBUS.CreateNewId();
             dtpkImportDate.Enabled = true;
             grInputPro.Enabled = true;
-            btnSaveImport.Enabled = true; 
+            btnSaveImport.Enabled = true;
+            cbbSup.Focus();
 
         }
 
@@ -62,12 +77,26 @@ namespace GUI
         // luu databse
         private void btnSaveImport_Click(object sender, EventArgs e)
         {
-            if(importDetailList.Count > 0)
+            if (importDetailList.Count > 0)
             {
-                Import i = new Import(txtImportId.Text, dtpkImportDate.Value.Date, importDetailList.Count, importDetailList);
-                
+                if (cbbSup.SelectedIndex < 0)
+                {
+                    new frmError("Nhập hàng", "Thiếu nhà cung cấp").ShowDialog();
+                    cbbSup.Focus();
+                    return;
+                }
 
-                if(i != null && impBUS.Add(i))
+                if (dtpkImportDate.Value.Date > DateTime.Now.Date)
+                {
+                    new frmError("Nhập hàng", "Ngày nhập không thể sau ngày hôm nay").ShowDialog();
+                    dtpkImportDate.Focus();
+                    return;
+                }
+
+                Import i = new Import(txtImportId.Text, cbbSup.SelectedValue+"", dtpkImportDate.Value.Date, importDetailList.Count, importDetailList);
+
+
+                if (i != null && impBUS.Add(i))
                 {
                     new frmSuccces("Nhập hàng", "Nhập hàng thành công").ShowDialog();
                     frmImport_Load(sender, e);
@@ -77,12 +106,12 @@ namespace GUI
             {
                 new frmError("Nhập hàng", "Chưa có sản phẩm nhập hàng").ShowDialog();
             }
-        } 
+        }
 
         // check input
         private bool checkInput()
         {
-            if(cbbPro.SelectedIndex < 0 || txtQuantity.Text.Trim() == "")
+            if (cbbPro.SelectedIndex < 0 || txtQuantity.Text.Trim() == "")
             {
                 return false;
             }
@@ -128,7 +157,7 @@ namespace GUI
                     // Nếu muốn cập nhật giá mới và ngày hết hạn → tuỳ logic
                     existingDetail.PurchasePrice = purchasePrice;
                     existingDetail.Expire = expire;
-                     
+
                 }
                 else
                 {
@@ -147,7 +176,6 @@ namespace GUI
             }
         }
          
-
         private void btnDeleteDetail_Click(object sender, EventArgs e)
         {
             if (cbbPro.SelectedIndex >= 0)
@@ -178,11 +206,19 @@ namespace GUI
 
         private void cbbPro_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbbPro.SelectedIndex >= 0)
+            if (cbbPro.SelectedIndex >= 0)
             {
                 Product p = (Product)cbbPro.SelectedItem;
                 txtUnit.Text = p.Unit;
-                txtPurchasePrice.Text = p.PurchasePrice + "";
+                //txtPurchasePrice.Text = p.PurchasePrice + "";
+            }
+        }
+
+        private void txtPurchasePrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Chặn không cho nhập
             }
         }
 
@@ -193,15 +229,16 @@ namespace GUI
                 e.Handled = true; // Chặn không cho nhập
             }
         }
-         
+
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
-            if(txtQuantity.Text.Trim() != "")
+            if (txtQuantity.Text.Trim() != "" && txtPurchasePrice.Text.Trim() != "")
             {
                 int sum = int.Parse(txtPurchasePrice.Text) * int.Parse(txtQuantity.Text);
                 txtTotalDetail.Text = sum.ToString();
             }
         }
+
     }
 }
