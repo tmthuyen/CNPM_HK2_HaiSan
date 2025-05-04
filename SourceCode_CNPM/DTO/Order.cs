@@ -12,7 +12,7 @@ namespace DTO
         public string OrderId { get; set; }
         public DateTime CreatedAt { get; set; }
         //  này là trc giảm
-        public decimal RawAmount => (getRawAmount());
+        public decimal RawAmount => getRawAmount();
         public decimal TotalAmount { get; set; } // này là phải trả luôn r
         public decimal ReceivedAmount { get; set; }
         // tien thua

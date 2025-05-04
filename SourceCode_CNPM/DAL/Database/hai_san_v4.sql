@@ -159,7 +159,6 @@ INSERT INTO ImportDetail (ProductId, ImportId, Quantity, Remaining, Expire, Purc
 ('Prod0007', 'IMP00003', 15, 15, '2025-04-30', 110000);
 
 
-
 -- =====
 CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
     ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
@@ -170,7 +169,6 @@ CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
     FOREIGN KEY (ProductId) REFERENCES ImportDetail(ProductId),
     FOREIGN KEY (ImportId) REFERENCES ImportDetail(ImportId),
 );
-
 
 
 -- =====

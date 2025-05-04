@@ -114,7 +114,9 @@ namespace DAL
         public List<Order> Search(string customerId, string employeeId, decimal? minTotalAmount, decimal? maxTotalAmount)
         {
             List<Order> orders = new List<Order>();
-            string query = "SELECT * FROM Orders WHERE 1=1"; // Bắt đầu với điều kiện luôn đúng
+            string query = @"SELECT o.*, c.Phone FROM Orders o
+                            JOIN Customer c ON c.CustomerId = o.CustomerId
+                            WHERE 1=1"; // Bắt đầu với điều kiện luôn đúng
 
             // Khởi tạo danh sách tham số
             List<SqlParameter> parameters = new List<SqlParameter>();
@@ -153,8 +155,7 @@ namespace DAL
             // Chuyển đổi DataTable thành danh sách đơn hàng
             foreach (DataRow row in dt.Rows)
             {
-
-                orders.Add(new Order(
+                Order o = new Order(
                     row["OrderId"].ToString(),
                     Convert.ToDateTime(row["CreatedAt"]),
                     Convert.ToDecimal(row["TotalAmount"]),
@@ -165,7 +166,13 @@ namespace DAL
                     row["EmployeeId"].ToString(),
                     row["VoucherId"].ToString(),
                     orderDetailDAL.GetByOrderId(row["OrderId"].ToString())
-                ));
+                );
+
+                // them PHone cho orrder 
+                o.Phone = row["Phone"]+"";
+
+                orders.Add(o);
+
             }
 
             return orders;
@@ -335,7 +342,7 @@ namespace DAL
         public List<Order> GetOrderByCus(string cusId, string cusPhone)
         {
             List<Order> orders = new List<Order>();
-            string query = @"SELECT o.* FROM Orders o
+            string query = @"SELECT o.*, c.Phone FROM Orders o
                 JOIN Customer c ON c.CustomerId = o.CustomerId
                 WHERE o.CustomerId = @cusId AND c.Phone = @cusPhone";
             
@@ -348,8 +355,7 @@ namespace DAL
             foreach (DataRow row in dt.Rows)
             {
                 List<OrderDetail> orderDetails = orderDetailDAL.GetByOrderId(row["OrderId"].ToString());
-
-                orders.Add(new Order(
+                Order o = new Order(
                     row["OrderId"].ToString(),
                     Convert.ToDateTime(row["CreatedAt"]),
                     Convert.ToDecimal(row["TotalAmount"]),
@@ -360,7 +366,10 @@ namespace DAL
                     row["EmployeeId"].ToString(),
                     row["VoucherId"].ToString(),
                     orderDetails
-                ));
+                );
+                o.Phone = row["Phone"] + "";
+
+                orders.Add(o);
             }
 
             return orders;

@@ -62,6 +62,11 @@ namespace GUI
             enableControlBtn();
             // dua data vao view
             loadData(dgvCusList, cusBUS.GetAll());
+
+            txtCusId.Text = "";
+            txtCusName.Text = "";
+            txtCusPhone.Text = "";
+            txtCusPoint.Text = "";
         }
 
         private void loadData(DataGridView dgv, List<Customer> l)
