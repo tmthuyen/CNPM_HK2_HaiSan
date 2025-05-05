@@ -3,6 +3,21 @@ go use haisan
 use master
 drop database haisan
 
+=====--select ======
+-- Chọn tất cả dữ liệu trong bảng Employee
+SELECT * FROM Employee; 
+SELECT * FROM Account; 
+SELECT * FROM Customer; 
+SELECT * FROM Category; 
+SELECT * FROM Supplier; 
+SELECT * FROM Products; 
+SELECT * FROM Import; 
+SELECT * FROM ImportDetail; 
+SELECT * FROM ExpireProduct; 
+SELECT * FROM Voucher; 
+SELECT * FROM Orders; 
+SELECT * FROM OrderDetail;
+
 -- ======
 CREATE TABLE Employee (
     EmployeeId CHAR(6) PRIMARY KEY,
@@ -17,9 +32,13 @@ CREATE TABLE Employee (
     DateOfBirth DATE NOT NULL
 );
 
-Insert Into Employee values ('Emp02', N'Hồ Gia Kiện', '0373436163', 'hogiakien@gmail.com', 'Nam', 'active', 'admin', 'Q7', 'kien.png', '2005-01-01')
 insert into Employee values ('Emp01', N'Trần Minh Thuyên', '0373436163', 'tranthuyen@gmail.com', 'Nam', 'active', 'admin', 'Quảng Nam', 'thuyen.png', '2005-02-20')
+Insert Into Employee values ('Emp02', N'Hồ Gia Kiện', '0373436163', 'hogiakien@gmail.com', 'Nam', 'active', 'admin', 'Q7', 'kien.png', '2005-01-01')
 insert into Employee values ('Emp04', N'Trần Minh Thuyên', '0373336666', 'tmthuyen@gmail.com', 'Nam', 'active', 'sale', 'Quảng Nam', 'thuyen.png', '2005-02-20')
+
+-- THẦY PHƯỚC
+Insert Into Employee values ('Emp05', N'Trần Thanh Phước', '0373436163', 'tphuocadm@gmail.com', 'Nam', 'active', 'admin', 'Q7', 'phuoc.png', '1990-01-01')
+insert into Employee values ('Emp06', N'Trần Thanh Phước', '0373336666', 'tphuocsale@gmail.com', 'Nam', 'active', 'sale', 'Q7', 'phuoc.png', '1990-01-01')
  
 
  ---=====
@@ -33,6 +52,12 @@ Create table Account(
 insert into Account values('Emp01', 'tranthuyen', 'b13341051b70a0a4dc3e18d0d7ca1b65995e76c230d68464d5466b3b5e551c3d')
 insert into Account values('Emp04', 'tmthuyen', 'b13341051b70a0a4dc3e18d0d7ca1b65995e76c230d68464d5466b3b5e551c3d')
 
+--- THẦY PHƯỚC
+-- PASSWORD: phuoc123
+insert into Account values('Emp05', 'tphuocadm', 'd188c30efe42a93111d7dfbae6bc860157b73830ca451fc0d8be9cf8d0ce9a76')
+insert into Account values('Emp06', 'tphuocsale', 'd188c30efe42a93111d7dfbae6bc860157b73830ca451fc0d8be9cf8d0ce9a76')
+
+
 -- =====
 CREATE TABLE Customer (
     CustomerId CHAR(10) PRIMARY KEY,
@@ -40,6 +65,7 @@ CREATE TABLE Customer (
     Phone VARCHAR(12) UNIQUE NOT NULL,
     LoyaltyPoint INT NOT NULL --/100 cho hoa don's amount
 ); 
+<<<<<<<< HEAD:SQLHaiSan.sql
 
   INSERT INTO Customer VALUES
 ('CUS0000012', N'Ngọc', '0388888881', 0),
@@ -48,6 +74,9 @@ CREATE TABLE Customer (
 ('CUS0000015', N'Thảo', '0388888884', 0),
 ('CUS0000016', N'Tiến', '0388888885', 0);
 
+========
+ 
+>>>>>>>> 912cec3 (fix accoount add sql):data_haisan.sql
 
 -- =======
 CREATE TABLE Category (
@@ -83,7 +112,40 @@ CREATE TABLE Import (
     ImportId CHAR(20) PRIMARY KEY,
     ImportDate DATETIME DEFAULT GETDATE() NOT NULL,
     NumOfProducts INT,--số loại nhập
+<<<<<<<< HEAD:SQLHaiSan.sql
 );
+
+CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
+    ProductId CHAR(20) NOT NULL,
+    ImportId CHAR(20) NOT NULL,
+    Quantity DECIMAL(10, 3) NOT NULL,--so luong nhap
+    Remaining DECIMAL(10, 3) NOT NULL,--so luong con lai
+    Expire DATE NOT NULL,
+    PurchasePrice INT NOT NULL,
+    PRIMARY KEY (ProductId, ImportId),
+    FOREIGN KEY (ImportId) REFERENCES Import(ImportId),
+    FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
+);
+
+-- =====
+========
+	FOREIGN KEY (SupplierId) REFERENCES Supplier(SupplierId)
+);
+
+--- =======
+>>>>>>>> 912cec3 (fix accoount add sql):data_haisan.sql
+CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
+    ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
+	ImportId CHAR(20) NOT NULL,
+    ProductId CHAR(20) NOT NULL,
+    Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
+    TotalLoss INT NOT NULL,--tien mat
+    ExpiredDate DATE NOT NULL,
+    FOREIGN KEY (ProductId,ImportId) REFERENCES ImportDetail(ProductId,ImportId)
+);
+
+<<<<<<<< HEAD:SQLHaiSan.sql
+========
 
 CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     ProductId CHAR(20) NOT NULL,
@@ -108,6 +170,7 @@ CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
     FOREIGN KEY (ProductId,ImportId) REFERENCES ImportDetail(ProductId,ImportId)
 );
 
+>>>>>>>> 912cec3 (fix accoount add sql):data_haisan.sql
 -- =====
 CREATE TABLE Voucher (
     VoucherId CHAR(10) PRIMARY KEY, 
@@ -176,6 +239,7 @@ VALUES
 ('V250410C01', N'Ưu đãi đầu tháng 4', '2025-04-10', '2025-05-10', 250000, 30000, 30000, 1, 1, 0),
 ('V250410P02', N'Giảm 5% cho đơn ăn trưa', '2025-04-10', '2025-05-10', 150000, 40000, 5, 0, 1, 0);
 
+<<<<<<<< HEAD:SQLHaiSan.sql
 
 use haisan
 Insert into Category Values
@@ -212,3 +276,5 @@ INSERT INTO ImportDetail (ProductId, ImportId, Quantity, Remaining, Expire, Purc
 ('Prod0006', 'IMP00002', 50, 50, '2025-05-25', 40000),
 
 ('Prod0007', 'IMP00003', 15, 15, '2025-04-30', 110000);
+========
+>>>>>>>> 912cec3 (fix accoount add sql):data_haisan.sql
