@@ -145,6 +145,14 @@ namespace GUI
             btnAdd.Enabled = false;
             btnEdit.Enabled = false;
             btnSave.Enabled = true;
+            if (radioButtonVND.Checked)
+            {
+                textBoxMaxApply.Enabled = false;
+            }
+            if (radioButtonPercent.Checked)
+            {
+                textBoxMaxApply.Enabled = true;
+            }
         }
         private void btnCancelClick(object sender, EventArgs e)
         {
