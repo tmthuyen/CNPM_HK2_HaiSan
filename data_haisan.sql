@@ -216,3 +216,30 @@ VALUES
 ('V250410C01', N'Ưu đãi đầu tháng 4', '2025-04-10', '2025-05-10', 250000, 50000, 30000, 1, 1, 0),
 ('V250410P02', N'Giảm 5% cho đơn ăn trưa', '2025-04-10', '2025-05-10', 150000, 40000, 5, 0, 1, 0);
 
+
+
+-- SAN phẩm
+INSERT INTO Products (ProductId, CategoryId, ProductName, RetailPrice, CreatedAt, Unit) VALUES
+('Fish0002',  'Fish', N'Cá kình', 120000, GETDATE(), 'kg'),
+('Fish0003', 'Fish',     N'Cá bống mú', 95000, GETDATE(), N'kg'),
+('Crab0002', 'Crab',     N'Cua biển', 160000, GETDATE(), N'kg'),
+('Shrimp0001', 'Shrimp',   N'Tôm sú', 190000, GETDATE(), N'kg'),
+('Snail0001', 'Snail',   N'Ốc hương', 100000, GETDATE(), N'kg'),
+('Clam0001', 'Clam',   N'Nghêu trắng', 60000, GETDATE(), N'kg'),
+('Squid0001', 'Squid',   N'Mực ống', 140000, GETDATE(), N'kg'),
+('Lobst0001','Lobst',   N'Tôm hùm Alaska', 650000, GETDATE(), N'kg');
+
+INSERT INTO Import (ImportId, SupplierId, ImportDate, NumOfProducts) VALUES
+('IMP00004', 'Sup001', GETDATE(), 3),
+('IMP00005', 'Sup001', GETDATE(), 3),
+('IMP00006', 'Sup001',GETDATE(), 1);
+INSERT INTO ImportDetail (ProductId, ImportId, Quantity, Remaining, Expire, PurchasePrice) VALUES
+('Fish0002', 'IMP00004', 30, 30, '2025-05-10', 100000),
+('Fish0003', 'IMP00004', 30, 30, '2025-05-7', 70000),
+('Crab0002', 'IMP00004', 20, 20, '2025-05-12', 120000),
+
+('Shrimp0001', 'IMP00005', 25, 25, '2025-05-31', 150000),
+('Snail0001', 'IMP00005', 40, 40, '2025-06-01', 80000),
+('Clam0001', 'IMP00005', 50, 50, '2025-05-25', 40000),
+
+('Lobst0001', 'IMP00006', 15, 15, '2025-05-08', 110000);
