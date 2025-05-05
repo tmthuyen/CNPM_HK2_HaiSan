@@ -157,13 +157,11 @@ namespace BUS
                     {
                         throw new Exception(ex.Message);
                     }
-                else //rồi thì phải thu hồi cái cũ r tạo cái mới
-                {
-                    if (oldV.IsDebuted)//nếu mà chưa ra mắt thì cho sửa
-
-                        promotionDAL.DeactivateVoucher(oldV.VoucherId);
+                else 
+                {                    
                     try
                     {
+                        promotionDAL.DeactivateVoucher(oldV.VoucherId);
                         promotionDAL.AddVoucher(newV);
                         return "Đã vô hiệu hóa voucher đã ra mắt và tạo mới";
                     }
@@ -173,7 +171,35 @@ namespace BUS
                     }
                 }
             }
-            else //nếu mà hết hạn r thì tạo mới luôn
+            if (oldV.ExpireDate > DateTime.Today && !oldV.IsDeactivated)//nếu mà chưa hết hạn 
+            {
+                string newId = GenerateVoucherId(newV.ReleaseDate, newV.IsCash);
+                newV.VoucherId = newId;
+                if (oldV.IsDebuted)//nếu mà đã ra mắt thì thu về luôn giống trên
+                {
+                    try
+                    {
+                        promotionDAL.DeactivateVoucher(oldV.VoucherId);
+                        promotionDAL.AddVoucher(newV);
+                        return "Đã vô hiệu hóa voucher đã ra mắt và tạo mới";
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+                else//nếu mà chưa ra mắt thì cho sửa
+                    try
+                    {
+                        promotionDAL.EditVoucher(newV, oldV.VoucherId);
+                        return "Đã sửa voucher chưa ra mắt";
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+            }
+            else 
             {
                 Voucher voucher = promotionDAL.GetVoucherList().FirstOrDefault(voucher => !voucher.IsActive && voucher.VoucherId == oldV.VoucherId);
                 string id = GenerateVoucherId(newV.ReleaseDate, newV.IsCash);
