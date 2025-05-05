@@ -30,15 +30,16 @@
         {
             btnExit = new Button();
             panel1 = new Panel();
-            richtbProfile = new RichTextBox();
             label4 = new Label();
+            richtbProfile = new RichTextBox();
             panel2 = new Panel();
-            label1 = new Label();
-            txtOldPass = new TextBox();
-            txtNewPass = new TextBox();
+            btnSave = new Button();
             label2 = new Label();
             label3 = new Label();
-            btnSave = new Button();
+            txtOldPass = new TextBox();
+            txtNewPass = new TextBox();
+            label1 = new Label();
+            btnShowPass = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -66,15 +67,6 @@
             panel1.Size = new Size(789, 224);
             panel1.TabIndex = 5;
             // 
-            // richtbProfile
-            // 
-            richtbProfile.Dock = DockStyle.Bottom;
-            richtbProfile.Location = new Point(0, 43);
-            richtbProfile.Name = "richtbProfile";
-            richtbProfile.Size = new Size(789, 181);
-            richtbProfile.TabIndex = 6;
-            richtbProfile.Text = "";
-            // 
             // label4
             // 
             label4.BackColor = Color.LightSkyBlue;
@@ -87,8 +79,18 @@
             label4.Text = "Thông tin cá nhân";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // richtbProfile
+            // 
+            richtbProfile.Dock = DockStyle.Bottom;
+            richtbProfile.Location = new Point(0, 43);
+            richtbProfile.Name = "richtbProfile";
+            richtbProfile.Size = new Size(789, 181);
+            richtbProfile.TabIndex = 6;
+            richtbProfile.Text = "";
+            // 
             // panel2
             // 
+            panel2.Controls.Add(btnShowPass);
             panel2.Controls.Add(btnSave);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label3);
@@ -100,35 +102,20 @@
             panel2.Size = new Size(787, 167);
             panel2.TabIndex = 6;
             // 
-            // label1
+            // btnSave
             // 
-            label1.BackColor = Color.LightSkyBlue;
-            label1.FlatStyle = FlatStyle.Flat;
-            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(244, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(296, 31);
-            label1.TabIndex = 14;
-            label1.Text = "Thay đổi mật khẩu";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // txtOldPass
-            // 
-            txtOldPass.BackColor = Color.WhiteSmoke;
-            txtOldPass.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtOldPass.Location = new Point(153, 55);
-            txtOldPass.Name = "txtOldPass";
-            txtOldPass.Size = new Size(222, 34);
-            txtOldPass.TabIndex = 15;
-            // 
-            // txtNewPass
-            // 
-            txtNewPass.BackColor = Color.WhiteSmoke;
-            txtNewPass.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNewPass.Location = new Point(562, 55);
-            txtNewPass.Name = "txtNewPass";
-            txtNewPass.Size = new Size(222, 34);
-            txtNewPass.TabIndex = 16;
+            btnSave.BackColor = Color.DodgerBlue;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Times New Roman", 16F);
+            btnSave.ForeColor = Color.WhiteSmoke;
+            btnSave.Location = new Point(167, 108);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(208, 37);
+            btnSave.TabIndex = 19;
+            btnSave.Text = "Lưu";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // label2
             // 
@@ -152,20 +139,52 @@
             label3.TabIndex = 17;
             label3.Text = "Mật khẩu mới";
             // 
-            // btnSave
+            // txtOldPass
             // 
-            btnSave.BackColor = Color.DodgerBlue;
-            btnSave.FlatAppearance.BorderSize = 0;
-            btnSave.FlatStyle = FlatStyle.Flat;
-            btnSave.Font = new Font("Times New Roman", 16F);
-            btnSave.ForeColor = Color.WhiteSmoke;
-            btnSave.Location = new Point(289, 107);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(208, 37);
-            btnSave.TabIndex = 19;
-            btnSave.Text = "Lưu";
-            btnSave.UseVisualStyleBackColor = false;
-            btnSave.Click += btnSave_Click;
+            txtOldPass.BackColor = Color.WhiteSmoke;
+            txtOldPass.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtOldPass.Location = new Point(153, 55);
+            txtOldPass.Name = "txtOldPass";
+            txtOldPass.Size = new Size(222, 34);
+            txtOldPass.TabIndex = 15;
+            txtOldPass.UseSystemPasswordChar = true;
+            // 
+            // txtNewPass
+            // 
+            txtNewPass.BackColor = Color.WhiteSmoke;
+            txtNewPass.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNewPass.Location = new Point(562, 55);
+            txtNewPass.Name = "txtNewPass";
+            txtNewPass.Size = new Size(222, 34);
+            txtNewPass.TabIndex = 16;
+            txtNewPass.UseSystemPasswordChar = true;
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.LightSkyBlue;
+            label1.FlatStyle = FlatStyle.Flat;
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(244, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(296, 31);
+            label1.TabIndex = 14;
+            label1.Text = "Thay đổi mật khẩu";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnShowPass
+            // 
+            btnShowPass.BackColor = Color.DodgerBlue;
+            btnShowPass.FlatAppearance.BorderSize = 0;
+            btnShowPass.FlatStyle = FlatStyle.Flat;
+            btnShowPass.Font = new Font("Times New Roman", 16F);
+            btnShowPass.ForeColor = Color.WhiteSmoke;
+            btnShowPass.Location = new Point(398, 108);
+            btnShowPass.Name = "btnShowPass";
+            btnShowPass.Size = new Size(208, 37);
+            btnShowPass.TabIndex = 20;
+            btnShowPass.Text = "Hiện mật khẩu";
+            btnShowPass.UseVisualStyleBackColor = false;
+            btnShowPass.Click += btnShowPass_Click;
             // 
             // frmProfile
             // 
@@ -199,5 +218,6 @@
         private Label label2;
         private Label label3;
         private Button btnSave;
+        private Button btnShowPass;
     }
 }

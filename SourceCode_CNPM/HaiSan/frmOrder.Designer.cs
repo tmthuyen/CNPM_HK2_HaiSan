@@ -285,7 +285,7 @@ namespace GUI
             textBoxPoint.Size = new Size(54, 23);
             textBoxPoint.TabIndex = 7;
             textBoxPoint.TextChanged += textBoxPoint_TextChanged;
-            textBoxPoint.KeyPress += NumberOnly_KeyPress;
+            textBoxPoint.KeyPress += textBoxPoint_KeyPress;
             // 
             // voucherAmount
             // 
@@ -320,7 +320,7 @@ namespace GUI
             textBoxGiven.Size = new Size(114, 23);
             textBoxGiven.TabIndex = 10;
             textBoxGiven.TextChanged += textBoxGiven_TextChanged;
-            textBoxGiven.KeyPress += ProcessNumber_KeyPress;
+            textBoxGiven.KeyPress += processNumber_KeyPress;
             // 
             // label15
             // 
@@ -355,6 +355,7 @@ namespace GUI
             textBoxChange.Name = "textBoxChange";
             textBoxChange.Size = new Size(114, 23);
             textBoxChange.TabIndex = 23;
+            textBoxChange.KeyPress += textBoxPoint_KeyPress;
             // 
             // label20
             // 
@@ -416,7 +417,7 @@ namespace GUI
             textBoxPhone.Name = "textBoxPhone";
             textBoxPhone.Size = new Size(81, 23);
             textBoxPhone.TabIndex = 9;
-            textBoxPhone.KeyPress += NumberOnly_KeyPress;
+            textBoxPhone.KeyPress += textBoxPoint_KeyPress;
             // 
             // label18
             // 
@@ -606,7 +607,7 @@ namespace GUI
             soLuongTextBox.TabIndex = 1;
             soLuongTextBox.TextChanged += soLuongTextBox_TextChanged;
             soLuongTextBox.KeyDown += soLuongTextBox_KeyDown;
-            soLuongTextBox.KeyPress += ProcessNumber_KeyPress;
+            soLuongTextBox.KeyPress += processNumber_KeyPress;
             // 
             // label9
             // 

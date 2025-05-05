@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+
 
 namespace GUI
 {
@@ -187,26 +189,42 @@ namespace GUI
         {
             if (checkEmpty())
             {
-                Employee newEmp = new Employee(
-                    txtId.Text, txtName.Text, txtPhone.Text
-                    , txtMail.Text, cbbGender.Text, cbbStatus.Text
-                    , cbbRole.Text, lblImg.Text, txtAddress.Text, dateTimePicker1.Value
-                );
+                string mail = txtMail.Text.Trim();
+                if(IsValidEmail(mail)){
 
-                // kiem tra luu hay sua
-                if (isAdd)
-                {
-                    empBUS.Add(newEmp);
-                    new frmSuccces("Nhân viên", "Thêm thành công").ShowDialog();
-                }
-                else
-                {
-                    empBUS.Update(newEmp);
-                    new frmSuccces("Nhân viên", "Sửa thành công").ShowDialog();
-                }
-                tabEmployee.SelectedIndex = 0;
-                frmEmployee_Load(sender, e);
+                    if(empBUS.CheckMailExist(mail)){
+                        new frmError("Nhân viên", "Email đã tồn tại").ShowDialog();
+                        txtMail.Text = "";
+                        txtMail.Focus(); 
+                        return;
+                    }
 
+                    Employee newEmp = new Employee(
+                        txtId.Text.Trim(), txtName.Text.Trim(), txtPhone.Text.Trim()
+                        , txtMail.Text.Trim(), cbbGender.Text.Trim(), cbbStatus.Text.Trim()
+                        , cbbRole.Text.Trim(), lblImg.Text.Trim(), txtAddress.Text.Trim(), dateTimePicker1.Value
+                    );
+
+                    // kiem tra luu hay sua
+                    if (isAdd)
+                    {
+                        empBUS.Add(newEmp);
+                        new frmSuccces("Nhân viên", "Thêm thành công").ShowDialog();
+                    }
+                    else
+                    {
+                        empBUS.Update(newEmp);
+                        new frmSuccces("Nhân viên", "Sửa thành công").ShowDialog();
+                    }
+                    tabEmployee.SelectedIndex = 0;
+                    frmEmployee_Load(sender, e);
+                }
+                else {
+                    new frmError("Nhân viên", "Đúng định dang gmail  VD:t@gmail.com").ShowDialog();
+
+                    txtMail.Focus(); 
+                    return;
+                } 
             }
             else
             {
@@ -225,6 +243,12 @@ namespace GUI
                      cbbRole.SelectedIndex < 0 ||
                      cbbStatus.SelectedIndex < 0 ||
                      string.IsNullOrWhiteSpace(lblImg.Text));
+        }
+
+        // kiem tra dinh dang mail
+        private bool IsValidEmail(string email)
+        {
+            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

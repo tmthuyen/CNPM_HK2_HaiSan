@@ -161,7 +161,6 @@
             radioButtonVND.TabStop = true;
             radioButtonVND.Text = "VND";
             radioButtonVND.UseVisualStyleBackColor = true;
-            radioButtonVND.CheckedChanged += radioButtonVND_CheckedChanged;
             // 
             // radioButtonPercent
             // 
@@ -173,7 +172,6 @@
             radioButtonPercent.TabStop = true;
             radioButtonPercent.Text = "%";
             radioButtonPercent.UseVisualStyleBackColor = true;
-            radioButtonPercent.CheckedChanged += radioButtonPercent_CheckedChanged;
             // 
             // textBoxMaxApply
             // 
@@ -183,8 +181,8 @@
             textBoxMaxApply.TabIndex = 5;
             textBoxMaxApply.TextAlign = HorizontalAlignment.Right;
             toolTip1.SetToolTip(textBoxMaxApply, "Chỉ nhập số, không nhập % hay chữ");
-            textBoxMaxApply.TextChanged += ProcessInputNumber;
-            textBoxMaxApply.KeyPress += ProcessNumber_KeyPress;
+            textBoxMaxApply.TextChanged += processInputNumber;
+            textBoxMaxApply.KeyPress += processNumber_KeyPress;
             // 
             // textBoxDiscountValue
             // 
@@ -196,7 +194,7 @@
             textBoxDiscountValue.TextAlign = HorizontalAlignment.Right;
             toolTip1.SetToolTip(textBoxDiscountValue, "Chỉ nhập số, không nhập % hay chữ");
             textBoxDiscountValue.TextChanged += textBoxDiscountValue_TextChanged;
-            textBoxDiscountValue.KeyPress += ProcessNumber_KeyPress;
+            textBoxDiscountValue.KeyPress += processNumber_KeyPress;
             // 
             // label3
             // 
@@ -233,8 +231,8 @@
             textBoxApply.TabIndex = 1;
             textBoxApply.TextAlign = HorizontalAlignment.Right;
             toolTip1.SetToolTip(textBoxApply, "Chỉ nhập số, không nhập % hay chữ");
-            textBoxApply.TextChanged += ProcessInputNumber;
-            textBoxApply.KeyPress += ProcessNumber_KeyPress;
+            textBoxApply.TextChanged += processInputNumber;
+            textBoxApply.KeyPress += processNumber_KeyPress;
             // 
             // btnEdit
             // 

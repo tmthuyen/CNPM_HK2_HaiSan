@@ -110,6 +110,12 @@ namespace DAL
             return Connection.ExecuteNonQuery(query, p) > 0;
         }
 
+        // check mail da ton tai chua
+         public bool CheckMailExist(string mail){
+            string sql = "SELECT COUNT(*) FROM Employee WHERE Email = @mail";
+            return (int)Connection.ExecuteScalar(sql, new SqlParameter("@mail", mail)) > 0;
+        }
+
         // kiem tra ràng buộc khóa ngoại
         
         public bool CheckConstraint(string empId){

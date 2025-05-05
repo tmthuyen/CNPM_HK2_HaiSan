@@ -20,7 +20,7 @@
       "AbsoluteMoniker": "D:0:0:{6C31D909-3DDB-4B22-BAA3-B5A9EA56209B}|..\\BUS\\BUS.csproj|c:\\52300070_tmthuyen\\nam-2_hk2_2425\\4-software engineering\\final_report_cnpm\\sourcecode_cnpm\\bus\\productbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|c:\\52300070_tmthuyen\\nam-2_hk2_2425\\4-software engineering\\final_report_cnpm\\sourcecode_cnpm\\haisan\\frmhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -40,7 +40,7 @@
       "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|c:\\52300070_tmthuyen\\nam-2_hk2_2425\\4-software engineering\\final_report_cnpm\\sourcecode_cnpm\\haisan\\frmcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -80,7 +80,7 @@
       "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmaddnewproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|c:\\52300070_tmthuyen\\nam-2_hk2_2425\\4-software engineering\\final_report_cnpm\\sourcecode_cnpm\\haisan\\frmemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{91BA707E-02B7-42BF-AE2F-267A64A4B6A4}|GUI.csproj|solutionrelative:frmemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -181,8 +181,7 @@
               "RelativeToolTip": "frmHome.Designer.cs",
               "ViewState": "AQIAAAIAAAAAAAAAAAAUwDwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T15:39:32.391Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T15:39:32.391Z"
             },
             {
               "$type": "Document",
@@ -220,8 +219,7 @@
               "RelativeToolTip": "..\\BUS\\ProductBUS.cs",
               "ViewState": "AQIAACsAAAAAAAAAAAAkwA0AAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T07:26:40.264Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T07:26:40.264Z"
             },
             {
               "$type": "Document",
@@ -233,8 +231,7 @@
               "RelativeToolTip": "..\\BUS\\OrderBUS.cs",
               "ViewState": "AQIAACwBAAAAAAAAAAAnwDgBAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T08:36:34.35Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T08:36:34.35Z"
             },
             {
               "$type": "Document",
@@ -242,9 +239,9 @@
               "Title": "OrderDAL.cs",
               "DocumentMoniker": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\OrderDAL.cs",
               "RelativeDocumentMoniker": "..\\DAL\\OrderDAL.cs",
-              "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\OrderDAL.cs*",
-              "RelativeToolTip": "..\\DAL\\OrderDAL.cs*",
-              "ViewState": "AQIAAMgBAAAAAAAAAAAowNgBAAA6AAAA",
+              "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\DAL\\OrderDAL.cs",
+              "RelativeToolTip": "..\\DAL\\OrderDAL.cs",
+              "ViewState": "AQIAAMIBAAAAAAAAAAAowNgBAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T07:13:39.475Z",
               "EditorCaption": ""
@@ -258,8 +255,7 @@
               "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmHome.cs [Design]",
               "RelativeToolTip": "frmHome.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T15:40:04.661Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-05-05T15:40:04.661Z"
             },
             {
               "$type": "Document",
@@ -270,8 +266,7 @@
               "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmImport.cs [Design]",
               "RelativeToolTip": "frmImport.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T07:56:23.369Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-29T07:56:23.369Z"
             },
             {
               "$type": "Document",
@@ -282,8 +277,7 @@
               "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\Home.cs [Design]",
               "RelativeToolTip": "Home.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T08:32:38.151Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-29T08:32:38.151Z"
             },
             {
               "$type": "Document",
@@ -307,8 +301,7 @@
               "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmCustomer.cs [Design]",
               "RelativeToolTip": "frmCustomer.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T14:49:38.73Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-05-05T14:49:38.73Z"
             },
             {
               "$type": "Document",
@@ -319,8 +312,7 @@
               "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmInventory.cs [Design]",
               "RelativeToolTip": "frmInventory.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T08:10:42.227Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-29T08:10:42.227Z"
             },
             {
               "$type": "Document",
@@ -332,8 +324,7 @@
               "RelativeToolTip": "frmImport.cs",
               "ViewState": "AQIAACsAAAAAAAAAAAAAAEcAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T07:57:55.706Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T07:57:55.706Z"
             },
             {
               "$type": "Document",
@@ -344,8 +335,7 @@
               "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmReport.cs [Design]",
               "RelativeToolTip": "frmReport.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T08:33:00.762Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-29T08:33:00.762Z"
             },
             {
               "$type": "Document",
@@ -356,8 +346,7 @@
               "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmEditProduct.cs [Design]",
               "RelativeToolTip": "frmEditProduct.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T07:27:03.385Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-29T07:27:03.385Z"
             },
             {
               "$type": "Document",
@@ -369,8 +358,7 @@
               "RelativeToolTip": "frmInventory.cs",
               "ViewState": "AQIAAJ0AAAAAAAAAAAAmwLAAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T08:10:54.091Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T08:10:54.091Z"
             },
             {
               "$type": "Document",
@@ -382,8 +370,7 @@
               "RelativeToolTip": "frmEditProduct.cs",
               "ViewState": "AQIAAFYAAAAAAAAAAAAswIEAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T07:28:56.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T07:28:56.184Z"
             },
             {
               "$type": "Document",
@@ -394,8 +381,7 @@
               "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmProduct.cs [Design]",
               "RelativeToolTip": "frmProduct.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T07:37:18.09Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-29T07:37:18.09Z"
             },
             {
               "$type": "Document",
@@ -406,8 +392,7 @@
               "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmAddNewProduct.cs [Design]",
               "RelativeToolTip": "frmAddNewProduct.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T07:38:47.189Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-29T07:38:47.189Z"
             },
             {
               "$type": "Document",
@@ -419,8 +404,7 @@
               "RelativeToolTip": "frmAddNewProduct.cs",
               "ViewState": "AQIAAGgAAAAAAAAAAAAYwJQAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T07:38:56.388Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T07:38:56.388Z"
             },
             {
               "$type": "Document",
@@ -431,8 +415,7 @@
               "ToolTip": "C:\\52300070_TMTHUYEN\\Nam-2_HK2_2425\\4-Software Engineering\\Final_Report_CNPM\\SourceCode_CNPM\\HaiSan\\frmEmployee.cs [Design]",
               "RelativeToolTip": "frmEmployee.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T13:47:03.128Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-05-05T13:47:03.128Z"
             },
             {
               "$type": "Document",
@@ -444,8 +427,7 @@
               "RelativeToolTip": "..\\DAL\\ProductDAL.cs",
               "ViewState": "AQIAACQAAAAAAAAAAAAmwDcAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T07:25:27.894Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T07:25:27.894Z"
             },
             {
               "$type": "Document",
@@ -457,8 +439,7 @@
               "RelativeToolTip": "frmEmployee.cs",
               "ViewState": "AQIAAAIBAAAAAAAAAAAUwLEAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T13:47:41.589Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T13:47:41.589Z"
             },
             {
               "$type": "Document",
@@ -470,8 +451,7 @@
               "RelativeToolTip": "..\\DTO\\ProductImport.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T15:00:34.681Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T15:00:34.681Z"
             },
             {
               "$type": "Document",
@@ -494,8 +474,7 @@
               "RelativeToolTip": "frmImport.Designer.cs",
               "ViewState": "AQIAAAsBAAAAAAAAAAAYwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T09:55:56.198Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T09:55:56.198Z"
             },
             {
               "$type": "Document",

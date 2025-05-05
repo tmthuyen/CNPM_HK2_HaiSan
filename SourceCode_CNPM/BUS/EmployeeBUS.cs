@@ -41,6 +41,11 @@ namespace BUS
             return false;
         }
 
+        // check mail exist
+        public bool CheckMailExist(string mail){
+            return empDal.CheckMailExist(mail);
+        }
+
         public bool Update(Employee emp)
         {
             return empDal.Update(emp);

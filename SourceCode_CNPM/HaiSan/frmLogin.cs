@@ -102,11 +102,11 @@ namespace GUI
         {
 
             // kiem tra tai khoan tu BUS
-            //Employee e = empBUS.Login(taiKhoan, matKhau);
+            Employee e = empBUS.Login(taiKhoan, matKhau);
             //
-            // nhap tam cho nhanh khi login
+            // đăng nhập nhanh khi login
             //
-            Employee e = empBUS.Login("tranthuyen", "thuyen123");
+            // Employee e = empBUS.Login("tranthuyen", "thuyen123");
 
             if (e != null)
             {

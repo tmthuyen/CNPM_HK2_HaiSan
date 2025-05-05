@@ -20,7 +20,7 @@ namespace GUI
         public frmProfile(Employee emp)
         {
             this.emp = emp;
-            this.empBUS =  new EmployeeBUS();
+            this.empBUS = new EmployeeBUS();
             InitializeComponent();
         }
 
@@ -38,7 +38,7 @@ namespace GUI
         // show thogn tin nhan vien
         private void showInfo(RichTextBox textBox, Employee e)
         {
-            string info = 
+            string info =
                 $"Mã nhân viên: {e.EmployeeId}\n" +
                 $"Tên: {e.EmployeeName} \n" +
                 $"Email: {e.Email}\n" +
@@ -67,7 +67,7 @@ namespace GUI
                 return;
             }
 
-            if(empBUS.Login(Session.Username, oldPass) == null)
+            if (empBUS.Login(Session.Username, oldPass) == null)
             {
                 new frmError("Tài khoản", "Nhập sai mật khẩu cũ").ShowDialog();
                 return;
@@ -75,7 +75,16 @@ namespace GUI
 
             empBUS.ChangePassword(Session.UserID, oldPass, newPass);
             new frmSuccces("Tài khoản", "Đổi mật khâu thành công").ShowDialog();
+            txtOldPass.Text = "";
+            txtNewPass.Text = "";
         }
 
+        // hien mật khẩu
+        private void btnShowPass_Click(object sender, EventArgs e)
+        {
+            txtOldPass.UseSystemPasswordChar = !txtOldPass.UseSystemPasswordChar;
+            txtNewPass.UseSystemPasswordChar = !txtNewPass.UseSystemPasswordChar;
+
+        }
     }
 }

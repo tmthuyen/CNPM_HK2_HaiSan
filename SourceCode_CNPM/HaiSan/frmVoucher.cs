@@ -26,10 +26,9 @@ namespace GUI
             InitializeComponent();
             promotionBUS = new PromotionBUS();
             Voucher_Load();
-            ClearTextBox();
+            clearTextBox();
         }
-
-        private void ProcessNumber_KeyPress(object sender, KeyPressEventArgs e)
+        private void processNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             //block ngoài số
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
@@ -37,9 +36,7 @@ namespace GUI
                 e.Handled = true;
             }
         }
-
-        //đổi sang dạng 1,000,000
-        private void ProcessInputNumber(object sender, EventArgs e)
+        private void processInputNumber(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(TextBox))
             {
@@ -48,17 +45,16 @@ namespace GUI
 
                 if (decimal.TryParse(t.Text.Replace(",", ""), out decimal amount))
                 {
-                    t.TextChanged -= ProcessInputNumber;
+                    t.TextChanged -= processInputNumber;
                     t.Text = amount.ToString("N0");
                     t.SelectionStart = t.TextLength;
-                    t.TextChanged += ProcessInputNumber;
+                    t.TextChanged += processInputNumber;
                 }
             }
         }
-
         private void textBoxDiscountValue_TextChanged(object sender, EventArgs e)
         {
-            ProcessInputNumber(sender, e);
+            processInputNumber(sender, e);
             if (radioButtonVND.Checked)
             {
                 textBoxMaxApply.Text = textBoxDiscountValue.Text;
@@ -66,30 +62,11 @@ namespace GUI
             else
             {
                 if (!isEditing)
-                    textBoxMaxApply.Enabled = true;
+                textBoxMaxApply.Enabled=true;
             }
         }
-
-        //2 hàm khi radio thay đổi
-        private void radioButtonVND_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonVND.Checked && (isEditing || isAdding))
-            {
-                textBoxMaxApply.Text = textBoxDiscountValue.Text;
-                textBoxMaxApply.Enabled = false;
-            }
-        }
-        private void radioButtonPercent_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonPercent.Checked && (isEditing || isAdding))
-            {
-                textBoxMaxApply.Clear();
-                textBoxMaxApply.Enabled = true;
-            }
-        }
-
-        //clear hết textbox
-        private void ClearTextBox()
+       
+        private void clearTextBox()
         {
             textBoxName.Clear();
             textBoxApply.Clear();
@@ -117,7 +94,7 @@ namespace GUI
             btnDeactivate.Enabled = false;
         }
 
-        //load voucher vo gridview
+
         private void Voucher_Load()
         {
             //DataTable dt = promotionBUS.GetVoucherDataTable();
@@ -126,14 +103,14 @@ namespace GUI
 
             dataGridViewVoucher.Columns["VoucherId"].HeaderText = "Id voucher";
             dataGridViewVoucher.Columns["VoucherName"].HeaderText = "Tên voucher";
-            dataGridViewVoucher.Columns["ReleaseDate"].HeaderText = "Ngày áp dụng";
+            dataGridViewVoucher.Columns["ReleaseDate"].HeaderText = "Ngày phát hành";
             dataGridViewVoucher.Columns["ExpireDate"].HeaderText = "Ngày hết hạn";
             dataGridViewVoucher.Columns["ApplyAmount"].HeaderText = "Áp dụng từ";
             dataGridViewVoucher.Columns["MaxApply"].HeaderText = "Áp dụng lên tới";
             dataGridViewVoucher.Columns["DiscountValue"].HeaderText = "Giảm";
             dataGridViewVoucher.Columns["IsCash"].HeaderText = "Giảm tiền mặt";
-            dataGridViewVoucher.Columns["IsDebuted"].HeaderText = "Đã ra mắt";
-            dataGridViewVoucher.Columns["IsDeactivated"].HeaderText = "Đã bị thu hồi";
+            dataGridViewVoucher.Columns["IsDebuted"].HeaderText = "Đã phát hành";
+            dataGridViewVoucher.Columns["IsDeactivated"].HeaderText = "Bị thu hồi";
             dataGridViewVoucher.Columns["IsActive"].HeaderText = "Đang hoạt động";
 
             voucherDetails.Enabled = false;
@@ -145,14 +122,6 @@ namespace GUI
             btnAdd.Enabled = false;
             btnEdit.Enabled = false;
             btnSave.Enabled = true;
-            if (radioButtonVND.Checked)
-            {
-                textBoxMaxApply.Enabled = false;
-            }
-            if (radioButtonPercent.Checked)
-            {
-                textBoxMaxApply.Enabled = true;
-            }
         }
         private void btnCancelClick(object sender, EventArgs e)
         {
@@ -162,21 +131,21 @@ namespace GUI
             }
             else
             {
-                ClearTextBox();
+                clearTextBox();
                 voucherDetails.Enabled = false;
             }
         }
-        //hàm để check input
-        private void ValidateInput()
+
+        private void validateInput()
         {
             if (textBoxName.Text.IsNullOrEmpty())
                 throw new Exception("Vui lòng nhập tên voucher");
             if ((textBoxApply.Text.IsNullOrEmpty()))
                 throw new Exception("Vui lòng nhập đơn áp dụng từ bao nhiêu vnd");
             if ((textBoxDiscountValue.Text.IsNullOrEmpty()))
-                throw new Exception("Vui lòng nhập voucher giảm bao nhiêu");
+                throw new Exception("Vui lòng nhập số lượng áp dụng");
             if ((textBoxMaxApply.Text.IsNullOrEmpty()))
-                throw new Exception("Vui lòng nhập giảm tối đa bao nhiêu tiền");
+                throw new Exception("Vui lòng nhập giới hạn khuyến mãi");
             if (radioButtonPercent.Checked == false && radioButtonVND.Checked == false)
                 throw new Exception("Vui lòng chọn giảm vnd hay %");
             if (!isEditing && ((dateTimePickerFrom.Value < DateTime.Today) || (dateTimePickerTo.Value < DateTime.Today)))
@@ -189,14 +158,14 @@ namespace GUI
         {
             try
             {
-                ValidateInput();
+                validateInput();
             }
             catch (Exception ex)
             {
                 (new frmError("Input chưa đúng", ex.Message)).ShowDialog();
                 return;
             }
-            //parse hết inout
+
             string voucherName = textBoxName.Text;
             string _applyAmount = textBoxApply.Text;
             string _discountValue = textBoxDiscountValue.Text;
@@ -208,7 +177,6 @@ namespace GUI
             bool valid = true;
             List<string> errors = new List<string>();
 
-            //validate + show dialog dựa trên lỗi
             if (!int.TryParse(_applyAmount.Replace(",", ""), out int applyAmount))
             {
                 errors.Add("Nhập lại mức áp dụng");
@@ -233,7 +201,6 @@ namespace GUI
 
             try
             {
-                //nhập mới
                 if (!isEditing)
                 {
                     Voucher v = new Voucher
@@ -250,12 +217,11 @@ namespace GUI
                     {
                         (new frmSuccces("Nhập thành công", "Đã nhập thành công")).ShowDialog();
                     }
-
+                        
 
                 }
                 else
                 {
-                    //chỉnh 
                     Voucher oldV = vouchers.FirstOrDefault(v => v.VoucherId == selectedVoucherId);
                     Voucher newV = new Voucher
                     {
@@ -279,7 +245,8 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                (new frmError("Input chưa đúng", ex.Message)).ShowDialog();
+                //(new frmError("Input chưa đúng", ex.Message)).ShowDialog();
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -298,7 +265,7 @@ namespace GUI
                 btnSave.Enabled = false;
                 DataGridViewRow row = dataGridViewVoucher.Rows[e.RowIndex];
 
-                //show hết data lên mấy textbox
+                // Optional: Check for DBNulls to avoid crashes
                 selectedVoucherId = row.Cells["VoucherId"].Value?.ToString() ?? "";
                 textBoxName.Text = row.Cells["VoucherName"].Value?.ToString() ?? "";
                 textBoxApply.Text = row.Cells["ApplyAmount"].Value?.ToString() ?? "0";
@@ -322,16 +289,15 @@ namespace GUI
             }
             else
             {
-                ClearTextBox();
+                clearTextBox();
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //bởi vì bản thân tôi hay nhầm nên thêm cái này vào lol, ui problem
             if (isAdding)
             {
-                if ((MessageBox.Show("Bạn đang thêm 1 voucher chưa được lưu, bạn có muốn thoát và thêm mới không?\nNếu bạn muốn đang muốn lưu voucher này vào database, vui lòng chọn lưu",
+                if ((MessageBox.Show("Bạn đang thêm 1 voucher chưa được lưu, bạn có muốn thoát và thêm mới không",
                     "Đang thêm voucher cũ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)) != DialogResult.Yes)
                 {
                     return;
@@ -340,15 +306,17 @@ namespace GUI
             else
             {
                 isEditing = false;
+                isAdding = true;
                 selectedVoucherId = "None";
                 voucherDetails.Enabled = true;
-                ClearTextBox();
+                clearTextBox();
                 btnSave.Enabled = true;
                 btnDeactivate.Enabled = false;
                 btnActivate.Enabled = false;
-                isAdding = true;
-
             }
+
+
+
         }
 
         private void btnDeactivate_Click(object sender, EventArgs e)
