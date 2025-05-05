@@ -197,10 +197,12 @@ namespace GUI
                 if (isAdd)
                 {
                     empBUS.Add(newEmp);
+                    new frmSuccces("Nhân viên", "Thêm thành công").ShowDialog();
                 }
                 else
                 {
                     empBUS.Update(newEmp);
+                    new frmSuccces("Nhân viên", "Sửa thành công").ShowDialog();
                 }
                 tabEmployee.SelectedIndex = 0;
                 frmEmployee_Load(sender, e);
@@ -248,7 +250,18 @@ namespace GUI
         {
             if(isAdd)
             {
-
+                foreach(Control control in this.Controls)
+                {
+                    if (control is TextBox textbox)
+                    {
+                        textbox.Text = "";
+                    } 
+                    if(control is ComboBox c)
+                    {
+                        c.SelectedIndex = -1;
+                    }
+                }
+                lblImg.Text = "";
             }
         }
     }

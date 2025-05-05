@@ -49,7 +49,7 @@
             txtProName = new TextBox();
             tabPageCate = new TabPage();
             groupBox1 = new GroupBox();
-            textBox1 = new TextBox();
+            txtSoSpDm = new TextBox();
             cbbCateList = new ComboBox();
             label5 = new Label();
             label9 = new Label();
@@ -355,7 +355,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txtSoSpDm);
             groupBox1.Controls.Add(cbbCateList);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label9);
@@ -367,15 +367,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách";
             // 
-            // textBox1
+            // txtSoSpDm
             // 
-            textBox1.BackColor = Color.WhiteSmoke;
-            textBox1.Enabled = false;
-            textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(643, 41);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(174, 34);
-            textBox1.TabIndex = 10;
+            txtSoSpDm.BackColor = Color.WhiteSmoke;
+            txtSoSpDm.Enabled = false;
+            txtSoSpDm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSoSpDm.Location = new Point(643, 41);
+            txtSoSpDm.Name = "txtSoSpDm";
+            txtSoSpDm.Size = new Size(174, 34);
+            txtSoSpDm.TabIndex = 10;
             // 
             // cbbCateList
             // 
@@ -777,7 +777,7 @@
         private Label label8;
         private TextBox txtCateName;
         private GroupBox groupBox1;
-        private TextBox textBox1;
+        private TextBox txtSoSpDm;
         private ComboBox cbbCateList;
         private Label label5;
         private Label label9;

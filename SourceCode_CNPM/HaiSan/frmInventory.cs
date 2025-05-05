@@ -91,6 +91,7 @@ namespace GUI
                 dgv.DataSource = l;
 
                 dgv.Columns["ImportId"].HeaderText = "Mã";
+                dgv.Columns["SupplierId"].HeaderText = "Mã NCC";
                 dgv.Columns["ImportDate"].HeaderText = "Ngày nhập";
                 dgv.Columns["NumOfProducts"].HeaderText = "Số sản phẩm";
                 dgv.Columns["TotalAmount"].HeaderText = "Tổng tiền";
@@ -163,6 +164,7 @@ namespace GUI
 
             dgv.Columns["ExpireProductId"].HeaderText = "Mã hết hạn";
             dgv.Columns["ProductId"].HeaderText = "Mã SP";
+            dgv.Columns["ImportId"].HeaderText = "Mã Nhập hàng";
             dgv.Columns["Quantity"].HeaderText = "Số sản phẩm";
             dgv.Columns["TotalLoss"].HeaderText = "Tổng tiền lỗ";
             dgv.Columns["ExpiredDate"].HeaderText = "Ngày hết hạn";

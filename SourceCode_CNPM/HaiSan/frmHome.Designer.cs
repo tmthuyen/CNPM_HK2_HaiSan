@@ -28,51 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnCTKM = new Panel();
-            label3 = new Label();
-            pnProTop = new Panel();
             label2 = new Label();
+            dgvTopProduct = new DataGridView();
+            label11 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvTopProduct).BeginInit();
             SuspendLayout();
-            // 
-            // pnCTKM
-            // 
-            pnCTKM.Location = new Point(25, 362);
-            pnCTKM.Name = "pnCTKM";
-            pnCTKM.Size = new Size(900, 220);
-            pnCTKM.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.BackColor = Color.Transparent;
-            label3.FlatStyle = FlatStyle.Flat;
-            label3.Font = new Font("Times New Roman", 16.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Tomato;
-            label3.Location = new Point(268, 315);
-            label3.Name = "label3";
-            label3.Size = new Size(421, 44);
-            label3.TabIndex = 0;
-            label3.Text = "Chương trình khuyến mãi mới";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // pnProTop
-            // 
-            pnProTop.Location = new Point(25, 64);
-            pnProTop.Name = "pnProTop";
-            pnProTop.Size = new Size(900, 220);
-            pnProTop.TabIndex = 2;
             // 
             // label2
             // 
             label2.BackColor = Color.Transparent;
             label2.FlatStyle = FlatStyle.Flat;
-            label2.Font = new Font("Times New Roman", 16.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Tomato;
-            label2.Location = new Point(268, 9);
+            label2.Location = new Point(268, 208);
             label2.Name = "label2";
             label2.Size = new Size(421, 44);
             label2.TabIndex = 0;
             label2.Text = "Sản phẩm bán chạy";
             label2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // dgvTopProduct
+            // 
+            dgvTopProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvTopProduct.BackgroundColor = Color.WhiteSmoke;
+            dgvTopProduct.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTopProduct.Dock = DockStyle.Bottom;
+            dgvTopProduct.Location = new Point(0, 255);
+            dgvTopProduct.Name = "dgvTopProduct";
+            dgvTopProduct.RowHeadersWidth = 51;
+            dgvTopProduct.Size = new Size(950, 355);
+            dgvTopProduct.TabIndex = 1;
+            // 
+            // label11
+            // 
+            label11.BackColor = Color.Transparent;
+            label11.Dock = DockStyle.Top;
+            label11.FlatStyle = FlatStyle.Flat;
+            label11.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label11.ForeColor = Color.Tomato;
+            label11.Location = new Point(0, 0);
+            label11.Name = "label11";
+            label11.Size = new Size(950, 62);
+            label11.TabIndex = 52;
+            label11.Text = "CHÀO MỪNG BẠN ĐẾN VỚI ỨNG DỤNG QUẢN LÝ CỬA HÀNG HẢI SẢN";
+            label11.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // frmHome
             // 
@@ -80,21 +79,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(950, 610);
-            Controls.Add(label3);
-            Controls.Add(pnCTKM);
+            Controls.Add(label11);
+            Controls.Add(dgvTopProduct);
             Controls.Add(label2);
-            Controls.Add(pnProTop);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmHome";
             Text = "frmHome";
+            Load += frmHome_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvTopProduct).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel pnCTKM;
-        private Label label3;
-        private Panel pnProTop;
         private Label label2;
+        private DataGridView dgvTopProduct;
+        private Label label11;
     }
 }

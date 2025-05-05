@@ -39,19 +39,11 @@ CREATE TABLE Customer (
     CustomerName NVARCHAR(30) NOT NULL,
     Phone VARCHAR(12) UNIQUE NOT NULL,
     LoyaltyPoint INT NOT NULL --/100 cho hoa don's amount
-); 
-
-  INSERT INTO Customer VALUES
-('CUS0000012', N'Ngọc', '0388888881', 0),
-('CUS0000013', N'Hùng', '0388888882', 0),
-('CUS0000014', N'Linh', '0388888883', 0),
-('CUS0000015', N'Thảo', '0388888884', 0),
-('CUS0000016', N'Tiến', '0388888885', 0);
+);  
 
 
 -- =======
-CREATE TABLE Category (
-    CategoryId CHAR(10) PRIMARY KEY,
+CREATE TABLE Category ( 
     CategoryId CHAR(15) PRIMARY KEY,
     CategoryName NVARCHAR(20) NOT NULL
 );
@@ -87,10 +79,10 @@ CREATE TABLE Products (
     RetailPrice INT NOT NULL,
     CreatedAt DATETIME DEFAULT GETDATE() NOT NULL,
     Unit NVARCHAR(10) NOT NULL, 
-    FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId),
-    FOREIGN KEY (SupplierId) REFERENCES Supplier(SupplierId)
+    FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId)
 );
 
+/*
 INSERT INTO Products (ProductId, SupplierId, CategoryId, ProductName, RetailPrice, CreatedAt, Unit) VALUES
 ('Prod0001', 'Sup001', 'Fish', N'Cá kình', 120000, GETDATE(), 'kg')
 ('Prod0002', 'Sup001', 'Fish',     N'Cá bống mú', 95000, GETDATE(), N'kg'),
@@ -100,46 +92,52 @@ INSERT INTO Products (ProductId, SupplierId, CategoryId, ProductName, RetailPric
 ('Prod0006', 'Sup001', 'Clam',   N'Nghêu trắng', 60000, GETDATE(), N'kg'),
 ('Prod0007', 'Sup002', 'Squid',   N'Mực ống', 140000, GETDATE(), N'kg'),
 ('Prod0008', 'Sup001', 'Lobst',   N'Tôm hùm Alaska', 650000, GETDATE(), N'kg');
+*/
 
 
 -- ======
 CREATE TABLE Import (
     ImportId CHAR(20) PRIMARY KEY,
+    SupplierId CHAR(6) NOT NULL,
     ImportDate DATETIME DEFAULT GETDATE() NOT NULL,
     NumOfProducts INT,--số loại nhập
+    FOREIGN KEY (SupplierId) REFERENCES Supplier(SupplierId)
 );
 
-
---- =======
-CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
-    ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
-    ProductId CHAR(20) NOT NULL,
-    Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
-    TotalLoss INT NOT NULL,--tien mat
-    ExpiredDate DATE NOT NULL,
-    FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
-);
-
--- idd mới cua hết hạn
-SELECT 
-    'EXPIR' + RIGHT('00000' + CAST(
-        ISNULL(CAST(SUBSTRING(MAX(ExpireProductId), 6, 5) AS INT), 0) + 1 AS VARCHAR)
-    , 5) AS NewId
-FROM ExpireProduct;
 
 
 CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
-    ProductId CHAR(20) NOT NULL,
     ImportId CHAR(20) NOT NULL,
+    ProductId CHAR(20) NOT NULL,
     Quantity DECIMAL(10, 3) NOT NULL,--so luong nhap
     Remaining DECIMAL(10, 3) NOT NULL,--so luong con lai
-    Expire DATE NOT NULL,
-    PurchasePrice INT NOT NULL,
+    Expire DATE NOT NULL,  -- ngay het han cua san pham
+    PurchasePrice INT NOT NULL,  --  gias goc khi nhap hang
     PRIMARY KEY (ProductId, ImportId),
     FOREIGN KEY (ImportId) REFERENCES Import(ImportId),
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
+-- Kiểm tra trong bảng Import
+EXEC sp_help 'Import';
 
+-- Kiểm tra trong bảng ImportDetail
+EXEC sp_help 'ImportDetail';
+
+
+-- =====
+CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
+    ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
+    ProductId CHAR(20) NOT NULL,
+    ImportId CHAR(20) NOT NULL,
+    Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
+    TotalLoss INT NOT NULL,--tien mat
+    ExpiredDate DATE NOT NULL,  --  ngay loai bo san phamar
+    FOREIGN KEY (ProductId,ImportId) REFERENCES ImportDetail(ProductId,ImportId)
+);
+
+
+
+/*
 -- Bảng Import (phiếu nhập)
 INSERT INTO Import (ImportId, ImportDate, NumOfProducts) VALUES
 ('IMP00001', GETDATE(), 3),
@@ -157,18 +155,7 @@ INSERT INTO ImportDetail (ProductId, ImportId, Quantity, Remaining, Expire, Purc
 ('Prod0006', 'IMP00002', 50, 50, '2025-05-25', 40000),
 
 ('Prod0007', 'IMP00003', 15, 15, '2025-04-30', 110000);
-
-
--- =====
-CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
-    ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
-    ProductId CHAR(10) NOT NULL,
-    Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
-    TotalLoss INT NOT NULL,--tien mat
-    ExpiredDate DATE NOT NULL,
-    FOREIGN KEY (ProductId) REFERENCES ImportDetail(ProductId),
-    FOREIGN KEY (ImportId) REFERENCES ImportDetail(ImportId),
-);
+*/
 
 
 -- =====
@@ -191,7 +178,6 @@ CREATE TABLE Voucher (
     ) -- này check coi có trong ngày ko lun với ra mắt chưa để bik coi nó đang hoạt động ko
 );
 
-
 -- =======
 CREATE TABLE Orders (   
     OrderId CHAR(12) NOT NULL PRIMARY KEY,
@@ -213,12 +199,12 @@ CREATE TABLE Orders (
 CREATE TABLE OrderDetail (
     OrderId CHAR(12) NOT NULL,
     ProductId CHAR(20) NOT NULL,
-    RetailPrice INT NOT NULL,
 	ImportId CHAR(20) NOT NULL,
+    RetailPrice INT NOT NULL,
     Amount DECIMAL(10, 3) NOT NULL,
-    FOREIGN KEY (ProductId) REFERENCES ImportDetail(ProductId),
-    FOREIGN KEY (ImportId) REFERENCES ImportDetail(ImportId),
-    FOREIGN KEY (OrderId) REFERENCES Orders(OrderId)
+    FOREIGN KEY (ProductId,ImportId) REFERENCES ImportDetail(ProductId,ImportId),
+    FOREIGN KEY (OrderId) REFERENCES Orders(OrderId),
+	PRIMARY KEY(ProductId, ImportId, OrderId)
 );
 
 

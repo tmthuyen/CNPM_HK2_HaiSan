@@ -141,6 +141,10 @@ namespace GUI
             toggleTab(false, 1);
             txtCateId.Text = cbbCateList.SelectedValue.ToString();
             txtCateName.Text = ((Category)cbbCateList.SelectedItem).CategoryName;
+            if (proBUS.Search("", "", cbbCateList.SelectedValue.ToString()) != null)
+                txtSoSpDm.Text = "" + proBUS.Search("", "", cbbCateList.SelectedValue.ToString()).Count;
+            else 
+                txtSoSpDm.Text = "0";
         }
 
 

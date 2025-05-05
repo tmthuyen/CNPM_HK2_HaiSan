@@ -440,9 +440,9 @@ namespace DAL
     
         
         // top san pham ban chay
-        public DataTable GetTopProduct(DateTime fromDate, DateTime toDate)
+        public DataTable GetTopProduct(DateTime fromDate, DateTime toDate, int top = 5)
         {
-            string sql = @"SELECT TOP 5
+            string sql = @"SELECT TOP " + top + @"
                         p.ProductName,
                         SUM(od.Amount) AS TotalSold
                     FROM OrderDetail od
@@ -452,6 +452,39 @@ namespace DAL
                     GROUP BY p.ProductName
                     ORDER BY TotalSold DESC";
  
+
+            return Connection.ExecuteQuery(sql, new SqlParameter[]
+                    {
+                        new SqlParameter("@fromDate", fromDate),
+                        new SqlParameter("@toDate", toDate)
+                    });
+
+        }
+
+        // top san pham ban chay voi thong tin chi tiet
+        public DataTable GetTopProductWithInfo(DateTime fromDate, DateTime toDate, int top = 5)
+        {
+            string sql = @"SELECT TOP " + top + @"
+                            p.ProductId,
+                            p.ProductName,
+                            p.RetailPrice,
+                            p.Unit,
+                            p.CategoryId,
+                            p.CreatedAt,
+                            SUM(od.Amount * od.RetailPrice) AS N'Tổng đã bán'
+                        FROM OrderDetail od
+                        JOIN Products p ON p.ProductId = od.ProductId
+                        JOIN Orders o ON o.OrderId = od.OrderId
+                         WHERE o.CreatedAt >= @fromDate AND o.CreatedAt < @toDate
+                        GROUP BY  
+                            p.ProductId, 
+                            p.ProductName,
+                            p.RetailPrice,
+                            p.Unit,
+                            p.CategoryId,
+                            p.CreatedAt
+                        ORDER BY SUM(od.Amount) DESC";
+
 
             return Connection.ExecuteQuery(sql, new SqlParameter[]
                     {

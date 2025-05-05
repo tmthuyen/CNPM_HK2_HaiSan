@@ -301,9 +301,16 @@ namespace BUS
             return orderDAL.GetRevenueByDay(fromDate, toDate);
         }
 
-        public DataTable GetTopProduct(DateTime fromDate, DateTime toDate)
+        // lay top sp ban chay
+        public DataTable GetTopProduct(DateTime fromDate, DateTime toDate, int top = 5)
         {
             return orderDAL.GetTopProduct(fromDate, toDate);
+        }
+
+        // lay top sp ban chay voi thong tin chi tiet
+        public DataTable GetTopProductWithInfo(DateTime fromDate, DateTime toDate, int top = 5)
+        {
+            return orderDAL.GetTopProductWithInfo(fromDate, toDate, top);
         }
     }
 }
