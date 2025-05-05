@@ -22,10 +22,10 @@ namespace GUI
             txtCreatedDate.Text = order.CreatedAt.ToString();
             txtPayment.Text = order.PaymentMethod;
             txtUsedPoint.Text = order.UsedPoint.ToString();
-            txtRawAmount.Text = order.RawAmount.ToString();
-            txtTotalAmount.Text = order.TotalAmount.ToString();
-            txtChangeAmount.Text = order.ChangeAmount.ToString();
-            txtReceivedAmount.Text = order.ReceivedAmount.ToString();
+            txtRawAmount.Text = order.RawAmount.ToString("N0");
+            txtTotalAmount.Text = order.TotalAmount.ToString("N0");
+            txtChangeAmount.Text = order.ChangeAmount.ToString("N0");
+            txtReceivedAmount.Text = order.ReceivedAmount.ToString("N0");
 
             dgvOrderDetail.DataSource = order.OrderDetailList;
             dgvOrderDetail.Columns["ProductId"].HeaderText = "Mã sản phẩm";

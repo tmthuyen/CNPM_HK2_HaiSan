@@ -32,6 +32,7 @@ namespace DAL
                     CreatedAt = Convert.ToDateTime(row["CreatedAt"]),
                     TotalAmount = Convert.ToDecimal(row["TotalAmount"]),
                     ReceivedAmount = Convert.ToDecimal(row["ReceivedAmount"]),
+                    VoucherId = row["VoucherId"].ToString(),
                     UsedPoint = Convert.ToInt32(row["UsedPoint"]),
                     PaymentMethod = row["PaymentMethod"].ToString(),
                     Phone = row["Phone"].ToString(),

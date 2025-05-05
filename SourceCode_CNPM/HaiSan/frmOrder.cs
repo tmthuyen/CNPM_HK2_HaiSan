@@ -692,7 +692,7 @@ namespace GUI
                 ShowOrderList(orderBUS.GetOrders());
                 //refresh product list
                 LoadDataIntoCombox();
-
+                
 
                 //preview print
                 btnPreview_Click(sender, e);
@@ -707,6 +707,8 @@ namespace GUI
                 dataGridViewOrderDetail.Columns.Clear();  // Clears manual columns
                 dataGridViewOrderDetail.RowEnter += dataGridViewOrderDetail_RowEnter;
 
+                //clear vouchers
+                comboBoxVoucher.Items.Clear();
                 textBoxRawSum.Clear();
                 textBoxRealSum.Clear();
                 textBoxChange.Clear();
