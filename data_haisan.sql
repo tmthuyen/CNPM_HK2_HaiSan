@@ -1,5 +1,5 @@
 create database haisan
-go use haisan
+use haisan
 use master
 drop database haisan
 
@@ -183,13 +183,15 @@ CREATE TABLE Orders (
     TotalAmount INT NOT NULL,--tong tien suy diễn
     ReceivedAmount INT NOT NULL,--tien nhan
     UsedPoint INT,--khach hang su dung bao nhieu
-    PaymentMethod NVARCHAR(11) NOT NULL,
+    PaymentMethod NVARCHAR(12) NOT NULL,
     FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId),
     FOREIGN KEY (EmployeeId) REFERENCES Employee(EmployeeId),
     FOREIGN KEY (VoucherId) REFERENCES Voucher(VoucherId)
 );
-
-
+/*
+ alter table orders 
+ alter column PaymentMethod nvarchar(13)
+ */
 -- =====
 CREATE TABLE OrderDetail (
     OrderId CHAR(12) NOT NULL,

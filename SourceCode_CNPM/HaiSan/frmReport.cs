@@ -35,6 +35,8 @@ namespace GUI
 
         private void frmReport_Load(object sender, EventArgs e)
         {
+            dtpkFromDate.Value = DateTime.Now;
+            dtpkToDate.Value = DateTime.Now;
 
             loadThongKe(DateTime.Now.Date, DateTime.Now.AddDays(1));
             LoadRevenueChart(DateTime.Now.Date, DateTime.Now.AddDays(1));
