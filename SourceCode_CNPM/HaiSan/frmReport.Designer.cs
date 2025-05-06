@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             groupBox3 = new GroupBox();
             dtpkToDate = new DateTimePicker();
             label13 = new Label();
@@ -61,11 +61,13 @@
             label7 = new Label();
             chartTopSell = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chartDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            panel3 = new Panel();
             groupBox3.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartTopSell).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartDoanhThu).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox3
@@ -384,33 +386,46 @@
             // chartTopSell
             // 
             chartTopSell.BackColor = Color.WhiteSmoke;
-            chartArea3.Name = "ChartArea1";
-            chartTopSell.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            chartTopSell.Legends.Add(legend3);
-            chartTopSell.Location = new Point(481, 332);
+            chartArea1.Name = "ChartArea1";
+            chartTopSell.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chartTopSell.Legends.Add(legend1);
+            chartTopSell.Location = new Point(234, 285);
             chartTopSell.Name = "chartTopSell";
             chartTopSell.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            chartTopSell.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chartTopSell.Series.Add(series1);
             chartTopSell.Size = new Size(461, 279);
             chartTopSell.TabIndex = 19;
             chartTopSell.Text = "bieuDoDoanhThu";
             // 
             // chartDoanhThu
             // 
-            chartArea4.Name = "ChartArea1";
-            chartDoanhThu.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            chartDoanhThu.Legends.Add(legend4);
-            chartDoanhThu.Location = new Point(16, 332);
+            chartDoanhThu.BackColor = Color.WhiteSmoke;
+            chartArea2.Name = "ChartArea1";
+            chartDoanhThu.ChartAreas.Add(chartArea2);
+            chartDoanhThu.Dock = DockStyle.Top;
+            legend2.Name = "Legend1";
+            chartDoanhThu.Legends.Add(legend2);
+            chartDoanhThu.Location = new Point(0, 0);
             chartDoanhThu.Name = "chartDoanhThu";
-            chartDoanhThu.Size = new Size(463, 279);
+            chartDoanhThu.Size = new Size(929, 279);
             chartDoanhThu.TabIndex = 20;
             chartDoanhThu.Text = "chart1";
+            // 
+            // panel3
+            // 
+            panel3.AutoScroll = true;
+            panel3.Controls.Add(chartDoanhThu);
+            panel3.Controls.Add(chartTopSell);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(0, 308);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(950, 302);
+            panel3.TabIndex = 21;
             // 
             // frmReport
             // 
@@ -418,8 +433,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(950, 610);
-            Controls.Add(chartDoanhThu);
-            Controls.Add(chartTopSell);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(groupBox3);
             Controls.Add(panel1);
@@ -436,6 +450,7 @@
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chartTopSell).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartDoanhThu).EndInit();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -474,5 +489,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTopSell;
         private DataGridView dgvProduct;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartDoanhThu;
+        private Panel panel3;
     }
 }

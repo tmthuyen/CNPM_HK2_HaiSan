@@ -50,7 +50,7 @@ namespace GUI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Save(sender, e);
+                save(sender, e);
             }
         }
 
@@ -78,7 +78,7 @@ namespace GUI
         }
 
         
-        private void Save(object sender, EventArgs e)
+        private void save(object sender, EventArgs e)
         {
             if (!Validate())
             {
@@ -93,10 +93,10 @@ namespace GUI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Cancel(sender, e);
+                cancel(sender, e);
             }
         }
-        private void Cancel(object sender, EventArgs e)
+        private void cancel(object sender, EventArgs e)
         {
             textBoxServer.Clear();
             textBoxDB.Clear();
