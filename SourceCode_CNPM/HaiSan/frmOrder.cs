@@ -697,7 +697,6 @@ namespace GUI
                 dataGridViewOrderDetail.RowEnter -= dataGridViewOrderDetail_RowEnter;
                 dataGridViewOrderDetail.DataSource = null;
                 dataGridViewOrderDetail.Rows.Clear();     // Clears manual rows
-                dataGridViewOrderDetail.Columns.Clear();  // Clears manual columns
                 dataGridViewOrderDetail.RowEnter += dataGridViewOrderDetail_RowEnter;
 
                 
