@@ -1,23 +1,3 @@
-create database haisan
-use haisan
-use master
-drop database haisan
-
-=====--select ======
--- Chọn tất cả dữ liệu trong bảng Employee
-SELECT * FROM Employee; 
-SELECT * FROM Account; 
-SELECT * FROM Customer; 
-SELECT * FROM Category; 
-SELECT * FROM Supplier; 
-SELECT * FROM Products; 
-SELECT * FROM Import; 
-SELECT * FROM ImportDetail; 
-SELECT * FROM ExpireProduct; 
-SELECT * FROM Voucher; 
-SELECT * FROM Orders; 
-SELECT * FROM OrderDetail;
-
 -- ======
 CREATE TABLE Employee (
     EmployeeId CHAR(6) PRIMARY KEY,
@@ -117,18 +97,7 @@ CREATE TABLE Import (
 	FOREIGN KEY (SupplierId) REFERENCES Supplier(SupplierId)
 );
 
---- =======
-CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
-    ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
-    ProductId CHAR(20) NOT NULL,
-    ImportId CHAR(20) NOT NULL,
-    Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
-    TotalLoss INT NOT NULL,--tien mat
-    ExpiredDate DATE NOT NULL,  --  ngay loai bo san phamar
-    FOREIGN KEY (ProductId,ImportId) REFERENCES ImportDetail(ProductId,ImportId)
-);
-
-
+-- ======
 CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     ProductId CHAR(20) NOT NULL,
     ImportId CHAR(20) NOT NULL,
@@ -141,16 +110,17 @@ CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
--- =====
+--- =======
 CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
     ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
-	ImportId CHAR(20) NOT NULL,
     ProductId CHAR(20) NOT NULL,
+    ImportId CHAR(20) NOT NULL,
     Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
     TotalLoss INT NOT NULL,--tien mat
-    ExpiredDate DATE NOT NULL,
+    ExpiredDate DATE NOT NULL,  --  ngay loai bo san phamar
     FOREIGN KEY (ProductId,ImportId) REFERENCES ImportDetail(ProductId,ImportId)
 );
+
 
 -- =====
 CREATE TABLE Voucher (
@@ -235,6 +205,8 @@ INSERT INTO Import (ImportId, SupplierId, ImportDate, NumOfProducts) VALUES
 ('IMP00004', 'Sup001', GETDATE(), 3),
 ('IMP00005', 'Sup001', GETDATE(), 3),
 ('IMP00006', 'Sup001',GETDATE(), 1);
+
+---===lô hàng gồm các sản phẩm 
 INSERT INTO ImportDetail (ProductId, ImportId, Quantity, Remaining, Expire, PurchasePrice) VALUES
 ('Fish0002', 'IMP00004', 30, 30, '2025-05-10', 100000),
 ('Fish0003', 'IMP00004', 30, 30, '2025-05-7', 70000),
