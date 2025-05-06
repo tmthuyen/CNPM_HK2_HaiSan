@@ -4,7 +4,7 @@ https://github.com/tmthuyen/CNPM_HK2_HaiSan/tree/haisan
 2) Cấu hình:
 - Tải dự án từ link GitHub
 - Dùng file data_haisan.sql để tạo database trong máy
-- Tên database (được taạ từ file): haisan
+- Tên database (được tạo từ file): haisan
 - Vào mục SourceCode_CNPM/HaiSan để chạy file HaiSan.sln
 - Cần cấu hình để hệ thống để kết nối Database vừa tạo
 

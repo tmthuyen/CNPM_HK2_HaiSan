@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             groupBox3 = new GroupBox();
             dtpkToDate = new DateTimePicker();
             label13 = new Label();
@@ -94,7 +94,7 @@
             dtpkToDate.Name = "dtpkToDate";
             dtpkToDate.Size = new Size(129, 34);
             dtpkToDate.TabIndex = 51;
-            dtpkToDate.Value = new DateTime(2025, 4, 23, 0, 0, 0, 0);
+            dtpkToDate.Value = new DateTime(2025, 5, 6, 0, 0, 0, 0);
             // 
             // label13
             // 
@@ -117,7 +117,7 @@
             dtpkFromDate.Name = "dtpkFromDate";
             dtpkFromDate.Size = new Size(129, 34);
             dtpkFromDate.TabIndex = 49;
-            dtpkFromDate.Value = new DateTime(2025, 4, 23, 0, 0, 0, 0);
+            dtpkFromDate.Value = new DateTime(2025, 5, 6, 0, 0, 0, 0);
             // 
             // btnStatistic
             // 
@@ -384,28 +384,28 @@
             // chartTopSell
             // 
             chartTopSell.BackColor = Color.WhiteSmoke;
-            chartArea1.Name = "ChartArea1";
-            chartTopSell.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            chartTopSell.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            chartTopSell.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            chartTopSell.Legends.Add(legend3);
             chartTopSell.Location = new Point(481, 332);
             chartTopSell.Name = "chartTopSell";
             chartTopSell.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chartTopSell.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chartTopSell.Series.Add(series2);
             chartTopSell.Size = new Size(461, 279);
             chartTopSell.TabIndex = 19;
             chartTopSell.Text = "bieuDoDoanhThu";
             // 
             // chartDoanhThu
             // 
-            chartArea2.Name = "ChartArea1";
-            chartDoanhThu.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            chartDoanhThu.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            chartDoanhThu.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            chartDoanhThu.Legends.Add(legend4);
             chartDoanhThu.Location = new Point(16, 332);
             chartDoanhThu.Name = "chartDoanhThu";
             chartDoanhThu.Size = new Size(463, 279);
