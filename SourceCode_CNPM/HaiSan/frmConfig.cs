@@ -35,7 +35,7 @@ namespace GUI
             }
 
         }
-        private Boolean validate()
+        private Boolean Validate()
         {
             if (chkWinOrSql.Checked)
             {
@@ -50,11 +50,11 @@ namespace GUI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                save(sender, e);
+                Save(sender, e);
             }
         }
 
-        private void writeToFile()
+        private void WriteToFile()
         {
             try
             {
@@ -67,7 +67,7 @@ namespace GUI
                     };
 
                 // ... same as before
-                Config.writeToFile(lines);
+                Config.WriteToFile(lines);
                 this.DialogResult = DialogResult.OK; // success
                 this.Close();
             }
@@ -78,25 +78,25 @@ namespace GUI
         }
 
         
-        private void save(object sender, EventArgs e)
+        private void Save(object sender, EventArgs e)
         {
-            if (!validate())
+            if (!Validate())
             {
                 (new frmError("Vui lòng nhập đầy đủ thông tin.", "Thiếu dữ liệu")).ShowDialog();
             }
             else
             {
-                writeToFile();
+                WriteToFile();
             }
         }
         private void cancelEnterPressed(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                cancel(sender, e);
+                Cancel(sender, e);
             }
         }
-        private void cancel(object sender, EventArgs e)
+        private void Cancel(object sender, EventArgs e)
         {
             textBoxServer.Clear();
             textBoxDB.Clear();

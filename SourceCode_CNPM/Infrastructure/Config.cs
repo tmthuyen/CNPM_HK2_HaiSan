@@ -21,7 +21,7 @@ namespace Infrastructure
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.txt");
             return File.Exists(path);
         }
-        public static void writeToFile(string[] lines)
+        public static void WriteToFile(string[] lines)
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.txt");
 

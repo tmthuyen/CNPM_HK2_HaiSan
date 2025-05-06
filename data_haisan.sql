@@ -122,6 +122,7 @@ CREATE TABLE Import (
 );
 
 -- chi tiet don nhap
+-- ======
 CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     ProductId CHAR(20) NOT NULL,
     ImportId CHAR(20) NOT NULL,
@@ -134,7 +135,7 @@ CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
---- ======= SANN PHẨM HẾT HẠN
+--- ======= SANN PHẨM HẾT HẠN 
 CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
     ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
     ProductId CHAR(20) NOT NULL,
@@ -147,7 +148,7 @@ CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
 
 
 
--- ===== CHUONG TRINH KHUYEN MÃI
+-- ===== CHUONG TRINH KHUYEN MÃI 
 CREATE TABLE Voucher (
     VoucherId CHAR(10) PRIMARY KEY, 
     VoucherName NVARCHAR(50) NOT NULL,
@@ -232,6 +233,8 @@ INSERT INTO Import (ImportId, SupplierId, ImportDate, NumOfProducts) VALUES
 ('IMP00004', 'Sup001', GETDATE(), 3),
 ('IMP00005', 'Sup001', GETDATE(), 3),
 ('IMP00006', 'Sup001',GETDATE(), 1);
+
+---===lô hàng gồm các sản phẩm 
 INSERT INTO ImportDetail (ProductId, ImportId, Quantity, Remaining, Expire, PurchasePrice) VALUES
 ('Fish0002', 'IMP00004', 30, 30, '2025-05-10', 100000),
 ('Fish0003', 'IMP00004', 30, 30, '2025-05-7', 70000),
