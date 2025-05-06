@@ -26,5 +26,10 @@ namespace BUS
         {
             return cateDAL.Add(category);
         }
+
+        public bool CheckExist(string cateId, string catename)
+        {
+            return cateDAL.CheckExist(cateId, catename);
+        }
     }
 }

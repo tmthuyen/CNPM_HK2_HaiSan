@@ -31,6 +31,7 @@
             btnExit = new Button();
             tabCtrlInventory = new TabControl();
             tabPageImport = new TabPage();
+            btnExportImport = new Button();
             btnImportPro = new Button();
             panel1 = new Panel();
             btnSeeImport = new Button();
@@ -52,7 +53,7 @@
             label8 = new Label();
             txtProName = new TextBox();
             lblAppName = new Label();
-            btnExportImport = new Button();
+            btnLoadImp = new Button();
             tabCtrlInventory.SuspendLayout();
             tabPageImport.SuspendLayout();
             panel1.SuspendLayout();
@@ -90,6 +91,7 @@
             // 
             // tabPageImport
             // 
+            tabPageImport.Controls.Add(btnLoadImp);
             tabPageImport.Controls.Add(btnExportImport);
             tabPageImport.Controls.Add(btnImportPro);
             tabPageImport.Controls.Add(panel1);
@@ -102,6 +104,22 @@
             tabPageImport.TabIndex = 0;
             tabPageImport.Text = "Kho hàng";
             tabPageImport.UseVisualStyleBackColor = true;
+            // 
+            // btnExportImport
+            // 
+            btnExportImport.BackColor = Color.DodgerBlue;
+            btnExportImport.Cursor = Cursors.Hand;
+            btnExportImport.FlatAppearance.BorderSize = 0;
+            btnExportImport.FlatStyle = FlatStyle.Flat;
+            btnExportImport.Font = new Font("Times New Roman", 16F);
+            btnExportImport.ForeColor = Color.WhiteSmoke;
+            btnExportImport.Location = new Point(35, 6);
+            btnExportImport.Name = "btnExportImport";
+            btnExportImport.Size = new Size(180, 39);
+            btnExportImport.TabIndex = 18;
+            btnExportImport.Text = "In danh sách";
+            btnExportImport.UseVisualStyleBackColor = false;
+            btnExportImport.Click += btnExportImport_Click;
             // 
             // btnImportPro
             // 
@@ -358,21 +376,21 @@
             lblAppName.Text = "Ứng dụng quản lý cửa hàng hải sản";
             lblAppName.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // btnExportImport
+            // btnLoadImp
             // 
-            btnExportImport.BackColor = Color.DodgerBlue;
-            btnExportImport.Cursor = Cursors.Hand;
-            btnExportImport.FlatAppearance.BorderSize = 0;
-            btnExportImport.FlatStyle = FlatStyle.Flat;
-            btnExportImport.Font = new Font("Times New Roman", 16F);
-            btnExportImport.ForeColor = Color.WhiteSmoke;
-            btnExportImport.Location = new Point(35, 6);
-            btnExportImport.Name = "btnExportImport";
-            btnExportImport.Size = new Size(180, 39);
-            btnExportImport.TabIndex = 18;
-            btnExportImport.Text = "In danh sách";
-            btnExportImport.UseVisualStyleBackColor = false;
-            btnExportImport.Click += btnExportImport_Click;
+            btnLoadImp.BackColor = Color.DodgerBlue;
+            btnLoadImp.Cursor = Cursors.Hand;
+            btnLoadImp.FlatAppearance.BorderSize = 0;
+            btnLoadImp.FlatStyle = FlatStyle.Flat;
+            btnLoadImp.Font = new Font("Times New Roman", 16F);
+            btnLoadImp.ForeColor = Color.WhiteSmoke;
+            btnLoadImp.Location = new Point(490, 6);
+            btnLoadImp.Name = "btnLoadImp";
+            btnLoadImp.Size = new Size(194, 39);
+            btnLoadImp.TabIndex = 19;
+            btnLoadImp.Text = "Tải danh sách";
+            btnLoadImp.UseVisualStyleBackColor = false;
+            btnLoadImp.Click += btnLoadImp_Click;
             // 
             // frmInventory
             // 
@@ -427,5 +445,6 @@
         private DataGridView dgvExpire;
         private Label label5;
         private Button btnExportImport;
+        private Button btnLoadImp;
     }
 }

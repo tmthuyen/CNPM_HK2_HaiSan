@@ -158,9 +158,9 @@
             cbbUnit.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbbUnit.FormattingEnabled = true;
             cbbUnit.Items.AddRange(new object[] { "Kg", "Con" });
-            cbbUnit.Location = new Point(168, 85);
+            cbbUnit.Location = new Point(558, 88);
             cbbUnit.Name = "cbbUnit";
-            cbbUnit.Size = new Size(214, 36);
+            cbbUnit.Size = new Size(202, 36);
             cbbUnit.TabIndex = 5;
             // 
             // label3
@@ -168,9 +168,9 @@
             label3.BackColor = Color.LightSkyBlue;
             label3.FlatStyle = FlatStyle.Flat;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(19, 90);
+            label3.Location = new Point(403, 93);
             label3.Name = "label3";
-            label3.Size = new Size(128, 31);
+            label3.Size = new Size(134, 31);
             label3.TabIndex = 39;
             label3.Text = "Đơn vị";
             // 
@@ -191,7 +191,7 @@
             label13.BackColor = Color.LightSkyBlue;
             label13.FlatStyle = FlatStyle.Flat;
             label13.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label13.Location = new Point(403, 87);
+            label13.Location = new Point(13, 91);
             label13.Name = "label13";
             label13.Size = new Size(134, 31);
             label13.TabIndex = 34;
@@ -201,9 +201,9 @@
             // 
             txtProName.BackColor = Color.WhiteSmoke;
             txtProName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtProName.Location = new Point(558, 85);
+            txtProName.Location = new Point(168, 89);
             txtProName.Name = "txtProName";
-            txtProName.Size = new Size(202, 34);
+            txtProName.Size = new Size(214, 34);
             txtProName.TabIndex = 4;
             // 
             // label10

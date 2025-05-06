@@ -126,7 +126,7 @@
             btnSee.Location = new Point(349, 33);
             btnSee.Name = "btnSee";
             btnSee.Size = new Size(214, 39);
-            btnSee.TabIndex = 30;
+            btnSee.TabIndex = 2;
             btnSee.Text = "Xem";
             btnSee.UseVisualStyleBackColor = false;
             btnSee.Click += btnSee_Click;
@@ -142,7 +142,7 @@
             btnDelete.Location = new Point(622, 33);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(214, 39);
-            btnDelete.TabIndex = 29;
+            btnDelete.TabIndex = 3;
             btnDelete.Text = "Xóa";
             btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
@@ -158,7 +158,7 @@
             btnAdd.Location = new Point(71, 33);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(214, 39);
-            btnAdd.TabIndex = 28;
+            btnAdd.TabIndex = 1;
             btnAdd.Text = "Thêm";
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
@@ -287,7 +287,7 @@
             btnCancel.Location = new Point(620, 468);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(273, 49);
-            btnCancel.TabIndex = 20;
+            btnCancel.TabIndex = 12;
             btnCancel.Text = "Hủy";
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
@@ -302,7 +302,7 @@
             btnEdit.Location = new Point(314, 468);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(273, 49);
-            btnEdit.TabIndex = 12;
+            btnEdit.TabIndex = 11;
             btnEdit.Text = "Sửa";
             btnEdit.UseVisualStyleBackColor = false;
             btnEdit.Click += btnEdit_Click;
@@ -317,7 +317,7 @@
             btnSave.Location = new Point(24, 468);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(273, 49);
-            btnSave.TabIndex = 11;
+            btnSave.TabIndex = 10;
             btnSave.Text = "Lưu";
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
@@ -368,7 +368,7 @@
             btnChooseImg.Location = new Point(275, 282);
             btnChooseImg.Name = "btnChooseImg";
             btnChooseImg.Size = new Size(291, 48);
-            btnChooseImg.TabIndex = 10;
+            btnChooseImg.TabIndex = 9;
             btnChooseImg.Text = "Chọn ảnh";
             btnChooseImg.UseVisualStyleBackColor = true;
             btnChooseImg.Click += btnChooseImg_Click;
@@ -379,7 +379,7 @@
             dateTimePicker1.Location = new Point(170, 145);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(250, 34);
-            dateTimePicker1.TabIndex = 5;
+            dateTimePicker1.TabIndex = 4;
             // 
             // cbbStatus
             // 
@@ -389,7 +389,7 @@
             cbbStatus.Location = new Point(158, 217);
             cbbStatus.Name = "cbbStatus";
             cbbStatus.Size = new Size(122, 36);
-            cbbStatus.TabIndex = 7;
+            cbbStatus.TabIndex = 6;
             // 
             // label11
             // 
@@ -411,7 +411,7 @@
             cbbRole.Location = new Point(734, 215);
             cbbRole.Name = "cbbRole";
             cbbRole.Size = new Size(122, 36);
-            cbbRole.TabIndex = 9;
+            cbbRole.TabIndex = 8;
             // 
             // cbbGender
             // 
@@ -421,7 +421,7 @@
             cbbGender.Location = new Point(446, 217);
             cbbGender.Name = "cbbGender";
             cbbGender.Size = new Size(122, 36);
-            cbbGender.TabIndex = 8;
+            cbbGender.TabIndex = 7;
             // 
             // txtMail
             // 
@@ -430,7 +430,7 @@
             txtMail.Location = new Point(170, 88);
             txtMail.Name = "txtMail";
             txtMail.Size = new Size(250, 34);
-            txtMail.TabIndex = 3;
+            txtMail.TabIndex = 2;
             // 
             // label12
             // 
@@ -461,7 +461,7 @@
             txtAddress.Location = new Point(610, 145);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(250, 34);
-            txtAddress.TabIndex = 6;
+            txtAddress.TabIndex = 5;
             // 
             // label8
             // 
@@ -503,7 +503,7 @@
             txtPhone.Location = new Point(610, 91);
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(250, 34);
-            txtPhone.TabIndex = 4;
+            txtPhone.TabIndex = 3;
             // 
             // label4
             // 
@@ -554,7 +554,7 @@
             txtName.Location = new Point(610, 40);
             txtName.Name = "txtName";
             txtName.Size = new Size(250, 34);
-            txtName.TabIndex = 2;
+            txtName.TabIndex = 1;
             // 
             // frmEmployee
             // 

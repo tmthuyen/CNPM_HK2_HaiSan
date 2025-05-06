@@ -39,5 +39,17 @@ namespace BUS
             return iDAL.GetNumImp_TotalImp(fromDate, toDate);
         }
 
+        // lay gia nhap nho nhat khi sua san pham
+        public int GetMinPurchasePro(string proId)
+        {
+            return iDAL.GetMinPurchasePro(proId);
+        }
+
+        // lay danh sách san pham sap het hạn
+        public DataTable GetProductNearExpire()
+        {
+            return iDAL.GetProductNearExpire();
+        }
+
     }
 }

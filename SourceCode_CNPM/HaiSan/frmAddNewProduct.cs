@@ -35,7 +35,12 @@ namespace GUI
             loadCategory(cbbCategory, cateBUS.GetAll());
             //loadSupplier(cbbSupplier, supBUS.GetAll());
             clearInput(); 
-            cbbCategory.Focus();
+            //cbbCategory.Focus();
+
+            grInputPro.Enabled = false;
+            //cbbCategory.Focus();
+            btnCancelPro.Enabled = false;
+            btnSavePro.Enabled = false;
         }
 
 
@@ -94,6 +99,7 @@ namespace GUI
                 {
                     frmAddNewProduct_Load(sender, e);
                     new frmSuccces("Sản phẩm", "Thêm mới thành công").ShowDialog();
+
                 }
                 else
                 {

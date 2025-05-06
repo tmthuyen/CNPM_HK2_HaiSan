@@ -34,6 +34,11 @@ namespace DTO{
             Unit = unit;
         }
 
-       
+        public override string ToString()
+        {
+            return ProductName + "|" + RetailPrice; 
+        }
+
+
     }
 }

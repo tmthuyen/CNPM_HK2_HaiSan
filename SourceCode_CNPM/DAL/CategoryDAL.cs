@@ -40,6 +40,19 @@ namespace DAL
             return Connection.ExecuteNonQuery(query, parameters) > 0;
         }
 
+        // kiem tra danh mcu
+        public bool CheckExist(string cateId, string catename)
+        {
+            string query = "SELECT COUNT(*) FROM Category WHERE CategoryId = @Id OR CategoryName = @Name";
+            SqlParameter[] parameters = {
+                new SqlParameter("@Id", cateId),
+                new SqlParameter("@Name", catename)
+            };
+
+            return (int)Connection.ExecuteScalar(query, parameters) > 0;
+
+        }
+
         // Tìm danh mục theo mã danh mục
         public Category GetById(string categoryId)
         {

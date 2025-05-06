@@ -45,6 +45,13 @@ namespace BUS
             return proDAL.SearchProduct(proId, proName, categoryId, filter);
         }
 
+        public Product GetProduct(string proId)
+        {
+            List<Product> l = Search(proId, "", "");
+            if (l != null)
+                return l[0];
+            return null;
+        }
 
         public bool Add(Product product)
         {

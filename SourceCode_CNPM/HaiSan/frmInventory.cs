@@ -45,6 +45,7 @@ namespace GUI
         private void btnImportPro_Click(object sender, EventArgs e)
         {
             frmImport f = new frmImport(proBUS);
+
             f.ShowDialog();
         }
 
@@ -182,5 +183,9 @@ namespace GUI
             loadExpirePro(dgvExpire, expBUS.Search(txtProId.Text.Trim(), txtProName.Text.Trim()));
         }
 
+        private void btnLoadImp_Click(object sender, EventArgs e)
+        {
+            frmInventory_Load(sender, e);
+        }
     }
 }

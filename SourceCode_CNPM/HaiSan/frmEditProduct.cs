@@ -1,5 +1,6 @@
 ﻿using BUS;
 using DTO;
+using OfficeOpenXml.ConditionalFormatting.Contracts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,10 +17,12 @@ namespace GUI
     {
         private ProductBUS proBUS;
         private SupplierBUS supBUS;
+        private ImportBUS importBUS;
         public frmEditProduct(ProductBUS proBUS, SupplierBUS supBUS)
         {
             this.proBUS = proBUS;
             this.supBUS = supBUS;
+            this.importBUS = new ImportBUS();
             InitializeComponent();
         }
 
@@ -57,7 +60,7 @@ namespace GUI
             if (proSelected != null)
             {
                 txtProName.Text = proSelected.ProductName;
-                //txtPurchase.Text = proSelected.PurchasePrice +"";
+                txtPurchase.Text = importBUS.GetMinPurchasePro(proSelected.ProductId) + "";
                 txtRetailPrice.Text = proSelected.RetailPrice + "";
             }
         }
@@ -66,6 +69,7 @@ namespace GUI
         {
             btnCancelPro.Enabled = true;
             btnSavePro.Enabled = true;
+            txtProName.Focus();
         }
 
         private void btnSavePro_Click(object sender, EventArgs e)
@@ -75,7 +79,13 @@ namespace GUI
                 Product pUpdate = cbbProId.SelectedItem as Product;
                 pUpdate.ProductName = txtProName.Text;
                 //pUpdate.SupplierId = cbbSupplier.SelectedValue.ToString();
-                pUpdate.RetailPrice = int.Parse(txtRetailPrice.Text);
+                pUpdate.RetailPrice = int.Parse(txtRetailPrice.Text.Trim());
+
+                if(pUpdate.RetailPrice < importBUS.GetMinPurchasePro(pUpdate.ProductId))
+                {
+                    new frmError("Sản phẩm", "Giá bán phải lớn hơn giá nhập hiện tại").ShowDialog();
+                    return;
+                }
 
                 //if (pUpdate.RetailPrice < pUpdate.PurchasePrice)
                 //    new frmError("Sản phẩm", "Giá bán không ít hơn giá nhập.").ShowDialog();
@@ -83,6 +93,8 @@ namespace GUI
                 if (proBUS.Update(pUpdate))
                 {
                     new frmSuccces("Sản phẩm", "Đã sửa thành công").ShowDialog();
+                    btnCancelPro_Click(sender, e);
+                    return;
                 }
                 else
                 {
@@ -115,6 +127,9 @@ namespace GUI
         {
             btnSavePro.Enabled = false;
             btnCancelPro.Enabled = false;
+            txtPurchase.Text = "";
+            txtRetailPrice.Text = "";
+            txtProName.Text = "";
         }
 
         private void btnExit_Click(object sender, EventArgs e)

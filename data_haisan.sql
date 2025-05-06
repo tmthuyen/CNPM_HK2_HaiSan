@@ -1,9 +1,11 @@
+/*
 create database haisan
 use haisan
 use master
 drop database haisan
+*/
 
-=====--select ======
+/*
 -- Chọn tất cả dữ liệu trong bảng Employee
 SELECT * FROM Employee; 
 SELECT * FROM Account; 
@@ -17,8 +19,9 @@ SELECT * FROM ExpireProduct;
 SELECT * FROM Voucher; 
 SELECT * FROM Orders; 
 SELECT * FROM OrderDetail;
+*/
 
--- ======
+-- ====== NHÂN VIÊN
 CREATE TABLE Employee (
     EmployeeId CHAR(6) PRIMARY KEY,
     EmployeeName NVARCHAR(30) NOT NULL,
@@ -41,7 +44,7 @@ Insert Into Employee values ('Emp05', N'Trần Thanh Phước', '0373436163', 't
 insert into Employee values ('Emp06', N'Trần Thanh Phước', '0373336666', 'tphuocsale@gmail.com', 'Nam', 'active', 'sale', 'Q7', 'phuoc.png', '1990-01-01')
  
 
- ---=====
+ ---===== TÀI KHOAN ĐĂNG NHẬP
 Create table Account(
 	EmployeeId CHAR(6) Primary key,
 	Username CHAR(20) NOT NULL UNIQUE,
@@ -58,7 +61,7 @@ insert into Account values('Emp05', 'tphuocadm', 'd188c30efe42a93111d7dfbae6bc86
 insert into Account values('Emp06', 'tphuocsale', 'd188c30efe42a93111d7dfbae6bc860157b73830ca451fc0d8be9cf8d0ce9a76')
 
 
--- =====
+-- ===== KHÁCH HÀNG
 CREATE TABLE Customer (
     CustomerId CHAR(10) PRIMARY KEY,
     CustomerName NVARCHAR(30) NOT NULL,
@@ -67,7 +70,7 @@ CREATE TABLE Customer (
 ); 
  
 
--- =======
+-- ======= DANH  MỤC
 CREATE TABLE Category (
     CategoryId CHAR(15) PRIMARY KEY,
     CategoryName NVARCHAR(20) NOT NULL
@@ -84,7 +87,7 @@ Insert into Category Values
 ('Lobst', N'Tôm hùm');
 
 
--- =======
+-- ======= NHÀ CUNG CẤP
 CREATE TABLE Supplier (
     SupplierId CHAR(6) PRIMARY KEY,
     SupplierName NVARCHAR(30) NOT NULL,
@@ -96,7 +99,7 @@ Insert into Supplier Values
 ('Sup002', 'CHARLIE', '0373333333', 'charlie@gmail.com')
 
 
--- =====
+-- ===== SẢN PHẨM
 CREATE TABLE Products (
     ProductId CHAR(20) NOT NULL PRIMARY KEY,
     CategoryId CHAR(15) NOT NULL,
@@ -109,6 +112,7 @@ CREATE TABLE Products (
 
 
 -- ======
+-- don nhap
 CREATE TABLE Import (
     ImportId CHAR(20) PRIMARY KEY,
     SupplierId CHAR(6) NOT NULL,
@@ -117,18 +121,7 @@ CREATE TABLE Import (
 	FOREIGN KEY (SupplierId) REFERENCES Supplier(SupplierId)
 );
 
---- =======
-CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
-    ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
-    ProductId CHAR(20) NOT NULL,
-    ImportId CHAR(20) NOT NULL,
-    Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
-    TotalLoss INT NOT NULL,--tien mat
-    ExpiredDate DATE NOT NULL,  --  ngay loai bo san phamar
-    FOREIGN KEY (ProductId,ImportId) REFERENCES ImportDetail(ProductId,ImportId)
-);
-
-
+-- chi tiet don nhap
 CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     ProductId CHAR(20) NOT NULL,
     ImportId CHAR(20) NOT NULL,
@@ -141,18 +134,20 @@ CREATE TABLE ImportDetail ( --day la lo hang chu ko phai chi tiet nhap hang
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
--- =====
+--- ======= SANN PHẨM HẾT HẠN
 CREATE TABLE ExpireProduct (--neu ma het thi bo qua ban nay
     ExpireProductId CHAR(10) NOT NULL PRIMARY KEY,
-	ImportId CHAR(20) NOT NULL,
     ProductId CHAR(20) NOT NULL,
+    ImportId CHAR(20) NOT NULL,
     Quantity DECIMAL(10, 3) NOT NULL,--so luong mat
     TotalLoss INT NOT NULL,--tien mat
-    ExpiredDate DATE NOT NULL,
+    ExpiredDate DATE NOT NULL,  --  ngay loai bo san phamar
     FOREIGN KEY (ProductId,ImportId) REFERENCES ImportDetail(ProductId,ImportId)
 );
 
--- =====
+
+
+-- ===== CHUONG TRINH KHUYEN MÃI
 CREATE TABLE Voucher (
     VoucherId CHAR(10) PRIMARY KEY, 
     VoucherName NVARCHAR(50) NOT NULL,
@@ -173,7 +168,7 @@ CREATE TABLE Voucher (
 );
 
 
--- =======
+-- ======= HÓA ĐƠN
 CREATE TABLE Orders (   
     OrderId CHAR(12) NOT NULL PRIMARY KEY,
     CustomerId CHAR(10) NOT NULL,
@@ -192,7 +187,7 @@ CREATE TABLE Orders (
  alter table orders 
  alter column PaymentMethod nvarchar(13)
  */
--- =====
+-- ===== CHI TIET HOA DON
 CREATE TABLE OrderDetail (
     OrderId CHAR(12) NOT NULL,
     ProductId CHAR(20) NOT NULL,
@@ -231,6 +226,8 @@ INSERT INTO Products (ProductId, CategoryId, ProductName, RetailPrice, CreatedAt
 ('Squid0001', 'Squid',   N'Mực ống', 140000, GETDATE(), N'kg'),
 ('Lobst0001','Lobst',   N'Tôm hùm Alaska', 650000, GETDATE(), N'kg');
 
+
+-- THEM DỮ LIỆU NHẬP HÀNG
 INSERT INTO Import (ImportId, SupplierId, ImportDate, NumOfProducts) VALUES
 ('IMP00004', 'Sup001', GETDATE(), 3),
 ('IMP00005', 'Sup001', GETDATE(), 3),

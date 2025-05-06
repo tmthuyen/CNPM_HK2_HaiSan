@@ -158,9 +158,18 @@ namespace GUI
         // luu thông tin danh muc MỚI
         private void btnSaveCate_Click(object sender, EventArgs e)
         {
-            if (txtCateId.Text != "" && txtCateName.Text != "")
+            string cateId = txtCateId.Text.Trim();
+            string cateName = txtCateName.Text.Trim();
+            if (cateId != "" && cateName != "")
             {
-                if (cateBUS.Add(new Category(txtCateId.Text, txtCateName.Text)))
+                if(cateBUS.CheckExist(cateId, cateName))
+                {
+                    new frmError("Danh mục", "Thêm thất bại. Trùng thông tin").ShowDialog();
+
+                    return;
+                }
+
+                if (cateBUS.Add(new Category(txtCateId.Text.Trim(), txtCateName.Text.Trim())))
                 {
                     new frmSuccces("Danh mục", "Thêm thành công").ShowDialog();
                     toggleTab(false, 1);

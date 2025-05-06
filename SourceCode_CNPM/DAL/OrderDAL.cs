@@ -471,7 +471,7 @@ namespace DAL
                             p.Unit,
                             p.CategoryId,
                             p.CreatedAt,
-                            SUM(od.Amount * od.RetailPrice) AS N'Tổng tiền đã bán'
+                            SUM(od.Amount) AS N'Tổng đã bán'
                         FROM OrderDetail od
                         JOIN Products p ON p.ProductId = od.ProductId
                         JOIN Orders o ON o.OrderId = od.OrderId

@@ -92,8 +92,10 @@ namespace GUI
             txtId.Enabled = false;
             txtEmpName.Focus();
 
+
             btnSave.Enabled = true;
             btnCancel.Enabled = true;
+            btnEdit.Enabled = false;
         }
 
 
@@ -105,6 +107,7 @@ namespace GUI
             btnSave.Enabled = false;
             grInput.Enabled = false;
             btnCancel.Enabled = false;
+            btnEdit.Enabled = true;
 
             showInfo();
         }
@@ -165,10 +168,28 @@ namespace GUI
 
                 // luu anh toi thu muc dich
                 string destPath = Path.Combine(imageFolder, fileName);
-                File.Copy(sourcePath, destPath, true); // true để ghi đè nếu trùng tên
+                 
+                try
+                {
+                    // Nếu ảnh đích đã tồn tại, sinh tên mới tránh ghi đè
+                    int count = 1;
+                    string newFileName = fileName;
+                    while (File.Exists(destPath))
+                    {
+                        string fileNameOnly = Path.GetFileNameWithoutExtension(fileName);
+                        string extension = Path.GetExtension(fileName);
+                        newFileName = $"{fileNameOnly}_{count}{extension}";
+                        destPath = Path.Combine(imageFolder, newFileName);
+                        count++;
+                    }
 
-
-                lblImg.Text = fileName;
+                    File.Copy(sourcePath, destPath);
+                    lblImg.Text = Path.GetFileName(destPath);
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show("Không thể sao chép ảnh: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -190,15 +211,7 @@ namespace GUI
             if (checkEmpty())
             {
                 string mail = txtMail.Text.Trim();
-                if(IsValidEmail(mail)){
-
-                    if(empBUS.CheckMailExist(mail)){
-                        new frmError("Nhân viên", "Email đã tồn tại").ShowDialog();
-                        txtMail.Text = "";
-                        txtMail.Focus(); 
-                        return;
-                    }
-
+                if(IsValidEmail(mail)){ 
                     Employee newEmp = new Employee(
                         txtId.Text.Trim(), txtName.Text.Trim(), txtPhone.Text.Trim()
                         , txtMail.Text.Trim(), cbbGender.Text.Trim(), cbbStatus.Text.Trim()
@@ -208,6 +221,14 @@ namespace GUI
                     // kiem tra luu hay sua
                     if (isAdd)
                     {
+                        if (empBUS.CheckMailExist(mail))
+                        {
+                            new frmError("Nhân viên", "Email đã tồn tại").ShowDialog();
+                            txtMail.Text = "";
+                            txtMail.Focus();
+                            return;
+                        }
+
                         empBUS.Add(newEmp);
                         new frmSuccces("Nhân viên", "Thêm thành công").ShowDialog();
                     }
@@ -241,8 +262,7 @@ namespace GUI
                      string.IsNullOrWhiteSpace(txtMail.Text) ||
                      cbbGender.SelectedIndex < 0 ||
                      cbbRole.SelectedIndex < 0 ||
-                     cbbStatus.SelectedIndex < 0 ||
-                     string.IsNullOrWhiteSpace(lblImg.Text));
+                     cbbStatus.SelectedIndex < 0);
         }
 
         // kiem tra dinh dang mail
@@ -253,7 +273,7 @@ namespace GUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if(txtEmpId.Text.Trim().Equals(Session.UserID)){
+            if(txtEmpId.Text.Trim().Equals(Session.UserID.Trim())){
                 new frmError("Nhân viên", "Xóa thất bại. Bạn là người dùng hiện tại.").ShowDialog();
                 return;
             }
@@ -274,7 +294,7 @@ namespace GUI
         {
             if(isAdd)
             {
-                foreach(Control control in this.Controls)
+                foreach(Control control in grInput.Controls)
                 {
                     if (control is TextBox textbox)
                     {

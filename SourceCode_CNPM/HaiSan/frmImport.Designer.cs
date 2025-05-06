@@ -34,6 +34,8 @@
             btnSaveImport = new Button();
             btnCreateImport = new Button();
             grInputPro = new GroupBox();
+            txtRetail = new TextBox();
+            label12 = new Label();
             label7 = new Label();
             txtTotalDetail = new TextBox();
             btnDeleteDetail = new Button();
@@ -134,6 +136,8 @@
             // 
             // grInputPro
             // 
+            grInputPro.Controls.Add(txtRetail);
+            grInputPro.Controls.Add(label12);
             grInputPro.Controls.Add(label7);
             grInputPro.Controls.Add(txtTotalDetail);
             grInputPro.Controls.Add(btnDeleteDetail);
@@ -155,6 +159,28 @@
             grInputPro.TabIndex = 40;
             grInputPro.TabStop = false;
             grInputPro.Text = "Thông tin";
+            // 
+            // txtRetail
+            // 
+            txtRetail.BackColor = Color.WhiteSmoke;
+            txtRetail.Enabled = false;
+            txtRetail.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtRetail.Location = new Point(513, 31);
+            txtRetail.Name = "txtRetail";
+            txtRetail.ReadOnly = true;
+            txtRetail.Size = new Size(102, 34);
+            txtRetail.TabIndex = 51;
+            // 
+            // label12
+            // 
+            label12.BackColor = Color.LightSkyBlue;
+            label12.FlatStyle = FlatStyle.Flat;
+            label12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.Location = new Point(421, 34);
+            label12.Name = "label12";
+            label12.Size = new Size(86, 31);
+            label12.TabIndex = 50;
+            label12.Text = "Giá";
             // 
             // label7
             // 
@@ -203,7 +229,7 @@
             dtpkExprire.MinDate = new DateTime(2025, 4, 22, 0, 0, 0, 0);
             dtpkExprire.Name = "dtpkExprire";
             dtpkExprire.Size = new Size(129, 34);
-            dtpkExprire.TabIndex = 5;
+            dtpkExprire.TabIndex = 6;
             dtpkExprire.Value = new DateTime(2025, 4, 30, 0, 0, 0, 0);
             // 
             // btnAddProImport
@@ -217,7 +243,7 @@
             btnAddProImport.Location = new Point(221, 131);
             btnAddProImport.Name = "btnAddProImport";
             btnAddProImport.Size = new Size(150, 35);
-            btnAddProImport.TabIndex = 6;
+            btnAddProImport.TabIndex = 7;
             btnAddProImport.Text = "Thêm";
             btnAddProImport.UseVisualStyleBackColor = false;
             btnAddProImport.Click += btnAddProImport_Click;
@@ -241,7 +267,7 @@
             txtQuantity.MaxLength = 5;
             txtQuantity.Name = "txtQuantity";
             txtQuantity.Size = new Size(129, 34);
-            txtQuantity.TabIndex = 4;
+            txtQuantity.TabIndex = 5;
             txtQuantity.TextChanged += txtQuantity_TextChanged;
             txtQuantity.KeyPress += txtQuantity_KeyPress;
             // 
@@ -250,10 +276,10 @@
             txtUnit.BackColor = Color.WhiteSmoke;
             txtUnit.Enabled = false;
             txtUnit.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUnit.Location = new Point(450, 31);
+            txtUnit.Location = new Point(339, 31);
             txtUnit.Name = "txtUnit";
             txtUnit.ReadOnly = true;
-            txtUnit.Size = new Size(129, 34);
+            txtUnit.Size = new Size(60, 34);
             txtUnit.TabIndex = 44;
             // 
             // label4
@@ -272,9 +298,9 @@
             label2.BackColor = Color.LightSkyBlue;
             label2.FlatStyle = FlatStyle.Flat;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(599, 33);
+            label2.Location = new Point(646, 33);
             label2.Name = "label2";
-            label2.Size = new Size(129, 31);
+            label2.Size = new Size(105, 31);
             label2.TabIndex = 40;
             label2.Text = "Giá nhập";
             // 
@@ -282,10 +308,11 @@
             // 
             txtPurchasePrice.BackColor = Color.WhiteSmoke;
             txtPurchasePrice.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPurchasePrice.Location = new Point(748, 31);
+            txtPurchasePrice.Location = new Point(766, 31);
             txtPurchasePrice.Name = "txtPurchasePrice";
-            txtPurchasePrice.Size = new Size(129, 34);
-            txtPurchasePrice.TabIndex = 3;
+            txtPurchasePrice.Size = new Size(111, 34);
+            txtPurchasePrice.TabIndex = 4;
+            txtPurchasePrice.TextChanged += txtPurchasePrice_TextChanged_1;
             txtPurchasePrice.KeyPress += txtPurchasePrice_KeyPress;
             // 
             // label3
@@ -293,9 +320,9 @@
             label3.BackColor = Color.LightSkyBlue;
             label3.FlatStyle = FlatStyle.Flat;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(301, 33);
+            label3.Location = new Point(234, 34);
             label3.Name = "label3";
-            label3.Size = new Size(129, 31);
+            label3.Size = new Size(86, 31);
             label3.TabIndex = 39;
             label3.Text = "Đơn vị";
             // 
@@ -305,10 +332,10 @@
             cbbPro.FlatStyle = FlatStyle.Flat;
             cbbPro.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbbPro.FormattingEnabled = true;
-            cbbPro.Location = new Point(152, 30);
+            cbbPro.Location = new Point(91, 31);
             cbbPro.Name = "cbbPro";
-            cbbPro.Size = new Size(129, 36);
-            cbbPro.TabIndex = 1;
+            cbbPro.Size = new Size(135, 36);
+            cbbPro.TabIndex = 3;
             cbbPro.SelectedIndexChanged += cbbPro_SelectedIndexChanged;
             // 
             // label10
@@ -318,7 +345,7 @@
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.Location = new Point(3, 33);
             label10.Name = "label10";
-            label10.Size = new Size(129, 31);
+            label10.Size = new Size(82, 31);
             label10.TabIndex = 28;
             label10.Text = "Tên";
             // 
@@ -332,6 +359,8 @@
             dgvImportList.RowHeadersWidth = 51;
             dgvImportList.Size = new Size(902, 271);
             dgvImportList.TabIndex = 42;
+            dgvImportList.CellClick += dgvImportList_CellClick;
+            dgvImportList.CellContentClick += dgvImportList_CellContentClick;
             // 
             // label9
             // 
@@ -476,5 +505,7 @@
         private TextBox txtImportId;
         private ComboBox cbbSup;
         private Label label11;
+        private TextBox txtRetail;
+        private Label label12;
     }
 }

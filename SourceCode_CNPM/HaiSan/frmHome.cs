@@ -1,5 +1,6 @@
 ﻿using BUS;
 using DTO;
+using Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +16,11 @@ namespace GUI
     public partial class frmHome : Form
     {
         private OrderBUS orderBUS;
+        private ImportBUS importBUS;
         public frmHome()
         {
             orderBUS = new OrderBUS();
+            importBUS = new ImportBUS();
             InitializeComponent();
         }
 
@@ -35,6 +38,19 @@ namespace GUI
                 dgv.Columns["RetailPrice"].HeaderText = "Giá bán";
                 dgv.Columns["CreatedAt"].HeaderText = "Ngày tạo";
                 //dgv.Columns["TotalSold"].HeaderText = "Tổng đã bán";
+            }
+        }
+
+        // load top sp
+        private void LoadProNearExprire(DataGridView dgv, DataTable dt)
+        {
+            if (dt.Rows.Count > 0)
+            {
+                dgv.DataSource = dt;
+
+                dgv.Columns["ProductID"].HeaderText = "Mã"; 
+                dgv.Columns["ProductName"].HeaderText = "Tên";
+                dgv.Columns["RetailPrice"].HeaderText = "Giá bán"; 
             }
         }
 
@@ -117,9 +133,18 @@ namespace GUI
             // danh sách ban chay thang này
             DateTime now = DateTime.Now;
             DateTime startOfMonth = new DateTime(now.Year, now.Month, 1);
-            DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
+            DateTime startOfNextMonth = startOfMonth.AddMonths(1);
 
-            LoadTopPro(dgvTopProduct, orderBUS.GetTopProductWithInfo(startOfMonth, endOfMonth, 10));
+            LoadTopPro(dgvTopProduct, orderBUS.GetTopProductWithInfo(startOfMonth, startOfNextMonth, 10));
+
+            if (Session.Role.Trim().Equals("admin"))
+            {
+                LoadProNearExprire(dgvNearExpire, importBUS.GetProductNearExpire());
+            }
+            else
+            {
+                lblSpSapHet.Text = "Admin mới xem thông tin này";
+            }
         }
     }
 }

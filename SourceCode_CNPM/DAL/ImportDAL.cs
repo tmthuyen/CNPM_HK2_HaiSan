@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using DTO;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DAL
 {
@@ -81,8 +82,15 @@ namespace DAL
 
             return new Import(importId,supId, importDate, numOfPro, importDetails);
         }
-    
-        public string CreateNewId()
+
+        public int GetMinPurchasePro(string proId)
+        { 
+            string sql = @"SELECT MIN(PurchasePrice) FROM ImportDetail where ProductId = @proId";
+
+            return (int)Connection.ExecuteScalar(sql, new SqlParameter("@proId", proId));
+        }
+
+            public string CreateNewId()
         {
             string sql = "Select Top 1 ImportId from Import order by ImportId DESC";
 
@@ -119,5 +127,31 @@ namespace DAL
                                 new SqlParameter("@toDate", toDate)
                             });
         }
+
+
+        // lay danh sách san pham sap het hạn hoac sap hêt so luong
+        public DataTable GetProductNearExpire()
+        {
+            string sql = @"
+                SELECT 
+                    p.ProductId,
+                    p.ProductName,
+                    p.RetailPrice,
+                    SUM(id.Remaining) AS [Tồn kho],
+                    MAX(id.Expire) AS [Ngày hết hạn gần nhất]
+                FROM ImportDetail id
+                JOIN Products p ON p.ProductId = id.ProductId
+                GROUP BY 
+                    p.ProductId, 
+                    p.ProductName,
+                    p.RetailPrice
+                HAVING 
+                    MAX(CAST(id.Expire AS DATE)) <= CAST(GETDATE() + 5 AS DATE)
+                    OR SUM(id.Remaining) < 5";
+
+
+            return Connection.ExecuteQuery(sql);
+        }
+
     }
 }
